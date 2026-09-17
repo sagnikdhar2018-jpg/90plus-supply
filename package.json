@@ -1,0 +1,23 @@
+{
+  "name": "90plus-supply",
+  "private": true,
+  "sideEffects": false,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/with-app-env.mjs vite dev --host 0.0.0.0 --port 8080",
+    "build": "node scripts/with-app-env.mjs vite build && npm run db:migrate",
+    "db:migrate": "node scripts/migrate.mjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@electric-sql/pglite": "^0.5.4",
+    "@tanstack/react-router": "^1.170.0",
+    "@tanstack/react-start": "^1.168.0",
+    "better-auth": "~1.6.30",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "three": "^0.186.0",
+    "zod": "^4.4.0",
+    "zustand": "^5.0.0"
+  }
+}

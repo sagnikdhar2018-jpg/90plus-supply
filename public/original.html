@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>90+ Supply — Football Accessories Built Different</title>
+<meta name="description" content="Football accessories built for players who refuse to play ordinary. Match-grade gear, 3D custom ball configurator, 48H dispatch across India.">
+<meta name="theme-color" content="#0a0b0c">
+<meta name="color-scheme" content="dark">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://studio.clooned.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; connect-src 'self' https://*.supabase.co https://api.razorpay.com https://api.stripe.com https://cdn.jsdelivr.net https://fonts.googleapis.com https://fonts.gstatic.com; frame-src 'self' https://studio.clooned.com; object-src 'none';">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500;700&family=Oswald:wght@600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<style>html,body{background:#0a0b0c;color:#f3f4f1;margin:0}#nav{min-height:64px}</style>
+<link rel="stylesheet" href="/original.css">
+
+
+<!-- PART 1 / 8 — FOUNDATION + DESIGN SYSTEM 90+ SUPPLY — Premium Football E-Commerce Platform Design tokens, glassmorphism spec, typography scale, component library, layout primitives, responsive breakpoints, motion system, full HTML skeleton for every section, overlay, drawer, and modal. -->
+
+
+</head>
+
+<body>
+  <!-- Accessible Skip to Main Content Link -->
+  <a href="#mainContent" class="skip-to-content" id="skipToContent">Skip to main content</a>
+  <!-- Viewport Scroll Progress Bar -->
+  <div id="scrollProgressBar" class="scroll-progress-bar"></div>
+  <!-- Route Transition Loading Bar -->
+  <div id="routeLoadingBar" class="route-loading-bar"></div>
+
+<!-- CURSOR GLOW (Interactive spotlight follows pointer on desktop) -->
+<div id="cursorGlow"></div>
+
+<!-- SVG GRAIN TEXTURE (referenced by hero) -->
+<svg width="0" height="0" style="position:absolute">
+  <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter>
+</svg>
+
+<!-- NAVBAR -->
+<nav id="nav">
+  <div class="bar">
+    <div style="display:flex;align-items:center;gap:6px">
+      <button class="icon-btn" id="burger" aria-label="Open menu"><i data-lucide="menu"></i></button>
+      <a href="#/" class="logo"><span class="logo-mark">90+</span><span>SUPPLY</span></a>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="#/" data-route="">Home</a>
+      <a href="#lab" data-route="lab">Lab</a>
+      <a href="#/shop" data-route="shop">Shop</a>
+      <a href="#/trajectory" data-route="trajectory">Free-Kick</a>
+      <a href="#/academy" data-route="academy">Academy</a>
+      <a href="#/tactics" data-route="tactics">Tactics</a>
+      <a href="#/teams" data-route="teams">Teams</a>
+      <a href="#/locker-room" data-route="locker-room">Locker</a>
+    </div>
+    <div class="nav-more" id="navMore">
+      <button type="button" class="nav-more-btn" id="navMoreBtn" aria-expanded="false" aria-haspopup="true">More</button>
+      <div class="nav-more-menu" id="navMoreMenu" role="menu">
+        <a href="#/inventory" role="menuitem">Live stock</a>
+        <a href="#/bots" role="menuitem">Bot access</a>
+        <a href="#/track" role="menuitem">Track order</a>
+        <a href="#/faq" role="menuitem">FAQ</a>
+        <a href="#/contact" role="menuitem">Contact</a>
+        <a href="#/sizing" role="menuitem">Sizing</a>
+        <a href="#/pitch-matrix" role="menuitem">Specs matrix</a>
+        <a href="#/about-contact" role="menuitem">About</a>
+        <div class="nav-more-sep"></div>
+        <a href="#/privacy-policy" role="menuitem">Privacy</a>
+        <a href="#/terms" role="menuitem">Terms</a>
+        <a href="#/return-policy" role="menuitem">Returns</a>
+      </div>
+    </div>
+    <div class="nav-right">
+      <button class="icon-btn" id="navThemeToggle" aria-label="Toggle theme" title="Toggle Theme (Dark / Clean Tactical)"><i data-lucide="sun" id="themeIcon"></i></button>
+      <button class="icon-btn" id="navAudio" aria-label="Toggle sound" title="Sound Effects"><i data-lucide="volume-2" id="audioIcon"></i></button>
+      <button class="icon-btn" id="navSearch" aria-label="Search" title="Search  /  or Ctrl+K"><i data-lucide="search"></i></button>
+      <button class="icon-btn" id="navWish" aria-label="Wishlist"><i data-lucide="heart"></i><span class="wish-dot" id="wishDot"></span></button>
+      <button class="icon-btn" id="navCart" aria-label="Shopping cart"><i data-lucide="shopping-cart"></i><span class="cnt zero" id="cartCount">0</span></button>
+      <button class="icon-btn" id="navAuth" aria-label="Player Profile / Sign In" title="Player Locker & Auth"><i data-lucide="user" id="navAuthIcon"></i></button>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE BOTTOM FLOAT BAR -->
+<div id="mobNav">
+  <a href="#/" class="active"><i data-lucide="home"></i>Home</a>
+  <a href="#/shop"><i data-lucide="layout-grid"></i>Shop</a>
+  <a href="#lab"><i data-lucide="box"></i>Lab</a>
+  <button id="mobWishBtn"><i data-lucide="heart"></i>Saved</button>
+  <button id="mobCartBtn"><i data-lucide="shopping-cart"></i>Cart</button>
+</div>
+
+<!-- MOBILE FULLSCREEN MENU -->
+<div id="mmenu">
+  <button class="icon-btn" id="mmenuClose" aria-label="Close menu"><i data-lucide="x"></i></button>
+  <a class="big" style="--d:.04s" href="#/">Home <i data-lucide="arrow-up-right"></i></a>
+  <a class="big" style="--d:.06s" href="#lab">3D Match Ball Lab <i data-lucide="arrow-up-right"></i></a>
+  <a class="big" style="--d:.08s" href="#/shop">Shop All Gear (64 SKUs) <i data-lucide="arrow-up-right"></i></a>
+  <a class="big" style="--d:.12s" href="#/trajectory">Free-Kick 3D Studio <i data-lucide="arrow-up-right"></i></a>
+  <a class="big" style="--d:.16s" href="#/academy">18-Drill Pitch Academy <i data-lucide="arrow-up-right"></i></a>
+  <a class="big" style="--d:.20s" href="#/tactics">Interactive Tactical Whiteboard <i data-lucide="arrow-up-right"></i></a>
+  <a class="big" style="--d:.24s" href="#/teams">B2B Team &amp; Academy Sales <i data-lucide="arrow-up-right"></i></a>
+  <a class="big" style="--d:.28s" href="#/locker-room">Community Locker Room <i data-lucide="arrow-up-right"></i></a>
+  <a class="big" style="--d:.32s" href="#/track">Track Order Telemetry <i data-lucide="arrow-up-right"></i></a>
+  <a class="big" style="--d:.36s" href="#/admin">Admin Mission Control <i data-lucide="arrow-up-right"></i></a>
+  <div class="mmenu-policy-links" style="display:flex;gap:12px;flex-wrap:wrap;padding:16px 0;border-top:1px solid rgba(255,255,255,0.08);margin-top:10px;">
+    <a href="#/return-policy" style="font-family:var(--fm);font-size:0.75rem;color:var(--mut);text-decoration:none;">Return Policy</a>
+    <a href="#/refund-policy" style="font-family:var(--fm);font-size:0.75rem;color:var(--mut);text-decoration:none;">Refund Policy</a>
+    <a href="#/privacy-policy" style="font-family:var(--fm);font-size:0.75rem;color:var(--mut);text-decoration:none;">Privacy Policy</a>
+    <a href="#/disclaimer" style="font-family:var(--fm);font-size:0.75rem;color:var(--mut);text-decoration:none;">Disclaimer</a>
+    <a href="#/about-contact" style="font-family:var(--fm);font-size:0.75rem;color:var(--volt);text-decoration:none;">About &amp; Contact</a>
+  </div>
+  <p class="mmenu-foot">90+ SUPPLY — MATCHDAY '26 PRO EDITION</p>
+</div>
+
+<!-- HOME VIEW -->
+<div id="home" id="mainContent" tabindex="-1">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-fx">
+      <div class="pitch"></div>
+      <div class="pitch-ring"></div>
+      <canvas id="heroCanvas" role="img" aria-label="3D Interactive Match Ball Visualizer"></canvas>
+      <div class="hero-grain" style="position:absolute;inset:0;filter:url(#grain);opacity:.5;mix-blend-mode:overlay;pointer-events:none"></div>
+    </div>
+    <div class="hero-inner container">
+      <p class="eyebrow rv">Premium Football Performance Lab</p>
+      <h1 class="rv" style="--d:.08s"><span>90+ SUPPLY<span class="slash">.</span></span><span class="outline">BUILT FOR THE 90TH MINUTE<span class="slash">.</span></span></h1>
+      <p class="sub rv" style="--d:.16s">Premium football accessories built for serious players who refuse to play ordinary. Match-grade gear engineered for high-intensity competition.</p>
+      <div class="hero-cta rv" style="--d:.24s">
+        <a class="btn btn-primary magnet" href="#/shop">SHOP FOOTBALL GEAR <i data-lucide="arrow-right"></i></a>
+        <a class="btn btn-ghost magnet" href="#lab"><i data-lucide="sparkles"></i> BUILD YOUR BALL</a>
+        <a class="btn btn-ghost magnet" href="#/trajectory"><i data-lucide="wind"></i> FREE-KICK STUDIO</a>
+      </div>
+      <div class="hero-meta rv" style="--d:.32s">
+        <span><b>MATCH-GRADE</b> TESTED</span>
+        <span><b>48H</b> RAPID DISPATCH</span>
+        <span><b>FREE</b> SHIPPING OVER ₹999</span>
+      </div>
+    </div>
+    <div class="scroll-cue"><div class="sc-line"></div><span>Scroll</span></div>
+  </section>
+
+  <!-- MARQUEE TICKER -->
+  <div class="ticker"><div class="ticker-track" id="tickerTrack"></div></div>
+
+  <!-- CATEGORY GRID -->
+  <section class="block container" id="categories">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow rv">Gear for every position</p>
+        <h2 class="sec rv" style="--d:.06s">Gear for every<br>position on the pitch<span style="color:var(--volt)">.</span></h2>
+      </div>
+      <a class="link-arrow rv" style="--d:.12s" href="#/shop">View full catalog <i data-lucide="arrow-right"></i></a>
+    </div>
+    <div class="cat-grid" id="catGrid"></div>
+  </section>
+
+  <!-- BEST SELLERS -->
+  <section class="block container" id="bestsellers" style="padding-top:0">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow rv">Player approved</p>
+        <h2 class="sec rv" style="--d:.06s">What the squad<br>is playing in<span style="color:var(--volt)">.</span></h2>
+      </div>
+      <a class="link-arrow rv" style="--d:.12s" href="#/shop">Shop all gear <i data-lucide="arrow-right"></i></a>
+    </div>
+    <div class="pgrid" id="bestGrid"></div>
+  </section>
+
+  <!-- MATCH BALL LAB -->
+  <section class="block lab" id="lab">
+    <div class="container">
+      <div class="sec-head">
+        <div>
+          <p class="eyebrow rv">Match Ball Lab — Configurator</p>
+          <h2 class="sec rv" style="--d:.06s">Built for the<br>90 minutes<span style="color:var(--volt)">.</span></h2>
+          <p class="sec-sub rv" style="--d:.1s">Stamp your squad name and number, swap PBR materials, test match physics, and check your build under live floodlights.</p>
+        </div>
+      </div>
+      <div class="lab-grid">
+        <!-- 3D Stage -->
+        <div class="lab-stage rv" style="--d:.12s">
+          <canvas id="labCanvas" role="img" aria-label="3D Match Ball Lab Studio Customizer"></canvas>
+          <div class="corner c-tl"></div><div class="corner c-tr"></div>
+          <div class="corner c-bl"></div><div class="corner c-br"></div>
+          <div class="lab-hud">
+            <div class="hud-chip"><i data-lucide="move"></i>DRAG TO ORBIT · SCROLL TO ZOOM</div>
+            <div class="hud-chip"><i data-lucide="timer"></i>REAL-TIME CHRONO</div>
+          </div>
+          <!-- Complication cards (desktop: absolute; mobile: static grid) -->
+          <div class="compl cp1"><h4><i data-lucide="crosshair"></i>Premium Grip</h4><p>Micro-dimple PU skin for wet-surface precision control.</p></div>
+          <div class="compl cp2"><h4><i data-lucide="layers"></i>Match-Ready Build</h4><p>Thermal seam weld — near-zero moisture uptake (&lt;0.5%), true flight.</p></div>
+          <div class="compl cp3"><h4><i data-lucide="shield-check"></i>Durable Materials</h4><p>Butyl bladder holds tournament pressure for weeks.</p></div>
+          <div class="compl cp4"><h4><i data-lucide="flame"></i>Train &amp; Compete</h4><p>Custom laser stamp bonded directly to casing.</p></div>
+        </div>
+
+        <!-- Control Panel -->
+        <aside class="lab-panel glass glass-shine rv" style="--d:.18s">
+          <div class="lab-step-indicator">
+            <span class="hud-tag"><i data-lucide="cpu"></i> CUSTOM BALL 3D CONFIGURATOR</span>
+            <button class="icon-btn-text" id="labReset" title="Reset Customization"><i data-lucide="rotate-ccw"></i> Reset</button>
+          </div>
+
+          <!-- Step 1: Colorway -->
+          <div class="lab-block">
+            <div class="lab-step-head">
+              <span class="step-badge">STEP 1</span>
+              <h5>Choose Colorway <em id="cwName">Volt Rush</em></h5>
+            </div>
+            <div class="swrow" id="cwRow"></div>
+          </div>
+
+          <!-- Step 2: Surface Finish -->
+          <div class="lab-block">
+            <div class="lab-step-head">
+              <span class="step-badge">STEP 2</span>
+              <h5>Choose Finish <em id="finName">Match PU</em></h5>
+            </div>
+            <div class="swrow" id="finRow"></div>
+          </div>
+
+          <!-- Step 3: Laser Stamping Name -->
+          <div class="lab-block">
+            <div class="lab-step-head">
+              <span class="step-badge">STEP 3</span>
+              <h5>Laser Stamped Name <em>Max 14 Chars</em></h5>
+            </div>
+            <input class="emboss-input" id="embossName" placeholder="PLAYER / SQUAD NAME" maxlength="14" value="90+ SUPPLY">
+          </div>
+
+          <!-- Step 4: Squad Number -->
+          <div class="lab-block">
+            <div class="lab-step-head">
+              <span class="step-badge">STEP 4</span>
+              <h5>Squad Number <em>0–99</em></h5>
+            </div>
+            <input class="emboss-input" id="embossNum" placeholder="NO." maxlength="2" value="10" style="max-width: 120px;">
+          </div>
+
+          <!-- Step 5: 3D Preview & Physics Controls -->
+          <div class="lab-block">
+            <div class="lab-step-head">
+              <span class="step-badge">STEP 5</span>
+              <h5>3D Studio Controls &amp; Lighting</h5>
+            </div>
+            <div class="lab-physics-bar">
+              <button class="physics-btn" id="btnBounce"><i data-lucide="arrow-down-circle"></i>Bounce</button>
+              <button class="physics-btn" id="btnSpin"><i data-lucide="rotate-cw"></i>Spin</button>
+              <button class="physics-btn" id="btnLight"><i data-lucide="sun"></i>Lighting</button>
+            </div>
+          </div>
+
+          <!-- Step 6: Summary & Add to Cart -->
+          <div class="cfg-line">
+            <span><span class="step-badge-sm">STEP 6</span> CONFIGURATION SUMMARY</span>
+            <span id="cfgStock" class="tag tag-volt">CUSTOM BUILT TO ORDER</span>
+          </div>
+          <div class="cfg-summary-box">
+            <span id="cfgText">VOLT RUSH · MATCH PU</span>
+            <span id="cfgStamp">STAMP: "90+ SUPPLY" #10</span>
+          </div>
+          <div class="lab-price">
+            <div>
+              <span class="price" id="labPrice">₹1,299</span>
+              <small id="labUp">INCLUDES CUSTOM LASER EMBOSSING</small>
+            </div>
+          </div>
+          <div class="lab-cta">
+            <button class="btn btn-primary magnet" id="labAdd"><i data-lucide="shopping-cart"></i> Add Custom Ball to Cart</button>
+            <button class="btn btn-secondary magnet" id="labSave"><i data-lucide="bookmark"></i> Save to Cloud Locker</button>
+            <button class="btn btn-ghost magnet" id="labAR"><i data-lucide="scan"></i> AR Try-On</button>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- WHY / STATS -->
+  <section class="block container">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow rv">Why 90+ Supply</p>
+        <h2 class="sec rv" style="--d:.06s">Serious gear,<br>zero ego<span style="color:var(--volt)">.</span></h2>
+      </div>
+    </div>
+    <div class="why-grid glass">
+      <div class="why rv"><i data-lucide="users"></i><div class="num"><span data-count="12000">0</span><sub>+</sub></div><h3>Built for Players</h3><p>Active grassroots players, academy athletes, and weekend warriors across India.</p></div>
+      <div class="why rv" style="--d:.08s"><i data-lucide="medal"></i><div class="num"><span data-count="4.9" data-dec="1">0</span><sub>/5</sub></div><h3>Premium Quality</h3><p>Average verified rating across 4,000+ customer reviews.</p></div>
+      <div class="why rv" style="--d:.16s"><i data-lucide="truck"></i><div class="num"><span data-count="48">0</span><sub>H</sub></div><h3>Fast Shipping</h3><p>Packed at our Bengaluru warehouse and dispatched within 48 hours.</p></div>
+      <div class="why rv" style="--d:.24s"><i data-lucide="crosshair"></i><div class="num"><span data-count="300">0</span><sub>+</sub></div><h3>Player Tested</h3><p>Stress-tested on monsoon turf, gravel pitches, and hybrid academy grounds.</p></div>
+    </div>
+  </section>
+
+  <!-- PROMO BANNER -->
+  <section class="promo">
+    <div class="promo-mark" id="promoMark">90+</div>
+    <div class="container">
+      <p class="eyebrow rv" style="justify-content:center">The Season Upgrade</p>
+      <h2 class="rv" style="--d:.06s">Your game<em>.</em> Your gear<em>.</em></h2>
+      <p class="rv" style="--d:.12s">Upgrade your football setup without upgrading your budget.</p>
+      <a href="#/shop" class="btn btn-primary magnet rv" style="--d:.18s">Shop Now <i data-lucide="arrow-right"></i></a>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="block container">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow rv">Locker room testimonials</p>
+        <h2 class="sec rv" style="--d:.06s">Players talk,<br>gear answers<span style="color:var(--volt)">.</span></h2>
+      </div>
+    </div>
+    <div class="tst-grid" id="tstGrid"></div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="block container" style="padding-bottom:120px">
+    <div class="news rv">
+      <h2>Join the <em>90+ Club.</em></h2>
+      <p>Get new drops, football gear and exclusive offers.</p>
+      <div id="newsWrap">
+        <form id="newsForm" novalidate>
+          <input type="email" id="newsEmail" placeholder="player@email.com" aria-label="Email address">
+          <button class="btn btn-primary" type="submit">Join Now <i data-lucide="send"></i></button>
+        </form>
+      </div>
+      <p class="fine">ZERO SPAM. UNSUBSCRIBE ANYTIME WITH ONE TAP.</p>
+    </div>
+  </section>
+</div>
+
+<!-- DYNAMIC ROUTED CONTAINER -->
+<main id="page" hidden></main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="f-grid">
+      <div class="f-brand">
+        <a href="#/" class="logo"><span class="logo-mark">90+</span><span>SUPPLY</span></a>
+        <p><strong>90Plus Sports Performance Technologies Private Limited</strong><br/>
+        Innovation Lab & Registered Office: Indiranagar 100ft Road, Bengaluru, Karnataka 560038, India.<br/>
+        CIN: U32909KA2024PTC189042 · GSTIN: 29AAACN9090P1ZX</p>
+        <div class="socials">
+          <button class="icon-btn" data-social="Instagram" aria-label="Follow 90+ Supply on Instagram"><i data-lucide="instagram"></i></button>
+          <button class="icon-btn" data-social="YouTube" aria-label="Watch 90+ Supply on YouTube"><i data-lucide="youtube"></i></button>
+          <button class="icon-btn" data-social="X" aria-label="Follow 90+ Supply on X"><i data-lucide="twitter"></i></button>
+        </div>
+      </div>
+      <div class="f-col">
+        <h4>Shop Equipment</h4>
+        <a href="#/shop">All Gear</a>
+        <a href="#/shop?cat=footballs">Match Footballs</a>
+        <a href="#/shop?cat=training">Training Gear</a>
+        <a href="#/shop?cat=protection">Shin Guards</a>
+        <a href="#/shop?tag=new">New Arrivals</a>
+      </div>
+      <div class="f-col">
+        <h4>Support &amp; Lab</h4>
+        <a href="#/about-contact">About &amp; Manifesto</a>
+        <a href="#/contact">Contact Support Desk</a>
+        <a href="#/return-policy">7-Day Return Policy</a>
+        <a href="#/refund-policy">Refund Policy</a>
+        <a href="#/faq">Knowledge Base / FAQ</a>
+      </div>
+      <div class="f-col">
+        <h4>Statutory &amp; Legal</h4>
+        <a href="#/terms">Terms &amp; Conditions</a>
+        <a href="#/privacy-policy">Privacy Policy (DPDP)</a>
+        <a href="#/cookies">Cookie Policy</a>
+        <a href="#/disclaimer">Disclaimer &amp; Safety</a>
+        <a href="#/terms#grievance">Grievance Redressal</a>
+        <a href="javascript:void(0)" onclick="openCookieConsentBanner()">Manage Cookies</a>
+      </div>
+    </div>
+    <!-- Statutory Redressal Banner -->
+    <div style="margin: 20px 0 0; padding: 14px 20px; border-radius: 12px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); font-family: var(--fm); font-size: 0.72rem; color: #9da6ab; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+      <div>
+        <span style="color: #c8ff2e; font-weight: 700;">STATUTORY GRIEVANCE REDRESSAL OFFICER:</span> Aditya Varma · <a href="mailto:grievance@90plus.supply" style="color: #f3f4f1; text-decoration: underline;">grievance@90plus.supply</a> · Tel: +91 (800) 90-SUPPLY (Ext. 4)
+      </div>
+      <div>
+        SLA: 48h acknowledgment · 30-day resolution under Consumer Protection (E-Commerce) Rules 2020.
+      </div>
+    </div>
+    
+    <!-- Statutory Nominative Trademark & Quality Standard Disclaimer -->
+    <div style="margin: 16px 0 20px; padding: 12px 18px; border-radius: 10px; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.06); font-family: var(--fm); font-size: 0.68rem; color: #7e878d; line-height: 1.5;">
+      <strong style="color: #c2cbd0;">STATUTORY TRADEMARK &amp; SPECIFICATION NOTICE:</strong> 90+ SUPPLY™ is an independent athletic equipment brand operated by 90Plus Sports Performance Technologies Pvt. Ltd. References to <em>FIFA</em>, <em>FIFA Quality Pro</em>, or official tournament ball metrics refer strictly to standardized international technical, dimensional (68.5–69.5 cm), and aerodynamic weight specifications for association footballs. 90+ SUPPLY is not affiliated with, sponsored by, or an official licensee of FIFA. Razorpay® and Stripe® are registered trademarks of their respective owners.
+    </div>
+
+    <div class="f-bottom">
+      <span>© 2025–2026 90PLUS SPORTS PERFORMANCE TECHNOLOGIES PVT. LTD. — ALL RIGHTS RESERVED</span>
+      <div class="f-legal-links" style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;font-family:var(--fm);font-size:0.68rem;letter-spacing:0.06em;">
+        <a href="#/return-policy" style="color:var(--mut);text-decoration:none;">RETURNS</a>
+        <span style="color:rgba(255,255,255,0.15)">·</span>
+        <a href="#/refund-policy" style="color:var(--mut);text-decoration:none;">REFUNDS</a>
+        <span style="color:rgba(255,255,255,0.15)">·</span>
+        <a href="#/privacy-policy" style="color:var(--mut);text-decoration:none;">PRIVACY (DPDP)</a>
+        <span style="color:rgba(255,255,255,0.15)">·</span>
+        <a href="#/data-rights" style="color:var(--mut);text-decoration:none;">DATA RIGHTS</a>
+        <span style="color:rgba(255,255,255,0.15)">·</span>
+        <a href="#/terms" style="color:var(--mut);text-decoration:none;">TERMS &amp; CONDITIONS</a>
+        <span style="color:rgba(255,255,255,0.15)">·</span>
+        <a href="#/cookies" style="color:var(--mut);text-decoration:none;">COOKIES</a>
+        <span style="color:rgba(255,255,255,0.15)">·</span>
+        <a href="#/disclaimer" style="color:var(--mut);text-decoration:none;">DISCLAIMER</a>
+        <span style="color:rgba(255,255,255,0.15)">·</span>
+        <a href="#/about-contact" style="color:var(--mut);text-decoration:none;">ABOUT &amp; CONTACT</a>
+        <span style="color:rgba(255,255,255,0.15)">·</span>
+        <a href="javascript:void(0)" onclick="openCookieConsentBanner()" style="color:#c8ff2e;text-decoration:underline;">COOKIE PREFERENCES</a>
+      </div>
+      <span>GEAR UP. PLAY DIFFERENT.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Cyberpunk HUD Cookie Consent Banner (DPDP Act 2023 Compliant) -->
+<aside id="cookieConsentBanner" class="cookie-consent-hud" role="region" aria-label="Cookie and telemetry consent" style="display: none;">
+  <div class="cookie-consent-inner">
+    <div class="cookie-consent-icon"><i data-lucide="cookie"></i></div>
+    <div class="cookie-consent-text">
+      <strong>PRIVACY & TELEMETRY GOVERNANCE (DPDP ACT 2023 COMPLIANT)</strong>
+      <p>We use strictly necessary local storage (<code>90p_*</code>) to preserve your shopping cart and cloud locker session. Optional telemetry is used solely to calibrate our WebGL 3D aerodynamics rendering frame rates. We do not sell or monetize personal data. Review our <a href="#/privacy-policy" style="color: #c8ff2e; text-decoration: underline;">Privacy Policy</a>, <a href="#/terms" style="color: #c8ff2e; text-decoration: underline;">Terms</a>, and <a href="#/cookies" style="color: #c8ff2e; text-decoration: underline;">Cookie Policy</a>.</p>
+    </div>
+    <div class="cookie-consent-actions">
+      <button class="btn btn-volt btn-sm" id="btnAcceptAllCookies" aria-label="Accept all cookies and telemetry"><i data-lucide="check"></i><span>ACCEPT ALL</span></button>
+      <button class="btn btn-glass btn-sm" id="btnEssentialCookiesOnly" aria-label="Essential storage only"><span>NECESSARY ONLY</span></button>
+      <a href="#/cookies" class="cookie-pref-btn" aria-label="Manage cookie settings">Settings</a>
+    </div>
+  </div>
+</aside>
+
+<!-- OVERLAYS, DRAWERS & MODALS -->
+<div class="scrim" id="scrim"></div>
+
+<!-- Cart Drawer -->
+<aside class="drawer" id="cartDrawer" aria-label="Shopping cart">
+  <div class="dr-head"><h3>Your <span>Cart</span></h3><button class="icon-btn" data-close aria-label="Close cart"><i data-lucide="x"></i></button></div>
+  <div class="dr-body" id="cartBody"></div>
+  <div class="dr-foot" id="cartFoot"></div>
+</aside>
+
+<!-- Wishlist Drawer -->
+<aside class="drawer" id="wishDrawer" aria-label="Saved items">
+  <div class="dr-head"><h3>Saved <span>Gear</span></h3><button class="icon-btn" data-close aria-label="Close wishlist"><i data-lucide="x"></i></button></div>
+  <div class="dr-body" id="wishBody"></div>
+</aside>
+
+<!-- Quick View Modal -->
+<div class="modal" id="qvModal"><div class="modal-box modal-glass" style="position:relative">
+  <button class="icon-btn x-close" data-close aria-label="Close quick view"><i data-lucide="x"></i></button>
+  <div class="qv-grid" id="qvBox"></div>
+</div></div>
+
+<!-- Info Modal -->
+<div class="modal" id="infoModal"><div class="modal-box modal-glass info-box" style="position:relative">
+  <button class="icon-btn x-close" data-close aria-label="Close info"><i data-lucide="x"></i></button>
+  <p class="eyebrow" id="infoEyebrow">90+ Supply</p>
+  <h3 id="infoTitle"></h3>
+  <p id="infoBody"></p>
+</div></div>
+
+<!-- Search Modal -->
+<div class="modal" id="searchModal"><div class="modal-box modal-glass search-box" style="position:relative">
+  <button class="icon-btn x-close" data-close aria-label="Close search"><i data-lucide="x"></i></button>
+  <div class="si"><i data-lucide="search" style="color:var(--mut2)"></i><input id="searchInput" placeholder="Search gear — 'match ball', 'grip socks', 'cones'..."></div>
+  <div class="s-results" id="sResults"></div>
+  <div class="s-hint">TRENDING <button data-q="match ball">Match ball</button><button data-q="cones">Cones</button><button data-q="grip socks">Grip socks</button><button data-q="bag">Boot bag</button></div>
+</div></div>
+
+<!-- UPI Payment QR Modal -->
+<div class="modal" id="upiModal"><div class="modal-box modal-glass" style="max-width:440px;position:relative">
+  <button class="icon-btn x-close" data-close aria-label="Close payment"><i data-lucide="x"></i></button>
+  <div class="qr-box">
+    <p class="eyebrow" style="justify-content:center">Scan &amp; Pay via Any UPI App</p>
+    <h3 style="font-family:var(--fd);font-size:1.8rem;text-transform:uppercase;margin:6px 0" id="upiAmount">₹0</h3>
+    <div class="qr-display">
+      <svg viewBox="0 0 100 100" width="160" height="160">
+        <rect width="100" height="100" fill="#ffffff"/>
+        <path d="M10,10 h30 v30 h-30 z M15,15 v20 h20 v-20 z M20,20 h10 v10 h-10 z" fill="#000"/>
+        <path d="M60,10 h30 v30 h-30 z M65,15 v20 h20 v-20 z M70,20 h10 v10 h-10 z" fill="#000"/>
+        <path d="M10,60 h30 v30 h-30 z M15,65 v20 h20 v-20 z M20,70 h10 v10 h-10 z" fill="#000"/>
+        <path d="M50,15 h5 v10 h-5 z M50,35 h15 v5 h-15 z M50,55 h10 v10 h-10 z M65,55 h20 v5 h-20 z M50,75 h30 v10 h-30 z M85,75 h5 v15 h-5 z" fill="#000"/>
+      </svg>
+    </div>
+    <p class="mono" style="font-size:.72rem;color:var(--volt)">UPI ID: 90plus.supply@axisbank</p>
+    <p class="mono" style="font-size:.62rem;color:var(--mut2);margin-top:6px">GPay · PhonePe · Paytm · CRED</p>
+    <button class="btn btn-primary btn-sm btn-full" id="upiConfirm" style="margin-top:18px"><i data-lucide="check"></i>Simulate Payment &amp; Confirm</button>
+  </div>
+</div></div>
+
+<!-- Player Authentication Modal -->
+<div class="modal" id="authModal" style="display:none !important">
+  <div class="modal-box modal-glass auth-modal-box" style="max-width:460px;position:relative">
+    <button class="icon-btn x-close" data-close aria-label="Close auth" id="authModalClose"><i data-lucide="x"></i></button>
+    <div class="auth-header">
+      <span class="hud-tag"><i data-lucide="shield-check"></i> PLAYER TELEMETRY</span>
+      <h3 style="font-family:var(--fd);font-size:1.8rem;text-transform:uppercase;margin:6px 0" id="authModalTitle">PLAYER ACCESS</h3>
+      <p class="mut" style="font-size:0.85rem">Sign in to sync your custom 3D builds, locker room tactics, and order telemetry.</p>
+    </div>
+    
+    <!-- Auth Tab Switcher -->
+    <div class="auth-tabs" style="display:flex;gap:8px;margin:16px 0;border-bottom:1px solid var(--line2);padding-bottom:8px">
+      <button type="button" class="auth-tab-btn active" data-tab="password" id="tabAuthPassword">Password</button>
+      <button type="button" class="auth-tab-btn" data-tab="otp" id="tabAuthOtp">Magic OTP</button>
+      <button type="button" class="auth-tab-btn" data-tab="register" id="tabAuthRegister">New Player</button>
+    </div>
+
+    <!-- Password Sign In Form -->
+    <form id="authPasswordForm" class="auth-form-panel">
+        <button type="button" class="btn-google" id="btnGoogleSignIn" style="margin-bottom:14px">
+          <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"/><path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.97 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/></svg>
+          <span>Continue with Google</span>
+        </button>
+        <div class="auth-divider"><span>OR WITH EMAIL</span></div>
+      <div class="form-group">
+        <label>PLAYER EMAIL</label>
+        <input type="email" id="authEmailPass" placeholder="player@90plus.supply" required class="input-field" />
+      </div>
+      <div class="form-group" style="margin-top:12px">
+        <label>PASSWORD</label>
+        <input type="password" id="authPassword" placeholder="••••••••" required class="input-field" />
+      </div>
+      <button type="submit" class="btn btn-volt btn-full" style="margin-top:18px" id="btnSignInPass">
+        <i data-lucide="log-in"></i><span>SIGN IN TO LOCKER</span>
+      </button>
+    </form>
+
+    <!-- OTP Form -->
+    <form id="authOtpForm" class="auth-form-panel" style="display:none">
+      <div class="form-group">
+        <label>PLAYER EMAIL</label>
+        <div style="display:flex;gap:8px">
+          <input type="email" id="authEmailOtp" placeholder="player@90plus.supply" required class="input-field" style="flex:1" />
+          <button type="button" class="btn btn-ghost btn-sm" id="btnSendOtp">Send Code</button>
+        </div>
+      </div>
+      <div class="form-group" style="margin-top:12px">
+        <label>6-DIGIT VERIFICATION CODE</label>
+        <input type="text" id="authOtpToken" placeholder="909090" maxlength="6" class="input-field mono" />
+      </div>
+      <button type="submit" class="btn btn-volt btn-full" style="margin-top:18px" id="btnVerifyOtp">
+        <i data-lucide="key"></i><span>VERIFY &amp; ENTER LOCKER</span>
+      </button>
+    </form>
+
+    <!-- Register Form -->
+    <form id="authRegisterForm" class="auth-form-panel" style="display:none">
+        <button type="button" class="btn-google" id="btnGoogleSignUp" style="margin-bottom:14px">
+          <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"/><path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.97 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/></svg>
+          <span>Continue with Google</span>
+        </button>
+        <div class="auth-divider"><span>OR WITH EMAIL</span></div>
+      <div class="form-group">
+        <label>PLAYER CALLSIGN</label>
+        <input type="text" id="regCallsign" placeholder="e.g. Apex Striker" required class="input-field" />
+      </div>
+      <div class="form-group" style="margin-top:12px">
+        <label>PLAYER EMAIL</label>
+        <input type="email" id="regEmail" placeholder="player@90plus.supply" required class="input-field" />
+      </div>
+      <div class="form-group" style="margin-top:12px">
+        <label>CREATE PASSWORD (MIN 6 CHARS)</label>
+        <input type="password" id="regPassword" placeholder="••••••••" minlength="6" required class="input-field" />
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px">
+        <div class="form-group">
+          <label>POSITION</label>
+          <select id="regPosition" class="input-field">
+            <option value="Forward">Forward / Winger</option>
+            <option value="Midfielder" selected>Midfielder (CAM/CDM)</option>
+            <option value="Defender">Defender (CB/FB)</option>
+            <option value="Goalkeeper">Goalkeeper (GK)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>BOOT SIZE</label>
+          <select id="regBootSize" class="input-field">
+            <option value="UK 7">UK 7</option>
+            <option value="UK 8">UK 8</option>
+            <option value="UK 9" selected>UK 9</option>
+            <option value="UK 10">UK 10</option>
+            <option value="UK 11">UK 11</option>
+          </select>
+        </div>
+      </div>
+      <!-- Statutory DPDP Act 2023 Affirmative Consent Checkbox -->
+      <div class="form-consent-row" style="margin: 12px 0; padding: 10px 12px; border-radius: 8px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+        <input type="checkbox" id="modalRegConsent" required />
+        <label for="modalRegConsent" style="margin:0;cursor:pointer;font-size:0.75rem;">
+          I agree to the <a href="#/terms" target="_blank" style="color: #c8ff2e; text-decoration: underline;">Terms</a> and consent to profile data processing under the <a href="#/privacy-policy" target="_blank" style="color: #c8ff2e; text-decoration: underline;">Privacy Notice (DPDP)</a>.
+        </label>
+      </div>
+
+      <button type="submit" class="btn btn-volt btn-full" style="margin-top:18px" id="btnSignUp">
+        <i data-lucide="user-plus"></i><span>CREATE PLAYER PROFILE</span>
+      </button>
+    </form>
+    
+    <div id="authStatusMsg" class="auth-status-msg" style="margin-top:12px;font-size:0.8rem;text-align:center;min-height:1.2em"></div>
+  </div>
+</div>
+
+<!-- AR Camera Modal -->
+<div class="modal" id="arModal"><div class="modal-box" style="width:min(940px,100%);padding:0;background:#08090b;overflow:hidden;position:relative;border:1px solid var(--line2);border-radius:22px">
+  <div class="ar-stage">
+    <video id="arVideo" playsinline muted autoplay></video>
+    <canvas id="arCanvas" role="img" aria-label="Augmented Reality Stadium Projection"></canvas>
+    <div class="ar-head">
+      <span class="ar-tag"><i data-lucide="scan"></i>AR TRY-ON — PLACE YOUR BUILD</span>
+      <button class="icon-btn" id="arClose" aria-label="Close AR"><i data-lucide="x"></i></button>
+    </div>
+    <div class="ar-hint hud-chip" id="arHint"><i data-lucide="move"></i>DRAG TO PLACE · SLIDER TO SCALE</div>
+    <div class="ar-hud">
+      <div class="rangewrap"><span>BALL SIZE</span><input type="range" id="arSize" min="40" max="220" value="110" style="width:120px"></div>
+      <button class="btn btn-primary btn-sm" id="arShot"><i data-lucide="camera"></i>Capture Photo</button>
+    </div>
+    <div class="ar-fallback" id="arFallback" hidden><i data-lucide="camera"></i><p id="arFallbackMsg">Camera access unavailable. Your 3D custom build is displayed on a studio backdrop instead. You can still drag, scale, and capture.</p></div>
+    <div class="ar-cap" id="arCap" hidden>
+      <div>
+        <p class="eyebrow" style="justify-content:center">Photo Captured</p>
+        <img id="arCapImg" alt="AR capture photo" loading="lazy" decoding="async">
+        <div class="row">
+          <a class="btn btn-primary btn-sm" id="arDl" download="90plus-tryon.png"><i data-lucide="download"></i>Download</a>
+          <button class="btn btn-ghost btn-sm" id="arRetake"><i data-lucide="rotate-ccw"></i>Retake</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></div>
+
+<!-- Toast Container -->
+<div id="toasts"></div>
+
+<!-- END OF PART 1 / 8 — FOUNDATION + DESIGN SYSTEM All HTML structure and CSS is complete. The script block containing the entire JavaScript application (3D engine, commerce, router, admin, AR, physics, audio, i18n, theming, self-tests) will follow in Parts 2–8. -->
+
+
+
+
+<!-- ================================================================
+     AI TACTICAL MATCHDAY ADVISOR BEACON & INTERACTIVE HUD DRAWER
+     ================================================================ -->
+<button id="aiTacticalBeacon" class="ai-tactical-beacon" title="Open AI Match Tactical Advisor" aria-label="AI Tactical Advisor">
+  <span class="beacon-pulse"></span>
+  <i data-lucide="cpu"></i>
+  <span class="beacon-text">AI TACTICAL ADVISOR</span>
+  <span class="beacon-badge">PRO</span>
+</button>
+
+<div id="aiTacticalDrawer" class="ai-drawer-overlay">
+  <div class="ai-drawer-panel">
+    <div class="ai-drawer-header">
+      <div class="ai-header-title">
+        <div class="ai-icon-hex"><i data-lucide="zap"></i></div>
+        <div>
+          <div class="ai-title-row">
+            <span class="ai-title">MATCHDAY TACTICAL AI</span>
+            <span class="ai-tag">V3.5 NEURAL HUD</span>
+          </div>
+          <p class="ai-subtitle">On-pitch telemetry, ball physics calibration & squad kit advisor</p>
+        </div>
+      </div>
+      <button id="aiDrawerClose" class="ai-drawer-close" aria-label="Close AI Advisor">&times;</button>
+    </div>
+
+    <div class="ai-drawer-body">
+      <!-- 01 Position Selection -->
+      <div class="ai-section">
+        <label class="ai-section-label">01 // SELECT PLAYER POSITION</label>
+        <div class="ai-chips-grid" id="aiPosGrid">
+          <button class="ai-chip active" data-pos="ST"><span class="chip-code">ST</span> Striker</button>
+          <button class="ai-chip" data-pos="WINGER"><span class="chip-code">WING</span> Winger (LW/RW)</button>
+          <button class="ai-chip" data-pos="MID"><span class="chip-code">MID</span> Midfielder (CM/CAM)</button>
+          <button class="ai-chip" data-pos="DEF"><span class="chip-code">CB</span> Center-Back</button>
+          <button class="ai-chip" data-pos="FB"><span class="chip-code">FB</span> Fullback (LB/RB)</button>
+          <button class="ai-chip" data-pos="GK"><span class="chip-code">GK</span> Goalkeeper</button>
+        </div>
+      </div>
+
+      <!-- 02 Pitch Surface & Weather -->
+      <div class="ai-section">
+        <label class="ai-section-label">02 // MATCH SURFACE & WEATHER</label>
+        <div class="ai-chips-grid" id="aiSurfaceGrid">
+          <button class="ai-chip active" data-surface="FG">🌱 Firm Grass</button>
+          <button class="ai-chip" data-surface="TURF">⚡ 3G/4G Turf</button>
+          <button class="ai-chip" data-surface="WET">🌧️ Wet / Monsoon</button>
+          <button class="ai-chip" data-surface="INDOOR">🏟️ Indoor / Futsal</button>
+        </div>
+      </div>
+
+      <!-- 03 Tactical Style -->
+      <div class="ai-section">
+        <label class="ai-section-label">03 // TACTICAL EMPHASIS</label>
+        <div class="ai-chips-grid" id="aiStyleGrid">
+          <button class="ai-chip active" data-style="SPEED">⚡ Explosive Cutbacks & Speed</button>
+          <button class="ai-chip" data-style="FK">🎯 Free-Kick Dip & Knuckleball</button>
+          <button class="ai-chip" data-style="PRESS">🛡️ High-Press & Heavy Tackles</button>
+          <button class="ai-chip" data-style="DISTRIB">📐 Surgical 60m Tactical Passes</button>
+        </div>
+      </div>
+
+      <!-- Output: Neural Recommendation Card -->
+      <div class="ai-recommendation-card" id="aiRecCard">
+        <!-- Dynamically rendered by renderAIRecCard() -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================
+     GEAR SPECS COMPARISON MATRIX MODAL
+     ================================================================ -->
+<div id="gearSpecsModal" class="gear-specs-modal-overlay">
+  <div class="gear-specs-modal-card">
+    <div class="gear-specs-head">
+      <div class="gear-specs-title">
+        <i data-lucide="layers" style="color: var(--volt, #c8ff2e);"></i>
+        <span>90+ SUPPLY // TECHNICAL GEAR & BALL TELEMETRY MATRIX</span>
+      </div>
+      <button id="gearSpecsClose" class="ai-drawer-close">&times;</button>
+    </div>
+    <div class="gear-specs-body">
+      <table class="specs-table">
+        <thead>
+          <tr>
+            <th>TECHNICAL PARAMETER</th>
+            <th>90+ PRO MATCH BALL</th>
+            <th>STANDARD FIFA BALL</th>
+            <th>TRAINING GRADE BALL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Seam Fusion Technology</td>
+            <td class="specs-highlight">Thermal Fusion Welding (Zero Stitch)</td>
+            <td>Machine Stitched (Hybrid)</td>
+            <td>Hand Stitched 32-Panel</td>
+          </tr>
+          <tr>
+            <td>Outer Casing PU Thickness</td>
+            <td class="specs-highlight">1.2mm Textured High-Friction PU</td>
+            <td>0.9mm Standard PU</td>
+            <td>0.6mm PVC / Synthetic</td>
+          </tr>
+          <tr>
+            <td>Water Uptake in Monsoon Rain</td>
+            <td class="specs-highlight">0.0% (Hermetically Sealed)</td>
+            <td>1.8% Absorption</td>
+            <td>6.5% Severe Weight Gain</td>
+          </tr>
+          <tr>
+            <td>Internal Bladder & Polyester Webbing</td>
+            <td class="specs-highlight">High-Retention Butyl + Multi-Ply Webbing</td>
+            <td>Natural Latex (Weekly Top-up)</td>
+            <td>Rubber Bladder</td>
+          </tr>
+          <tr>
+            <td>Rebound Elasticity Restitution (e)</td>
+            <td class="specs-highlight">0.82 (145cm from 2m drop)</td>
+            <td>0.74 (130cm from 2m drop)</td>
+            <td>0.62 (115cm from 2m drop)</td>
+          </tr>
+          <tr>
+            <td>Aerodynamic Drag Coefficient (Cd)</td>
+            <td class="specs-highlight">0.22 (Micro-Dimple Flow Separation)</td>
+            <td>0.29 (Smooth Air Drag)</td>
+            <td>0.34 (Unpredictable Drift)</td>
+          </tr>
+          <tr>
+            <td>Official Certification Standard</td>
+            <td class="specs-highlight">FIFA Quality Pro Tournament Standard</td>
+            <td>FIFA Basic</td>
+            <td>Recreational Practice</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Scroll Back to Top Floating Button -->
+  <button id="btnScrollToTop" class="scroll-to-top-btn" aria-label="Scroll back to top" title="Scroll to top">
+    <i data-lucide="arrow-up"></i>
+  </button>
+
+  <!-- Floating Contact Action Button (FAB) -->
+  <div class="floating-contact-fab" id="floatingContactFab">
+    <button class="fab-main-btn" id="fabMainBtn" aria-label="Quick Contact Options" title="Quick Contact Desk">
+      <i data-lucide="message-square"></i>
+    </button>
+    <div class="fab-menu" id="fabMenu">
+      <a href="tel:+918009078775"><i data-lucide="phone" style="color:#c8ff2e"></i> Direct Athlete Helpline</a>
+      <a href="mailto:support@90plus.supply"><i data-lucide="mail" style="color:#c8ff2e"></i> Email Engineering Lab</a>
+      <a href="#/contact"><i data-lucide="send" style="color:#c8ff2e"></i> Launch Support Desk</a>
+    </div>
+  </div>
+
+  <!-- Reusable Universal Confirmation Modal -->
+  <div class="modal" id="confirmModal" style="display:none">
+    <div class="modal-box modal-glass" style="max-width:440px;text-align:center;padding:32px 24px;position:relative">
+      <button class="icon-btn x-close" id="confirmModalClose" aria-label="Close modal"><i data-lucide="x"></i></button>
+      <div id="confirmModalIcon" style="margin-bottom:12px;display:inline-flex;padding:12px;border-radius:50%;background:rgba(200,255,46,0.1);color:#c8ff2e"><i data-lucide="help-circle" style="width:28px;height:28px"></i></div>
+      <h3 id="confirmModalTitle" style="font-family:var(--fd);font-size:1.3rem;margin:0 0 8px;color:#f3f4f1;letter-spacing:0.04em">CONFIRM ACTION</h3>
+      <p id="confirmModalMsg" style="color:#98a0a4;font-size:0.85rem;line-height:1.5;margin-bottom:24px"></p>
+      <div style="display:flex;gap:12px;justify-content:center">
+        <button class="btn btn-outline" id="confirmModalCancel">CANCEL</button>
+        <button class="btn btn-volt" id="confirmModalOk">PROCEED</button>
+      </div>
+    </div>
+  </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.344.0/dist/umd/lucide.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js" defer></script>
+<script src="/original.js" defer></script>
+<script src="/shop-backend.js" defer></script>
+</body>
+</html>

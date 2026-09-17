@@ -1,0 +1,47 @@
+export const LOADOUTS = [
+  {
+    id: "loadout-1",
+    author: "Coach Vikram Rao (Bengaluru Academy)",
+    title: "The Rainmaster Monsoon Set",
+    pitch: "Wet natural grass / monsoon",
+    votes: 218,
+    badge: "Coach certified",
+    items: ["ball-tempest-storm", "sock-apex-volt", "guard-carbon-pro", "gloves-shadow-black"],
+    desc: "High-vis storm ball, AquaGrip latex, and silicone socks for torrential fixtures.",
+  },
+  {
+    id: "loadout-2",
+    author: "Samir K. (Winger, Mumbai League)",
+    title: "Hypersonic Winger Speed Kit",
+    pitch: "3G artificial turf",
+    votes: 342,
+    badge: "Popular",
+    items: ["sock-stealth-black", "guard-mini-carbon", "sleeve-blackout", "agility-ladder-6m"],
+    desc: "38g micro carbon guards and Blackout grip socks for isolation cuts.",
+  },
+  {
+    id: "loadout-3",
+    author: "Aditya M. (Goalkeeper, Delhi Pro)",
+    title: "Clean Sheet Goalkeeper Fortress",
+    pitch: "All surfaces",
+    votes: 184,
+    badge: "Pro spec",
+    items: ["gloves-vortex-pro", "rec-ice-cold-cup", "rec-zinc-tape-3pk", "bag-club-backpack"],
+    desc: "Contact latex gloves, finger tape, and ice therapy for post-match recovery.",
+  },
+] as const;
+
+export const TOOL_PAGES = [
+  { to: "/", label: "Home", desc: "Flagship pitch and match ball" },
+  { to: "/shop", label: "Shop", desc: "70-SKU match gear catalog" },
+  { to: "/lab", label: "Match lab", desc: "Custom colorway, finish, emboss" },
+  { to: "/trajectory", label: "Free-kick CFD", desc: "Magnus-effect flight studio" },
+  { to: "/academy", label: "Academy", desc: "18 interval drills" },
+  { to: "/tactics", label: "Tactics", desc: "Five matchday formations" },
+  { to: "/teams", label: "Team sales", desc: "Bulk academy pricing" },
+  { to: "/locker", label: "Locker room", desc: "Saved builds, kits, orders" },
+  { to: "/specs", label: "Gear specs", desc: "Ball telemetry comparison" },
+  { to: "/track", label: "Track", desc: "Dispatch status" },
+  { to: "/faq", label: "FAQ", desc: "PSI, shipping, sizing" },
+  { to: "/contact", label: "Contact", desc: "Bengaluru support desk" },
+] as const;

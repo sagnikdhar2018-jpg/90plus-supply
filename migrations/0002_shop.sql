@@ -1,3 +1,5 @@
+-- 90+ Supply catalog, orders, lab saves, wishlists, coupons
+
 create table if not exists products (
   id text primary key,
   slug text not null unique,
@@ -41,6 +43,8 @@ create table if not exists orders (
   tracking_number text,
   created_at timestamptz not null default now()
 );
+create index if not exists orders_user_id_idx on orders (user_id);
+create index if not exists orders_email_idx on orders (email);
 
 create table if not exists order_items (
   id serial primary key,
@@ -51,6 +55,26 @@ create table if not exists order_items (
   unit_price integer not null,
   custom_name text,
   custom_number text
+);
+create index if not exists order_items_order_id_idx on order_items (order_id);
+
+create table if not exists lab_builds (
+  id serial primary key,
+  user_id text not null,
+  name text not null default '',
+  number text not null default '',
+  colorway_idx integer not null default 0,
+  finish_idx integer not null default 0,
+  psi integer not null default 12,
+  created_at timestamptz not null default now()
+);
+create index if not exists lab_builds_user_id_idx on lab_builds (user_id);
+
+create table if not exists wishlists (
+  user_id text not null,
+  product_id text not null,
+  created_at timestamptz not null default now(),
+  primary key (user_id, product_id)
 );
 
 create table if not exists coupons (
@@ -63,3 +87,8 @@ create table if not exists coupons (
 insert into coupons (code, amount, min_subtotal, uses)
   values ('FIRST90', 150, 150, 0)
   on conflict (code) do nothing;
+
+create table if not exists subscribers (
+  email text primary key,
+  created_at timestamptz not null default now()
+);

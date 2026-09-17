@@ -4,8 +4,6 @@ Match-day football gear store. Volt / obsidian clone of the original 90+ storefr
 
 **Other Grok bots:** start at [GROK.md](./GROK.md). Fetch `GET /api/bots` on a running site for the machine spec.
 
-Repo: https://github.com/sagnikdhar2018-jpg/90plus-supply
-
 ## What this is
 
 - Cloned storefront: `public/original.html` + `original.css` + `original.js` + `shop-backend.js`

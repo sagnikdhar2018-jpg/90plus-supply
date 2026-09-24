@@ -11440,6 +11440,31 @@ input[name="shopCat"]:checked + span {
 html { overflow-x: hidden; scroll-behavior: auto; }
 .snap-img { width: 100%; height: 100%; object-fit: contain; decoding: async; }
 
+
+/* HOME–SHOP–MORE cluster — tight, no empty black gap between links */
+.nav-cluster {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex: 0 0 auto;
+}
+.nav-cluster .nav-links {
+  gap: 0;
+}
+.nav-cluster .nav-links a {
+  padding: 6px 8px !important;
+  font-size: 0.68rem !important;
+  letter-spacing: 0.08em !important;
+}
+.nav-cluster .nav-more-btn {
+  padding: 6px 8px !important;
+  font-size: 0.68rem !important;
+  letter-spacing: 0.08em !important;
+}
+#nav .bar {
+  gap: 12px;
+}
+
 #nav .bar { flex-wrap: nowrap !important; min-height: 64px !important; overflow: visible !important; }
 .nav-links { display: flex !important; flex-wrap: nowrap !important; }
 .nav-links a { font-size: 0.7rem !important; padding: 8px 9px !important; white-space: nowrap !important; }
@@ -11449,7 +11474,7 @@ html { overflow-x: hidden; scroll-behavior: auto; }
 .nav-more-menu.open { display: flex; }
 .nav-more-menu a { padding: 10px 12px; border-radius: 8px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mut); }
 @media (max-width: 1180px) {
-  .nav-links, .nav-more { display: none !important; }
+  .nav-links, .nav-more, .nav-cluster { display: none !important; }
   #burger { display: grid !important; }
 }
 
@@ -11541,7 +11566,8 @@ html { overflow-x: hidden; scroll-behavior: auto; }
     min-height: 56px !important;
   }
   .nav-more,
-  .nav-links {
+  .nav-links,
+  .nav-cluster {
     display: none !important;
   }
   #navThemeToggle,
@@ -11683,7 +11709,7 @@ html { overflow-x: hidden; scroll-behavior: auto; }
     flex-direction: row;
     flex-wrap: wrap;
   }
-  /* Legacy hero only — ThreadLab frame keeps SHOP + View shop visible */
+  /* Legacy hero only — Matchday frame keeps under-frame SHOP + View shop visible */
   .hero:not(.hero-tl) .hero-cta { display: none; }
 }
 .pcard-stars-muted .cnt {
@@ -11817,9 +11843,10 @@ html { overflow-x: hidden; scroll-behavior: auto; }
 }
 
 /* ================================================================
-   FE-THREADLAB: hero tablet frame + breaking 3D ball + shop strip
+   FE-MATCHDAY: hero tablet frame + breaking 3D ball + shop strip
    Brand locks: volt #c8ff2e · notch · Oswald · dark onyx
    No purple/champagne. Real proof stats only. Reuse heroCanvas.
+   No club/sponsor IP art. Jersey-forward blank Home hero.
    ================================================================ */
 .hero.hero-tl {
   min-height: 100svh;
@@ -11827,7 +11854,7 @@ html { overflow-x: hidden; scroll-behavior: auto; }
   align-items: center;
   justify-content: center;
   overflow: visible;
-  padding: 96px 0 56px;
+  padding: 80px 0 28px;
   background:
     radial-gradient(900px 520px at 18% 42%, rgba(200, 255, 46, 0.05), transparent 62%),
     radial-gradient(1100px 640px at 78% 30%, #121516 0%, var(--bg) 70%);
@@ -11982,7 +12009,7 @@ html { overflow-x: hidden; scroll-behavior: auto; }
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 56px 48px 48px 24px;
+  padding: 40px 36px 36px 20px;
   min-width: 0;
 }
 .tl-eyebrow {
@@ -12035,12 +12062,20 @@ html { overflow-x: hidden; scroll-behavior: auto; }
   align-items: center;
 }
 .hero.hero-tl .hero-kit-actions { display: none; }
-.hero.hero-tl .hero-cta {
+.hero.hero-tl .hero-cta,
+.hero.hero-tl .hero-cta-under {
   display: flex;
-  gap: 12px;
+  gap: 6px;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
   max-width: none;
-  margin-bottom: 28px;
+  margin: 10px auto 0;
+  padding: 0 4px;
+}
+.hero.hero-tl .hero-cta-under .btn {
+  padding-left: 18px;
+  padding-right: 18px;
 }
 
 /* Proof stats — real promises only */
@@ -12116,7 +12151,7 @@ html { overflow-x: hidden; scroll-behavior: auto; }
 }
 
 @media (max-width: 980px) {
-  .hero.hero-tl { padding: 88px 0 40px; overflow: hidden; }
+  .hero.hero-tl { padding: 72px 0 24px; overflow: hidden; }
   .hero-tablet { padding: 8px; border-radius: 22px; }
   .hero-tablet-bezel {
     grid-template-columns: 1fr;
@@ -12129,7 +12164,7 @@ html { overflow-x: hidden; scroll-behavior: auto; }
     order: -1;
   }
   .hero-tl-copy {
-    padding: 8px 22px 28px;
+    padding: 6px 18px 18px;
   }
   .hero.hero-tl h1 {
     font-size: clamp(2.2rem, 11vw, 3.4rem);
@@ -12143,7 +12178,8 @@ html { overflow-x: hidden; scroll-behavior: auto; }
 }
 
 @media (max-width: 720px) {
-  .hero.hero-tl .hero-cta { display: flex; }
+  .hero.hero-tl .hero-cta,
+  .hero.hero-tl .hero-cta-under { display: flex; }
   .hero.hero-tl .hero-kit {
     grid-template-columns: auto 1fr;
   }

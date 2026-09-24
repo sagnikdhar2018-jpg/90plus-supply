@@ -2636,7 +2636,7 @@ function initHero() {
     heroStage = new Stage(DOM.heroCanvas, { fov: 42, dpr: Math.min(window.devicePixelRatio || 1, 1.5) });
     const { scene, camera } = heroStage;
 
-    /* ThreadLab breakout: closer + left-biased so ball reads oversized vs tablet frame */
+    /* Matchday breakout: closer + left-biased so ball reads oversized vs tablet frame */
     camera.position.set(0.85, 0.45, 3.35);
     camera.lookAt(-0.35, 0.05, 0);
 

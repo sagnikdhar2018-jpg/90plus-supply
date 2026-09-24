@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { GROK_PROVIDERS, authClient, authEnabled, signIn } from "@/lib/auth/client";
+import { GROK_PROVIDERS, authClient, authEnabled, setBearerToken, signIn } from "@/lib/auth/client";
 import { UserButton } from "@/lib/auth/gates";
 import { useCurrentUserState } from "@/lib/auth/use-current-user";
 
@@ -24,9 +24,13 @@ function Login() {
       if (mode === "up") {
         const res = await authClient.signUp.email({ email, password, name: name || email.split("@")[0] });
         if (res.error) throw new Error(res.error.message || "Could not create profile");
+        const token = (res.data as { token?: string | null } | null)?.token;
+        if (token) setBearerToken(token);
       } else {
         const res = await authClient.signIn.email({ email, password });
         if (res.error) throw new Error(res.error.message || "Invalid email or password");
+        const token = (res.data as { token?: string | null } | null)?.token;
+        if (token) setBearerToken(token);
       }
       window.location.href = next;
     } catch (err) {

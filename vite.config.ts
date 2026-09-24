@@ -224,6 +224,12 @@ export default defineConfig(({ command, isPreview }) => ({
     host: "0.0.0.0",
     port: 8080,
     strictPort: true,
+    // ponytail: Vite's default cors middleware setHeader()s ACAO/Vary before
+    // srvx writeHead(flat rawHeaders). Node then keeps only the *last*
+    // Set-Cookie — dropping __Host-grok-auth.session_token (session_data
+    // survived as last). Better Auth already emits CORS for /api/auth; other
+    // public APIs use BOT_CORS. Upgrade: srvx/Node writeHead multi-cookie fix.
+    cors: false,
   },
   preview: {
     host: "127.0.0.1",

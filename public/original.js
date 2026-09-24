@@ -12906,7 +12906,7 @@ function renderTrajectoryRoute() {
             <div class="ball-radar-wrap">
               <div class="ball-radar-title">
                 <i data-lucide="crosshair"></i> AERODYNAMIC FLIGHT POLAR RADAR
-                <span id="aiCfdBadge" class="hud-badge tag-volt" style="margin-left:auto;font-size:0.58rem;">AI RATING: 99% OPTIMAL TOURNAMENT STRIKE</span>
+                <span id="aiCfdBadge" class="hud-badge tag-volt" style="margin-left:auto;font-size:0.58rem;">Strike read: 99% OPTIMAL TOURNAMENT STRIKE</span>
               </div>
               <canvas id="ballFlightRadarCanvas" width="320" height="220" role="img" aria-label="Aerodynamic Magnus Force and Velocity Vector Radar"></canvas>
             </div>
@@ -23976,15 +23976,15 @@ function drawBallFlightRadar(params = {}) {
   ctx.fillStyle = '#98a0a4';
   ctx.fillText(`C_d: ${(0.22 + Math.abs(spin)/6000).toFixed(3)} (Re: 4.2e5)`, 12, 48);
 
-  // Update AI CFD Badge if element exists
+  // Update strike-read HUD badge if element exists
   const aiBadge = document.getElementById('aiCfdBadge');
   if (aiBadge) {
     if (speed >= 110 && Math.abs(spin) >= 300) {
-      aiBadge.textContent = 'AI RATING: 99% TOURNAMENT STRIKE · UNSTOPPABLE TOP BINS';
+      aiBadge.textContent = 'Strike read: 99% TOURNAMENT STRIKE · UNSTOPPABLE TOP BINS';
     } else if (speed < 70) {
-      aiBadge.textContent = 'AI NOTE: LOW EXIT VELOCITY · RISK OF WALL INTERCEPTION';
+      aiBadge.textContent = 'Strike read: LOW EXIT VELOCITY · RISK OF WALL INTERCEPTION';
     } else {
-      aiBadge.textContent = `AI CALIBRATED: ${speed} KM/H · ${elev}° ELEVATION · ${spin > 0 ? '+' : ''}${spin} RPM`;
+      aiBadge.textContent = `Strike read: ${speed} KM/H · ${elev}° ELEVATION · ${spin > 0 ? '+' : ''}${spin} RPM`;
     }
   }
 }

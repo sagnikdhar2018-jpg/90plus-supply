@@ -10360,6 +10360,30 @@ html {
   border-radius: 8px;
 }
 
+/* FE-QA slice 2b: AI advisor must not steal #mobNav taps on ≤980 */
+@media (max-width: 980px) {
+  #mobNav {
+    z-index: 90;
+    pointer-events: auto;
+  }
+  .ai-tactical-beacon {
+    bottom: 92px;
+    right: 16px;
+    z-index: 80; /* below #mobNav (--z-mob / 90) */
+  }
+  .ai-drawer-overlay {
+    z-index: 80; /* was 10000 — keep below bottom nav */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 76px; /* leave floating bar hit strip clear */
+  }
+  .ai-drawer-panel {
+    height: 100%;
+    max-height: 100%;
+  }
+}
+
 /* Gear Specs Matrix Modal */
 .gear-specs-modal-overlay {
   position: fixed;

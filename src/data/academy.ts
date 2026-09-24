@@ -28,7 +28,7 @@ export const DRILLS: Drill[] = [
     "defaultSets": 6,
     "desc": "Rapid in-in-out lateral footwork across a 6-meter agility ladder. Develops explosive ankle stiffness, deceleration control, and quick cutting angles.",
     "gear": [
-      "agility-speed-pro",
+      "agility-cones-50",
       "sock-apex-volt"
     ],
     "steps": [
@@ -75,7 +75,7 @@ export const DRILLS: Drill[] = [
     "desc": "High-speed deceleration drill inside a 5x5m box simulating sudden 90\u00b0 boundary line stops and explosive winger recovery sprints.",
     "gear": [
       "agility-cones-50",
-      "guard-carbon-pro",
+      "guard-volt-armour",
       "sock-apex-volt"
     ],
     "steps": [
@@ -215,7 +215,7 @@ export const DRILLS: Drill[] = [
     "defaultSets": 4,
     "desc": "Pinged low-trajectory diagonal passes from central midfield to touchline wingers over 50-60 meters. Tests backspin strike technique.",
     "gear": [
-      "ball-aerovortex",
+      "ball-volt-pro",
       "acc-digital-gauge"
     ],
     "steps": [
@@ -238,7 +238,7 @@ export const DRILLS: Drill[] = [
     "defaultSets": 5,
     "desc": "Learn the zero-spin knuckleball strike from 22 meters out using instep bone contact without follow-through for unpredictable aerodynamic deviation.",
     "gear": [
-      "ball-aerovortex",
+      "ball-volt-pro",
       "acc-digital-gauge"
     ],
     "steps": [
@@ -307,7 +307,7 @@ export const DRILLS: Drill[] = [
     "defaultSets": 4,
     "desc": "Goalkeeper reaction drill using asymmetrical bouncing reflex ball to train explosive lateral ground collapse and smother technique.",
     "gear": [
-      "gloves-vortex-pro",
+      "gloves-training-entry",
       "ball-reaction-reflex"
     ],
     "steps": [
@@ -330,7 +330,7 @@ export const DRILLS: Drill[] = [
     "defaultSets": 5,
     "desc": "Timing aggressive high aerial claims through crowded penalty boxes, protecting takeoff knee, and launching immediate counter-attack throws.",
     "gear": [
-      "gloves-vortex-pro",
+      "gloves-training-entry",
       "ball-volt-pro"
     ],
     "steps": [
@@ -353,7 +353,7 @@ export const DRILLS: Drill[] = [
     "defaultSets": 4,
     "desc": "Immediate floor recovery following initial tip save to deny second-chance rebound finishes. Tests rotational core power.",
     "gear": [
-      "gloves-vortex-pro",
+      "gloves-training-entry",
       "ball-reaction-reflex",
       "agility-hurdles-6pk"
     ],

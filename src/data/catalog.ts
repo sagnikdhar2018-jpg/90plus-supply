@@ -13,6 +13,7 @@ export type CategoryId =
 
 export type Product = {
   id: string;
+  active?: boolean;
   slug: string;
   name: string;
   sku: string;
@@ -35,20 +36,21 @@ export type Product = {
 };
 
 export const PRODUCTS: Product[] = [
-  {
+{
     "id": "ball-volt-pro",
-    "slug": "apex-volt-pro-match-ball",
-    "name": "Apex Volt Pro Match Ball",
-    "sku": "90P-BL-001",
+    "active": true,
+    "slug": "90plus-volt-match-ball",
+    "name": "90plus Volt Match Ball",
+    "sku": "90P-BL-M01",
     "category": "balls",
     "categoryLabel": "Match Balls",
     "price": 1299,
     "compareAtPrice": 1799,
     "rating": 4.9,
     "reviewsCount": 142,
-    "badge": "BESTSELLER",
+    "badge": "STAGING",
     "inStock": true,
-    "isNew": false,
+    "isNew": true,
     "isBestSeller": true,
     "colorwayIdx": 0,
     "finishIdx": 0,
@@ -59,11 +61,12 @@ export const PRODUCTS: Product[] = [
       "Aerotrac dimpled Japanese PU outer shell for stable aerodynamic flight",
       "Reinforced butyl bladder with cotton wrap for 45-day air retention",
       "High-contrast Volt/Obsidian visual tracking graphics for night games",
-      "FIFA Quality Pro equivalent bounce, weight, and roundness specs"
+      "Tournament-lab equivalent bounce, weight, and roundness specs"
     ]
   },
-  {
+{
     "id": "ball-shadow-noir",
+    "active": false,
     "slug": "phantom-shadow-noir-edition",
     "name": "Phantom Shadow Noir Edition",
     "sku": "90P-BL-002",
@@ -73,8 +76,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 1899,
     "rating": 4.8,
     "reviewsCount": 96,
-    "badge": "LIMITED",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": true,
     "isBestSeller": true,
     "colorwayIdx": 1,
@@ -88,8 +91,9 @@ export const PRODUCTS: Product[] = [
       "Zero-leak airlock valve system ensures consistent weekly pressure"
     ]
   },
-  {
+{
     "id": "ball-arctic-white",
+    "active": false,
     "slug": "arctic-frost-hybrid-match-ball",
     "name": "Arctic Frost Hybrid Match Ball",
     "sku": "90P-BL-003",
@@ -99,8 +103,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 1599,
     "rating": 4.7,
     "reviewsCount": 78,
-    "badge": "POPULAR",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": false,
     "isBestSeller": false,
     "colorwayIdx": 2,
@@ -114,8 +118,9 @@ export const PRODUCTS: Product[] = [
       "High-contrast cyan and volt speed graphics for high-speed tracking"
     ]
   },
-  {
+{
     "id": "ball-stadium-red",
+    "active": false,
     "slug": "ignite-stadium-red-match-ball",
     "name": "Ignite Stadium Red Match Ball",
     "sku": "90P-BL-004",
@@ -125,8 +130,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 1749,
     "rating": 4.8,
     "reviewsCount": 54,
-    "badge": "NEW",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": true,
     "isBestSeller": false,
     "colorwayIdx": 3,
@@ -139,8 +144,9 @@ export const PRODUCTS: Product[] = [
       "Tear-resistant micro-fiber polyurethane structure"
     ]
   },
-  {
+{
     "id": "ball-gold-trophy",
+    "active": false,
     "slug": "champions-gold-trophy-edition",
     "name": "Champions Gold Trophy Edition",
     "sku": "90P-BL-005",
@@ -150,8 +156,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 2299,
     "rating": 5.0,
     "reviewsCount": 37,
-    "badge": "COLLECTOR",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": true,
     "isBestSeller": false,
     "colorwayIdx": 5,
@@ -164,8 +170,9 @@ export const PRODUCTS: Product[] = [
       "Includes acrylic display plinth and branded velvet dustbag"
     ]
   },
-  {
+{
     "id": "ball-aerovortex",
+    "active": false,
     "slug": "aerovortex-knuckleball-pro",
     "name": "AeroVortex Knuckleball Pro",
     "sku": "90P-BL-006",
@@ -175,8 +182,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 1999,
     "rating": 4.9,
     "reviewsCount": 62,
-    "badge": "AERODYNAMIC",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": true,
     "isBestSeller": false,
     "colorwayIdx": 6,
@@ -189,8 +196,9 @@ export const PRODUCTS: Product[] = [
       "Balanced latex carcass ensures 0.2% roundness deviation tolerance"
     ]
   },
-  {
+{
     "id": "ball-tempest-storm",
+    "active": false,
     "slug": "tempest-high-vis-storm-edition",
     "name": "Tempest High-Vis Storm Edition",
     "sku": "90P-BL-007",
@@ -200,8 +208,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 1699,
     "rating": 4.8,
     "reviewsCount": 41,
-    "badge": "MONSOON READY",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": false,
     "isBestSeller": false,
     "colorwayIdx": 7,
@@ -214,8 +222,9 @@ export const PRODUCTS: Product[] = [
       "Thermo-welded seam channels prevent mud accumulation"
     ]
   },
-  {
+{
     "id": "ball-cyber-hud",
+    "active": false,
     "slug": "cyberstrike-hud-edition",
     "name": "CyberStrike HUD Edition",
     "sku": "90P-BL-008",
@@ -225,8 +234,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 1949,
     "rating": 4.9,
     "reviewsCount": 58,
-    "badge": "GAMING HUD",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": true,
     "isBestSeller": false,
     "colorwayIdx": 0,
@@ -239,8 +248,9 @@ export const PRODUCTS: Product[] = [
       "Precision balanced 14-panel thermal bonded build"
     ]
   },
-  {
+{
     "id": "ball-titan-hybrid",
+    "active": false,
     "slug": "titan-pro-hybrid-match-ball",
     "name": "Titan Pro Hybrid Match Ball",
     "sku": "90P-BL-009",
@@ -250,8 +260,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 1499,
     "rating": 4.7,
     "reviewsCount": 84,
-    "badge": "VALUE PRO",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": false,
     "isBestSeller": false,
     "colorwayIdx": 2,
@@ -264,8 +274,9 @@ export const PRODUCTS: Product[] = [
       "Anti-burst high-density synthetic carcass"
     ]
   },
-  {
+{
     "id": "ball-copa-classic",
+    "active": false,
     "slug": "copa-heritage-32-panel-ball",
     "name": "Copa Heritage 32-Panel Classic",
     "sku": "90P-BL-010",
@@ -275,8 +286,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 1549,
     "rating": 4.8,
     "reviewsCount": 67,
-    "badge": "CLASSIC",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": false,
     "isBestSeller": false,
     "colorwayIdx": 2,
@@ -289,8 +300,9 @@ export const PRODUCTS: Product[] = [
       "Reinforced wound latex core for pure spherical return"
     ]
   },
-  {
+{
     "id": "ball-velocity-cyan",
+    "active": false,
     "slug": "velocity-speed-match-ball-cyan",
     "name": "Velocity Speed Ball — Cyan Surge",
     "sku": "90P-BL-011",
@@ -300,8 +312,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 1649,
     "rating": 4.7,
     "reviewsCount": 39,
-    "badge": "FAST FLIGHT",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": false,
     "isBestSeller": false,
     "colorwayIdx": 4,
@@ -314,8 +326,9 @@ export const PRODUCTS: Product[] = [
       "High-retention valve system maintains tournament PSI for 30+ days"
     ]
   },
-  {
+{
     "id": "ball-supernova",
+    "active": false,
     "slug": "supernova-neon-magenta-pro",
     "name": "Supernova Neon Magenta Pro",
     "sku": "90P-BL-012",
@@ -325,8 +338,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 1849,
     "rating": 4.9,
     "reviewsCount": 44,
-    "badge": "LIMITED DROP",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": true,
     "isBestSeller": false,
     "colorwayIdx": 6,
@@ -339,20 +352,21 @@ export const PRODUCTS: Product[] = [
       "Numbered production run for collectors and elite tournament finals"
     ]
   },
-  {
+{
     "id": "ball-ocean-blue",
-    "slug": "tsunami-ocean-blue-ball",
-    "name": "Tsunami Ocean Blue Ball",
-    "sku": "90P-BL-013",
+    "active": true,
+    "slug": "90plus-training-ball",
+    "name": "90plus Training Ball",
+    "sku": "90P-BL-T01",
     "category": "training",
     "categoryLabel": "Training Balls",
     "price": 899,
     "compareAtPrice": 1299,
     "rating": 4.6,
     "reviewsCount": 63,
-    "badge": "VALUE WORKHORSE",
+    "badge": "STAGING",
     "inStock": true,
-    "isNew": false,
+    "isNew": true,
     "isBestSeller": false,
     "colorwayIdx": 4,
     "finishIdx": 1,
@@ -364,8 +378,9 @@ export const PRODUCTS: Product[] = [
       "Optimal pressure retention requiring inflation only once every 3 weeks"
     ]
   },
-  {
+{
     "id": "ball-turf-dynamo",
+    "active": false,
     "slug": "dynamo-turf-master-heavy-duty",
     "name": "Dynamo TurfMaster Heavy-Duty",
     "sku": "90P-BL-014",
@@ -375,8 +390,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 1349,
     "rating": 4.7,
     "reviewsCount": 88,
-    "badge": "TURF SPECIALIST",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": false,
     "isBestSeller": true,
     "colorwayIdx": 0,
@@ -389,8 +404,9 @@ export const PRODUCTS: Product[] = [
       "High-grip surface texture enhances foot control in close quarters"
     ]
   },
-  {
+{
     "id": "ball-futsal-pro",
+    "active": false,
     "slug": "apex-futsal-low-bounce-pro",
     "name": "Apex Futsal Low-Bounce Pro",
     "sku": "90P-BL-015",
@@ -400,8 +416,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 1599,
     "rating": 4.9,
     "reviewsCount": 52,
-    "badge": "FUTSAL MATCH",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": true,
     "isBestSeller": false,
     "colorwayIdx": 0,
@@ -414,8 +430,9 @@ export const PRODUCTS: Product[] = [
       "Hand-stitched 32-panel structure with reinforced polyester lining"
     ]
   },
-  {
+{
     "id": "ball-cage-stealth",
+    "active": false,
     "slug": "concrete-cage-stealth-ball",
     "name": "Concrete Cage Stealth Ball",
     "sku": "90P-BL-016",
@@ -425,8 +442,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 1199,
     "rating": 4.6,
     "reviewsCount": 75,
-    "badge": "CONCRETE PROOF",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": false,
     "isBestSeller": false,
     "colorwayIdx": 1,
@@ -439,8 +456,9 @@ export const PRODUCTS: Product[] = [
       "Puncture-resistant inner liner"
     ]
   },
-  {
+{
     "id": "ball-reaction-reflex",
+    "active": false,
     "slug": "reflex-reaction-training-ball",
     "name": "Reflex Reaction Training Ball",
     "sku": "90P-BL-017",
@@ -450,8 +468,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 999,
     "rating": 4.8,
     "reviewsCount": 38,
-    "badge": "GK / AGILITY",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": true,
     "isBestSeller": false,
     "colorwayIdx": 0,
@@ -464,8 +482,9 @@ export const PRODUCTS: Product[] = [
       "High-visibility neon volt color for instant focal acquisition"
     ]
   },
-  {
+{
     "id": "ball-academy-trainer-pack5",
+    "active": false,
     "slug": "academy-trainer-pack-of-5",
     "name": "Academy Squad Trainer (Pack of 5)",
     "sku": "90P-BL-018",
@@ -475,8 +494,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 4995,
     "rating": 4.9,
     "reviewsCount": 92,
-    "badge": "COACH PACK",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": false,
     "isBestSeller": true,
     "colorwayIdx": 4,
@@ -489,8 +508,9 @@ export const PRODUCTS: Product[] = [
       "Includes 1x dual-action turbo pump with 3 inflation needles"
     ]
   },
-  {
+{
     "id": "ball-night-glow",
+    "active": false,
     "slug": "lumina-night-glow-training-ball",
     "name": "Lumina Night-Glow Training Ball",
     "sku": "90P-BL-019",
@@ -500,8 +520,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 1449,
     "rating": 4.7,
     "reviewsCount": 46,
-    "badge": "NIGHT GLOW",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": true,
     "isBestSeller": false,
     "colorwayIdx": 0,
@@ -514,8 +534,9 @@ export const PRODUCTS: Product[] = [
       "Perfect for unlit park sessions and beach football"
     ]
   },
-  {
+{
     "id": "ball-youth-lightweight",
+    "active": false,
     "slug": "pro-lite-youth-development-ball",
     "name": "ProLite Youth 290g Development Ball",
     "sku": "90P-BL-020",
@@ -525,8 +546,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 1249,
     "rating": 4.9,
     "reviewsCount": 51,
-    "badge": "YOUTH SPEC",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": false,
     "isBestSeller": false,
     "colorwayIdx": 2,
@@ -539,8 +560,9 @@ export const PRODUCTS: Product[] = [
       "Soft EVA foam outer layer eliminates fear of header drills"
     ]
   },
-  {
+{
     "id": "ball-skill-sz1",
+    "active": false,
     "slug": "micromaster-size-1-skill-ball",
     "name": "MicroMaster Size 1 Skill Ball",
     "sku": "90P-BL-021",
@@ -550,8 +572,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 699,
     "rating": 4.8,
     "reviewsCount": 110,
-    "badge": "TOUCH MASTER",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": false,
     "isBestSeller": true,
     "colorwayIdx": 0,
@@ -564,8 +586,9 @@ export const PRODUCTS: Product[] = [
       "Ideal travel companion and warmup juggling sphere"
     ]
   },
-  {
+{
     "id": "ball-freestyle-grip",
+    "active": false,
     "slug": "orbit-freestyle-high-tack-ball",
     "name": "Orbit Freestyle High-Tack Ball",
     "sku": "90P-BL-022",
@@ -575,8 +598,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 1399,
     "rating": 4.9,
     "reviewsCount": 47,
-    "badge": "FREESTYLE",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": true,
     "isBestSeller": false,
     "colorwayIdx": 6,
@@ -589,8 +612,9 @@ export const PRODUCTS: Product[] = [
       "Street art geometric vector print"
     ]
   },
-  {
+{
     "id": "ball-solo-cord",
+    "active": false,
     "slug": "kickmaster-solo-cord-trainer",
     "name": "KickMaster Solo Tether Trainer",
     "sku": "90P-BL-023",
@@ -600,8 +624,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 999,
     "rating": 4.7,
     "reviewsCount": 82,
-    "badge": "SOLO DRILL",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": false,
     "isBestSeller": false,
     "colorwayIdx": 0,
@@ -614,8 +638,9 @@ export const PRODUCTS: Product[] = [
       "Ergonomic padded waist belt with 360-degree swivel clip"
     ]
   },
-  {
+{
     "id": "ball-touch-sz2",
+    "active": false,
     "slug": "precision-touch-size-2-ball",
     "name": "PrecisionTouch Size 2 Sphere",
     "sku": "90P-BL-024",
@@ -625,8 +650,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 799,
     "rating": 4.8,
     "reviewsCount": 35,
-    "badge": "CADENCE DRILL",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": false,
     "isBestSeller": false,
     "colorwayIdx": 2,
@@ -638,20 +663,21 @@ export const PRODUCTS: Product[] = [
       "Reinforced polyurethane panels with soft EVA damping layer"
     ]
   },
-  {
+{
     "id": "sock-apex-volt",
-    "slug": "apex-lock-pro-grip-socks-volt",
-    "name": "ApexLock Pro Grip Socks — Volt Rush",
-    "sku": "90P-SK-001",
+    "active": true,
+    "slug": "90plus-grip-sock-volt",
+    "name": "90plus Grip Sock — Volt",
+    "sku": "90P-SK-V01",
     "category": "socks",
     "categoryLabel": "Grip Socks",
     "price": 499,
     "compareAtPrice": 799,
     "rating": 4.9,
     "reviewsCount": 318,
-    "badge": "TOP RATED",
+    "badge": "STAGING",
     "inStock": true,
-    "isNew": false,
+    "isNew": true,
     "isBestSeller": true,
     "colorwayIdx": 0,
     "finishIdx": 0,
@@ -664,21 +690,22 @@ export const PRODUCTS: Product[] = [
       "Reinforced cushioned heel and toe box for impact absorption on hard ground"
     ]
   },
-  {
+{
     "id": "sock-stealth-black",
-    "slug": "apex-lock-grip-socks-stealth-black",
-    "name": "ApexLock Pro Grip Socks — Blackout",
-    "sku": "90P-SK-002",
+    "active": true,
+    "slug": "90plus-grip-sock-black",
+    "name": "90plus Grip Sock — Black",
+    "sku": "90P-SK-B01",
     "category": "socks",
     "categoryLabel": "Grip Socks",
     "price": 499,
     "compareAtPrice": 799,
     "rating": 4.9,
     "reviewsCount": 245,
-    "badge": "BESTSELLER",
+    "badge": "STAGING",
     "inStock": true,
-    "isNew": false,
-    "isBestSeller": true,
+    "isNew": true,
+    "isBestSeller": false,
     "colorwayIdx": 1,
     "finishIdx": 0,
     "shortDesc": "Pitch-black grip sock with high-tack silicone pads for seamless league match compliance.",
@@ -689,8 +716,9 @@ export const PRODUCTS: Product[] = [
       "Ribbed Achilles tendon support bar"
     ]
   },
-  {
+{
     "id": "sock-arctic-white",
+    "active": false,
     "slug": "apex-lock-grip-socks-arctic-white",
     "name": "ApexLock Pro Grip Socks — Arctic White",
     "sku": "90P-SK-003",
@@ -700,8 +728,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 799,
     "rating": 4.8,
     "reviewsCount": 189,
-    "badge": "POPULAR",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": false,
     "isBestSeller": false,
     "colorwayIdx": 2,
@@ -714,8 +742,9 @@ export const PRODUCTS: Product[] = [
       "High-elastic ribbed cuff never sags down the calf"
     ]
   },
-  {
+{
     "id": "sock-stadium-crimson",
+    "active": false,
     "slug": "apex-lock-grip-socks-stadium-crimson",
     "name": "ApexLock Pro Grip Socks — Crimson",
     "sku": "90P-SK-004",
@@ -725,8 +754,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 799,
     "rating": 4.8,
     "reviewsCount": 94,
-    "badge": "MATCH KIT",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": true,
     "isBestSeller": false,
     "colorwayIdx": 3,
@@ -738,8 +767,9 @@ export const PRODUCTS: Product[] = [
       "Compression ankle wrap locks ankle joint during sharp plant-and-turn maneuvers"
     ]
   },
-  {
+{
     "id": "sock-electric-blue",
+    "active": false,
     "slug": "apex-lock-grip-socks-electric-blue",
     "name": "ApexLock Pro Grip Socks — Royal Blue",
     "sku": "90P-SK-005",
@@ -749,8 +779,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 799,
     "rating": 4.7,
     "reviewsCount": 76,
-    "badge": "MATCH KIT",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": false,
     "isBestSeller": false,
     "colorwayIdx": 4,
@@ -762,21 +792,22 @@ export const PRODUCTS: Product[] = [
       "Midfoot compression arch band"
     ]
   },
-  {
+{
     "id": "sock-pack-3",
-    "slug": "apex-lock-trio-bundle-pack",
-    "name": "ApexLock 3-Pair Pro Bundle Pack",
-    "sku": "90P-SK-006",
+    "active": true,
+    "slug": "90plus-grip-sock-3-pack",
+    "name": "90plus Grip Sock 3-Pack",
+    "sku": "90P-SK-P01",
     "category": "socks",
     "categoryLabel": "Grip Socks",
     "price": 1199,
     "compareAtPrice": 1497,
     "rating": 5.0,
     "reviewsCount": 412,
-    "badge": "SAVE 20%",
+    "badge": "STAGING",
     "inStock": true,
-    "isNew": false,
-    "isBestSeller": true,
+    "isNew": true,
+    "isBestSeller": false,
     "colorwayIdx": 0,
     "finishIdx": 0,
     "shortDesc": "Includes 1x Volt, 1x Blackout, and 1x Arctic White pair in a waterproof mesh wash bag.",
@@ -787,8 +818,9 @@ export const PRODUCTS: Product[] = [
       "Maximum value bundle for active academy and tournament footballers"
     ]
   },
-  {
+{
     "id": "sock-pack-5-squad",
+    "active": false,
     "slug": "apex-lock-squad-5-pack-bundle",
     "name": "ApexLock 5-Pair Squad Mega Pack",
     "sku": "90P-SK-007",
@@ -798,8 +830,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 2495,
     "rating": 5.0,
     "reviewsCount": 220,
-    "badge": "MEGA VALUE",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": true,
     "isBestSeller": true,
     "colorwayIdx": 0,
@@ -811,8 +843,9 @@ export const PRODUCTS: Product[] = [
       "2x Zippered protective mesh wash bags included"
     ]
   },
-  {
+{
     "id": "sock-junior-academy",
+    "active": false,
     "slug": "apex-lock-junior-grip-socks",
     "name": "ApexLock Junior Pro (UK 2.5–5.5)",
     "sku": "90P-SK-008",
@@ -822,8 +855,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 699,
     "rating": 4.9,
     "reviewsCount": 98,
-    "badge": "YOUTH FIT",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": false,
     "isBestSeller": false,
     "colorwayIdx": 0,
@@ -835,21 +868,22 @@ export const PRODUCTS: Product[] = [
       "Dual-sided micro chevrons prevent heel lifting in junior boots"
     ]
   },
-  {
+{
     "id": "sleeve-blackout",
-    "slug": "pro-match-kit-sleeve-blackout",
-    "name": "Pro Match Kit Sleeve — Blackout",
-    "sku": "90P-SL-001",
+    "active": true,
+    "slug": "90plus-kit-sleeve-black-volt",
+    "name": "90plus Kit Sleeve — Black/Volt",
+    "sku": "90P-SL-K01",
     "category": "sleeves",
     "categoryLabel": "Kit Sleeves",
     "price": 349,
     "compareAtPrice": 499,
     "rating": 4.8,
     "reviewsCount": 165,
-    "badge": "SEAMLESS",
+    "badge": "STAGING",
     "inStock": true,
-    "isNew": false,
-    "isBestSeller": true,
+    "isNew": true,
+    "isBestSeller": false,
     "colorwayIdx": 1,
     "finishIdx": 0,
     "shortDesc": "Seamless footless match sock sleeve that clips over shin guards and pairs with grip socks.",
@@ -860,8 +894,9 @@ export const PRODUCTS: Product[] = [
       "Breathable mesh calf ventilation panel releases excess body heat"
     ]
   },
-  {
+{
     "id": "sleeve-arctic-white",
+    "active": false,
     "slug": "pro-match-kit-sleeve-white",
     "name": "Pro Match Kit Sleeve — Arctic White",
     "sku": "90P-SL-002",
@@ -871,8 +906,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 499,
     "rating": 4.8,
     "reviewsCount": 132,
-    "badge": "MATCHDAY",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": false,
     "isBestSeller": false,
     "colorwayIdx": 2,
@@ -884,8 +919,9 @@ export const PRODUCTS: Product[] = [
       "Reinforced stay-up ribbed elastic bands"
     ]
   },
-  {
+{
     "id": "sleeve-crimson-red",
+    "active": false,
     "slug": "pro-match-kit-sleeve-crimson",
     "name": "Pro Match Kit Sleeve — Crimson Red",
     "sku": "90P-SL-003",
@@ -895,8 +931,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 499,
     "rating": 4.7,
     "reviewsCount": 88,
-    "badge": "KIT MATCH",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": false,
     "isBestSeller": false,
     "colorwayIdx": 3,
@@ -908,8 +944,9 @@ export const PRODUCTS: Product[] = [
       "Holds guards securely"
     ]
   },
-  {
+{
     "id": "sleeve-royal-blue",
+    "active": false,
     "slug": "pro-match-kit-sleeve-royal-blue",
     "name": "Pro Match Kit Sleeve — Royal Blue",
     "sku": "90P-SL-004",
@@ -919,8 +956,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 499,
     "rating": 4.7,
     "reviewsCount": 65,
-    "badge": "KIT MATCH",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": false,
     "isBestSeller": false,
     "colorwayIdx": 4,
@@ -932,8 +969,9 @@ export const PRODUCTS: Product[] = [
       "Stay-up compression bands"
     ]
   },
-  {
+{
     "id": "guard-carbon-pro",
+    "active": false,
     "slug": "aeroshield-carbon-pro-shin-guards",
     "name": "AeroShield Carbon Pro Guards",
     "sku": "90P-GD-001",
@@ -943,8 +981,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 1299,
     "rating": 4.9,
     "reviewsCount": 165,
-    "badge": "FEATHERWEIGHT",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": false,
     "isBestSeller": true,
     "colorwayIdx": 1,
@@ -958,8 +996,9 @@ export const PRODUCTS: Product[] = [
       "Includes 2x breathable compression retaining sleeves"
     ]
   },
-  {
+{
     "id": "guard-mini-carbon",
+    "active": false,
     "slug": "aeroshield-micro-carbon-guards",
     "name": "AeroShield Micro Stealth Guards",
     "sku": "90P-GD-002",
@@ -969,8 +1008,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 999,
     "rating": 4.8,
     "reviewsCount": 134,
-    "badge": "TRENDING",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": true,
     "isBestSeller": false,
     "colorwayIdx": 0,
@@ -983,8 +1022,9 @@ export const PRODUCTS: Product[] = [
       "Anti-bacterial waffle foam backing prevents sweat buildup"
     ]
   },
-  {
+{
     "id": "guard-honeycomb-d3o",
+    "active": false,
     "slug": "titan-honeycomb-impact-guards",
     "name": "Titan Honeycomb Impact Guards",
     "sku": "90P-GD-003",
@@ -994,8 +1034,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 1199,
     "rating": 4.9,
     "reviewsCount": 78,
-    "badge": "IMPACT TECH",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": true,
     "isBestSeller": false,
     "colorwayIdx": 0,
@@ -1008,20 +1048,21 @@ export const PRODUCTS: Product[] = [
       "Machine washable removable sleeve design"
     ]
   },
-  {
+{
     "id": "guard-volt-armour",
-    "slug": "titan-armour-poly-guards-volt",
-    "name": "TitanArmour Poly Guards — Volt",
-    "sku": "90P-GD-004",
+    "active": true,
+    "slug": "90plus-poly-shin-guard",
+    "name": "90plus Poly Shin Guard",
+    "sku": "90P-GD-P01",
     "category": "guards",
     "categoryLabel": "Shin Guards",
     "price": 449,
     "compareAtPrice": 699,
     "rating": 4.6,
     "reviewsCount": 88,
-    "badge": "VALUE",
+    "badge": "STAGING",
     "inStock": true,
-    "isNew": false,
+    "isNew": true,
     "isBestSeller": false,
     "colorwayIdx": 0,
     "finishIdx": 0,
@@ -1033,8 +1074,9 @@ export const PRODUCTS: Product[] = [
       "Dual adjustable hook-and-loop straps"
     ]
   },
-  {
+{
     "id": "guard-custom-laser",
+    "active": false,
     "slug": "custom-laser-engraved-carbon-guards",
     "name": "Custom Engraved Carbon Pro Guards",
     "sku": "90P-GD-005",
@@ -1044,8 +1086,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 1999,
     "rating": 5.0,
     "reviewsCount": 42,
-    "badge": "BESPOKE",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": true,
     "isBestSeller": false,
     "colorwayIdx": 1,
@@ -1058,8 +1100,9 @@ export const PRODUCTS: Product[] = [
       "Includes luxury presentation travel hard case"
     ]
   },
-  {
+{
     "id": "guard-stays-straps",
+    "active": false,
     "slug": "guard-lock-silicone-stays-4pack",
     "name": "GuardLock Silicone Stays (4-Pack)",
     "sku": "90P-GD-006",
@@ -1069,8 +1112,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 449,
     "rating": 4.8,
     "reviewsCount": 145,
-    "badge": "ACCESSORY",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": false,
     "isBestSeller": true,
     "colorwayIdx": 0,
@@ -1083,8 +1126,9 @@ export const PRODUCTS: Product[] = [
       "Includes 4 straps (2x Volt, 2x Blackout)"
     ]
   },
-  {
+{
     "id": "gloves-vortex-pro",
+    "active": false,
     "slug": "vortex-negative-cut-gk-gloves",
     "name": "Vortex Pro 4mm GK Gloves",
     "sku": "90P-GL-001",
@@ -1094,8 +1138,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 2599,
     "rating": 4.9,
     "reviewsCount": 76,
-    "badge": "PRO LATEX",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": true,
     "isBestSeller": true,
     "colorwayIdx": 0,
@@ -1110,8 +1154,9 @@ export const PRODUCTS: Product[] = [
       "Extended neoprene wrist strap with dual-point hook-and-loop lock"
     ]
   },
-  {
+{
     "id": "gloves-shadow-black",
+    "active": false,
     "slug": "shadow-stealth-hybrid-gk-gloves",
     "name": "Shadow Stealth Hybrid GK Gloves",
     "sku": "90P-GL-002",
@@ -1121,8 +1166,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 2199,
     "rating": 4.8,
     "reviewsCount": 52,
-    "badge": "BLACKOUT",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": false,
     "isBestSeller": false,
     "colorwayIdx": 1,
@@ -1134,20 +1179,21 @@ export const PRODUCTS: Product[] = [
       "Roll-finger outer with negative central fingers for hybrid control"
     ]
   },
-  {
+{
     "id": "gloves-training-entry",
-    "slug": "titan-grip-academy-gk-gloves",
-    "name": "TitanGrip Academy GK Gloves",
-    "sku": "90P-GL-003",
+    "active": true,
+    "slug": "90plus-academy-gk-glove",
+    "name": "90plus Academy GK Glove",
+    "sku": "90P-GL-A01",
     "category": "gloves",
     "categoryLabel": "GK Gloves",
     "price": 899,
     "compareAtPrice": 1299,
     "rating": 4.5,
     "reviewsCount": 68,
-    "badge": "DURABLE",
+    "badge": "STAGING",
     "inStock": true,
-    "isNew": false,
+    "isNew": true,
     "isBestSeller": false,
     "colorwayIdx": 0,
     "finishIdx": 0,
@@ -1159,8 +1205,9 @@ export const PRODUCTS: Product[] = [
       "Mesh body for cool airflow"
     ]
   },
-  {
+{
     "id": "gloves-rollfinger-pro",
+    "active": false,
     "slug": "hypergrip-roll-finger-pro-gloves",
     "name": "HyperGrip Roll Finger Pro Gloves",
     "sku": "90P-GL-004",
@@ -1170,8 +1217,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 2399,
     "rating": 4.9,
     "reviewsCount": 43,
-    "badge": "MAX CATCH",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": true,
     "isBestSeller": false,
     "colorwayIdx": 2,
@@ -1184,8 +1231,9 @@ export const PRODUCTS: Product[] = [
       "Double elastic wrist strap"
     ]
   },
-  {
+{
     "id": "gloves-glove-wash-kit",
+    "active": false,
     "slug": "glove-glu-pro-wash-and-revive-kit",
     "name": "GloveCare Pro Wash & Revive Kit",
     "sku": "90P-GL-005",
@@ -1195,8 +1243,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 899,
     "rating": 4.8,
     "reviewsCount": 112,
-    "badge": "MAINTENANCE",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": false,
     "isBestSeller": true,
     "colorwayIdx": 0,
@@ -1208,8 +1256,9 @@ export const PRODUCTS: Product[] = [
       "Gentle plant-derived formula formulated for German latex"
     ]
   },
-  {
+{
     "id": "gloves-junior-spines",
+    "active": false,
     "slug": "titan-junior-finger-spine-gloves",
     "name": "Titan Junior Finger-Spine Gloves",
     "sku": "90P-GL-006",
@@ -1219,8 +1268,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 1099,
     "rating": 4.8,
     "reviewsCount": 84,
-    "badge": "YOUTH SAFETY",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": false,
     "isBestSeller": false,
     "colorwayIdx": 0,
@@ -1232,8 +1281,9 @@ export const PRODUCTS: Product[] = [
       "Durable 3mm latex palm"
     ]
   },
-  {
+{
     "id": "agility-speed-pro",
+    "active": false,
     "slug": "pro-speed-agility-master-kit",
     "name": "Pro Speed & Agility Master Kit",
     "sku": "90P-AG-001",
@@ -1243,8 +1293,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 2199,
     "rating": 4.9,
     "reviewsCount": 112,
-    "badge": "COMPLETE SET",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": false,
     "isBestSeller": true,
     "colorwayIdx": 0,
@@ -1259,8 +1309,9 @@ export const PRODUCTS: Product[] = [
       "Reinforced water-resistant carry duffle with shoulder strap"
     ]
   },
-  {
+{
     "id": "agility-ladder-6m",
+    "active": false,
     "slug": "stealth-speed-ladder-6m",
     "name": "Stealth Speed Ladder 6M",
     "sku": "90P-AG-002",
@@ -1270,8 +1321,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 899,
     "rating": 4.8,
     "reviewsCount": 94,
-    "badge": "ESSENTIAL",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": false,
     "isBestSeller": false,
     "colorwayIdx": 0,
@@ -1284,21 +1335,22 @@ export const PRODUCTS: Product[] = [
       "Drawstring carry bag included"
     ]
   },
-  {
+{
     "id": "agility-cones-50",
-    "slug": "pro-disc-cones-pack-of-50",
-    "name": "Pro Disc Marker Cones — 50 Pack",
-    "sku": "90P-AG-003",
+    "active": true,
+    "slug": "90plus-training-cones-50",
+    "name": "90plus Training Cones — 50",
+    "sku": "90P-AG-C01",
     "category": "agility",
-    "categoryLabel": "Agility Kits",
+    "categoryLabel": "Agility",
     "price": 699,
     "compareAtPrice": 1099,
     "rating": 4.9,
     "reviewsCount": 178,
-    "badge": "BULK VALUE",
+    "badge": "STAGING",
     "inStock": true,
-    "isNew": false,
-    "isBestSeller": true,
+    "isNew": true,
+    "isBestSeller": false,
     "colorwayIdx": 0,
     "finishIdx": 0,
     "shortDesc": "50 flexible shatterproof disc cones in 5 vivid colors with heavy-duty metal transport holder.",
@@ -1309,8 +1361,9 @@ export const PRODUCTS: Product[] = [
       "Heavy-duty iron storage rod with carry strap"
     ]
   },
-  {
+{
     "id": "agility-rebound-board",
+    "active": false,
     "slug": "pitch-master-rebound-trainer-board",
     "name": "PitchMaster Rebounder Board",
     "sku": "90P-AG-004",
@@ -1320,8 +1373,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 3999,
     "rating": 4.9,
     "reviewsCount": 45,
-    "badge": "PRO DRILL",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": true,
     "isBestSeller": false,
     "colorwayIdx": 1,
@@ -1334,8 +1387,9 @@ export const PRODUCTS: Product[] = [
       "Integrated dual carry handles for easy transport in car boot"
     ]
   },
-  {
+{
     "id": "agility-slalom-poles-6",
+    "active": false,
     "slug": "pro-slalom-poles-set-of-6",
     "name": "Pro Slalom Agility Poles (Set of 6)",
     "sku": "90P-AG-005",
@@ -1345,8 +1399,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 2199,
     "rating": 4.8,
     "reviewsCount": 36,
-    "badge": "DRIBBLE DRILL",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": false,
     "isBestSeller": false,
     "colorwayIdx": 0,
@@ -1359,8 +1413,9 @@ export const PRODUCTS: Product[] = [
       "Includes 6 poles + carry bag"
     ]
   },
-  {
+{
     "id": "agility-hurdles-6pk",
+    "active": false,
     "slug": "speed-hurdles-quick-step-6pack",
     "name": "Speed Hurdles Quick-Step (6-Pack)",
     "sku": "90P-AG-006",
@@ -1370,8 +1425,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 1499,
     "rating": 4.8,
     "reviewsCount": 55,
-    "badge": "PLYOMETRICS",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": false,
     "isBestSeller": false,
     "colorwayIdx": 0,
@@ -1384,8 +1439,9 @@ export const PRODUCTS: Product[] = [
       "Stackable storage design"
     ]
   },
-  {
+{
     "id": "bag-club-backpack",
+    "active": false,
     "slug": "pitch-ops-club-backpack-35l",
     "name": "PitchOps Club Backpack 35L",
     "sku": "90P-BG-001",
@@ -1395,8 +1451,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 2299,
     "rating": 4.9,
     "reviewsCount": 140,
-    "badge": "BESTSELLER",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": false,
     "isBestSeller": true,
     "colorwayIdx": 1,
@@ -1411,8 +1467,9 @@ export const PRODUCTS: Product[] = [
       "Padded 16\" tech sleeve with fleece lining for laptops & coaching tablets"
     ]
   },
-  {
+{
     "id": "bag-match-duffle",
+    "active": false,
     "slug": "squad-pro-matchday-duffle-60l",
     "name": "SquadPro Matchday Duffle 60L",
     "sku": "90P-BG-002",
@@ -1422,8 +1479,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 2899,
     "rating": 4.8,
     "reviewsCount": 82,
-    "badge": "EXPEDITION",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": true,
     "isBestSeller": false,
     "colorwayIdx": 1,
@@ -1436,8 +1493,9 @@ export const PRODUCTS: Product[] = [
       "Waterproof seam-sealed wet-kit pocket for muddy rainy jerseys"
     ]
   },
-  {
+{
     "id": "bag-gym-sack",
+    "active": false,
     "slug": "speed-drawstring-gym-sack",
     "name": "Speed Drawstring Gym Sack",
     "sku": "90P-BG-003",
@@ -1447,8 +1505,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 499,
     "rating": 4.7,
     "reviewsCount": 195,
-    "badge": "ESSENTIAL",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": false,
     "isBestSeller": false,
     "colorwayIdx": 0,
@@ -1461,8 +1519,9 @@ export const PRODUCTS: Product[] = [
       "Water-resistant hexagonal ripstop fabric"
     ]
   },
-  {
+{
     "id": "bag-coach-ballsack",
+    "active": false,
     "slug": "pro-coach-ball-sack-12-balls",
     "name": "Pro Coach Multi-Ball Sack (12 Balls)",
     "sku": "90P-BG-004",
@@ -1472,8 +1531,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 1199,
     "rating": 4.9,
     "reviewsCount": 72,
-    "badge": "COACH PRO",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": false,
     "isBestSeller": false,
     "colorwayIdx": 1,
@@ -1486,8 +1545,9 @@ export const PRODUCTS: Product[] = [
       "Drawstring cord lock"
     ]
   },
-  {
+{
     "id": "bag-shoe-garage",
+    "active": false,
     "slug": "pitch-boot-garage-case",
     "name": "Pitch Boot Garage Hard Case",
     "sku": "90P-BG-005",
@@ -1497,8 +1557,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 899,
     "rating": 4.8,
     "reviewsCount": 88,
-    "badge": "BOOT CASE",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": true,
     "isBestSeller": false,
     "colorwayIdx": 1,
@@ -1511,8 +1571,9 @@ export const PRODUCTS: Product[] = [
       "Fits boots up to UK size 13"
     ]
   },
-  {
+{
     "id": "rec-massage-roller",
+    "active": false,
     "slug": "kinetic-deep-tissue-foam-roller",
     "name": "Kinetic Deep Tissue Foam Roller",
     "sku": "90P-RC-001",
@@ -1522,8 +1583,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 1199,
     "rating": 4.9,
     "reviewsCount": 110,
-    "badge": "RECOVERY",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": false,
     "isBestSeller": false,
     "colorwayIdx": 0,
@@ -1536,8 +1597,9 @@ export const PRODUCTS: Product[] = [
       "Compact 33cm size fits directly inside match backpacks"
     ]
   },
-  {
+{
     "id": "rec-calf-sleeves",
+    "active": false,
     "slug": "pro-graduated-compression-calf-sleeves",
     "name": "Pro Compression Calf Sleeves (Pair)",
     "sku": "90P-RC-002",
@@ -1547,8 +1609,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 799,
     "rating": 4.8,
     "reviewsCount": 122,
-    "badge": "CIRCULATION",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": false,
     "isBestSeller": true,
     "colorwayIdx": 1,
@@ -1561,8 +1623,9 @@ export const PRODUCTS: Product[] = [
       "Can be worn directly under shin guards during matches or post-game"
     ]
   },
-  {
+{
     "id": "rec-ice-cold-cup",
+    "active": false,
     "slug": "cryo-ice-massage-roller-ball",
     "name": "CryoFlex Ice Massage Ball",
     "sku": "90P-RC-003",
@@ -1572,8 +1635,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 899,
     "rating": 4.7,
     "reviewsCount": 65,
-    "badge": "CRYO TECH",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": true,
     "isBestSeller": false,
     "colorwayIdx": 4,
@@ -1586,8 +1649,9 @@ export const PRODUCTS: Product[] = [
       "Stays ice-cold for up to 6 hours continuous use"
     ]
   },
-  {
+{
     "id": "rec-zinc-tape-3pk",
+    "active": false,
     "slug": "pro-rigid-zinc-oxide-strapping-tape",
     "name": "Rigid Zinc Oxide Sports Tape (3-Pack)",
     "sku": "90P-RC-004",
@@ -1597,8 +1661,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 649,
     "rating": 4.9,
     "reviewsCount": 130,
-    "badge": "MEDIC GRADE",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": false,
     "isBestSeller": true,
     "colorwayIdx": 2,
@@ -1610,8 +1674,9 @@ export const PRODUCTS: Product[] = [
       "Hypoallergenic zinc oxide adhesive stays sticky in sweat"
     ]
   },
-  {
+{
     "id": "rec-cohesive-wrap-6pk",
+    "active": false,
     "slug": "cohesive-flexible-bandage-wrap-6pk",
     "name": "Cohesive Flex Sock Wrap (6-Pack)",
     "sku": "90P-RC-005",
@@ -1621,8 +1686,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 749,
     "rating": 4.8,
     "reviewsCount": 105,
-    "badge": "MULTICOLOR",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": false,
     "isBestSeller": false,
     "colorwayIdx": 0,
@@ -1635,8 +1700,9 @@ export const PRODUCTS: Product[] = [
       "Includes 6 rolls in team colors"
     ]
   },
-  {
+{
     "id": "acc-digital-gauge",
+    "active": false,
     "slug": "precision-digital-ball-pressure-gauge",
     "name": "Precision Digital Pressure Gauge",
     "sku": "90P-AC-001",
@@ -1646,8 +1712,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 999,
     "rating": 4.9,
     "reviewsCount": 92,
-    "badge": "PRO TOOL",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": false,
     "isBestSeller": false,
     "colorwayIdx": 0,
@@ -1660,21 +1726,22 @@ export const PRODUCTS: Product[] = [
       "Includes 3x heavy-duty stainless steel ball inflation needles"
     ]
   },
-  {
+{
     "id": "acc-dual-pump",
-    "slug": "dual-action-turbo-ball-pump",
-    "name": "Turbo Dual-Action Ball Pump",
-    "sku": "90P-AC-002",
+    "active": true,
+    "slug": "90plus-dual-action-ball-pump",
+    "name": "90plus Dual-Action Ball Pump",
+    "sku": "90P-AC-P01",
     "category": "accessories",
     "categoryLabel": "Accessories",
     "price": 399,
     "compareAtPrice": 599,
     "rating": 4.8,
     "reviewsCount": 168,
-    "badge": "FAST FILL",
+    "badge": "STAGING",
     "inStock": true,
-    "isNew": false,
-    "isBestSeller": true,
+    "isNew": true,
+    "isBestSeller": false,
     "colorwayIdx": 0,
     "finishIdx": 0,
     "shortDesc": "Pumps air on both push and pull strokes. Inflates match balls in under 30 seconds.",
@@ -1685,20 +1752,21 @@ export const PRODUCTS: Product[] = [
       "Hidden needle storage compartment inside ergonomic handle"
     ]
   },
-  {
+{
     "id": "acc-captain-armband",
-    "slug": "pro-elastic-captain-armband-set",
-    "name": "Pro Elite Captain Armband Set",
-    "sku": "90P-AC-003",
+    "active": true,
+    "slug": "90plus-captain-armband",
+    "name": "90plus Captain Armband",
+    "sku": "90P-AC-A01",
     "category": "accessories",
     "categoryLabel": "Accessories",
     "price": 299,
     "compareAtPrice": 449,
     "rating": 4.7,
     "reviewsCount": 84,
-    "badge": "LEADER",
+    "badge": "STAGING",
     "inStock": true,
-    "isNew": false,
+    "isNew": true,
     "isBestSeller": false,
     "colorwayIdx": 0,
     "finishIdx": 0,
@@ -1710,8 +1778,9 @@ export const PRODUCTS: Product[] = [
       "Includes 2 armbands: 1x Neon Volt + 1x Blackout"
     ]
   },
-  {
+{
     "id": "acc-boot-care-kit",
+    "active": false,
     "slug": "pro-cleat-care-stud-tightener-kit",
     "name": "Pro Cleat Care & Stud Kit",
     "sku": "90P-AC-004",
@@ -1721,8 +1790,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 749,
     "rating": 4.9,
     "reviewsCount": 56,
-    "badge": "BOOT CARE",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": true,
     "isBestSeller": false,
     "colorwayIdx": 1,
@@ -1735,8 +1804,9 @@ export const PRODUCTS: Product[] = [
       "Compact zip tin case fits in match bag boot garage"
     ]
   },
-  {
+{
     "id": "acc-tactics-board",
+    "active": false,
     "slug": "magnetic-tactical-coach-board",
     "name": "Magnetic Tactical Coach Board",
     "sku": "90P-AC-005",
@@ -1746,8 +1816,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 1299,
     "rating": 4.9,
     "reviewsCount": 68,
-    "badge": "TACTICAL",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": false,
     "isBestSeller": false,
     "colorwayIdx": 0,
@@ -1759,8 +1829,9 @@ export const PRODUCTS: Product[] = [
       "Includes 26 magnetic tokens + dry erase marker with eraser"
     ]
   },
-  {
+{
     "id": "acc-referee-kit",
+    "active": false,
     "slug": "pro-referee-whistle-and-card-wallet",
     "name": "Pro Referee Whistle & Card Wallet",
     "sku": "90P-AC-006",
@@ -1770,8 +1841,8 @@ export const PRODUCTS: Product[] = [
     "compareAtPrice": 699,
     "rating": 4.8,
     "reviewsCount": 42,
-    "badge": "OFFICIAL",
-    "inStock": true,
+    "badge": "DELISTED",
+    "inStock": false,
     "isNew": false,
     "isBestSeller": false,
     "colorwayIdx": 0,
@@ -1782,7 +1853,33 @@ export const PRODUCTS: Product[] = [
       "120dB Sonic pealess whistle with lanyard",
       "Neon yellow and red cards with score wallet"
     ]
-  }
+  },
+{
+  "id": "jersey-home-blank",
+  "active": true,
+  "slug": "90plus-jersey-blank-home",
+  "name": "90plus Jersey Blank \u2014 Home",
+  "sku": "90P-JR-H01",
+  "category": "accessories",
+  "categoryLabel": "Match Kits",
+  "price": 0,
+  "compareAtPrice": 0,
+  "rating": 0,
+  "reviewsCount": 0,
+  "badge": "STAGING",
+  "inStock": false,
+  "isNew": true,
+  "isBestSeller": true,
+  "colorwayIdx": 0,
+  "finishIdx": 0,
+  "shortDesc": "Private-label home jersey blank with Volt accents \u2014 staging shell pending Procurement PO.",
+  "fullDesc": "90plus jersey blank (home). Ghost-mannequin presentation with Volt (#c8ff2e) accents. Staging only until Purchase Order and Finance floor price land. Not sold until PO.",
+  "features": [
+    "Private-label blank \u2014 no club marks",
+    "Volt accent path aligned to brand notch system",
+    "STAGING \u2014 price and stock pending PO"
+  ]
+}
 ];
 
 export const CATEGORIES: { id: CategoryId | "all"; label: string }[] = [

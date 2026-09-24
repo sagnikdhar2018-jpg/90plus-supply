@@ -1,12 +1,12 @@
 import { getProduct, type Product } from "@/data/catalog";
 
 export const POSITIONS = [
-  { id: "ST", title: "Striker", items: ["ball-volt-pro", "sock-apex-volt", "guard-carbon-pro"], psi: 12.8, cw: 0, fin: 2, tip: "Knuckle the top corner at about 16° so it dips over a four-man wall." },
-  { id: "WINGER", title: "Winger", items: ["ball-aerovortex", "sock-apex-volt", "bag-shoe-garage"], psi: 12.5, cw: 0, fin: 0, tip: "Inswinging delivery around 2200 RPM into the far-post channel." },
-  { id: "MID", title: "Playmaker", items: ["ball-gold-trophy", "agility-cones-50", "acc-captain-armband"], psi: 13.0, cw: 4, fin: 1, tip: "Backspin holds 60 m diagonals and cuts overhit on wet turf." },
+  { id: "ST", title: "Striker", items: ["ball-volt-pro", "sock-apex-volt", "guard-volt-armour"], psi: 12.8, cw: 0, fin: 2, tip: "Knuckle the top corner at about 16° so it dips over a four-man wall." },
+  { id: "WINGER", title: "Winger", items: ["ball-volt-pro", "sock-apex-volt", "acc-dual-pump"], psi: 12.5, cw: 0, fin: 0, tip: "Inswinging delivery around 2200 RPM into the far-post channel." },
+  { id: "MID", title: "Playmaker", items: ["ball-volt-pro", "agility-cones-50", "acc-captain-armband"], psi: 13.0, cw: 4, fin: 1, tip: "Backspin holds 60 m diagonals and cuts overhit on wet turf." },
   { id: "DEF", title: "Centre-back", items: ["sleeve-blackout", "sock-stealth-black", "acc-dual-pump"], psi: 12.2, cw: 1, fin: 0, tip: "Driven clearance near 28° maximises aerial distance." },
-  { id: "FB", title: "Full-back", items: ["sock-apex-volt", "sleeve-blackout", "agility-speed-pro"], psi: 12.5, cw: 0, fin: 2, tip: "Low cutback near 110 km/h for deflections in the six-yard box." },
-  { id: "GK", title: "Goalkeeper", items: ["gloves-vortex-pro", "ball-reaction-reflex", "acc-dual-pump"], psi: 11.8, cw: 0, fin: 0, tip: "Side-volley outlets stay flat with less drag." },
+  { id: "FB", title: "Full-back", items: ["sock-apex-volt", "sleeve-blackout", "agility-cones-50"], psi: 12.5, cw: 0, fin: 2, tip: "Low cutback near 110 km/h for deflections in the six-yard box." },
+  { id: "GK", title: "Goalkeeper", items: ["gloves-training-entry", "ball-ocean-blue", "acc-dual-pump"], psi: 11.8, cw: 0, fin: 0, tip: "Side-volley outlets stay flat with less drag." },
 ] as const;
 
 export const SURFACES = [
@@ -17,10 +17,10 @@ export const SURFACES = [
 ] as const;
 
 export const STYLES = [
-  { id: "SPEED", label: "Explosive speed", extra: "agility-speed-pro", dPsi: 0.1, tip: "Prioritise first-step grip and a lighter match ball." },
-  { id: "FK", label: "Free-kick dip", extra: "ball-aerovortex", dPsi: 0.2, tip: "Textured PU; strike through the valve for knuckle instability." },
-  { id: "PRESS", label: "High press", extra: "guard-honeycomb-d3o", dPsi: -0.1, tip: "Add shin protection and high-grip socks for tackles." },
-  { id: "DISTRIB", label: "Long distribution", extra: "acc-tactics-board", dPsi: 0.3, tip: "Firmer ball for driven 40–60 m switches." },
+  { id: "SPEED", label: "Explosive speed", extra: "agility-cones-50", dPsi: 0.1, tip: "Prioritise first-step grip and a lighter match ball." },
+  { id: "FK", label: "Free-kick dip", extra: "ball-volt-pro", dPsi: 0.2, tip: "Textured PU; strike through the valve for knuckle instability." },
+  { id: "PRESS", label: "High press", extra: "guard-volt-armour", dPsi: -0.1, tip: "Add shin protection and high-grip socks for tackles." },
+  { id: "DISTRIB", label: "Long distribution", extra: "acc-captain-armband", dPsi: 0.3, tip: "Firmer ball for driven 40–60 m switches." },
 ] as const;
 
 export type Rec = {

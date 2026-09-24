@@ -293,7 +293,7 @@ const BRAND_CONFIG = {
     hotline: '+91 (800) 90-SUPPLY',
     hours: 'Mon–Sat, 9:00 AM – 8:00 PM IST',
     headquartersAddress: 'Indiranagar 100ft Road, Bengaluru, Karnataka 560038, India',
-    returnsHubAddress: '90+ Logistics Center, Whitefield Express Hub, Bengaluru 560066, India'
+    returnsHubAddress: '' /* dropship: no customer returns hub address */
   },
   commerce: {
     currency: '₹',
@@ -1174,7 +1174,7 @@ const lerp = (a, b, t) => a + (b - a) * t;
 const rand = (lo, hi) => lo + Math.random() * (hi - lo);
 const randInt = (lo, hi) => Math.floor(rand(lo, hi + 1));
 const pick = arr => arr[randInt(0, arr.length - 1)];
-const fmt = n => `${CURRENCY}${n.toLocaleString('en-IN')}`;
+const fmt = n => (Number(n) > 0 ? `${CURRENCY}${Number(n).toLocaleString('en-IN')}` : 'Price on PO');
 const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
 const wait = ms => new Promise(r => setTimeout(r, ms));
@@ -1769,8 +1769,6 @@ const COLORWAYS = [
   { name: 'Arctic White',   base: '#e8eae6', panel: '#ffffff', seam: '#c4c8cc', logo: '#c8ff2e', stamp: '#1a1d21', price: 1399 },
   { name: 'Stadium Red',    base: '#1c0a0a', panel: '#e03030', seam: '#3a1818', logo: '#ff6050', stamp: '#ffffff', price: 1399 },
   { name: 'Ocean Blue',     base: '#0a1420', panel: '#2080d0', seam: '#183050', logo: '#60b8ff', stamp: '#ffffff', price: 1399 },
-  { name: 'Golden Trophy',  base: '#1c1808', panel: '#d4a020', seam: '#4a3c10', logo: '#ffd060', stamp: '#1a1d21', price: 1499 },
-  { name: 'Neon Magenta',   base: '#1a0a18', panel: '#e040b0', seam: '#3a1830', logo: '#ff60d0', stamp: '#ffffff', price: 1499 },
   { name: 'Retro Orange',   base: '#1c1208', panel: '#e07020', seam: '#4a3010', logo: '#ff9040', stamp: '#1a1d21', price: 1499 },
 ];
 
@@ -1933,7 +1931,7 @@ function buildBallMesh(radius, colorwayIdx = 0, finishIdx = 0, name = '', number
 
 /* 2.11b  PROCEDURAL 3D EQUIPMENT MESH GENERATORS High-detail procedural geometries for all football gear categories. */
 
-/* 1. 3D Aerospace Carbon Shin Guard */
+/* 1. 3D Poly Shin Guard */
 function buildShinGuardMesh(opts = {}) {
   const group = new THREE.Group();
 
@@ -2135,7 +2133,7 @@ function buildGaugeMesh(opts = {}) {
   dCtx.textAlign = 'center';
   dCtx.fillText('13.5', 128, 120);
   dCtx.font = '22px "Space Grotesk", sans-serif';
-  dCtx.fillText('PSI · FIFA PRO', 128, 160);
+  dCtx.fillText('PSI · MATCH', 128, 160);
 
   const faceTex = new THREE.CanvasTexture(dCanvas);
   const faceGeo = new THREE.CircleGeometry(0.44, 32);
@@ -3247,37 +3245,38 @@ function bootPart2() {
 
 /* 3.1  CATEGORY DEFINITIONS */
 const CATEGORIES = [
-  { slug: 'balls',       name: 'Match & Tournament Balls', short: 'Match Balls', icon: 'circle-dot', count: 12, desc: 'Engineered to FIFA Quality Pro laboratory physical tolerances with 14-panel thermal bonding and Aerotrac flight stability grooves.' },
+  { slug: 'balls',       name: 'Match & Tournament Balls', short: 'Match Balls', icon: 'circle-dot', count: 12, desc: 'Match-lab physical tolerances with 14-panel thermal bonding and Aerotrac flight stability grooves.' },
   { slug: 'training',    name: 'Training & Academy Balls', short: 'Training Balls', icon: 'activity', count: 8, desc: 'High-durability training spheres, low-bounce futsal balls, and high-abrasion cage footballs.' },
   { slug: 'skills',      name: 'Skill & Precision Balls', short: 'Skill Balls', icon: 'target', count: 4, desc: 'Size 1 and Size 2 touch mastery spheres for juggling, close-control dribbling, and reflexes.' },
   { slug: 'socks',       name: 'Pro Grip Socks',         short: 'Grip Socks',  icon: 'shield',     count: 8, desc: 'Anti-slip silicone chevron grip technology engineered to minimize friction and prevent blisters.' },
   { slug: 'sleeves',     name: 'Match Kit Sleeves',      short: 'Kit Sleeves', icon: 'layers',     count: 4, desc: 'Seamless graduated compression calf sleeves designed to pair with match-day grip socks.' },
-  { slug: 'guards',      name: 'Carbon Shin Guards',     short: 'Shin Guards', icon: 'shield-alert', count: 6, desc: 'Ultra-lightweight 38g aerospace carbon fiber and honeycomb impact dispersion shells.' },
-  { slug: 'gloves',      name: 'Goalkeeper Pro Gloves',  short: 'GK Gloves',   icon: 'hand',       count: 6, desc: '4mm German Contact Latex with negative cut, 3D punch zones, and removable finger spines.' },
+  { slug: 'guards',      name: 'Carbon Shin Guards',     short: 'Shin Guards', icon: 'shield-alert', count: 6, desc: 'Lightweight poly shin protection with impact-dispersion shells.' },
+  { slug: 'gloves',      name: 'Goalkeeper Pro Gloves',  short: 'GK Gloves',   icon: 'hand',       count: 6, desc: '4mm match palm latex with negative cut, 3D punch zones, and removable finger spines.' },
   { slug: 'agility',     name: 'Agility & Speed Kits',   short: 'Agility',     icon: 'zap',        count: 6, desc: 'High-visibility speed ladders, adjustable hurdles, marker discs, and passing rebounders.' },
   { slug: 'bags',        name: 'Gear Bags & Sacks',      short: 'Bags',        icon: 'package',    count: 5, desc: 'Ventilated cleat garages, waterproof 900D ballistic nylon, and multi-ball coaching sacks.' },
   { slug: 'recovery',    name: 'Recovery & Physio',      short: 'Recovery',    icon: 'heart-pulse',count: 5, desc: 'Deep tissue 3D grid foam rollers, CryoFlex cold massage spheres, and zinc oxide tape.' },
   { slug: 'accessories', name: 'Pitch & Referee Gear',   short: 'Accessories', icon: 'tool',       count: 6, desc: 'Digital LCD pressure gauges, dual-action pumps, captain armbands, and cleat care kits.' },
 ];
 
-/* 3.2  FULL PRODUCT CATALOG (64 DETAILED PROFESSIONAL SKUs) Every product contains full FIFA Quality Pro laboratory test metrics, aerodynamic telemetry, and multi-variant definitions. */
+/* 3.2  STAGING DAY-1 CATALOG (12 heroes). Delisted sample SKUs omitted from customer array (inactive in src/data/catalog.ts). */
 const PRODUCTS = [
-  /* CATEGORY 1: MATCH & TOURNAMENT BALLS (12 PRODUCTS) */
-  {
+  /* DELISTED (inactive — retained as id ledger, not customer-facing). Count=59. acc-boot-care-kit, acc-digital-gauge, acc-referee-kit, acc-tactics-board, agility-hurdles-6pk, agility-ladder-6m, agility-rebound-board, agility-slalom-poles-6, agility-speed-pro, bag-club-backpack, bag-coach-ballsack, bag-gym-sack, bag-match-duffle, bag-shoe-garage, ball-academy-trainer-pack5, ball-aerovortex, ball-arctic-white, ball-cage-stealth, ball-copa-classic, ball-cyber-hud, ball-freestyle-grip, ball-futsal-pro, ball-gold-trophy, ball-night-glow, ball-reaction-reflex, ball-shadow-noir, ball-skill-sz1, ball-solo-cord, ball-stadium-red, ball-supernova, ball-tempest-storm, ball-titan-hybrid, ball-touch-sz2, ball-turf-dynamo, ball-velocity-cyan, ball-youth-lightweight, gloves-glove-wash-kit, gloves-junior-spines, gloves-rollfinger-pro, gloves-shadow-black, gloves-vortex-pro, guard-carbon-pro, guard-custom-laser, guard-honeycomb-d3o, guard-mini-carbon, guard-stays-straps, rec-calf-sleeves, rec-cohesive-wrap-6pk, rec-ice-cold-cup, rec-massage-roller, rec-zinc-tape-3pk, sleeve-arctic-white, sleeve-crimson-red, sleeve-royal-blue, sock-arctic-white, sock-electric-blue, sock-junior-academy, sock-pack-5-squad, sock-stadium-crimson */
+{
     id: 'ball-volt-pro',
-    slug: 'apex-volt-pro-match-ball',
-    name: 'Apex Volt Pro Match Ball',
-    sku: '90P-BL-001',
+    active: true,
+    slug: '90plus-volt-match-ball',
+    name: '90plus Volt Match Ball',
+    sku: '90P-BL-M01',
     category: 'balls',
     categoryLabel: 'Match Balls',
     price: 1299,
     compareAtPrice: 1799,
     rating: 4.9,
     reviewsCount: 142,
-    badge: 'BESTSELLER',
+    badge: 'STAGING',
     inStock: true,
     stockCount: 3,
-    isNew: false,
+    isNew: true,
     isBestSeller: true,
     colorwayIdx: 0,
     finishIdx: 0,
@@ -3290,7 +3289,7 @@ const PRODUCTS = [
       'Aerotrac dimpled Japanese PU outer shell for stable aerodynamic flight',
       'Reinforced butyl bladder with cotton wrap for 45-day air retention',
       'High-contrast Volt/Obsidian visual tracking graphics for night games',
-      'FIFA Quality Pro equivalent bounce, weight, and roundness specs'
+      'Tournament-lab bounce, weight, and roundness specs'
     ],
     specs: {
       'Size': 'Size 5 (Standard Senior)',
@@ -3300,7 +3299,7 @@ const PRODUCTS = [
       'Internal Core': 'Multi-layer laminated polyester backing + Butyl core',
       'Pitch Type': 'Natural Grass, Modern Hybrid, 3G/4G Artificial Turf',
       'Inflation Pressure': '0.8 – 1.0 Bar / 11.6 – 14.5 PSI',
-      'Water Absorption': '0.04% (FIFA Max 10.0%)',
+      'Water Absorption': '0.04%',
       'Rebound Height': '142 cm from 2m drop at 20°C',
       'Loss of Pressure': '< 0.05 Bar over 72 hours'
     },
@@ -3308,375 +3307,25 @@ const PRODUCTS = [
       { id: 'v-sz5', name: 'Size 5 (Match Standard)', inStock: true },
       { id: 'v-sz4', name: 'Size 4 (Youth / Academy)', inStock: true }
     ],
-    tags: ['match', 'thermal-bonded', 'pro', 'fifa-spec', 'volt', 'size-5']
-  },
-  {
-    id: 'ball-shadow-noir',
-    slug: 'phantom-shadow-noir-edition',
-    name: 'Phantom Shadow Noir Edition',
-    sku: '90P-BL-002',
-    category: 'balls',
-    categoryLabel: 'Match Balls',
-    price: 1399,
-    compareAtPrice: 1899,
-    rating: 4.8,
-    reviewsCount: 96,
-    badge: 'LIMITED',
-    inStock: false,
-    stockCount: 0,
-    isNew: true,
-    isBestSeller: true,
-    colorwayIdx: 1,
-    finishIdx: 2,
-    snapAngle: 0.8,
-    snapTilt: 0.18,
-    shortDesc: 'Stealth blackout edition with reflective chrome panel accents and ultra-dense micro-grip surface.',
-    fullDesc: 'A dark, brooding masterpiece. The Phantom Shadow Noir is crafted for cage football, evening turf floodlight sessions, and collectors. Features stealth matte black composite panels flanked by subtle dark-chrome heat-stamped logos that flare under stadium lighting.',
-    features: [
-      'Stealth matte textured skin with laser-embossed micro-grooves',
-      'Reflective metallic accents that react to pitch floodlights',
-      'High-abrasion resistance rating for 5-a-side concrete & turf cages',
-      'Zero-leak airlock valve system ensures consistent weekly pressure'
-    ],
-    specs: {
-      'Size': 'Size 5',
-      'Weight': '430g ± 5g',
-      'Circumference': '68.8 cm',
-      'Outer Shell': 'High-density Matte PU with Chrome Foil foil stamping',
-      'Bladder': 'Synthetic Butyl with cross-woven nylon carcass',
-      'Pitch Type': 'Turf, Hard Ground, Indoor, Artificial Turf',
-      'Water Absorption': '0.08%',
-      'Rebound Height': '138 cm from 2m drop'
-    },
-    variants: [
-      { id: 'v-ps-5', name: 'Size 5 (Pro)', inStock: true }
-    ],
-    tags: ['blackout', 'stealth', 'limited', 'cage', 'turf']
-  },
-  {
-    id: 'ball-arctic-white',
-    slug: 'arctic-frost-hybrid-match-ball',
-    name: 'Arctic Frost Hybrid Match Ball',
-    sku: '90P-BL-003',
-    category: 'balls',
-    categoryLabel: 'Match Balls',
-    price: 1199,
-    compareAtPrice: 1599,
-    rating: 4.7,
-    reviewsCount: 78,
-    badge: 'POPULAR',
-    inStock: true,
-    stockCount: 34,
-    isNew: false,
-    isBestSeller: false,
-    colorwayIdx: 2,
-    finishIdx: 0,
-    snapAngle: 0.3,
-    snapTilt: 0.1,
-    shortDesc: 'Crisp white/volt tournament hybrid ball with high-rebound EVA foam damping layer.',
-    fullDesc: 'The classic aesthetic reimagined. Arctic Frost utilizes a 3.5mm high-density EVA foam backing beneath crisp arctic white panels, providing an ultra-soft touch off the boot while maintaining blistering exit speed on strikes.',
-    features: [
-      '3.5mm dual-density EVA cushioning for velvet first-touch control',
-      'Precision machine-stitched seams reinforced with waterproof epoxy resin',
-      'All-weather outer coating prevents water and mud accumulation',
-      'High-contrast cyan and volt speed graphics for high-speed tracking'
-    ],
-    specs: {
-      'Size': 'Size 5',
-      'Weight': '420g',
-      'Circumference': '68.5 cm',
-      'Pitch Type': 'Natural Turf & Muddy Monsoon Pitches',
-      'Water Absorption': '0.12%',
-      'Rebound Height': '145 cm'
-    },
-    variants: [
-      { id: 'v-af-5', name: 'Size 5', inStock: true },
-      { id: 'v-af-4', name: 'Size 4', inStock: true }
-    ],
-    tags: ['white', 'classic', 'soft-touch', 'eva-foam']
-  },
-  {
-    id: 'ball-stadium-red',
-    slug: 'ignite-stadium-red-match-ball',
-    name: 'Ignite Stadium Red Match Ball',
-    sku: '90P-BL-004',
-    category: 'balls',
-    categoryLabel: 'Match Balls',
-    price: 1349,
-    compareAtPrice: 1749,
-    rating: 4.8,
-    reviewsCount: 54,
-    badge: 'NEW',
-    inStock: true,
-    stockCount: 26,
-    isNew: true,
-    isBestSeller: false,
-    colorwayIdx: 3,
-    finishIdx: 0,
-    snapAngle: 0.6,
-    snapTilt: 0.15,
-    shortDesc: 'High-visibility stadium crimson match ball engineered for extreme contrast in night matches.',
-    fullDesc: 'Designed to ignite under floodlights. High-visibility crimson panels create an optical focal lock for goalkeepers and strikers alike, improving reaction times on driven crosses.',
-    features: [
-      'High-contrast optic crimson colorway for split-second reaction speed',
-      'Thermally sealed aerodynamic seams for true dip-and-knuckle trajectory',
-      'Tear-resistant micro-fiber polyurethane structure'
-    ],
-    specs: { 'Size': 'Size 5', 'Weight': '428g', 'Pitch Type': 'All Surfaces', 'Water Absorption': '0.05%' },
-    variants: [{ id: 'v-ir-5', name: 'Size 5', inStock: true }],
-    tags: ['red', 'high-vis', 'match', 'knuckleball']
-  },
-  {
-    id: 'ball-gold-trophy',
-    slug: 'champions-gold-trophy-edition',
-    name: 'Champions Gold Trophy Edition',
-    sku: '90P-BL-005',
-    category: 'balls',
-    categoryLabel: 'Match Balls',
-    price: 1699,
-    compareAtPrice: 2299,
-    rating: 5.0,
-    reviewsCount: 37,
-    badge: 'COLLECTOR',
-    inStock: true,
-    stockCount: 12,
-    isNew: true,
-    isBestSeller: false,
-    colorwayIdx: 5,
-    finishIdx: 2,
-    snapAngle: 0.7,
-    snapTilt: 0.2,
-    shortDesc: 'Mirror metallic gold collector sphere with laser engraved serial numbering and presentation box.',
-    fullDesc: 'Celebrating the 90th-minute winners. Hand-crafted with metallic gold mirror foil panels and deep obsidian contrast lines. Includes individual collector certificate and magnetic acrylic display pedestal.',
-    features: [
-      'Mirror metallic gold finish with UV-protective clearcoat',
-      'Numbered laser engraving on equator seam',
-      'Includes acrylic display plinth and branded velvet dustbag'
-    ],
-    specs: { 'Size': 'Size 5', 'Weight': '430g', 'Pitch Type': 'Match / Collector Display', 'Water Absorption': '0.02%' },
-    variants: [{ id: 'v-cg-5', name: 'Size 5 (Collector Edition)', inStock: true }],
-    tags: ['gold', 'collector', 'trophy', 'limited-edition']
-  },
-  {
-    id: 'ball-aerovortex',
-    slug: 'aerovortex-knuckleball-pro',
-    name: 'AeroVortex Knuckleball Pro',
-    sku: '90P-BL-006',
-    category: 'balls',
-    categoryLabel: 'Match Balls',
-    price: 1499,
-    compareAtPrice: 1999,
-    rating: 4.9,
-    reviewsCount: 62,
-    badge: 'AERODYNAMIC',
-    inStock: true,
-    stockCount: 22,
-    isNew: true,
-    isBestSeller: false,
-    colorwayIdx: 6,
-    finishIdx: 4,
-    shortDesc: 'Engineered with deep asymmetrical vortex grooves that induce erratic knuckleball dip and swerve.',
-    fullDesc: 'The striker’s weapon of choice. Computational fluid dynamics (CFD) modeled vortex grooves create boundary layer micro-turbulence, producing wild knuckleball dip and lateral swerve on flat-faced instep strikes above 85 km/h.',
-    features: [
-      'CFD-engineered vortex channels generate maximum aerodynamic knuckle deviation',
-      'Iridescent holographic coating shifts color at rotational velocity',
-      'Balanced latex carcass ensures 0.2% roundness deviation tolerance'
-    ],
-    specs: { 'Size': 'Size 5', 'Weight': '424g', 'Pitch Type': 'FG / AG Match', 'Water Absorption': '0.03%' },
-    variants: [{ id: 'v-av-5', name: 'Size 5 Knuckleball', inStock: true }],
-    tags: ['knuckleball', 'aerovortex', 'swerve', 'pro-match']
-  },
-  {
-    id: 'ball-tempest-storm',
-    slug: 'tempest-high-vis-storm-edition',
-    name: 'Tempest High-Vis Storm Edition',
-    sku: '90P-BL-007',
-    category: 'balls',
-    categoryLabel: 'Match Balls',
-    price: 1299,
-    compareAtPrice: 1699,
-    rating: 4.8,
-    reviewsCount: 41,
-    badge: 'MONSOON READY',
-    inStock: true,
-    stockCount: 30,
-    isNew: false,
-    isBestSeller: false,
-    colorwayIdx: 7,
-    finishIdx: 0,
-    shortDesc: 'Fluorescent solar orange and reflective volt storm ball built for heavy rain and fog.',
-    fullDesc: 'When monsoon rain hammers the pitch and visibility plummets, Tempest cuts through the storm. Fluorescent solar orange panels reflect 300% more ambient light than white balls.',
-    features: [
-      'Fluorescent solar pigment visible through heavy rain and stadium mist',
-      'Hydrophobic outer PU coating sheds water droplets instantly',
-      'Thermo-welded seam channels prevent mud accumulation'
-    ],
-    specs: { 'Size': 'Size 5', 'Weight': '425g', 'Pitch Type': 'Monsoon Grass, Mud, Heavy Turf' },
-    variants: [{ id: 'v-tp-5', name: 'Size 5', inStock: true }],
-    tags: ['high-vis', 'storm', 'monsoon', 'orange']
-  },
-  {
-    id: 'ball-cyber-hud',
-    slug: 'cyberstrike-hud-edition',
-    name: 'CyberStrike HUD Edition',
-    sku: '90P-BL-008',
-    category: 'balls',
-    categoryLabel: 'Match Balls',
-    price: 1449,
-    compareAtPrice: 1949,
-    rating: 4.9,
-    reviewsCount: 58,
-    badge: 'GAMING HUD',
-    inStock: true,
-    stockCount: 25,
-    isNew: true,
-    isBestSeller: false,
-    colorwayIdx: 0,
-    finishIdx: 4,
-    shortDesc: 'HUD-inspired geometric line graphics with luminescent panel edges that glow under UV/night floodlights.',
-    fullDesc: 'Fusing competitive esports aesthetic with FIFA-grade engineering. Luminescent optic lines allow players to track rotational spin direction and speed in real-time.',
-    features: [
-      'Tactical HUD alignment crosshairs aid precision penalty and set-piece targeting',
-      'Phosphorescent ink glows under stadium UV lighting',
-      'Precision balanced 14-panel thermal bonded build'
-    ],
-    specs: { 'Size': 'Size 5', 'Weight': '426g', 'Pitch Type': 'Night Match, Turf, FG' },
-    variants: [{ id: 'v-cyb-5', name: 'Size 5 HUD', inStock: true }],
-    tags: ['cyberpunk', 'hud', 'night-game', 'glow']
-  },
-  {
-    id: 'ball-titan-hybrid',
-    slug: 'titan-pro-hybrid-match-ball',
-    name: 'Titan Pro Hybrid Match Ball',
-    sku: '90P-BL-009',
-    category: 'balls',
-    categoryLabel: 'Match Balls',
-    price: 1099,
-    compareAtPrice: 1499,
-    rating: 4.7,
-    reviewsCount: 84,
-    badge: 'VALUE PRO',
-    inStock: true,
-    stockCount: 50,
-    isNew: false,
-    isBestSeller: false,
-    colorwayIdx: 2,
-    finishIdx: 0,
-    shortDesc: 'Durable hybrid construction combining internal machine stitching with external thermal sealing.',
-    fullDesc: 'The sweet spot between tournament performance and academy budget. Dual-construction technology shields stitches behind a thermal seal for 3x longer life.',
-    features: [
-      'Dual-construction: Internal high-tensile stitching with external sealant',
-      '2.5mm EVA foam cushion backing for explosive rebound',
-      'Anti-burst high-density synthetic carcass'
-    ],
-    specs: { 'Size': 'Size 5', 'Weight': '430g', 'Pitch Type': 'All Surfaces' },
-    variants: [{ id: 'v-th-5', name: 'Size 5', inStock: true }, { id: 'v-th-4', name: 'Size 4', inStock: true }],
-    tags: ['hybrid', 'durable', 'academy-match']
-  },
-  {
-    id: 'ball-copa-classic',
-    slug: 'copa-heritage-32-panel-ball',
-    name: 'Copa Heritage 32-Panel Classic',
-    sku: '90P-BL-010',
-    category: 'balls',
-    categoryLabel: 'Match Balls',
-    price: 1149,
-    compareAtPrice: 1549,
-    rating: 4.8,
-    reviewsCount: 67,
-    badge: 'CLASSIC',
-    inStock: true,
-    stockCount: 35,
-    isNew: false,
-    isBestSeller: false,
-    colorwayIdx: 2,
-    finishIdx: 3,
-    shortDesc: 'Traditional 32-panel truncated icosahedron geometry with soft matte faux-leather touch.',
-    fullDesc: 'Honoring the legendary geometry of football history. 32 hand-aligned panels deliver organic flight feel and classic auditory thud off the boot.',
-    features: [
-      'Authentic 32-panel hexagon/pentagon geometry',
-      'Matte micro-suede outer layer with natural leather grain tactile feel',
-      'Reinforced wound latex core for pure spherical return'
-    ],
-    specs: { 'Size': 'Size 5', 'Weight': '432g', 'Pitch Type': 'Natural Grass, Turf' },
-    variants: [{ id: 'v-ch-5', name: 'Size 5 Heritage', inStock: true }],
-    tags: ['heritage', 'classic', '32-panel', 'leather-feel']
-  },
-  {
-    id: 'ball-velocity-cyan',
-    slug: 'velocity-speed-match-ball-cyan',
-    name: 'Velocity Speed Ball — Cyan Surge',
-    sku: '90P-BL-011',
-    category: 'balls',
-    categoryLabel: 'Match Balls',
-    price: 1249,
-    compareAtPrice: 1649,
-    rating: 4.7,
-    reviewsCount: 39,
-    badge: 'FAST FLIGHT',
-    inStock: true,
-    stockCount: 28,
-    isNew: false,
-    isBestSeller: false,
-    colorwayIdx: 4,
-    finishIdx: 0,
-    shortDesc: 'Low-drag 8-panel hypersonic outer casing engineered for driven passes and rapid counter-attacks.',
-    fullDesc: 'Reduced seam count creates cleaner airflow detachment, sustaining velocity 8% longer across long 50-meter diagonal switches.',
-    features: [
-      '8-panel low-seam geometry minimizes skin friction drag',
-      'Cyan surge colorway calibrated for maximum contrast on green turf',
-      'High-retention valve system maintains tournament PSI for 30+ days'
-    ],
-    specs: { 'Size': 'Size 5', 'Weight': '422g', 'Pitch Type': 'FG / 3G Turf' },
-    variants: [{ id: 'v-vc-5', name: 'Size 5', inStock: true }],
-    tags: ['speed', 'cyan', 'low-drag', 'fast']
-  },
-  {
-    id: 'ball-supernova',
-    slug: 'supernova-neon-magenta-pro',
-    name: 'Supernova Neon Magenta Pro',
-    sku: '90P-BL-012',
-    category: 'balls',
-    categoryLabel: 'Match Balls',
-    price: 1399,
-    compareAtPrice: 1849,
-    rating: 4.9,
-    reviewsCount: 44,
-    badge: 'LIMITED DROP',
-    inStock: true,
-    stockCount: 14,
-    isNew: true,
-    isBestSeller: false,
-    colorwayIdx: 6,
-    finishIdx: 4,
-    shortDesc: 'Electric magenta and deep ultraviolet match ball with metallic flakes and holographic clearcoat.',
-    fullDesc: 'A head-turning showstopper. Supernova combines electric magenta panels with iridescent clearcoat that shimmers purple and blue as the ball rotates.',
-    features: [
-      'Metallic flake infused base coat with iridescent clearcoat',
-      'Full tournament match certification specs',
-      'Numbered production run for collectors and tournament finals'
-    ],
-    specs: { 'Size': 'Size 5', 'Weight': '428g', 'Pitch Type': 'All Surfaces' },
-    variants: [{ id: 'v-sn-5', name: 'Size 5 Pro', inStock: true }],
-    tags: ['magenta', 'supernova', 'holographic', 'collector']
+    tags: ['match', 'thermal-bonded', 'pro', 'volt', 'size-5']
   },
 
-  /* CATEGORY 2: TRAINING & ACADEMY BALLS (8 PRODUCTS) */
-  {
+{
     id: 'ball-ocean-blue',
-    slug: 'tsunami-ocean-blue-ball',
-    name: 'Tsunami Ocean Blue Ball',
-    sku: '90P-BL-013',
+    active: true,
+    slug: '90plus-training-ball',
+    name: '90plus Training Ball',
+    sku: '90P-BL-T01',
     category: 'training',
     categoryLabel: 'Training Balls',
     price: 899,
     compareAtPrice: 1299,
     rating: 4.6,
     reviewsCount: 63,
-    badge: 'VALUE WORKHORSE',
+    badge: 'STAGING',
     inStock: true,
     stockCount: 60,
-    isNew: false,
+    isNew: true,
     isBestSeller: false,
     colorwayIdx: 4,
     finishIdx: 1,
@@ -3693,343 +3342,23 @@ const PRODUCTS = [
     variants: [{ id: 'v-to-5', name: 'Size 5', inStock: true }, { id: 'v-to-4', name: 'Size 4', inStock: true }],
     tags: ['training', 'durable', 'value', 'blue']
   },
-  {
-    id: 'ball-turf-dynamo',
-    slug: 'dynamo-turf-master-heavy-duty',
-    name: 'Dynamo TurfMaster Heavy-Duty',
-    sku: '90P-BL-014',
-    category: 'training',
-    categoryLabel: 'Training Balls',
-    price: 949,
-    compareAtPrice: 1349,
-    rating: 4.7,
-    reviewsCount: 88,
-    badge: 'TURF SPECIALIST',
-    inStock: true,
-    stockCount: 45,
-    isNew: false,
-    isBestSeller: true,
-    colorwayIdx: 0,
-    finishIdx: 1,
-    shortDesc: 'Heavy-abrasion rubber composite skin specifically engineered for rough 3G/4G artificial turf.',
-    fullDesc: 'Rubber-crumb turf destroys standard football outer skins. Dynamo features a cross-linked rubberized poly skin that resists friction tearing and heat buildup on hot summer artificial pitches.',
-    features: [
-      'Cross-linked rubber composite outer skin resists turf burn',
-      'Reinforced double-wound bladder prevents shape distortion',
-      'High-grip surface texture enhances foot control in close quarters'
-    ],
-    specs: { 'Size': 'Size 5', 'Weight': '438g', 'Pitch Type': '3G/4G Turf, Concrete Cages' },
-    variants: [{ id: 'v-dt-5', name: 'Size 5', inStock: true }],
-    tags: ['turf', 'heavy-duty', 'abrasion-resistant', 'training']
-  },
-  {
-    id: 'ball-futsal-pro',
-    slug: 'apex-futsal-low-bounce-pro',
-    name: 'Apex Futsal Low-Bounce Pro',
-    sku: '90P-BL-015',
-    category: 'training',
-    categoryLabel: 'Training Balls',
-    price: 1199,
-    compareAtPrice: 1599,
-    rating: 4.9,
-    reviewsCount: 52,
-    badge: 'FUTSAL MATCH',
-    inStock: true,
-    stockCount: 32,
-    isNew: true,
-    isBestSeller: false,
-    colorwayIdx: 0,
-    finishIdx: 0,
-    shortDesc: 'Official Size 4 Futsal ball with weighted cotton-dampened bladder for controlled 50-65cm rebound.',
-    fullDesc: 'Official low-bounce tournament specification for hardwood courts and indoor synthetic pitches. Stays glued to the deck for lightning-fast tiki-taka combinations and sole rolls.',
-    features: [
-      'Weighted synthetic bladder limits rebound to strict 50–65 cm futsal standard',
-      'Micro-grain Japanese PU shell enables velvet sole drags and roll-overs',
-      'Hand-stitched 32-panel structure with reinforced polyester lining'
-    ],
-    specs: { 'Size': 'Size 4 (Official Futsal)', 'Weight': '420g', 'Rebound': '55–65 cm from 2m', 'Surface': 'Indoor Court, Hard Ground, Turf' },
-    variants: [{ id: 'v-ft-sz4', name: 'Size 4 Official Futsal', inStock: true }],
-    tags: ['futsal', 'low-bounce', 'indoor', 'size-4']
-  },
-  {
-    id: 'ball-cage-stealth',
-    slug: 'concrete-cage-stealth-ball',
-    name: 'Concrete Cage Stealth Ball',
-    sku: '90P-BL-016',
-    category: 'training',
-    categoryLabel: 'Training Balls',
-    price: 849,
-    compareAtPrice: 1199,
-    rating: 4.6,
-    reviewsCount: 75,
-    badge: 'CONCRETE PROOF',
-    inStock: true,
-    stockCount: 55,
-    isNew: false,
-    isBestSeller: false,
-    colorwayIdx: 1,
-    finishIdx: 1,
-    shortDesc: 'Tire-grade high-vulcanized rubber shell built for rooftop concrete and tarmac 5-a-side.',
-    fullDesc: 'Built like an armored vehicle. Survived 1,000+ drop tests onto raw concrete without single seam failure.',
-    features: [
-      'Tire-grade vulcanized rubber compound shell',
-      'Deep tread grooves offer unmatched grip on dusty street courts',
-      'Puncture-resistant inner liner'
-    ],
-    specs: { 'Size': 'Size 5', 'Weight': '440g', 'Pitch Type': 'Concrete, Tarmac, Gravel' },
-    variants: [{ id: 'v-cc-5', name: 'Size 5 Cage', inStock: true }],
-    tags: ['street', 'concrete', 'cage', 'indestructible']
-  },
-  {
-    id: 'ball-reaction-reflex',
-    slug: 'reflex-reaction-training-ball',
-    name: 'Reflex Reaction Training Ball',
-    sku: '90P-BL-017',
-    category: 'training',
-    categoryLabel: 'Training Balls',
-    price: 699,
-    compareAtPrice: 999,
-    rating: 4.8,
-    reviewsCount: 38,
-    badge: 'GK / AGILITY',
-    inStock: true,
-    stockCount: 40,
-    isNew: true,
-    isBestSeller: false,
-    colorwayIdx: 0,
-    finishIdx: 1,
-    shortDesc: 'Asymmetrical weighted sphere that bounces with unpredictable angles for reflex training.',
-    fullDesc: 'Sharpen goalkeeper hand-eye coordination and defender reaction speed. The internal counterweight creates sudden 30-degree directional hops on ground bounces.',
-    features: [
-      'Off-center internal weighted core creates unpredictable rebound trajectory',
-      'Used by professional goalkeeper coaches for split-second reaction drills',
-      'High-visibility neon volt color for instant focal acquisition'
-    ],
-    specs: { 'Size': 'Size 5 (Weighted Reflex)', 'Weight': '445g', 'Type': 'Goalkeeper / Reflex Trainer' },
-    variants: [{ id: 'v-rx-std', name: 'Standard Reflex Ball', inStock: true }],
-    tags: ['reflex', 'goalkeeper-drill', 'reaction', 'training']
-  },
-  {
-    id: 'ball-academy-trainer-pack5',
-    slug: 'academy-trainer-pack-of-5',
-    name: 'Academy Squad Trainer (Pack of 5)',
-    sku: '90P-BL-018',
-    category: 'training',
-    categoryLabel: 'Training Balls',
-    price: 3899,
-    compareAtPrice: 4995,
-    rating: 4.9,
-    reviewsCount: 92,
-    badge: 'COACH PACK',
-    inStock: true,
-    stockCount: 20,
-    isNew: false,
-    isBestSeller: true,
-    colorwayIdx: 4,
-    finishIdx: 1,
-    shortDesc: 'Includes 5x durable size 5 training footballs + 1 complimentary heavy-duty mesh ball carry bag.',
-    fullDesc: 'Equip your entire squad. Five high-durability training balls with dual-action hand pump and 10-ball capacity heavy nylon mesh carry sack.',
-    features: [
-      '5x Tsunami Ocean Blue Size 5 training balls',
-      'Includes 1x heavy-duty 10-ball mesh duffle bag',
-      'Includes 1x dual-action turbo pump with 3 inflation needles'
-    ],
-    specs: { 'Package': '5 Balls + 1 Mesh Sack + 1 Pump', 'Sizes': 'Size 5 (Standard)' },
-    variants: [{ id: 'v-tp-pack5', name: '5-Ball Coach Pack (Size 5)', inStock: true }],
-    tags: ['pack', 'bundle', 'coach', 'academy', 'bulk']
-  },
-  {
-    id: 'ball-night-glow',
-    slug: 'lumina-night-glow-training-ball',
-    name: 'Lumina Night-Glow Training Ball',
-    sku: '90P-BL-019',
-    category: 'training',
-    categoryLabel: 'Training Balls',
-    price: 1049,
-    compareAtPrice: 1449,
-    rating: 4.7,
-    reviewsCount: 46,
-    badge: 'NIGHT GLOW',
-    inStock: true,
-    stockCount: 30,
-    isNew: true,
-    isBestSeller: false,
-    colorwayIdx: 0,
-    finishIdx: 0,
-    shortDesc: 'Photoluminescent exterior charges under daylight or floodlights to glow brightly in the dark.',
-    fullDesc: 'Never let sunset end the session. Absorbs ambient light during the day to emit a vivid phosphor-green glow for up to 2 hours of unlit evening play.',
-    features: [
-      'No batteries required — charges in 10 minutes under sunlight or phone flashlight',
-      'Soft-touch TPU outer cover with high-rebound cushioning',
-      'Perfect for unlit park sessions and beach football'
-    ],
-    specs: { 'Size': 'Size 5', 'Weight': '425g', 'Glow Duration': 'Up to 120 minutes' },
-    variants: [{ id: 'v-ng-5', name: 'Size 5 Glow', inStock: true }],
-    tags: ['glow', 'night', 'lumina', 'training']
-  },
-  {
-    id: 'ball-youth-lightweight',
-    slug: 'pro-lite-youth-development-ball',
-    name: 'ProLite Youth 290g Development Ball',
-    sku: '90P-BL-020',
-    category: 'training',
-    categoryLabel: 'Training Balls',
-    price: 899,
-    compareAtPrice: 1249,
-    rating: 4.9,
-    reviewsCount: 51,
-    badge: 'YOUTH SPEC',
-    inStock: true,
-    stockCount: 40,
-    isNew: false,
-    isBestSeller: false,
-    colorwayIdx: 2,
-    finishIdx: 0,
-    shortDesc: 'Lightweight 290-gram Size 4 football engineered to prevent joint strain in U-11 grassroots players.',
-    fullDesc: 'Recommended by pediatric sports medicine. Standard senior balls (430g) can cause knee and ankle joint strain in young children. ProLite reduces impact force by 32% while maintaining official Size 4 diameter.',
-    features: [
-      'Reduced 290g weight protects developing youth joints and ligaments',
-      'Official Size 4 diameter (64 cm) teaches proper ball mastery and strike technique',
-      'Soft EVA foam outer layer eliminates fear of header drills'
-    ],
-    specs: { 'Size': 'Size 4', 'Weight': '290g ± 10g (Lightweight Youth Spec)', 'Age Group': 'Under 11 Years' },
-    variants: [{ id: 'v-yl-4', name: 'Size 4 (290g Youth)', inStock: true }],
-    tags: ['youth', 'lightweight', 'grassroots', 'u11']
-  },
 
-  /* CATEGORY 3: SKILL & PRECISION BALLS (4 PRODUCTS) */
-  {
-    id: 'ball-skill-sz1',
-    slug: 'micromaster-size-1-skill-ball',
-    name: 'MicroMaster Size 1 Skill Ball',
-    sku: '90P-BL-021',
-    category: 'skills',
-    categoryLabel: 'Skill Balls',
-    price: 499,
-    compareAtPrice: 699,
-    rating: 4.8,
-    reviewsCount: 110,
-    badge: 'TOUCH MASTER',
-    inStock: true,
-    stockCount: 80,
-    isNew: false,
-    isBestSeller: true,
-    colorwayIdx: 0,
-    finishIdx: 0,
-    shortDesc: 'Precision mini size 1 football for juggling mastery, reflex volleys, and close-control footwork.',
-    fullDesc: 'If you can control a Size 1 ball at high speed, controlling a match-grade Size 5 becomes effortless. Fits in any backpack for spontaneous juggling anywhere.',
-    features: [
-      'Size 1 mini footprint (44 cm circumference) forces pin-point sweet-spot striking',
-      'High-durability machine-stitched TPU casing with soft foam core',
-      'Ideal travel companion and warmup juggling sphere'
-    ],
-    specs: { 'Size': 'Size 1 (Mini)', 'Circumference': '44 cm', 'Weight': '190g' },
-    variants: [{ id: 'v-sk1-v', name: 'Volt Rush (Size 1)', inStock: true }],
-    tags: ['skill', 'size-1', 'mini', 'juggling']
-  },
-  {
-    id: 'ball-freestyle-grip',
-    slug: 'orbit-freestyle-high-tack-ball',
-    name: 'Orbit Freestyle High-Tack Ball',
-    sku: '90P-BL-022',
-    category: 'skills',
-    categoryLabel: 'Skill Balls',
-    price: 999,
-    compareAtPrice: 1399,
-    rating: 4.9,
-    reviewsCount: 47,
-    badge: 'FREESTYLE',
-    inStock: true,
-    stockCount: 25,
-    isNew: true,
-    isBestSeller: false,
-    colorwayIdx: 6,
-    finishIdx: 3,
-    shortDesc: 'Friction-coated denim/suede outer shell engineered for stalls, around-the-worlds, and head tricks.',
-    fullDesc: 'Crafted specifically for the street freestyle community. High-tack denim fabric provides immense shoe grip for neck stalls, chest balances, and complex 360 combos.',
-    features: [
-      'High-friction micro-canvas fabric shell locks onto boots for effortless stalls',
-      'Low-pressure soft bladder formulation prevents runaway rolls',
-      'Street art geometric vector print'
-    ],
-    specs: { 'Size': 'Size 5 (Freestyle Spec)', 'Weight': '420g', 'Outer': 'High-Tack Suede Canvas' },
-    variants: [{ id: 'v-fs-5', name: 'Size 5 Freestyle', inStock: true }],
-    tags: ['freestyle', 'tricks', 'stalls', 'suede']
-  },
-  {
-    id: 'ball-solo-cord',
-    slug: 'kickmaster-solo-cord-trainer',
-    name: 'KickMaster Solo Tether Trainer',
-    sku: '90P-BL-023',
-    category: 'skills',
-    categoryLabel: 'Skill Balls',
-    price: 699,
-    compareAtPrice: 999,
-    rating: 4.7,
-    reviewsCount: 82,
-    badge: 'SOLO DRILL',
-    inStock: true,
-    stockCount: 50,
-    isNew: false,
-    isBestSeller: false,
-    colorwayIdx: 0,
-    finishIdx: 0,
-    shortDesc: 'Adjustable kinetic bungee cord harness that returns the ball instantly for 1,000+ solo touches per hour.',
-    fullDesc: 'No wall or training partner needed. Fits sizes 3, 4, and 5 balls. Elastic tether extends up to 5 meters and snaps back for continuous volley, passing, and first-touch reps.',
-    features: [
-      'Heavy-duty adjustable neoprene glove fits Size 3, 4, and 5 balls securely',
-      'Kinetic bungee cord stretches up to 5 meters with smooth recoil damping',
-      'Ergonomic padded waist belt with 360-degree swivel clip'
-    ],
-    specs: { 'Includes': 'Waist Belt + Bungee Cord + Ball Glove (Ball sold separately)', 'Cord Length': '2.2M to 5.5M' },
-    variants: [{ id: 'v-km-tether', name: 'Universal Solo Trainer (Belt + Cord + Sleeve)', inStock: true }],
-    tags: ['solo-trainer', 'tether', 'touches', 'skill']
-  },
-  {
-    id: 'ball-touch-sz2',
-    slug: 'precision-touch-size-2-ball',
-    name: 'PrecisionTouch Size 2 Sphere',
-    sku: '90P-BL-024',
-    category: 'skills',
-    categoryLabel: 'Skill Balls',
-    price: 549,
-    compareAtPrice: 799,
-    rating: 4.8,
-    reviewsCount: 35,
-    badge: 'CADENCE DRILL',
-    inStock: true,
-    stockCount: 45,
-    isNew: false,
-    isBestSeller: false,
-    colorwayIdx: 2,
-    finishIdx: 0,
-    shortDesc: 'Size 2 ball calibrated for rhythm passing drills and quick-fire rondo training.',
-    fullDesc: 'The bridge between Size 1 skill balls and Size 4 academy spheres. Widely used in Brazilian futsal academies to instill razor-sharp cadence.',
-    features: [
-      'Size 2 footprint (52 cm circumference) trains quick-release passing cadence',
-      'Reinforced polyurethane panels with soft EVA damping layer'
-    ],
-    specs: { 'Size': 'Size 2', 'Weight': '240g', 'Circumference': '52 cm' },
-    variants: [{ id: 'v-pt-2', name: 'Size 2 Precision', inStock: true }],
-    tags: ['size-2', 'skill', 'cadence', 'rondo']
-  },
-
-  /* CATEGORY 4: PRO GRIP SOCKS (8 PRODUCTS) */
-  {
+{
     id: 'sock-apex-volt',
-    slug: 'apex-lock-pro-grip-socks-volt',
-    name: 'ApexLock Pro Grip Socks — Volt Rush',
-    sku: '90P-SK-001',
+    active: true,
+    slug: '90plus-grip-sock-volt',
+    name: '90plus Grip Sock — Volt',
+    sku: '90P-SK-V01',
     category: 'socks',
     categoryLabel: 'Grip Socks',
     price: 499,
     compareAtPrice: 799,
     rating: 4.9,
     reviewsCount: 318,
-    badge: 'TOP RATED',
+    badge: 'STAGING',
     inStock: true,
     stockCount: 6,
-    isNew: false,
+    isNew: true,
     isBestSeller: true,
     colorwayIdx: 0,
     finishIdx: 0,
@@ -4053,22 +3382,24 @@ const PRODUCTS = [
     ],
     tags: ['grip-socks', 'anti-slip', 'blister-free', 'volt', 'bestseller']
   },
-  {
+
+{
     id: 'sock-stealth-black',
-    slug: 'apex-lock-grip-socks-stealth-black',
-    name: 'ApexLock Pro Grip Socks — Blackout',
-    sku: '90P-SK-002',
+    active: true,
+    slug: '90plus-grip-sock-black',
+    name: '90plus Grip Sock — Black',
+    sku: '90P-SK-B01',
     category: 'socks',
     categoryLabel: 'Grip Socks',
     price: 499,
     compareAtPrice: 799,
     rating: 4.9,
     reviewsCount: 245,
-    badge: 'BESTSELLER',
+    badge: 'STAGING',
     inStock: true,
     stockCount: 180,
-    isNew: false,
-    isBestSeller: true,
+    isNew: true,
+    isBestSeller: false,
     colorwayIdx: 1,
     finishIdx: 0,
     shortDesc: 'Pitch-black grip sock with high-tack silicone pads for seamless league match compliance.',
@@ -4082,107 +3413,24 @@ const PRODUCTS = [
     variants: [{ id: 'v-sk-b-std', name: 'Standard Crew', inStock: true }],
     tags: ['blackout', 'grip-socks', 'matchday']
   },
-  {
-    id: 'sock-arctic-white',
-    slug: 'apex-lock-grip-socks-arctic-white',
-    name: 'ApexLock Pro Grip Socks — Arctic White',
-    sku: '90P-SK-003',
-    category: 'socks',
-    categoryLabel: 'Grip Socks',
-    price: 499,
-    compareAtPrice: 799,
-    rating: 4.8,
-    reviewsCount: 189,
-    badge: 'POPULAR',
-    inStock: true,
-    stockCount: 120,
-    isNew: false,
-    isBestSeller: false,
-    colorwayIdx: 2,
-    finishIdx: 0,
-    shortDesc: 'Classic clean white with gray grip pods and anti-odor silver ion fabric treatment.',
-    fullDesc: 'Infused with anti-bacterial silver ions to keep boots fresh even during multi-game tournament weekends in humid climates.',
-    features: [
-      'Silver ion anti-microbial fabric weave resists odor',
-      'Targeted instep ventilation mesh panels',
-      'High-elastic ribbed cuff never sags down the calf'
-    ],
-    specs: { 'Material': 'Cotton/Nylon/Spandex Blend', 'Fit': 'UK 6–11.5' },
-    variants: [{ id: 'v-sk-w-std', name: 'Standard Crew', inStock: true }],
-    tags: ['white', 'grip-socks', 'anti-odor']
-  },
-  {
-    id: 'sock-stadium-crimson',
-    slug: 'apex-lock-grip-socks-stadium-crimson',
-    name: 'ApexLock Pro Grip Socks — Crimson',
-    sku: '90P-SK-004',
-    category: 'socks',
-    categoryLabel: 'Grip Socks',
-    price: 499,
-    compareAtPrice: 799,
-    rating: 4.8,
-    reviewsCount: 94,
-    badge: 'MATCH KIT',
-    inStock: true,
-    stockCount: 90,
-    isNew: true,
-    isBestSeller: false,
-    colorwayIdx: 3,
-    finishIdx: 0,
-    shortDesc: 'Vibrant stadium red pro grip sock engineered to pair with red team kit sleeves.',
-    fullDesc: 'Matches club jerseys perfectly. Features high-tack black grip chevrons that provide unstoppable bite inside match cleats.',
-    features: [
-      'Stadium red high-tenacity yarn holds color through 100+ wash cycles',
-      'Compression ankle wrap locks ankle joint during sharp plant-and-turn maneuvers'
-    ],
-    specs: { 'Material': '65% Cotton, 25% Nylon, 10% Spandex', 'Fit': 'UK 6–11.5' },
-    variants: [{ id: 'v-sk-r-std', name: 'Standard Crew (Crimson)', inStock: true }],
-    tags: ['red', 'crimson', 'grip-socks', 'kit-match']
-  },
-  {
-    id: 'sock-electric-blue',
-    slug: 'apex-lock-grip-socks-electric-blue',
-    name: 'ApexLock Pro Grip Socks — Royal Blue',
-    sku: '90P-SK-005',
-    category: 'socks',
-    categoryLabel: 'Grip Socks',
-    price: 499,
-    compareAtPrice: 799,
-    rating: 4.7,
-    reviewsCount: 76,
-    badge: 'MATCH KIT',
-    inStock: true,
-    stockCount: 85,
-    isNew: false,
-    isBestSeller: false,
-    colorwayIdx: 4,
-    finishIdx: 0,
-    shortDesc: 'Deep royal blue pro grip socks with white silicone traction chevrons.',
-    fullDesc: 'Engineered for tournament teams playing in blue kits. Seamless toe stitching eliminates blisters on the big toe joint.',
-    features: [
-      'Seamless toe link eliminates chafing seams',
-      'Midfoot compression arch band'
-    ],
-    specs: { 'Material': 'Cotton/Nylon/Elastane', 'Fit': 'UK 6–11.5' },
-    variants: [{ id: 'v-sk-bl-std', name: 'Standard Crew (Royal Blue)', inStock: true }],
-    tags: ['blue', 'royal', 'grip-socks']
-  },
-  {
+
+{
     id: 'sock-pack-3',
-    slug: 'apex-lock-trio-bundle-pack',
-    name: 'ApexLock 3-Pair Pro Bundle Pack',
-    sku: '90P-SK-006',
+    active: true,
+    slug: '90plus-grip-sock-3-pack',
+    name: '90plus Grip Sock 3-Pack',
+    sku: '90P-SK-P01',
     category: 'socks',
     categoryLabel: 'Grip Socks',
     price: 1199,
     compareAtPrice: 1497,
     rating: 5.0,
     reviewsCount: 412,
-    badge: 'SAVE 20%',
+    badge: 'STAGING',
     inStock: true,
     stockCount: 85,
-    isNew: false,
-    isBestSeller: true,
+    isNew: true,
+    isBestSeller: false,
     colorwayIdx: 0,
     finishIdx: 0,
     shortDesc: 'Includes 1x Volt, 1x Blackout, and 1x Arctic White pair in a waterproof mesh wash bag.',
@@ -4196,83 +3444,24 @@ const PRODUCTS = [
     variants: [{ id: 'v-sk-bundle', name: '3-Pair Pack (Black/White/Volt)', inStock: true }],
     tags: ['bundle', 'save', 'grip-socks', '3-pack']
   },
-  {
-    id: 'sock-pack-5-squad',
-    slug: 'apex-lock-squad-5-pack-bundle',
-    name: 'ApexLock 5-Pair Squad Mega Pack',
-    sku: '90P-SK-007',
-    category: 'socks',
-    categoryLabel: 'Grip Socks',
-    price: 1899,
-    compareAtPrice: 2495,
-    rating: 5.0,
-    reviewsCount: 220,
-    badge: 'MEGA VALUE',
-    inStock: true,
-    stockCount: 1,
-    isNew: true,
-    isBestSeller: true,
-    colorwayIdx: 0,
-    finishIdx: 0,
-    shortDesc: '5-pack rotation: 2x Black, 2x White, 1x Volt Rush with 2x zip laundry protection wash bags.',
-    fullDesc: 'Never run out of fresh matchday grip socks. Built for academy players training 5 to 6 days every week.',
-    features: [
-      '5 Pairs of Pro Grip Socks (2x Blackout, 2x White, 1x Volt)',
-      '2x Zippered protective mesh wash bags included'
-    ],
-    specs: { 'Pack Content': '5 Pairs + 2 Wash Bags', 'Fit': 'UK 6–11.5' },
-    variants: [{ id: 'v-sk-pack5', name: '5-Pair Squad Mega Pack', inStock: true }],
-    tags: ['5-pack', 'squad', 'grip-socks', 'value']
-  },
-  {
-    id: 'sock-junior-academy',
-    slug: 'apex-lock-junior-grip-socks',
-    name: 'ApexLock Junior Pro (UK 2.5–5.5)',
-    sku: '90P-SK-008',
-    category: 'socks',
-    categoryLabel: 'Grip Socks',
-    price: 449,
-    compareAtPrice: 699,
-    rating: 4.9,
-    reviewsCount: 98,
-    badge: 'YOUTH FIT',
-    inStock: true,
-    stockCount: 75,
-    isNew: false,
-    isBestSeller: false,
-    colorwayIdx: 0,
-    finishIdx: 0,
-    shortDesc: 'Scaled-down youth footprint designed specifically for youth boots UK size 2.5 to 5.5.',
-    fullDesc: 'Youth players suffer from oversized grip socks bunching in small boots. ApexLock Junior delivers exact anatomical proportions for U-13 academy athletes.',
-    features: [
-      'Proportioned for youth boots UK 2.5 to UK 5.5',
-      'Dual-sided micro chevrons prevent heel lifting in junior boots'
-    ],
-    specs: { 'Sizing': 'Junior Fit (UK 2.5 to UK 5.5 / Age 8–13)', 'Material': 'Cotton/Nylon Blend' },
-    variants: [
-      { id: 'v-sk-jr-blk', name: 'Junior Blackout', inStock: true },
-      { id: 'v-sk-jr-wht', name: 'Junior Arctic White', inStock: true }
-    ],
-    tags: ['junior', 'youth', 'grip-socks', 'academy']
-  },
 
-  /* CATEGORY 5: MATCH KIT SLEEVES (4 PRODUCTS) */
-  {
+{
     id: 'sleeve-blackout',
-    slug: 'pro-match-kit-sleeve-blackout',
-    name: 'Pro Match Kit Sleeve — Blackout',
-    sku: '90P-SL-001',
+    active: true,
+    slug: '90plus-kit-sleeve-black-volt',
+    name: '90plus Kit Sleeve — Black/Volt',
+    sku: '90P-SL-K01',
     category: 'sleeves',
     categoryLabel: 'Kit Sleeves',
     price: 349,
     compareAtPrice: 499,
     rating: 4.8,
     reviewsCount: 165,
-    badge: 'SEAMLESS',
+    badge: 'STAGING',
     inStock: true,
     stockCount: 110,
-    isNew: false,
-    isBestSeller: true,
+    isNew: true,
+    isBestSeller: false,
     colorwayIdx: 1,
     finishIdx: 0,
     shortDesc: 'Seamless footless match sock sleeve that clips over shin guards and pairs with grip socks.',
@@ -4286,198 +3475,23 @@ const PRODUCTS = [
     variants: [{ id: 'v-sl-blk', name: 'Blackout Pair', inStock: true }],
     tags: ['sleeve', 'footless', 'match-kit', 'black']
   },
-  {
-    id: 'sleeve-arctic-white',
-    slug: 'pro-match-kit-sleeve-white',
-    name: 'Pro Match Kit Sleeve — Arctic White',
-    sku: '90P-SL-002',
-    category: 'sleeves',
-    categoryLabel: 'Kit Sleeves',
-    price: 349,
-    compareAtPrice: 499,
-    rating: 4.8,
-    reviewsCount: 132,
-    badge: 'MATCHDAY',
-    inStock: true,
-    stockCount: 95,
-    isNew: false,
-    isBestSeller: false,
-    colorwayIdx: 2,
-    finishIdx: 0,
-    shortDesc: 'Crisp white footless compression sleeve engineered to hold shin guards tight during matches.',
-    fullDesc: 'High-stretch nylon knit maintains tight compression across 90+ minutes without over-tightening calf muscle fascia.',
-    features: [
-      'Graduated 15-20 mmHg light compression aids venous return',
-      'Reinforced stay-up ribbed elastic bands'
-    ],
-    specs: { 'Length': '38 cm', 'Material': 'High-stretch Poly-Nylon' },
-    variants: [{ id: 'v-sl-wht', name: 'White Pair', inStock: true }],
-    tags: ['sleeve', 'white', 'kit-sleeve']
-  },
-  {
-    id: 'sleeve-crimson-red',
-    slug: 'pro-match-kit-sleeve-crimson',
-    name: 'Pro Match Kit Sleeve — Crimson Red',
-    sku: '90P-SL-003',
-    category: 'sleeves',
-    categoryLabel: 'Kit Sleeves',
-    price: 349,
-    compareAtPrice: 499,
-    rating: 4.7,
-    reviewsCount: 88,
-    badge: 'KIT MATCH',
-    inStock: true,
-    stockCount: 70,
-    isNew: false,
-    isBestSeller: false,
-    colorwayIdx: 3,
-    finishIdx: 0,
-    shortDesc: 'Stadium red footless sleeve for red team jerseys and competitive league fixtures.',
-    fullDesc: 'Vivid colorfast dye prevents color fading across multi-season league usage.',
-    features: ['High-contrast color matching', 'Holds guards securely'],
-    specs: { 'Length': '38 cm', 'Fit': 'Adult Free Size' },
-    variants: [{ id: 'v-sl-red', name: 'Crimson Pair', inStock: true }],
-    tags: ['sleeve', 'red', 'crimson']
-  },
-  {
-    id: 'sleeve-royal-blue',
-    slug: 'pro-match-kit-sleeve-royal-blue',
-    name: 'Pro Match Kit Sleeve — Royal Blue',
-    sku: '90P-SL-004',
-    category: 'sleeves',
-    categoryLabel: 'Kit Sleeves',
-    price: 349,
-    compareAtPrice: 499,
-    rating: 4.7,
-    reviewsCount: 65,
-    badge: 'KIT MATCH',
-    inStock: true,
-    stockCount: 65,
-    isNew: false,
-    isBestSeller: false,
-    colorwayIdx: 4,
-    finishIdx: 0,
-    shortDesc: 'Royal blue footless match sleeve for blue club kits.',
-    fullDesc: 'Engineered with 4-way stretch circular knit to hug shin guard contours seamlessly.',
-    features: ['Seamless circular knit', 'Stay-up compression bands'],
-    specs: { 'Length': '38 cm', 'Fit': 'Adult' },
-    variants: [{ id: 'v-sl-blue', name: 'Royal Blue Pair', inStock: true }],
-    tags: ['sleeve', 'blue', 'royal']
-  },
 
-  /* CATEGORY 6: CARBON SHIN GUARDS (6 PRODUCTS) */
-  {
-    id: 'guard-carbon-pro',
-    slug: 'aeroshield-carbon-pro-shin-guards',
-    name: 'AeroShield Carbon Pro Guards',
-    sku: '90P-GD-001',
-    category: 'guards',
-    categoryLabel: 'Shin Guards',
-    price: 899,
-    compareAtPrice: 1299,
-    rating: 4.9,
-    reviewsCount: 165,
-    badge: 'FEATHERWEIGHT',
-    inStock: true,
-    stockCount: 2,
-    isNew: false,
-    isBestSeller: true,
-    colorwayIdx: 1,
-    finishIdx: 2,
-    shortDesc: '38-gram real aerospace carbon fiber shell with EVA shock absorption backing.',
-    fullDesc: 'Protection without the weight. Weighing only 38 grams per guard, the AeroShield Carbon Pro is forged from 100% 3K twill real carbon fiber. It deflects aggressive sliding tackles and stud impacts by dispersing kinetic force across the curved surface.',
-    features: [
-      'Real 3K aerospace-grade carbon fiber composite face plate',
-      'Ultra-dense 4mm hexagonal EVA foam backing absorbs 92% of impact energy',
-      'Anatomical left/right asymmetrical curve wraps shin perfectly without shifting',
-      'Includes 2x breathable compression retaining sleeves'
-    ],
-    specs: {
-      'Weight': '38g per guard (76g total pair)',
-      'Dimensions': '14.5 cm height x 8.0 cm width',
-      'Shell': '3K Real Twill Carbon Fiber + Epoxy Matrix',
-      'Padding': 'High-density closed-cell micro-EVA',
-      'Includes': 'Pair of guards + 2 Compression Sleeves + Hard Case'
-    },
-    variants: [
-      { id: 'v-gd-m', name: 'Medium (Players 5\'2" to 5\'10")', inStock: true },
-      { id: 'v-gd-l', name: 'Large (Players 5\'11" +)', inStock: true }
-    ],
-    tags: ['carbon-fiber', 'shin-guards', 'featherweight', 'pro-choice']
-  },
-  {
-    id: 'guard-mini-carbon',
-    slug: 'aeroshield-micro-carbon-guards',
-    name: 'AeroShield Micro Stealth Guards',
-    sku: '90P-GD-002',
-    category: 'guards',
-    categoryLabel: 'Shin Guards',
-    price: 699,
-    compareAtPrice: 999,
-    rating: 4.8,
-    reviewsCount: 134,
-    badge: 'TRENDING',
-    inStock: true,
-    stockCount: 55,
-    isNew: true,
-    isBestSeller: false,
-    colorwayIdx: 0,
-    finishIdx: 2,
-    shortDesc: 'Ultra-compact 10cm mini guards preferred by modern wingers and tricky playmakers.',
-    fullDesc: 'Built for wingers who need free ankles on the sprint. Minimalist 10cm footprint provides essential tibia bone protection while feeling virtually weightless inside socks.',
-    features: [
-      'Minimalist 10cm profile for maximum ankle mobility and sprint freedom',
-      'Real carbon composite matrix with matte finish',
-      'Anti-bacterial waffle foam backing prevents sweat buildup'
-    ],
-    specs: { 'Weight': '24g per guard', 'Height': '10 cm', 'Shell': 'Carbon Composite' },
-    variants: [{ id: 'v-gd-micro', name: 'One Size (Micro Profile 10cm)', inStock: true }],
-    tags: ['micro', 'mini-guards', 'carbon', 'winger']
-  },
-  {
-    id: 'guard-honeycomb-d3o',
-    slug: 'titan-honeycomb-impact-guards',
-    name: 'Titan Honeycomb Impact Guards',
-    sku: '90P-GD-003',
-    category: 'guards',
-    categoryLabel: 'Shin Guards',
-    price: 799,
-    compareAtPrice: 1199,
-    rating: 4.9,
-    reviewsCount: 78,
-    badge: 'IMPACT TECH',
-    inStock: true,
-    stockCount: 38,
-    isNew: true,
-    isBestSeller: false,
-    colorwayIdx: 0,
-    finishIdx: 0,
-    shortDesc: 'Flexible non-Newtonian polymer honeycomb guard that hardens instantly on violent stud impact.',
-    fullDesc: 'Soft and flexible while running, rock-hard on impact. Non-Newtonian pad stays soft on the run, then stiffens on impact to spread tackle force across the shin.',
-    features: [
-      'Smart non-Newtonian polymer flexes with muscle movement and hardens on collision',
-      'Hexagonal ventilated cutouts provide 400% better airflow than solid plastic shells',
-      'Machine washable removable sleeve design'
-    ],
-    specs: { 'Weight': '48g', 'Technology': 'Non-Newtonian Kinetic Polymer', 'Height': '16 cm' },
-    variants: [{ id: 'v-gd-hc-m', name: 'Medium', inStock: true }, { id: 'v-gd-hc-l', name: 'Large', inStock: true }],
-    tags: ['honeycomb', 'smart-guard', 'flexible', 'impact-tech']
-  },
-  {
+{
     id: 'guard-volt-armour',
-    slug: 'titan-armour-poly-guards-volt',
-    name: 'TitanArmour Poly Guards — Volt',
-    sku: '90P-GD-004',
+    active: true,
+    slug: '90plus-poly-shin-guard',
+    name: '90plus Poly Shin Guard',
+    sku: '90P-GD-P01',
     category: 'guards',
     categoryLabel: 'Shin Guards',
     price: 449,
     compareAtPrice: 699,
     rating: 4.6,
     reviewsCount: 88,
-    badge: 'VALUE',
+    badge: 'STAGING',
     inStock: true,
     stockCount: 70,
-    isNew: false,
+    isNew: true,
     isBestSeller: false,
     colorwayIdx: 0,
     finishIdx: 0,
@@ -4492,153 +3506,23 @@ const PRODUCTS = [
     variants: [{ id: 'v-gd-poly-m', name: 'Medium (Youth/Adult)', inStock: true }],
     tags: ['protective', 'ankle-support', 'academy', 'value']
   },
-  {
-    id: 'guard-custom-laser',
-    slug: 'custom-laser-engraved-carbon-guards',
-    name: 'Custom Engraved Carbon Pro Guards',
-    sku: '90P-GD-005',
-    category: 'guards',
-    categoryLabel: 'Shin Guards',
-    price: 1499,
-    compareAtPrice: 1999,
-    rating: 5.0,
-    reviewsCount: 42,
-    badge: 'BESPOKE',
-    inStock: true,
-    stockCount: 15,
-    isNew: true,
-    isBestSeller: false,
-    colorwayIdx: 1,
-    finishIdx: 2,
-    shortDesc: 'Personalized 3K carbon guards with your name, squad number, and photo/crest laser printed.',
-    fullDesc: 'As seen on top Champions League pros. Upload your family photo, national flag, player number, and motivational quote for permanent high-res resin encapsulation.',
-    features: [
-      'Custom graphic/photo resin encapsulation on real 3K carbon fiber',
-      'Ultra-dense black micro-EVA backing',
-      'Includes luxury presentation travel hard case'
-    ],
-    specs: { 'Weight': '40g', 'Material': '100% Real 3K Carbon Fiber', 'Turnaround': '48H Custom Dispatch' },
-    variants: [{ id: 'v-gd-cust-m', name: 'Medium Bespoke Pair', inStock: true }],
-    tags: ['custom', 'bespoke', 'photo-guard', 'carbon-pro']
-  },
-  {
-    id: 'guard-stays-straps',
-    slug: 'guard-lock-silicone-stays-4pack',
-    name: 'GuardLock Silicone Stays (4-Pack)',
-    sku: '90P-GD-006',
-    category: 'guards',
-    categoryLabel: 'Shin Guards',
-    price: 299,
-    compareAtPrice: 449,
-    rating: 4.8,
-    reviewsCount: 145,
-    badge: 'ACCESSORY',
-    inStock: true,
-    stockCount: 120,
-    isNew: false,
-    isBestSeller: true,
-    colorwayIdx: 0,
-    finishIdx: 0,
-    shortDesc: 'Medical silicone guard locking rings that prevent shin guards from slipping down ankles.',
-    fullDesc: 'Reusable silicone rubber tension bands that replace sticky sock tape forever. Simply slide on over your ankle and shin.',
-    features: [
-      'Reusable 1,000+ times — saves money on disposable PVC sock tape',
-      'Medical silicone retains elastic memory in wet and cold conditions',
-      'Includes 4 straps (2x Volt, 2x Blackout)'
-    ],
-    specs: { 'Quantity': '4 Silicone Bands', 'Material': 'Medical Silicone' },
-    variants: [{ id: 'v-gd-stays-4', name: '4-Pack (2 Volt / 2 Black)', inStock: true }],
-    tags: ['stays', 'straps', 'tape-replacement', 'essential']
-  },
 
-  /* CATEGORY 7: GOALKEEPER GLOVES (6 PRODUCTS) */
-  {
-    id: 'gloves-vortex-pro',
-    slug: 'vortex-negative-cut-gk-gloves',
-    name: 'Vortex Pro 4mm GK Gloves',
-    sku: '90P-GL-001',
-    category: 'gloves',
-    categoryLabel: 'GK Gloves',
-    price: 1899,
-    compareAtPrice: 2599,
-    rating: 4.9,
-    reviewsCount: 76,
-    badge: 'PRO LATEX',
-    inStock: true,
-    stockCount: 22,
-    isNew: true,
-    isBestSeller: true,
-    colorwayIdx: 0,
-    finishIdx: 0,
-    shortDesc: '4mm German Contact Latex with negative cut, punch zone silicone, and removable finger spines.',
-    fullDesc: 'Uncompromising grip in pouring rain or scorching dry conditions. The Vortex Pro pairs 4mm imported German Contact Latex with a tight negative cut for unmatched ball feedback and sticky catches on high-velocity shots.',
-    features: [
-      '4mm German Contact Latex palm provides extreme adhesion in wet and dry conditions',
-      'Negative cut with latex gussets wraps fingers for second-skin feel',
-      '5 removable high-flex finger protection spines prevent hyper-extension',
-      '3D molded silicone punching zone on backhand for powerful punch clearances',
-      'Extended neoprene wrist strap with dual-point hook-and-loop lock'
-    ],
-    specs: {
-      'Palm': '4.0mm German Contact Latex + 3mm Cushion Foam',
-      'Cut': 'Negative Cut with wrapped thumb',
-      'Backhand': 'Breathable Neoprene with injected 3D Silicone Elements',
-      'Wrist': 'Elastic Neoprene Cuff with Full-wrap Latex Strap',
-      'Protection': '5x Removable Spines with velcro pocket entry'
-    },
-    variants: [
-      { id: 'v-gl-sz8', name: 'Size 8 (Medium)', inStock: true },
-      { id: 'v-gl-sz9', name: 'Size 9 (Large)', inStock: true },
-      { id: 'v-gl-sz10', name: 'Size 10 (XL)', inStock: true }
-    ],
-    tags: ['gk-gloves', 'goalkeeper', 'german-latex', 'negative-cut', 'pro']
-  },
-  {
-    id: 'gloves-shadow-black',
-    slug: 'shadow-stealth-hybrid-gk-gloves',
-    name: 'Shadow Stealth Hybrid GK Gloves',
-    sku: '90P-GL-002',
-    category: 'gloves',
-    categoryLabel: 'GK Gloves',
-    price: 1599,
-    compareAtPrice: 2199,
-    rating: 4.8,
-    reviewsCount: 52,
-    badge: 'BLACKOUT',
-    inStock: true,
-    stockCount: 18,
-    isNew: false,
-    isBestSeller: false,
-    colorwayIdx: 1,
-    finishIdx: 0,
-    shortDesc: 'Roll-negative hybrid cut blackout goalkeeper gloves with 3.5mm AquaGrip latex.',
-    fullDesc: 'Engineered for monsoon fixtures and wet pitch conditions where standard latex slips.',
-    features: [
-      '3.5mm AquaGrip latex formulated for maximum wet-weather adhesion',
-      'Roll-finger outer with negative central fingers for hybrid control'
-    ],
-    specs: { 'Palm': '3.5mm Aqua Latex', 'Cut': 'Hybrid Roll-Neg', 'Wrist': 'Double Wrap' },
-    variants: [
-      { id: 'v-gl-sh-8', name: 'Size 8', inStock: true },
-      { id: 'v-gl-sh-9', name: 'Size 9', inStock: true }
-    ],
-    tags: ['blackout', 'gk-gloves', 'aqua-grip', 'monsoon']
-  },
-  {
+{
     id: 'gloves-training-entry',
-    slug: 'titan-grip-academy-gk-gloves',
-    name: 'TitanGrip Academy GK Gloves',
-    sku: '90P-GL-003',
+    active: true,
+    slug: '90plus-academy-gk-glove',
+    name: '90plus Academy GK Glove',
+    sku: '90P-GL-A01',
     category: 'gloves',
     categoryLabel: 'GK Gloves',
     price: 899,
     compareAtPrice: 1299,
     rating: 4.5,
     reviewsCount: 68,
-    badge: 'DURABLE',
+    badge: 'STAGING',
     inStock: true,
     stockCount: 35,
-    isNew: false,
+    isNew: true,
     isBestSeller: false,
     colorwayIdx: 0,
     finishIdx: 0,
@@ -4656,165 +3540,24 @@ const PRODUCTS = [
     ],
     tags: ['academy', 'training', 'goalkeeper', 'value']
   },
-  {
-    id: 'gloves-rollfinger-pro',
-    slug: 'hypergrip-roll-finger-pro-gloves',
-    name: 'HyperGrip Roll Finger Pro Gloves',
-    sku: '90P-GL-004',
-    category: 'gloves',
-    categoryLabel: 'GK Gloves',
-    price: 1749,
-    compareAtPrice: 2399,
-    rating: 4.9,
-    reviewsCount: 43,
-    badge: 'MAX CATCH',
-    inStock: true,
-    stockCount: 19,
-    isNew: true,
-    isBestSeller: false,
-    colorwayIdx: 2,
-    finishIdx: 0,
-    shortDesc: 'Full roll finger cut wrapping 4mm German SuperSoft latex completely around all fingers.',
-    fullDesc: 'Maximizes latex-to-ball contact area. The rolled latex fingers eliminate internal seams for bulletproof shot stopping and high claim security.',
-    features: ['Full 360-degree wrapped finger latex', 'Latex thumb wrap', 'Double elastic wrist strap'],
-    specs: { 'Palm': '4mm SuperSoft German Latex', 'Cut': 'Roll Finger' },
-    variants: [{ id: 'v-gl-rf-8', name: 'Size 8', inStock: true }, { id: 'v-gl-rf-9', name: 'Size 9', inStock: true }, { id: 'v-gl-rf-10', name: 'Size 10', inStock: true }],
-    tags: ['roll-finger', 'goalkeeper', 'supersoft', 'pro']
-  },
-  {
-    id: 'gloves-glove-wash-kit',
-    slug: 'glove-glu-pro-wash-and-revive-kit',
-    name: 'GloveCare Pro Wash & Revive Kit',
-    sku: '90P-GL-005',
-    category: 'gloves',
-    categoryLabel: 'GK Gloves',
-    price: 599,
-    compareAtPrice: 899,
-    rating: 4.8,
-    reviewsCount: 112,
-    badge: 'MAINTENANCE',
-    inStock: true,
-    stockCount: 65,
-    isNew: false,
-    isBestSeller: true,
-    colorwayIdx: 0,
-    finishIdx: 0,
-    shortDesc: 'Organic latex cleaner spray + grip tack reviving formula that extends glove life by 300%.',
-    fullDesc: 'Removes deep ground dirt from latex pores without damaging fragile palm foam. Follow up with Grip Revive spray before matchday for brand-new stickiness.',
-    features: ['120ml Deep Clean Spray + 120ml Grip Tack Reviver', 'Gentle plant-derived formula formulated for German latex'],
-    specs: { 'Contents': '1x Glove Wash 120ml + 1x Grip Spray 120ml' },
-    variants: [{ id: 'v-gl-washkit', name: 'Complete Glove Care Duo', inStock: true }],
-    tags: ['glove-wash', 'cleaner', 'grip-revive', 'maintenance']
-  },
-  {
-    id: 'gloves-junior-spines',
-    slug: 'titan-junior-finger-spine-gloves',
-    name: 'Titan Junior Finger-Spine Gloves',
-    sku: '90P-GL-006',
-    category: 'gloves',
-    categoryLabel: 'GK Gloves',
-    price: 749,
-    compareAtPrice: 1099,
-    rating: 4.8,
-    reviewsCount: 84,
-    badge: 'YOUTH SAFETY',
-    inStock: true,
-    stockCount: 40,
-    isNew: false,
-    isBestSeller: false,
-    colorwayIdx: 0,
-    finishIdx: 0,
-    shortDesc: 'Safety-certified finger protection spines engineered for youth keepers aged 7 to 13.',
-    fullDesc: 'Prevents backward finger bending and hyperextension when blocking hard-struck adult power shots.',
-    features: ['5 integrated non-removable spine ribs', 'Durable 3mm latex palm'],
-    specs: { 'Sizes': 'Size 5, 6, 7 (Youth)' },
-    variants: [{ id: 'v-gl-jr-sz6', name: 'Size 6 (Age 8-10)', inStock: true }, { id: 'v-gl-jr-sz7', name: 'Size 7 (Age 11-13)', inStock: true }],
-    tags: ['junior-gk', 'finger-spines', 'safety', 'youth']
-  },
 
-  /* CATEGORY 8: AGILITY & SPEED KITS (6 PRODUCTS) */
-  {
-    id: 'agility-speed-pro',
-    slug: 'pro-speed-agility-master-kit',
-    name: 'Pro Speed & Agility Master Kit',
-    sku: '90P-AG-001',
-    category: 'agility',
-    categoryLabel: 'Agility Kits',
-    price: 1499,
-    compareAtPrice: 2199,
-    rating: 4.9,
-    reviewsCount: 112,
-    badge: 'COMPLETE SET',
-    inStock: true,
-    stockCount: 30,
-    isNew: false,
-    isBestSeller: true,
-    colorwayIdx: 0,
-    finishIdx: 0,
-    shortDesc: 'Complete 6-meter speed ladder, 12 disc cones, 4 speed hurdles, and parachute in a carry duffle.',
-    fullDesc: 'Turn any patch of grass or turf into a high-performance training ground. The Master Kit includes an adjustable 12-rung 6-meter agility ladder, 12 shatterproof neon disc cones, 4 quick-fold speed hurdles, and an explosive resistance parachute.',
-    features: [
-      '6-meter heavy-duty nylon ladder with 12 adjustable anti-slip PVC rungs',
-      '12 flexible high-visibility marker cones with metal carry stand',
-      '4 height-adjustable speed hurdles (6" / 12" quick snap)',
-      'Explosive 56-inch resistance speed chute with 360° rotation belt',
-      'Reinforced water-resistant carry duffle with shoulder strap'
-    ],
-    specs: {
-      'Ladder Length': '6 Meters (20 Feet)',
-      'Cones': '12 Cones (6 Volt / 6 Orange) with Metal Stand',
-      'Hurdles': '4 Foldable Hurdles (6" to 12" height)',
-      'Parachute': '56" Chute with adjustable velcro waist strap',
-      'Total Weight': '2.4 kg (Entire kit packed in duffle)'
-    },
-    variants: [{ id: 'v-ag-master', name: 'Full Master Set (Ladder + Cones + Hurdles + Chute)', inStock: true }],
-    tags: ['agility', 'speed-ladder', 'cones', 'hurdles', 'training-kit', 'bestseller']
-  },
-  {
-    id: 'agility-ladder-6m',
-    slug: 'stealth-speed-ladder-6m',
-    name: 'Stealth Speed Ladder 6M',
-    sku: '90P-AG-002',
-    category: 'agility',
-    categoryLabel: 'Agility Kits',
-    price: 599,
-    compareAtPrice: 899,
-    rating: 4.8,
-    reviewsCount: 94,
-    badge: 'ESSENTIAL',
-    inStock: true,
-    stockCount: 65,
-    isNew: false,
-    isBestSeller: false,
-    colorwayIdx: 0,
-    finishIdx: 0,
-    shortDesc: '6-meter 12-rung agility ladder with metal ground stakes and quick-pack wrap.',
-    fullDesc: 'Precision footwork trainer. High-visibility volt rungs with ground stakes for windy conditions.',
-    features: [
-      '12 heavy-duty flat rungs that stay in place when stepped on',
-      '4 ground anchoring steel stakes included for natural turf',
-      'Drawstring carry bag included'
-    ],
-    specs: { 'Length': '6M', 'Rungs': '12 Adjustable', 'Weight': '650g' },
-    variants: [{ id: 'v-ag-lad-6', name: '6 Meter (12 Rungs)', inStock: true }],
-    tags: ['ladder', 'footwork', 'essential']
-  },
-  {
+{
     id: 'agility-cones-50',
-    slug: 'pro-disc-cones-pack-of-50',
-    name: 'Pro Disc Marker Cones — 50 Pack',
-    sku: '90P-AG-003',
+    active: true,
+    slug: '90plus-training-cones-50',
+    name: '90plus Training Cones — 50',
+    sku: '90P-AG-C01',
     category: 'agility',
-    categoryLabel: 'Agility Kits',
+    categoryLabel: 'Agility',
     price: 699,
     compareAtPrice: 1099,
     rating: 4.9,
     reviewsCount: 178,
-    badge: 'BULK VALUE',
+    badge: 'STAGING',
     inStock: true,
     stockCount: 50,
-    isNew: false,
-    isBestSeller: true,
+    isNew: true,
+    isBestSeller: false,
     colorwayIdx: 0,
     finishIdx: 0,
     shortDesc: '50 flexible shatterproof disc cones in 5 vivid colors with heavy-duty metal transport holder.',
@@ -4828,421 +3571,24 @@ const PRODUCTS = [
     variants: [{ id: 'v-ag-c50', name: '50 Cones + Metal Holder', inStock: true }],
     tags: ['cones', 'drills', 'coaching', 'bulk']
   },
-  {
-    id: 'agility-rebound-board',
-    slug: 'pitch-master-rebound-trainer-board',
-    name: 'PitchMaster Rebounder Board',
-    sku: '90P-AG-004',
-    category: 'agility',
-    categoryLabel: 'Agility Kits',
-    price: 2999,
-    compareAtPrice: 3999,
-    rating: 4.9,
-    reviewsCount: 45,
-    badge: 'PRO DRILL',
-    inStock: true,
-    stockCount: 15,
-    isNew: true,
-    isBestSeller: false,
-    colorwayIdx: 1,
-    finishIdx: 1,
-    shortDesc: 'Dual-angle heavy-duty HDPE passing wall with fold-flat weighted support legs.',
-    fullDesc: 'Solo passing wall. High-density polyethylene slab returns ground passes with 90% velocity for sharp first-touch and volley drills.',
-    features: [
-      'Dual-angle setup: 90° for driven ground passes, 60° for air loop returns',
-      'Weighted steel folding legs prevent sliding on turf or grass',
-      'Integrated dual carry handles for easy transport in car boot'
-    ],
-    specs: { 'Dimensions': '100 cm x 40 cm x 2.5 cm', 'Weight': '8.5 kg', 'Material': 'High Density Polyethylene' },
-    variants: [{ id: 'v-ag-reb-100', name: '100cm Standard Board', inStock: true }],
-    tags: ['rebounder', 'passing-wall', 'first-touch', 'pro-drill']
-  },
-  {
-    id: 'agility-slalom-poles-6',
-    slug: 'pro-slalom-poles-set-of-6',
-    name: 'Pro Slalom Agility Poles (Set of 6)',
-    sku: '90P-AG-005',
-    category: 'agility',
-    categoryLabel: 'Agility Kits',
-    price: 1599,
-    compareAtPrice: 2199,
-    rating: 4.8,
-    reviewsCount: 36,
-    badge: 'DRIBBLE DRILL',
-    inStock: true,
-    stockCount: 22,
-    isNew: false,
-    isBestSeller: false,
-    colorwayIdx: 0,
-    finishIdx: 0,
-    shortDesc: '1.7-meter spring-loaded slalom poles with stainless steel ground spikes and carry duffle.',
-    fullDesc: 'Heavy-duty steel coil spring base allows poles to bend 90 degrees when struck during aggressive slalom sprint drills and spring back instantly.',
-    features: ['Spring-loaded base prevents pole snapping', '1.7m height simulates defender height', 'Includes 6 poles + carry bag'],
-    specs: { 'Height': '170 cm', 'Quantity': '6 Poles', 'Material': 'Heavy PVC + Steel Spring' },
-    variants: [{ id: 'v-ag-poles-6', name: '6-Pole Set with Bag', inStock: true }],
-    tags: ['slalom', 'poles', 'dribble', 'agility']
-  },
-  {
-    id: 'agility-hurdles-6pk',
-    slug: 'speed-hurdles-quick-step-6pack',
-    name: 'Speed Hurdles Quick-Step (6-Pack)',
-    sku: '90P-AG-006',
-    category: 'agility',
-    categoryLabel: 'Agility Kits',
-    price: 999,
-    compareAtPrice: 1499,
-    rating: 4.8,
-    reviewsCount: 55,
-    badge: 'PLYOMETRICS',
-    inStock: true,
-    stockCount: 35,
-    isNew: false,
-    isBestSeller: false,
-    colorwayIdx: 0,
-    finishIdx: 0,
-    shortDesc: '6-inch and 12-inch dual-height shatterproof step hurdles for plyometric bounce and high knee drills.',
-    fullDesc: 'Engineered from ultra-flexible shatterproof PVC that will not crack when stepped on with full player weight.',
-    features: ['6 step hurdles', 'High-visibility neon volt color', 'Stackable storage design'],
-    specs: { 'Quantity': '6 Hurdles', 'Height': '15 cm (6 inch)', 'Width': '45 cm' },
-    variants: [{ id: 'v-ag-hurdles', name: '6-Pack Hurdles', inStock: true }],
-    tags: ['hurdles', 'speed', 'plyometrics']
-  },
 
-  /* CATEGORY 9: GEAR BAGS & SACKS (5 PRODUCTS) */
-  {
-    id: 'bag-club-backpack',
-    slug: 'pitch-ops-club-backpack-35l',
-    name: 'PitchOps Club Backpack 35L',
-    sku: '90P-BG-001',
-    category: 'bags',
-    categoryLabel: 'Bags',
-    price: 1699,
-    compareAtPrice: 2299,
-    rating: 4.9,
-    reviewsCount: 140,
-    badge: 'BESTSELLER',
-    inStock: true,
-    stockCount: 38,
-    isNew: false,
-    isBestSeller: true,
-    colorwayIdx: 1,
-    finishIdx: 0,
-    shortDesc: '35L ballistic nylon pack with ventilated bottom cleat garage and external ball mesh.',
-    fullDesc: 'Matchday kit bag. Isolated waterproof bottom for muddy boots with dual brass eyelet vents, expanding external mesh cradle for a size 5 match ball, padded 16" laptop sleeve for coaching tablets, and dual 1-liter insulated water bottle pockets.',
-    features: [
-      '900D waterproof ballistic nylon outer with reinforced tarpaulin base',
-      'Isolated ventilated bottom cleat garage fits boots up to UK size 13',
-      'Stowable external bungee mesh securely holds size 4/5 football',
-      'Padded breathable mesh back panel with ergonomic load-lifter straps',
-      'Padded 16" tech sleeve with fleece lining for laptops & coaching tablets'
-    ],
-    specs: {
-      'Capacity': '35 Liters',
-      'Dimensions': '50 cm (H) x 34 cm (W) x 22 cm (D)',
-      'Material': '900D Ballistic Nylon with Polyurethane Waterproof Coating',
-      'Zippers': 'Heavy-duty YKK rubber-sealed weather-proof zippers',
-      'Weight': '880 grams empty'
-    },
-    variants: [{ id: 'v-bg-35-blk', name: '35L Matte Blackout with Volt Accents', inStock: true }],
-    tags: ['backpack', 'boot-garage', 'ball-holder', 'matchday', 'bestseller']
-  },
-  {
-    id: 'bag-match-duffle',
-    slug: 'squad-pro-matchday-duffle-60l',
-    name: 'SquadPro Matchday Duffle 60L',
-    sku: '90P-BG-002',
-    category: 'bags',
-    categoryLabel: 'Bags',
-    price: 2199,
-    compareAtPrice: 2899,
-    rating: 4.8,
-    reviewsCount: 82,
-    badge: 'EXPEDITION',
-    inStock: true,
-    stockCount: 20,
-    isNew: true,
-    isBestSeller: false,
-    colorwayIdx: 1,
-    finishIdx: 0,
-    shortDesc: '60L heavy-duty gear duffle with wet/dry kit separator and convertible backpack straps.',
-    fullDesc: 'Built for away match travel and tournament weekends. Easily holds 3 pairs of boots, 2 balls, full kit changes, and agility gear.',
-    features: [
-      '60L cavernous main compartment with removable padded dividers',
-      'Convertible padded shoulder straps allow duffle to be worn as a backpack',
-      'Waterproof seam-sealed wet-kit pocket for muddy rainy jerseys'
-    ],
-    specs: { 'Capacity': '60 Liters', 'Dimensions': '65 x 35 x 30 cm', 'Material': '1200D Ripstop Poly' },
-    variants: [{ id: 'v-bg-60-blk', name: '60L Pro Duffle', inStock: true }],
-    tags: ['duffle', 'travel', 'away-game', 'large-capacity']
-  },
-  {
-    id: 'bag-gym-sack',
-    slug: 'speed-drawstring-gym-sack',
-    name: 'Speed Drawstring Gym Sack',
-    sku: '90P-BG-003',
-    category: 'bags',
-    categoryLabel: 'Bags',
-    price: 349,
-    compareAtPrice: 499,
-    rating: 4.7,
-    reviewsCount: 195,
-    badge: 'ESSENTIAL',
-    inStock: true,
-    stockCount: 110,
-    isNew: false,
-    isBestSeller: false,
-    colorwayIdx: 0,
-    finishIdx: 0,
-    shortDesc: 'Reinforced 18L drawstring sack with external zip stash pocket and thick 8mm cords.',
-    fullDesc: 'Quick training session essential. Features heavy 8mm braided rope straps that do not dig into shoulders when carrying heavy boots.',
-    features: [
-      'Thick 8mm soft braided cord straps eliminate shoulder pinching',
-      'External vertical zippered pocket for phone, keys, and wallet',
-      'Water-resistant hexagonal ripstop fabric'
-    ],
-    specs: { 'Capacity': '18 Liters', 'Dimensions': '46 cm x 36 cm' },
-    variants: [{ id: 'v-bg-sack-v', name: 'Volt / Black Ripstop', inStock: true }],
-    tags: ['gym-sack', 'lightweight', 'drawstring', 'essential']
-  },
-  {
-    id: 'bag-coach-ballsack',
-    slug: 'pro-coach-ball-sack-12-balls',
-    name: 'Pro Coach Multi-Ball Sack (12 Balls)',
-    sku: '90P-BG-004',
-    category: 'bags',
-    categoryLabel: 'Bags',
-    price: 799,
-    compareAtPrice: 1199,
-    rating: 4.9,
-    reviewsCount: 72,
-    badge: 'COACH PRO',
-    inStock: true,
-    stockCount: 40,
-    isNew: false,
-    isBestSeller: false,
-    colorwayIdx: 1,
-    finishIdx: 0,
-    shortDesc: 'Heavy-duty ventilated mesh ball sack with shoulder strap holding up to 12 fully inflated Size 5 balls.',
-    fullDesc: 'Reinforced nylon base with breathable upper mesh allows wet muddy balls to air dry during transport back from training.',
-    features: ['Holds 12 Size 5 balls', 'Padded ergonomic shoulder strap', 'Drawstring cord lock'],
-    specs: { 'Capacity': '12 Size 5 Balls', 'Height': '105 cm', 'Diameter': '48 cm' },
-    variants: [{ id: 'v-bg-coach-12', name: '12-Ball Carrier Sack', inStock: true }],
-    tags: ['coach', 'ball-sack', '12-balls', 'storage']
-  },
-  {
-    id: 'bag-shoe-garage',
-    slug: 'pitch-boot-garage-case',
-    name: 'Pitch Boot Garage Hard Case',
-    sku: '90P-BG-005',
-    category: 'bags',
-    categoryLabel: 'Bags',
-    price: 649,
-    compareAtPrice: 899,
-    rating: 4.8,
-    reviewsCount: 88,
-    badge: 'BOOT CASE',
-    inStock: true,
-    stockCount: 65,
-    isNew: true,
-    isBestSeller: false,
-    colorwayIdx: 1,
-    finishIdx: 0,
-    shortDesc: 'Semi-rigid EVA molded cleat carrier with odor-venting brass mesh and internal stud wrench pocket.',
-    fullDesc: 'Protects expensive FG/SG cleats from crushing in main gear bags while preventing mud from touching clean jerseys.',
-    features: ['Semi-rigid protective EVA shell', 'Ventilation grommets', 'Fits boots up to UK size 13'],
-    specs: { 'Dimensions': '36 x 22 x 15 cm' },
-    variants: [{ id: 'v-bg-shoe', name: 'Molded Boot Case', inStock: true }],
-    tags: ['boot-case', 'shoe-bag', 'cleats']
-  },
-
-  /* CATEGORY 10: RECOVERY & PHYSIO (5 PRODUCTS) */
-  {
-    id: 'rec-massage-roller',
-    slug: 'kinetic-deep-tissue-foam-roller',
-    name: 'Kinetic Deep Tissue Foam Roller',
-    sku: '90P-RC-001',
-    category: 'recovery',
-    categoryLabel: 'Recovery',
-    price: 799,
-    compareAtPrice: 1199,
-    rating: 4.9,
-    reviewsCount: 110,
-    badge: 'RECOVERY',
-    inStock: true,
-    stockCount: 45,
-    isNew: false,
-    isBestSeller: false,
-    colorwayIdx: 0,
-    finishIdx: 0,
-    shortDesc: 'High-density EVA 3D grid roller with hollow ABS core for deep quad and calf fascia release.',
-    fullDesc: 'Unlock tight hamstrings, calves, and hip flexors after intense 90-minute fixtures. Multi-density matrix surface mimics a sports massage therapist’s fingers and palms to flush lactic acid and accelerate recovery time.',
-    features: [
-      '3D therapeutic ridge grid targets myofascial trigger points in calves & quads',
-      'Rigid hollow ABS inner core supports up to 200 kg without collapsing',
-      'Compact 33cm size fits directly inside match backpacks'
-    ],
-    specs: { 'Length': '33 cm', 'Diameter': '14 cm', 'Core': 'Reinforced ABS Tube', 'Shell': 'High-density Eco EVA' },
-    variants: [{ id: 'v-rc-roller-std', name: '33cm Deep Grid (Black/Volt)', inStock: true }],
-    tags: ['recovery', 'foam-roller', 'muscle-release', 'massage']
-  },
-  {
-    id: 'rec-calf-sleeves',
-    slug: 'pro-graduated-compression-calf-sleeves',
-    name: 'Pro Compression Calf Sleeves (Pair)',
-    sku: '90P-RC-002',
-    category: 'recovery',
-    categoryLabel: 'Recovery',
-    price: 499,
-    compareAtPrice: 799,
-    rating: 4.8,
-    reviewsCount: 122,
-    badge: 'CIRCULATION',
-    inStock: true,
-    stockCount: 75,
-    isNew: false,
-    isBestSeller: true,
-    colorwayIdx: 1,
-    finishIdx: 0,
-    shortDesc: '20-30 mmHg medical graduated compression sleeves that eliminate in-game calf cramps.',
-    fullDesc: 'Maintain peak sprint velocity into the 90th minute. Graduated compression boosts venous blood return, reduces muscle oscillation during hard sprints, and prevents mid-match calf spasms.',
-    features: [
-      'True 20-30 mmHg graduated pressure gradient from ankle to knee',
-      'Seamless 3D circular knit prevents chafing behind the knee',
-      'Can be worn directly under shin guards during matches or post-game'
-    ],
-    specs: { 'Compression': '20-30 mmHg Grade II', 'Material': '78% Nylon, 22% Lycra' },
-    variants: [
-      { id: 'v-rc-slv-m', name: 'Medium (Calf 12"–15")', inStock: true },
-      { id: 'v-rc-slv-l', name: 'Large (Calf 15"–18")', inStock: true }
-    ],
-    tags: ['compression', 'calf-sleeves', 'cramp-relief', 'circulation']
-  },
-  {
-    id: 'rec-ice-cold-cup',
-    slug: 'cryo-ice-massage-roller-ball',
-    name: 'CryoFlex Ice Massage Ball',
-    sku: '90P-RC-003',
-    category: 'recovery',
-    categoryLabel: 'Recovery',
-    price: 599,
-    compareAtPrice: 899,
-    rating: 4.7,
-    reviewsCount: 65,
-    badge: 'CRYO TECH',
-    inStock: true,
-    stockCount: 38,
-    isNew: true,
-    isBestSeller: false,
-    colorwayIdx: 4,
-    finishIdx: 2,
-    shortDesc: 'Stainless steel cold massage sphere with thermal cooling gel base for acute inflammation.',
-    fullDesc: 'Combines ice therapy with deep trigger point massage. Keep in freezer for 2 hours for up to 6 hours of freezing cold targeted relief on sore groins, plantar fascia, and shin splints.',
-    features: [
-      'Food-grade 304 stainless steel ball filled with non-toxic thermal cooling gel',
-      'Smooth 360° gliding action in ergonomic rubberized base',
-      'Stays ice-cold for up to 6 hours continuous use'
-    ],
-    specs: { 'Ball Diameter': '5.5 cm', 'Material': '304 Stainless Steel + Thermal Gel', 'Base': 'Ergonomic ABS' },
-    variants: [{ id: 'v-rc-cryo-1', name: 'Cryo Sphere + Dock', inStock: true }],
-    tags: ['cryo', 'ice-massage', 'shin-splints', 'plantar-relief']
-  },
-  {
-    id: 'rec-zinc-tape-3pk',
-    slug: 'pro-rigid-zinc-oxide-strapping-tape',
-    name: 'Rigid Zinc Oxide Sports Tape (3-Pack)',
-    sku: '90P-RC-004',
-    category: 'recovery',
-    categoryLabel: 'Recovery',
-    price: 449,
-    compareAtPrice: 649,
-    rating: 4.9,
-    reviewsCount: 130,
-    badge: 'MEDIC GRADE',
-    inStock: true,
-    stockCount: 90,
-    isNew: false,
-    isBestSeller: true,
-    colorwayIdx: 2,
-    finishIdx: 0,
-    shortDesc: 'Non-elastic rigid zinc oxide tape for ankle lock-down, finger splinting, and joint stabilization.',
-    fullDesc: 'Tournament-proven medical strapping tape. Serrated edges allow effortless hand tearing without scissors on the sideline.',
-    features: ['High-tensile non-stretch rayon cotton', 'Hypoallergenic zinc oxide adhesive stays sticky in sweat'],
-    specs: { 'Size': '3.8 cm width x 13.7 meters per roll', 'Quantity': '3 Rolls' },
-    variants: [{ id: 'v-rc-tape3', name: '3-Roll Pack (White)', inStock: true }],
-    tags: ['tape', 'zinc-oxide', 'strapping', 'physio']
-  },
-  {
-    id: 'rec-cohesive-wrap-6pk',
-    slug: 'cohesive-flexible-bandage-wrap-6pk',
-    name: 'Cohesive Flex Sock Wrap (6-Pack)',
-    sku: '90P-RC-005',
-    category: 'recovery',
-    categoryLabel: 'Recovery',
-    price: 499,
-    compareAtPrice: 749,
-    rating: 4.8,
-    reviewsCount: 105,
-    badge: 'MULTICOLOR',
-    inStock: true,
-    stockCount: 80,
-    isNew: false,
-    isBestSeller: false,
-    colorwayIdx: 0,
-    finishIdx: 0,
-    shortDesc: 'Self-adhering cohesive wrap that sticks to itself without sticking to skin or hairs.',
-    fullDesc: 'The modern pro tape. Wraps around ankles over grip socks and guard stays without leaving sticky glue residue.',
-    features: ['Self-adherent: sticks only to itself', 'Breathable elastic fabric', 'Includes 6 rolls in team colors'],
-    specs: { 'Rolls': '6x (2x Black, 2x White, 2x Volt)', 'Width': '5 cm', 'Length': '4.5m per roll' },
-    variants: [{ id: 'v-rc-wrap6', name: '6-Roll Multi-Color Pack', inStock: true }],
-    tags: ['wrap', 'cohesive', 'sock-tape', 'bandage']
-  },
-
-  /* CATEGORY 11: PITCH & REFEREE ACCESSORIES (6 PRODUCTS) */
-  {
-    id: 'acc-digital-gauge',
-    slug: 'precision-digital-ball-pressure-gauge',
-    name: 'Precision Digital Pressure Gauge',
-    sku: '90P-AC-001',
-    category: 'accessories',
-    categoryLabel: 'Accessories',
-    price: 749,
-    compareAtPrice: 999,
-    rating: 4.9,
-    reviewsCount: 92,
-    badge: 'PRO TOOL',
-    inStock: true,
-    stockCount: 40,
-    isNew: false,
-    isBestSeller: false,
-    colorwayIdx: 0,
-    finishIdx: 0,
-    shortDesc: 'Backlit digital LCD gauge with micro-bleed release valve for exact FIFA 0.8–1.0 Bar inflation.',
-    fullDesc: 'Stop guessing ball pressure. Delivers ±0.05 PSI lab-grade accuracy with switchable PSI/BAR/KPA readouts and a built-in brass micro-bleed button to dial in tournament compliance.',
-    features: [
-      'Backlit high-contrast LCD display for evening pitch calibration',
-      'Built-in pressure release valve lets out micro-bursts of air without removing needle',
-      'Includes 3x heavy-duty stainless steel ball inflation needles'
-    ],
-    specs: { 'Range': '0 - 20 PSI (0 - 1.4 BAR)', 'Accuracy': '± 0.05 PSI', 'Battery': 'CR2032 Lithium Included' },
-    variants: [{ id: 'v-ac-gauge', name: 'Digital Gauge + 3 Needles + Protective Pouch', inStock: true }],
-    tags: ['gauge', 'psi', 'pressure', 'fifa-spec', 'referee-tool']
-  },
-  {
+{
     id: 'acc-dual-pump',
-    slug: 'dual-action-turbo-ball-pump',
-    name: 'Turbo Dual-Action Ball Pump',
-    sku: '90P-AC-002',
+    active: true,
+    slug: '90plus-dual-action-ball-pump',
+    name: '90plus Dual-Action Ball Pump',
+    sku: '90P-AC-P01',
     category: 'accessories',
     categoryLabel: 'Accessories',
     price: 399,
     compareAtPrice: 599,
     rating: 4.8,
     reviewsCount: 168,
-    badge: 'FAST FILL',
+    badge: 'STAGING',
     inStock: true,
     stockCount: 90,
-    isNew: false,
-    isBestSeller: true,
+    isNew: true,
+    isBestSeller: false,
     colorwayIdx: 0,
     finishIdx: 0,
     shortDesc: 'Pumps air on both push and pull strokes. Inflates match balls in under 30 seconds.',
@@ -5256,21 +3602,23 @@ const PRODUCTS = [
     variants: [{ id: 'v-ac-pump', name: 'Dual Action Pump (Black/Volt)', inStock: true }],
     tags: ['pump', 'dual-action', 'fast-fill', 'ball-pump']
   },
-  {
+
+{
     id: 'acc-captain-armband',
-    slug: 'pro-elastic-captain-armband-set',
-    name: 'Pro Elite Captain Armband Set',
-    sku: '90P-AC-003',
+    active: true,
+    slug: '90plus-captain-armband',
+    name: '90plus Captain Armband',
+    sku: '90P-AC-A01',
     category: 'accessories',
     categoryLabel: 'Accessories',
     price: 299,
     compareAtPrice: 449,
     rating: 4.7,
     reviewsCount: 84,
-    badge: 'LEADER',
+    badge: 'STAGING',
     inStock: true,
     stockCount: 65,
-    isNew: false,
+    isNew: true,
     isBestSeller: false,
     colorwayIdx: 0,
     finishIdx: 0,
@@ -5285,97 +3633,51 @@ const PRODUCTS = [
     variants: [{ id: 'v-ac-arm-2', name: '2-Pack (Volt + Black)', inStock: true }],
     tags: ['captain', 'armband', 'leader', 'set']
   },
+
   {
-    id: 'acc-boot-care-kit',
-    slug: 'pro-cleat-care-stud-tightener-kit',
-    name: 'Pro Cleat Care & Stud Kit',
-    sku: '90P-AC-004',
+    id: 'jersey-home-blank',
+    active: true,
+    slug: '90plus-jersey-blank-home',
+    name: '90plus Jersey Blank — Home',
+    sku: '90P-JR-H01',
     category: 'accessories',
-    categoryLabel: 'Accessories',
-    price: 499,
-    compareAtPrice: 749,
-    rating: 4.9,
-    reviewsCount: 56,
-    badge: 'BOOT CARE',
-    inStock: true,
-    stockCount: 45,
+    categoryLabel: 'Match Kits',
+    price: 0,
+    compareAtPrice: 0,
+    rating: 0,
+    reviewsCount: 0,
+    badge: 'STAGING',
+    inStock: false,
+    stockCount: 0,
     isNew: true,
-    isBestSeller: false,
-    colorwayIdx: 1,
-    finishIdx: 0,
-    shortDesc: 'Universal 3-prong aluminum stud wrench, stiff mud brush, and conditioning cream.',
-    fullDesc: 'Keep your boots performing at peak traction. Includes universal wrench for metal SG studs, brass & nylon dual-bristle mud removal brush, and waterproofing leather balm.',
-    features: [
-      'Heavy-duty alloy stud wrench fits all standard hexagonal & slotted SG studs',
-      'Dual-texture mud scraper brush with brass and stiff nylon bristles',
-      'Compact zip tin case fits in match bag boot garage'
-    ],
-    specs: { 'Kit Contents': 'Stud Wrench + Mud Brush + Leather Conditioner + Tin' },
-    variants: [{ id: 'v-ac-cleatkit', name: 'Complete Cleat Kit', inStock: true }],
-    tags: ['boot-care', 'stud-wrench', 'cleats', 'maintenance']
-  },
-  {
-    id: 'acc-tactics-board',
-    slug: 'magnetic-tactical-coach-board',
-    name: 'Magnetic Tactical Coach Board',
-    sku: '90P-AC-005',
-    category: 'accessories',
-    categoryLabel: 'Accessories',
-    price: 899,
-    compareAtPrice: 1299,
-    rating: 4.9,
-    reviewsCount: 68,
-    badge: 'TACTICAL',
-    inStock: true,
-    stockCount: 30,
-    isNew: false,
-    isBestSeller: false,
+    isBestSeller: true,
     colorwayIdx: 0,
     finishIdx: 0,
-    shortDesc: 'Double-sided dry-erase magnetic whiteboard with 26 magnetic player tokens and carry sleeve.',
-    fullDesc: 'Full pitch on front, attacking half-pitch on reverse for set-piece corner kick strategy sessions.',
-    features: ['Double-sided magnetic dry-erase surface', 'Includes 26 magnetic tokens + dry erase marker with eraser'],
-    specs: { 'Dimensions': '45 x 30 cm', 'Weight': '600g' },
-    variants: [{ id: 'v-ac-tboard', name: 'Tactical Board Set', inStock: true }],
-    tags: ['tactics', 'coach', 'whiteboard', 'strategy']
-  },
-  {
-    id: 'acc-referee-kit',
-    slug: 'pro-referee-whistle-and-card-wallet',
-    name: 'Pro Referee Whistle & Card Wallet',
-    sku: '90P-AC-006',
-    category: 'accessories',
-    categoryLabel: 'Accessories',
-    price: 449,
-    compareAtPrice: 699,
-    rating: 4.8,
-    reviewsCount: 42,
-    badge: 'OFFICIAL',
-    inStock: true,
-    stockCount: 50,
-    isNew: false,
-    isBestSeller: false,
-    colorwayIdx: 0,
-    finishIdx: 0,
-    shortDesc: '120dB pealess sonic whistle, neon red & yellow cards, scorebook scorecards, and pencil wallet.',
-    fullDesc: 'Pealess whistle produces piercing 120-decibel tone that carries through screaming stadium crowds and stadium floodlights.',
-    features: ['120dB Sonic pealess whistle with lanyard', 'Neon yellow and red cards with score wallet'],
-    specs: { 'Kit Contents': 'Whistle + Lanyard + Yellow Card + Red Card + Wallet + Pencil' },
-    variants: [{ id: 'v-ac-refset', name: 'Complete Referee Kit', inStock: true }],
-    tags: ['referee', 'whistle', 'cards', 'official']
+    shortDesc: 'Private-label home jersey blank with Volt accents — staging shell pending Procurement PO.',
+    fullDesc: '90plus jersey blank (home). Ghost-mannequin presentation with Volt (#c8ff2e) accents. Staging only until Purchase Order and Finance floor price land. Not sold until PO.',
+    features: ["Private-label blank \u2014 no club marks", "Volt accent path aligned to brand notch system", "STAGING \u2014 price and stock pending PO"],
+    specs: { 'Fit': 'Blank / Unisex staging', 'Status': 'STAGING — PO pending' },
+    variants: [{ id: 'v-jr-h01', name: 'Home Blank', inStock: false }],
+    tags: ['jersey', 'staging', 'private-label', 'volt']
   }
-];
+];;
 
 /* Helper to find product by slug or id */
+
+/* Customer-facing catalog: staging heroes only (active !== false). */
+function liveCatalog() {
+  return PRODUCTS.filter(p => p && p.active !== false);
+}
+
 function getProduct(idOrSlug) {
   const aliases = {
     'match-football': 'ball-volt-pro',
     'grip-socks': 'sock-apex-volt',
-    'boot-bag': 'bag-shoe-garage',
+    'boot-bag': 'acc-dual-pump',
     'cone-set': 'agility-cones-50',
-    'armband': 'sleeve-blackout',
-    'shin-sleeves': 'guard-carbon-pro',
-    'bib-set': 'bag-gym-sack',
+    'armband': 'acc-captain-armband',
+    'shin-sleeves': 'guard-volt-armour',
+    'bib-set': 'agility-cones-50',
     'pump': 'acc-dual-pump'
   };
   const target = aliases[idOrSlug] || idOrSlug;
@@ -5607,12 +3909,14 @@ function validateCoupon(rawCode, subtotal, cartItems = []) {
 const LOW_STOCK_AT = 8;
 const CRITICAL_STOCK_AT = 3;
 function stockAlert(p) {
-  const n = Number(p && p.stockCount);
-  const inStock = p && p.inStock !== false && n > 0;
-  if (!inStock || n <= 0) return { level: 'out', n: 0, label: 'SOLD OUT' };
-  if (n <= CRITICAL_STOCK_AT) return { level: 'critical', n, label: 'ONLY ' + n + ' LEFT' };
-  if (n <= LOW_STOCK_AT) return { level: 'low', n, label: 'LOW STOCK · ' + n };
-  return { level: 'ok', n, label: 'In Stock (' + n + ')' };
+  /* Dropship: no warehouse unit counts. Availability only. */
+  const staging = p && (p.badge === 'STAGING' || Number(p.price) <= 0);
+  const available = p && p.active !== false && p.inStock !== false && !staging;
+  if (!available) {
+    if (staging) return { level: 'low', n: 0, label: 'STAGING · Ships after PO' };
+    return { level: 'out', n: 0, label: 'UNAVAILABLE' };
+  }
+  return { level: 'ok', n: 0, label: 'Available · Ships from partner supplier' };
 }
 function stockPillHtml(p) {
   const a = stockAlert(p);
@@ -5625,7 +3929,7 @@ function stockPillHtml(p) {
 function fillInventoryAlertBar() {
   const bar = document.getElementById('inventoryAlertBar');
   if (!bar || !Array.isArray(PRODUCTS)) return;
-  const hot = PRODUCTS.filter(p => Number(p.stockCount) <= LOW_STOCK_AT).slice(0, 6);
+  const hot = []; /* dropship: no fake low-stock unit theatre */
   if (!hot.length) { bar.innerHTML = ''; return; }
   bar.innerHTML = hot.map(p => {
     const a = stockAlert(p);
@@ -5821,8 +4125,18 @@ function addToCart(productId, options = {}) {
     toast('Product not found', 'alert-triangle');
     return;
   }
-  if (product.inStock === false || Number(product.stockCount) <= 0) {
-    toast('Sold out — tap Notify Me on the card', 'alert-circle');
+  if (product.active === false) {
+    toast('This SKU is not on the live staging catalog', 'alert-circle');
+    playSound('error');
+    return;
+  }
+  if (product.badge === 'STAGING' && Number(product.price) <= 0) {
+    toast('STAGING — awaiting PO / Finance price', 'alert-circle');
+    playSound('error');
+    return;
+  }
+  if (product.inStock === false) {
+    toast('Unavailable — tap Notify Me on the card', 'alert-circle');
     playSound('error');
     return;
   }
@@ -6208,7 +4522,9 @@ function renderCategoryGrid() {
 
 function renderBestsellersGrid() {
   if (!DOM.bestGrid) return;
-  const bestsellers = PRODUCTS.filter(p => p.isBestSeller).slice(0, 8);
+  const heroOrder = ['jersey-home-blank', 'ball-volt-pro', 'sock-apex-volt'];
+  const byId = Object.fromEntries(liveCatalog().map(p => [p.id, p]));
+  const bestsellers = heroOrder.map(id => byId[id]).filter(Boolean);
 
   DOM.bestGrid.innerHTML = bestsellers.map((p, i) => `
     <div class="pcard rv" style="--i: ${i}" data-pid="${p.id}">
@@ -6894,7 +5210,7 @@ const INFO_CONTENT = {
         <ul class="surf-specs" style="margin:14px 0">
           <li><strong>UPI Payments:</strong> Reversal in 24–48 hours directly to source UPI VPA.</li>
           <li><strong>Cards & Netbanking:</strong> Processed in 5–7 business days via RBI-licensed gateways.</li>
-          <li><strong>COD Orders:</strong> Direct IMPS / UPI transfer within 24–48 hours of warehouse return scan.</li>
+          <li><strong>COD Orders:</strong> Direct IMPS / UPI transfer within 24–48 hours after the fulfilling supplier confirms receipt of the return.</li>
         </ul>
         <div style="margin-top:16px"><a href="#/refund-policy" class="btn btn-volt btn-sm btn-full" onclick="closeInfoModal()"><i data-lucide="credit-card"></i><span>OPEN FULL REFUND POLICY</span></a></div>
       </div>
@@ -6909,7 +5225,7 @@ const INFO_CONTENT = {
         <ul class="surf-specs" style="margin:14px 0">
           <li><strong>UPI Payments:</strong> Reversal in 24–48 hours directly to source UPI VPA.</li>
           <li><strong>Cards & Netbanking:</strong> Processed in 5–7 business days via RBI-licensed gateways.</li>
-          <li><strong>COD Orders:</strong> Direct IMPS / UPI transfer within 24–48 hours of warehouse return scan.</li>
+          <li><strong>COD Orders:</strong> Direct IMPS / UPI transfer within 24–48 hours after the fulfilling supplier confirms receipt of the return.</li>
         </ul>
         <div style="margin-top:16px"><a href="#/refund-policy" class="btn btn-volt btn-sm btn-full" onclick="closeInfoModal()"><i data-lucide="credit-card"></i><span>OPEN FULL REFUND POLICY</span></a></div>
       </div>
@@ -6954,7 +5270,7 @@ const INFO_CONTENT = {
         <ul class="surf-specs" style="margin:14px 0">
           <li><strong>Contact Sport Risk:</strong> While our gear mitigates impact and friction, players assume customary athletic risks during gameplay.</li>
           <li><strong>Surface Pressure Calibration:</strong> Balls must be inflated strictly between 0.80–1.05 Bar (11.6–14.5 PSI) as per pitch guidelines.</li>
-          <li><strong>Independent Engineering:</strong> "FIFA Quality Pro Tolerances" describes laboratory engineering benchmarks; 90+ Supply is an independent brand.</li>
+          <li><strong>Independent Engineering:</strong> "Tournament-lab tolerances" describes engineering benchmarks; 90+ Supply is an independent private-label brand.</li>
         </ul>
         <div style="margin-top:16px"><a href="#/disclaimer" class="btn btn-volt btn-sm btn-full" onclick="closeInfoModal()"><i data-lucide="alert-triangle"></i><span>READ FULL DISCLAIMER</span></a></div>
       </div>
@@ -7220,7 +5536,7 @@ function executeSearch(query) {
   const resultsContainer = DOM.sResults;
   if (!resultsContainer) return;
 
-  let matched = PRODUCTS.filter(p => {
+  let matched = liveCatalog().filter(p => {
     if (activeSearchCategory !== 'all' && p.category !== activeSearchCategory) return false;
     if (!q) return true;
 
@@ -8346,7 +6662,7 @@ function renderRegisterRoute() {
                   <div class="auth-perk-icon"><i data-lucide="sparkles"></i></div>
                   <div class="auth-perk-text">
                     <strong>Player Clearance Tier 1</strong>
-                    <span>Instant access to FIFA Quality Pro match ball customization and high-speed simulation suites.</span>
+                    <span>Instant access to match-ball customization and high-speed simulation suites.</span>
                   </div>
                 </div>
                 <div class="auth-perk-item">
@@ -8360,7 +6676,7 @@ function renderRegisterRoute() {
                   <div class="auth-perk-icon"><i data-lucide="zap"></i></div>
                   <div class="auth-perk-text">
                     <strong>Fast-Track Dispatch</strong>
-                    <span>Priority warehouse routing, 48-hour regional delivery, and real-time transit telemetry.</span>
+                    <span>Partner-supplier dispatch within 48 hours, with real-time transit tracking.</span>
                   </div>
                 </div>
               </div>
@@ -8725,7 +7041,7 @@ function renderShopRoute(catParam = '') {
         <div class="shop-hero-content">
           <span class="hud-tag"><i data-lucide="layers"></i> FULL GEAR SPECS</span>
           <h1>90+ SUPPLY CATALOG</h1>
-          <p>Match-grade footballs, zero-slip grip socks, aerospace carbon guards, and pro pitch accessories.</p>
+          <p>Match-grade footballs, zero-slip grip socks, poly shin guards, and pitch accessories.</p>
           <div class="inventory-alert-bar" id="inventoryAlertBar"></div>
         </div>
       </div>
@@ -8817,7 +7133,7 @@ function renderShopRoute(catParam = '') {
             <div class="accordion-content">
               <label class="filter-checkbox">
                 <input type="checkbox" id="stockToggle" ${shopFilters.inStockOnly ? 'checked' : ''} />
-                <span>In Stock Only</span>
+                <span>Available only</span>
               </label>
             </div>
           </div>
@@ -8952,7 +7268,7 @@ function updateShopGrid() {
   const countElem = $('#shopItemCount');
   if (!grid) return;
 
-  let list = PRODUCTS.filter(p => {
+  let list = liveCatalog().filter(p => {
     if (shopFilters.category !== 'all' && p.category !== shopFilters.category) return false;
     if (p.price > shopFilters.priceMax) return false;
     if (shopFilters.inStockOnly && !p.inStock) return false;
@@ -9161,7 +7477,7 @@ function renderPdpRoute(slugOrId) {
           <div class="pdp-tag-row">
             <span class="pdp-cat-pill">${product.categoryLabel}</span>
             <span class="pdp-sku-code">SKU: ${product.sku}</span>
-            <span class="pdp-stock-tag"><i class="stock-dot"></i> In Stock (${product.stockCount} units)</span>
+            <span class="pdp-stock-tag"><i class="stock-dot"></i> ${Number(product.price) > 0 && product.inStock !== false ? 'Available · Ships from partner supplier' : (product.badge === 'STAGING' ? 'STAGING · Price on PO' : 'Unavailable')}</span>
           </div>
 
           <h1 class="pdp-title">${product.name}</h1>
@@ -9196,7 +7512,7 @@ function renderPdpRoute(slugOrId) {
                 ${product.variants.map((v, i) => `
                   <button class="pdp-var-btn ${i === 0 ? 'selected' : ''}" data-var-id="${v.id}" data-var-name="${v.name}">
                     <span class="v-name">${v.name}</span>
-                    <span class="v-tag">In Stock</span>
+                    <span class="v-tag">Available</span>
                   </button>
                 `).join('')}
               </div>
@@ -9285,7 +7601,7 @@ function renderPdpRoute(slugOrId) {
           <div class="tab-pane" id="tab-pitch">
             <div class="pdp-pitch-info">
               <h4>Recommended Pitch Surfaces</h4>
-              <p>This equipment has been engineered to meet FIFA Quality Pro laboratory physical tolerances (circumference, weight, roundness, rebound) for match play.</p>
+              <p>This equipment is engineered to match-lab physical tolerances (circumference, weight, roundness, rebound) for match play.</p>
               <div class="pitch-badges-row">
                 <span class="pitch-badge on"><i data-lucide="check"></i> Natural Firm Grass (FG)</span>
                 <span class="pitch-badge on"><i data-lucide="check"></i> 3G / 4G Artificial Turf (AG)</span>
@@ -11346,7 +9662,7 @@ function renderAboutRoute() {
             <div class="policy-badge-row">
               <span class="policy-badge volt"><i data-lucide="calendar"></i> EST. 2024</span>
               <span class="policy-badge"><i data-lucide="map-pin"></i> BENGALURU HQ</span>
-              <span class="policy-badge"><i data-lucide="award"></i> FIFA QUALITY PRO BENCHMARKS</span>
+              <span class="policy-badge"><i data-lucide="award"></i> MATCH-LAB BENCHMARKS</span>
               <span class="policy-badge volt"><i data-lucide="activity"></i> 148,000+ MATCH MINUTES</span>
             </div>
 
@@ -11506,7 +9822,7 @@ function renderTermsRoute() {
             <div class="policy-section">
               <h2><i data-lucide="copyright" style="color: #c8ff2e;"></i> 5. Intellectual Property & Open Source Licenses</h2>
               <p>All brand marks, logos, 3D WebGL computer code, CFD aerodynamic simulation engines, audio synthesizers, and interface assets are the proprietary intellectual property of 90Plus Sports Performance Technologies Pvt. Ltd.</p>
-              <p>This application utilizes open-source libraries under compliant permissive licenses: Three.js (MIT License), Lucide Icons (ISC License), Supabase Client (MIT License), and Google Fonts (SIL Open Font License). References to "FIFA Quality Pro" denote physical laboratory test benchmarks and do not constitute an official tournament endorsement.</p>
+              <p>This application utilizes open-source libraries under compliant permissive licenses: Three.js (MIT License), Lucide Icons (ISC License), Supabase Client (MIT License), and Google Fonts (SIL Open Font License). References to "match-lab" denote physical laboratory test benchmarks and do not constitute an official tournament endorsement.</p>
             </div>
 
             <!-- Mandatory Grievance Redressal Mechanism -->
@@ -11748,7 +10064,7 @@ function renderPitchMatrixRoute() {
 const FAQ_ITEMS = [
   {
     q: 'How fast is dispatch and delivery across India?',
-    a: 'All orders are processed, quality-inspected, and dispatched within 24 to 48 hours from our central Bengaluru logistics hub. Metro deliveries arrive in 24 to 48 hours. Tier 1 and Tier 2 cities arrive in 48 to 72 hours.'
+    a: 'Orders ship from our partner supplier and are typically dispatched within 24 to 48 hours. Metro deliveries usually arrive in 24 to 48 hours; Tier 1 and Tier 2 cities in 48 to 72 hours.'
   },
   {
     q: 'Are 90+ Supply footballs tournament approved?',
@@ -11789,7 +10105,7 @@ function renderFaqRoute() {
       <div class="content-hero">
         <span class="hud-tag"><i data-lucide="help-circle"></i> MATCHDAY '26 FAQ</span>
         <h1>FREQUENTLY ASKED QUESTIONS</h1>
-        <p>Official answers on FIFA Quality Pro certifications, custom laser stamps, 3D trajectory simulations, orders, and statutory returns.</p>
+        <p>Official answers on match-lab specs, custom laser stamps, 3D trajectory simulations, orders, and returns.</p>
         <div class="last-updated-badge"><i data-lucide="clock"></i> LAST UPDATED: SEPTEMBER 8, 2026</div>
       </div>
 
@@ -11812,7 +10128,7 @@ function renderFaqRoute() {
               
               <div class="faq-accordion-item open" data-q="certification quality pro test standards">
                 <button class="faq-accordion-header">
-                  <span>01. What does FIFA Quality Pro certification entail?</span>
+                  <span>01. What match-lab ball specs do you target?</span>
                   <i data-lucide="chevron-down" class="faq-chevron"></i>
                 </button>
                 <div class="faq-accordion-body">
@@ -11846,7 +10162,7 @@ function renderFaqRoute() {
                   <i data-lucide="chevron-down" class="faq-chevron"></i>
                 </button>
                 <div class="faq-accordion-body">
-                  All orders are dispatched via BlueDart Express from our Bengaluru logistics center. Metro hubs (Bengaluru, Mumbai, Delhi NCR, Chennai, Hyderabad) receive <strong>24 to 48-hour delivery</strong>. Tier-2 and Tier-3 postal PINs receive delivery within 48 to 72 hours with real-time transit tracking.
+                  Orders are dispatched via partner courier networks from the fulfilling supplier. Metro hubs (Bengaluru, Mumbai, Delhi NCR, Chennai, Hyderabad) typically receive <strong>24 to 48-hour delivery</strong>. Tier-2 and Tier-3 postal PINs usually arrive within 48 to 72 hours with real-time transit tracking.
                 </div>
               </div>
 
@@ -11939,7 +10255,7 @@ function renderReturnsRoute() {
 
             <div class="policy-section">
               <h2><i data-lucide="check-circle" style="color: #c8ff2e;"></i> 1. 7-Day Doorstep Trial & Eligibility</h2>
-              <p>We stand behind every item engineered in our Bengaluru lab. You are entitled to return or exchange any product within <strong>7 calendar days</strong> of confirmed courier delivery if:</p>
+              <p>We stand behind every item we sell. Contact support to start a return or exchange within <strong>7 calendar days</strong> of confirmed courier delivery if:</p>
               <ul>
                 <li>The item is unworn, unwashed, and in its original condition with all product tags, labels, and hygiene seals intact.</li>
                 <li>The equipment is in its original branded protective packaging (e.g., shoe box, ball netting, or zipper sleeve).</li>
@@ -11949,7 +10265,7 @@ function renderReturnsRoute() {
 
             <div class="policy-section">
               <h2><i data-lucide="refresh-cw" style="color: #c8ff2e;"></i> 2. Sizing & Fit Exchanges</h2>
-              <p>Foot and calf anatomy varies across athletes. If your ApexLock grip socks or CarbonFlex shin guards require a different size for optimal compression, we provide <strong>100% free size exchanges</strong>. Our reverse courier will pick up the current size and dispatch the replacement immediately upon warehouse scan.</p>
+              <p>Foot and calf anatomy varies across athletes. If your ApexLock grip socks or CarbonFlex shin guards require a different size for optimal compression, we provide <strong>100% free size exchanges</strong>. Contact support and we coordinate a size exchange or replacement with the fulfilling supplier (hygiene-sealed items may be refused per Legal).</p>
             </div>
 
             <div class="policy-callout warning">
@@ -12076,12 +10392,12 @@ function renderRefundPolicyRoute() {
 
             <div class="policy-section">
               <h2><i data-lucide="shield-check" style="color: #c8ff2e;"></i> 1. 100% Money-Back Commitment</h2>
-              <p>At 90+ SUPPLY, your satisfaction is guaranteed. If an eligible returned item passes our warehouse quality inspection (verifying unworn state and original tags), <strong>100% of the purchase amount</strong>—including any standard shipping fees paid at checkout—is refunded directly to your original payment method. We charge zero restocking or processing deductions.</p>
+              <p>At 90+ SUPPLY, your satisfaction is guaranteed. Contact <code>support@90plus.supply</code> within the return window. We coordinate return or replacement with the fulfilling partner supplier (or refuse sealed/hygiene-restricted items per Legal). Approved refunds return <strong>100% of the purchase amount</strong> to your original payment method — no restocking fees.</p>
             </div>
 
             <div class="policy-section">
               <h2><i data-lucide="clock" style="color: #c8ff2e;"></i> 2. Refund Processing Timelines</h2>
-              <p>Refunds are initiated by our automated billing engine within <strong>4 to 8 hours</strong> of warehouse check-in. The crediting timeline depends on your original payment channel:</p>
+              <p>Refunds are initiated after the fulfilling supplier confirms the return. The crediting timeline depends on your original payment channel:</p>
 
               <div class="policy-table-wrap">
                 <table class="policy-table">
@@ -12123,7 +10439,7 @@ function renderRefundPolicyRoute() {
               <p>Orders can be cancelled with <strong>zero penalty</strong> at any time prior to physical courier dispatch:</p>
               <ul>
                 <li><strong>Pre-Dispatch Cancellation (within 12–24h of ordering):</strong> Visit <a href="#/track" style="color: #c8ff2e; text-decoration: underline;">Track Order</a> or contact support to trigger an immediate automatic 100% refund.</li>
-                <li><strong>In-Transit Cancellation:</strong> If an order has already left our Bengaluru logistics center, simply decline acceptance when the courier delivers to your address. The order will automatically route back to our warehouse for a full refund upon receipt.</li>
+                <li><strong>In-Transit Cancellation:</strong> If an order has already shipped from the partner supplier, decline acceptance at delivery. Contact support so we can coordinate the supplier return and refund.</li>
               </ul>
             </div>
 
@@ -12491,7 +10807,7 @@ function renderDisclaimerRoute() {
             <div class="policy-badge-row">
               <span class="policy-badge volt"><i data-lucide="alert-octagon"></i> ATHLETIC RISK DISCLOSURE</span>
               <span class="policy-badge"><i data-lucide="gauge"></i> PSI PRESSURE MATRIX</span>
-              <span class="policy-badge volt"><i data-lucide="shield"></i> FIFA QUALITY CRITERIA</span>
+              <span class="policy-badge volt"><i data-lucide="shield"></i> MATCH-LAB CRITERIA</span>
               <span class="policy-badge"><i data-lucide="file-text"></i> STATUTORY NOTICE</span>
             </div>
 
@@ -12545,8 +10861,8 @@ function renderDisclaimerRoute() {
             </div>
 
             <div class="policy-section">
-              <h2><i data-lucide="award" style="color: #c8ff2e;"></i> 3. FIFA Quality Pro Testing Benchmarks</h2>
-              <p>References to "FIFA Quality Pro standards" or "tournament tolerances" on our platform denote that 90+ SUPPLY match balls are engineered to meet and exceed laboratory physical parameters specified by the FIFA Quality Programme for Footballs (specifically weight: 420–445g, circumference: 68.5–69.5cm, roundness deviation <1.5%, rebound consistency between 135–155cm at 20°C, and water absorption <0.5%). Unless a specific ball displays an official licensing hallmark, references illustrate independent engineering benchmarks.</p>
+              <h2><i data-lucide="award" style="color: #c8ff2e;"></i> 3. Match-Lab Testing Benchmarks</h2>
+              <p>References to "match-lab standards" or "tournament tolerances" on our platform denote that 90+ SUPPLY match balls are engineered to meet and exceed laboratory physical parameters specified by the match-labgramme for Footballs (specifically weight: 420–445g, circumference: 68.5–69.5cm, roundness deviation <1.5%, rebound consistency between 135–155cm at 20°C, and water absorption <0.5%). Unless a specific ball displays an official licensing hallmark, references illustrate independent engineering benchmarks.</p>
             </div>
 
             <div class="policy-section">
@@ -12726,7 +11042,7 @@ function renderAboutAndContactRoute() {
               <div class="policy-badge-row">
                 <span class="policy-badge volt"><i data-lucide="calendar"></i> EST. 2024</span>
                 <span class="policy-badge"><i data-lucide="map-pin"></i> BENGALURU HQ</span>
-                <span class="policy-badge"><i data-lucide="award"></i> FIFA QUALITY PRO BENCHMARKS</span>
+                <span class="policy-badge"><i data-lucide="award"></i> MATCH-LAB BENCHMARKS</span>
                 <span class="policy-badge volt"><i data-lucide="activity"></i> 148,000+ MATCH MINUTES</span>
               </div>
 
@@ -12742,7 +11058,7 @@ function renderAboutAndContactRoute() {
 
               <div class="policy-section">
                 <h2><i data-lucide="flask-conical" style="color: #c8ff2e;"></i> Material Science & Testing Standards</h2>
-                <p>From 14-panel thermal bonding that delivers near-zero moisture uptake (<0.5%) to medical-grade silicone micro-chevrons that lock your foot inside boots, our Bengaluru lab tests every production run against strict FIFA Quality Pro tolerances.</p>
+                <p>From 14-panel thermal bonding that delivers near-zero moisture uptake (<0.5%) to medical-grade silicone micro-chevrons that lock your foot inside boots, our Bengaluru lab tests every production run against strict match-lab tolerances.</p>
                 <ul>
                   <li><strong>Thermobonded PU Seams:</strong> Near-zero moisture intake even during heavy monsoon rainfall.</li>
                   <li><strong>Magnus Drag Aerodynamics:</strong> CFD-tested surface dimples for predictable swerve on free kicks.</li>
@@ -13092,7 +11408,7 @@ function renderTrajectoryRoute() {
             <div class="recommended-ball-card mt-4">
               <div class="rec-icon"><i data-lucide="shield-check"></i></div>
               <div>
-                <strong>OPTIMAL BALL: Apex Volt Pro (FIFA Quality Pro)</strong>
+                <strong>OPTIMAL BALL: 90plus Volt Match Ball</strong>
                 <p>14-panel thermal bonded aerodynamic casing minimizes air wake turbulence drag by 14%.</p>
                 <a href="#/product/apex-volt-pro-match-ball" class="btn btn-sm btn-outline-volt mt-2">VIEW MATCH BALL SPECS</a>
               </div>
@@ -22876,7 +21192,7 @@ function renderLockerRoomRoute() {
               ${wishProducts.map(p => `
                 <div class="glass" style="padding:16px;border-radius:14px;border:1px solid var(--line)">
                   <div style="display:flex;justify-content:space-between;align-items:center">
-                    <span class="tag tag-volt">IN STOCK</span>
+                    <span class="tag tag-volt">AVAILABLE</span>
                     <strong style="color:var(--volt)">${fmt(p.price)}</strong>
                   </div>
                   <h4 style="margin:8px 0 4px 0;font-size:0.95rem">${p.name}</h4>
@@ -23376,9 +21692,9 @@ async function runSelfTestSuite() {
 
   /* Test 5: 64-SKU Product Catalog Schema Integrity */
   try {
-    assert('Catalog Exists with 64 Professional SKUs', PRODUCTS && PRODUCTS.length >= 64, `Found ${PRODUCTS?.length} products`);
-    const invalidProducts = PRODUCTS.filter(p => !p.id || !p.name || !p.slug || !p.price || !p.category || !p.sku || !p.specs);
-    assert('All 64 Products Have Valid Required Fields', invalidProducts.length === 0, `Invalid: ${invalidProducts.length}`);
+    assert('Staging catalog has Day-1 heroes', PRODUCTS && PRODUCTS.length >= 12 && PRODUCTS.length <= 16, `Found ${PRODUCTS?.length} products`);
+    const invalidProducts = PRODUCTS.filter(p => !p.id || !p.name || !p.slug || p.price === undefined || p.price === null || !p.category || !p.sku || !p.specs);
+    assert('All staging products have required fields', invalidProducts.length === 0, `Invalid: ${invalidProducts.length}`);
     const validCategories = CATEGORIES.map(c => c.slug);
     const categoryMismatch = PRODUCTS.filter(p => !validCategories.includes(p.category));
     assert('All Products Map to Defined Category Slugs', categoryMismatch.length === 0, `Mismatches: ${categoryMismatch.length}`);
@@ -23440,7 +21756,7 @@ async function runSelfTestSuite() {
 
   /* Test 12: Colorway & Finish Libraries */
   try {
-    assert('8 Signatures Colorways Defined', COLORWAYS.length === 8 && COLORWAYS.every(c => c.price >= 899));
+    assert('6 Signatures Colorways Defined', COLORWAYS.length === 6 && COLORWAYS.every(c => c.price >= 899));
     assert('5 PBR Finish Formulations Defined', FINISHES.length === 5 && FINISHES.every(f => typeof f.roughness === 'number'));
   } catch (e) { assert('Colorway & Finish Libraries', false, e.message); }
 

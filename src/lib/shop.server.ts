@@ -176,7 +176,8 @@ export async function listCatalog(): Promise<CatalogProduct[]> {
     from products
     order by is_best_seller desc, name asc
   `;
-  return rows.map(mapProduct);
+  const activeIds = new Set(PRODUCTS.filter((p) => p.active !== false).map((p) => p.id));
+  return rows.map(mapProduct).filter((p) => activeIds.has(p.id));
 }
 
 export async function listInventoryAlerts() {

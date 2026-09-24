@@ -6,7 +6,7 @@ export const LOADOUTS = [
     pitch: "Wet natural grass / monsoon",
     votes: 218,
     badge: "Coach certified",
-    items: ["ball-tempest-storm", "sock-apex-volt", "guard-carbon-pro", "gloves-shadow-black"],
+    items: ["ball-ocean-blue", "sock-apex-volt", "guard-volt-armour", "gloves-training-entry"],
     desc: "High-vis storm ball, AquaGrip latex, and silicone socks for torrential fixtures.",
   },
   {
@@ -16,7 +16,7 @@ export const LOADOUTS = [
     pitch: "3G artificial turf",
     votes: 342,
     badge: "Popular",
-    items: ["sock-stealth-black", "guard-mini-carbon", "sleeve-blackout", "agility-ladder-6m"],
+    items: ["sock-stealth-black", "guard-volt-armour", "sleeve-blackout", "agility-cones-50"],
     desc: "38g micro carbon guards and Blackout grip socks for isolation cuts.",
   },
   {
@@ -26,7 +26,7 @@ export const LOADOUTS = [
     pitch: "All surfaces",
     votes: 184,
     badge: "Pro spec",
-    items: ["gloves-vortex-pro", "rec-ice-cold-cup", "rec-zinc-tape-3pk", "bag-club-backpack"],
+    items: ["gloves-training-entry", "acc-dual-pump", "acc-captain-armband", "agility-cones-50"],
     desc: "Contact latex gloves, finger tape, and ice therapy for post-match recovery.",
   },
 ] as const;

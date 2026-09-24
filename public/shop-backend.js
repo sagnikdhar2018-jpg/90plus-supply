@@ -238,7 +238,18 @@
       pollTimer = null;
     }
 
+    function wsSupported() {
+      // ponytail: /ws/inventory is Vite-dev only (vite.config inventoryWsPlugin).
+      // Vercel has no upgrade handler — skip WS, poll /api/inventory/live.
+      const h = location.hostname;
+      return h === "localhost" || h === "127.0.0.1" || h.endsWith(".local");
+    }
+
     function connectWs() {
+      if (!wsSupported()) {
+        startPoll();
+        return;
+      }
       if (socket && (socket.readyState === 0 || socket.readyState === 1)) return;
       const proto = location.protocol === "https:" ? "wss:" : "ws:";
       let ws;

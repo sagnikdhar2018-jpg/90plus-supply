@@ -14536,85 +14536,85 @@ function renderTacticsRoute() {
                   <option value="532">5-3-2 Low Block Counter</option>
                 </optgroup>
 
-                <optgroup label="── PEP GUARDIOLA · POSSESSION & INVERSION (4) ──">
-                  <option value="pep_3241">Pep 3-2-4-1 Inverted Fullback Box (Man City Treble)</option>
-                  <option value="pep_433_f9">Pep 4-3-3 False Nine Overload (Barcelona 2011)</option>
-                  <option value="pep_235">Pep 2-3-5 Total Possession Metamorphosis</option>
-                  <option value="pep_4231_pivot">Pep 4-2-3-1 Staggered Inverted Pivots</option>
+                <optgroup label="── POSSESSION & INVERSION (4) ──">
+                  <option value="pep_3241">3-2-4-1 Inverted Fullback Box</option>
+                  <option value="pep_433_f9">4-3-3 False Nine Overload</option>
+                  <option value="pep_235">2-3-5 Total Possession Metamorphosis</option>
+                  <option value="pep_4231_pivot">4-2-3-1 Staggered Inverted Pivots</option>
                 </optgroup>
 
-                <optgroup label="── JOSÉ MOURINHO · COUNTER & LOW BLOCK (5) ──">
-                  <option value="mourinho_4231_low">Mourinho 4-2-3-1 Lethal Counter (Real Madrid 2012)</option>
-                  <option value="mourinho_4312_inter">Mourinho 4-3-1-2 Treble Diamond (Inter 2010)</option>
-                  <option value="mourinho_433_chelsea">Mourinho 4-3-3 Power Transition (Chelsea 2005)</option>
-                  <option value="mourinho_532_bus">Mourinho 5-3-2 'Park The Bus' Defensive Lockout</option>
-                  <option value="mourinho_442_porto">Mourinho 4-4-2 European Press (Porto 2004)</option>
+                <optgroup label="── COUNTER & LOW BLOCK (5) ──">
+                  <option value="mourinho_4231_low">4-2-3-1 Lethal Counter</option>
+                  <option value="mourinho_4312_inter">4-3-1-2 Treble Diamond</option>
+                  <option value="mourinho_433_chelsea">4-3-3 Power Transition</option>
+                  <option value="mourinho_532_bus">5-3-2 'Park The Bus' Defensive Lockout</option>
+                  <option value="mourinho_442_porto">4-4-2 European Press</option>
                 </optgroup>
 
-                <optgroup label="── CARLO ANCELOTTI · FLUID TRANSITIONS (3) ──">
-                  <option value="ancelotti_4321_tree">Ancelotti 4-3-2-1 Milan Christmas Tree (2007)</option>
-                  <option value="ancelotti_433_madrid">Ancelotti 4-3-3 Decima Transition (Real Madrid 2014)</option>
-                  <option value="ancelotti_442_hybrid">Ancelotti 4-4-2 Fluid Diamond Hybrid (Real Madrid 2024)</option>
+                <optgroup label="── FLUID TRANSITIONS (3) ──">
+                  <option value="ancelotti_4321_tree">4-3-2-1 Christmas Tree</option>
+                  <option value="ancelotti_433_madrid">4-3-3 Fluid Transition</option>
+                  <option value="ancelotti_442_hybrid">4-4-2 Fluid Diamond Hybrid</option>
                 </optgroup>
 
-                <optgroup label="── JÜRGEN KLOPP · HEAVY METAL GEGENPRESS (3) ──">
-                  <option value="klopp_433_gegen">Klopp 4-3-3 Heavy Metal Gegenpressing (Liverpool 2019)</option>
-                  <option value="klopp_4231_bvb">Klopp 4-2-3-1 Full-Throttle Blitz (Dortmund 2013)</option>
-                  <option value="klopp_424_overload">Klopp 4-2-4 Ultra-Press Front Four Overload</option>
+                <optgroup label="── HIGH PRESS / GEGENPRESS (3) ──">
+                  <option value="klopp_433_gegen">4-3-3 Heavy Metal Gegenpress</option>
+                  <option value="klopp_4231_bvb">4-2-3-1 Full-Throttle Blitz</option>
+                  <option value="klopp_424_overload">4-2-4 Ultra-Press Front Four Overload</option>
                 </optgroup>
 
-                <optgroup label="── XABI ALONSO & MIKEL ARTETA · MODERN INVERSION (5) ──">
-                  <option value="alonso_3421_leverkusen">Xabi Alonso 3-4-2-1 Invincible (Leverkusen 2024)</option>
-                  <option value="alonso_3412_press">Xabi Alonso 3-4-1-2 Staggered High Press</option>
-                  <option value="arteta_3241_box">Mikel Arteta 3-2-4-1 Inverted Fullback (Arsenal)</option>
-                  <option value="arteta_433_high">Mikel Arteta 4-3-3 Rest-Defense High Line (Arsenal)</option>
-                  <option value="arteta_442_block">Mikel Arteta 4-4-2 Mid-Block Compact Lockdown</option>
+                <optgroup label="── MODERN INVERSION (5) ──">
+                  <option value="alonso_3421_leverkusen">3-4-2-1 Invincible Block</option>
+                  <option value="alonso_3412_press">3-4-1-2 Staggered High Press</option>
+                  <option value="arteta_3241_box">3-2-4-1 Inverted Fullback</option>
+                  <option value="arteta_433_high">4-3-3 Rest-Defense High Line</option>
+                  <option value="arteta_442_block">4-4-2 Mid-Block Compact Lockdown</option>
                 </optgroup>
 
-                <optgroup label="── TOTAL FOOTBALL & ITALIAN ROOTS (4) ──">
-                  <option value="sacchi_442_press">Arrigo Sacchi 4-4-2 25M Compact Press (Milan 1989)</option>
-                  <option value="cruyff_343_diamond">Johan Cruyff 3-4-3 Diamond Dream Team (Barca 1992)</option>
-                  <option value="cruyff_433_total">Johan Cruyff 4-3-3 Total Spatial Geometry</option>
-                  <option value="michels_433_total">Rinus Michels 4-3-3 Totaalvoetbal (Netherlands 1974)</option>
+                <optgroup label="── TOTAL FOOTBALL & COMPACT PRESS (4) ──">
+                  <option value="sacchi_442_press">4-4-2 25m Compact Press</option>
+                  <option value="cruyff_343_diamond">3-4-3 Diamond Total Football</option>
+                  <option value="cruyff_433_total">4-3-3 Total Spatial Geometry</option>
+                  <option value="michels_433_total">4-3-3 Totaalvoetbal</option>
                 </optgroup>
 
-                <optgroup label="── CHOLISMO & CONTEAN PRAGMATISM (4) ──">
-                  <option value="simeone_442_cholo">Diego Simeone 4-4-2 Cholismo Iron Wall (Atlético)</option>
-                  <option value="simeone_532_cage">Diego Simeone 5-3-2 Low Block Penalty Box Cage</option>
-                  <option value="conte_352_scudetto">Antonio Conte 3-5-2 Scudetto Steamroller (Inter 2021)</option>
-                  <option value="conte_343_chelsea">Antonio Conte 3-4-3 Dominant Wingbacks (Chelsea 2017)</option>
+                <optgroup label="── LOW BLOCK & WINGBACK PRAGMATISM (4) ──">
+                  <option value="simeone_442_cholo">4-4-2 Iron Wall</option>
+                  <option value="simeone_532_cage">5-3-2 Low Block Penalty Box Cage</option>
+                  <option value="conte_352_scudetto">3-5-2 Steamroller</option>
+                  <option value="conte_343_chelsea">3-4-3 Dominant Wingbacks</option>
                 </optgroup>
 
-                <optgroup label="── PREMIER LEAGUE DYNASTIES (3) ──">
-                  <option value="ferguson_442_treble">Sir Alex Ferguson 4-4-2 Wing Blitz (Man Utd 1999)</option>
-                  <option value="ferguson_433_rooney">Sir Alex Ferguson 4-3-3 Dynamic Front Three (2008)</option>
-                  <option value="wenger_442_invincibles">Arsène Wenger 4-4-2 The Invincibles (Arsenal 2004)</option>
+                <optgroup label="── WIDE DYNASTY SHAPES (3) ──">
+                  <option value="ferguson_442_treble">4-4-2 Wing Blitz</option>
+                  <option value="ferguson_433_rooney">4-3-3 Dynamic Front Three</option>
+                  <option value="wenger_442_invincibles">4-4-2 Invincibles Press</option>
                 </optgroup>
 
-                <optgroup label="── CHAMPIONS LEAGUE STRATEGISTS (5) ──">
-                  <option value="zidane_4312_diamond">Zinedine Zidane 4-3-1-2 UCL 3-Peat (Real Madrid 2017)</option>
-                  <option value="zidane_433_cross">Zinedine Zidane 4-3-3 Half-Space Overload</option>
-                  <option value="tuchel_3421_champions">Thomas Tuchel 3-4-2-1 UCL Block (Chelsea 2021)</option>
-                  <option value="flick_4231_sextuple">Hansi Flick 4-2-3-1 Suicidal High Line (Bayern 2020)</option>
-                  <option value="flick_4231_barca">Hansi Flick 4-2-3-1 Vertical Directness (Barca 2024)</option>
+                <optgroup label="── KNOCKOUT STRATEGISTS (5) ──">
+                  <option value="zidane_4312_diamond">4-3-1-2 Midfield Diamond</option>
+                  <option value="zidane_433_cross">4-3-3 Half-Space Overload</option>
+                  <option value="tuchel_3421_champions">3-4-2-1 Knockout Block</option>
+                  <option value="flick_4231_sextuple">4-2-3-1 Ultra High Line</option>
+                  <option value="flick_4231_barca">4-2-3-1 Vertical Directness</option>
                 </optgroup>
 
                 <optgroup label="── INNOVATORS & VERTICALITY (6) ──">
-                  <option value="bielsa_3313_murder">Marcelo Bielsa 3-3-1-3 Man-Marking Murderball</option>
-                  <option value="nagelsmann_3151_hybrid">Julian Nagelsmann 3-1-5-1 Asymmetric Hybrid</option>
-                  <option value="nagelsmann_4222_box">Julian Nagelsmann 4-2-2-2 Red Bull Double-10 Box</option>
-                  <option value="dezerbi_424_bait">Roberto De Zerbi 4-2-4 Deep Sole-Roll Press Bait</option>
-                  <option value="vangaal_343_ajax">Louis van Gaal 3-4-3 Ajax Diamond (1995)</option>
-                  <option value="vangaal_532_counter">Louis van Gaal 5-3-2 Direct Transition (2014)</option>
+                  <option value="bielsa_3313_murder">3-3-1-3 Man-Marking Murderball</option>
+                  <option value="nagelsmann_3151_hybrid">3-1-5-1 Asymmetric Hybrid</option>
+                  <option value="nagelsmann_4222_box">4-2-2-2 Double-10 Box</option>
+                  <option value="dezerbi_424_bait">4-2-4 Deep Sole-Roll Press Bait</option>
+                  <option value="vangaal_343_ajax">3-4-3 Academy Diamond</option>
+                  <option value="vangaal_532_counter">5-3-2 Direct Transition</option>
                 </optgroup>
 
                 <optgroup label="── TACTICAL GENERALS (6) ──">
-                  <option value="emery_442_compact">Unai Emery 4-4-2 High Offside Trap Line (Villa)</option>
-                  <option value="gasperini_3412_man">Gian Piero Gasperini 3-4-1-2 Man Aggression (Atalanta)</option>
-                  <option value="amorim_3421_sporting">Ruben Amorim 3-4-2-1 Dynamic Transition (Sporting)</option>
-                  <option value="spalletti_433_napoli">Luciano Spalletti 4-3-3 Scudetto Symphony (Napoli 2023)</option>
-                  <option value="capello_442_milan">Fabio Capello 4-4-2 Invincible Defense (Milan 1994)</option>
-                  <option value="delbosque_4231_spain">Vicente del Bosque 4-2-3-1 World Champions (Spain 2010)</option>
+                  <option value="emery_442_compact">4-4-2 High Offside Trap</option>
+                  <option value="gasperini_3412_man">3-4-1-2 Man Aggression</option>
+                  <option value="amorim_3421_sporting">3-4-2-1 Dynamic Transition</option>
+                  <option value="spalletti_433_napoli">4-3-3 Positional Symphony</option>
+                  <option value="capello_442_milan">4-4-2 Invincible Defense</option>
+                  <option value="delbosque_4231_spain">4-2-3-1 World Cup Double Pivot</option>
                 </optgroup>
               </select>
             </div>
@@ -14802,7 +14802,7 @@ function renderTacticsRoute() {
                 </div>
                 <div class="tpm-col-large">
                   <label class="tpm-label"><i data-lucide="user"></i> PLAYER NAME / ALIAS</label>
-                  <input type="text" id="tpmPlayerName" class="tpm-input" placeholder="e.g. De Bruyne, Rodri, Bellingham..." />
+                  <input type="text" id="tpmPlayerName" class="tpm-input" placeholder="e.g. Captain, Pivot, #10..." />
                 </div>
               </div>
 
@@ -14887,8 +14887,8 @@ function renderTacticsRoute() {
                   <option value="Possession &amp; Tiki-Taka">Possession &amp; Tiki-Taka (Positional Overload)</option>
                   <option value="Gegenpressing / Heavy Metal">Gegenpressing / Heavy Metal (High Counter-Press)</option>
                   <option value="Fluid Counter-Attack">Fluid Counter-Attack (Direct Vertical Break)</option>
-                  <option value="Inverted Fullbacks &amp; Box Midfield">Inverted Fullbacks &amp; Box Midfield (Pep / Arteta Style)</option>
-                  <option value="Low Block &amp; Penalty Box Lockout">Low Block &amp; Penalty Box Lockout (Mourinho Pragmatism)</option>
+                  <option value="Inverted Fullbacks &amp; Box Midfield">Inverted Fullbacks &amp; Box Midfield (Inverted fullbacks)</option>
+                  <option value="Low Block &amp; Penalty Box Lockout">Low Block &amp; Penalty Box Lockout (Low-block pragmatism)</option>
                   <option value="Total Football (Rotational)">Total Football (Dutch Rotational Fluidity)</option>
                   <option value="Custom Manager Blueprint">Custom Manager Blueprint</option>
                 </select>
@@ -14979,7 +14979,7 @@ function renderTacticsRoute() {
                 </button>
 
                 <button class="custom-tactic-card" id="btnNewFromPep" type="button" style="text-align:left;cursor:pointer;">
-                  <div class="tactic-card-title"><i data-lucide="box"></i> Pep 3-2-4-1 Box</div>
+                  <div class="tactic-card-title"><i data-lucide="box"></i> 3-2-4-1 Box Midfield</div>
                   <div class="tactic-card-desc">Modern box midfield with inverted pivot and 4 attacking midfielders.</div>
                 </button>
               </div>
@@ -14995,14 +14995,14 @@ function renderTacticsRoute() {
         <div class="tactics-info-card" id="tacticsInfoCard">
           <div class="tactics-info-meta">
             <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:4px;">
-              <span class="hud-tag" id="infoManagerBadge"><i data-lucide="award"></i> PEP GUARDIOLA</span>
+              <span class="hud-tag" id="infoManagerBadge"><i data-lucide="award"></i> POSSESSION &amp; INVERSION</span>
               <span class="hud-tag" id="tacticsAIPredictionBadge" style="color:var(--volt,#c8ff2e);border-color:var(--volt,#c8ff2e);background:rgba(200,255,46,0.15);">
                 <i data-lucide="zap"></i> AI INTEL: 88% xG · GOAL FAVORABLE ⚽
               </span>
             </div>
             <div class="tactics-info-title" id="infoSystemTitle">3-2-4-1 Inverted Fullback Box Midfield</div>
             <div class="tactics-info-desc" id="infoSystemDesc">
-              John Stones or Manuel Akanji steps out of the backline into a central double pivot beside Rodri. Creates a 3-2 rest defense with a 4-man attacking box overloading opposition midfield lines.
+              Fullback steps into a double pivot beside the holding midfielder. Creates a 3-2 rest defense with a 4-man attacking box overloading opposition midfield lines.
             </div>
           </div>
           <div style="display:flex;gap:12px;align-items:center;">
@@ -15013,7 +15013,7 @@ function renderTacticsRoute() {
             <div style="width:1px;height:32px;background:rgba(255,255,255,0.1);"></div>
             <div style="text-align:right;">
               <span style="font-family:var(--fm);font-size:0.64rem;color:#98a0a4;display:block;">TOTAL FORMATIONS</span>
-              <strong style="font-family:var(--fm);font-size:1.1rem;color:#00e5ff;">55 SYSTEMS</strong>
+              <strong style="font-family:var(--fm);font-size:1.1rem;color:#00e5ff;" id="infoFormationCount">53 SYSTEMS</strong>
             </div>
           </div>
         </div>
@@ -15022,6 +15022,10 @@ function renderTacticsRoute() {
   `;
 
   if (window.lucide) lucide.createIcons();
+  const _formCountEl = document.getElementById('infoFormationCount');
+  if (_formCountEl && typeof FORMATIONS === 'object') {
+    _formCountEl.textContent = `${Object.keys(FORMATIONS).length} SYSTEMS`;
+  }
   initTacticsCanvasEngine();
 }
 
@@ -15168,7 +15172,7 @@ function build22(homeList, awayStyle = 'mid-block') {
 }
 
 /* ================================================================
-   COMPREHENSIVE 55 FORMATIONS LIBRARY (ALL 22 PLAYERS INCLUDED)
+   COMPREHENSIVE FORMATIONS LIBRARY (ALL 22 PLAYERS INCLUDED)
    ================================================================ */
 const FORMATIONS = {
   /* 1. CLASSICAL STANDARDS */
@@ -15242,7 +15246,7 @@ const FORMATIONS = {
     { num: 11, role: 'LST', x: 0.80, y: 0.40, team: 'home' }
   ], 'mid-block'),
 
-  /* 2. PEP GUARDIOLA MASTERCLASSES */
+  /* 2. POSSESSION & INVERSION */
   'pep_3241': build22([
     { num: 1, role: 'GK', x: 0.08, y: 0.50, team: 'home' },
     { num: 2, role: 'RCB', x: 0.24, y: 0.75, team: 'home' },
@@ -15310,7 +15314,7 @@ const FORMATIONS = {
     { num: 14, role: 'DM', x: 0.32, y: 0.38, team: 'home' },
     { num: 22, role: 'RM', x: 0.50, y: 0.82, team: 'home' },
     { num: 10, role: 'CAM', x: 0.52, y: 0.50, team: 'home' },
-    { num: 7, role: 'LM-CR7', x: 0.62, y: 0.22, team: 'home' },
+    { num: 7, role: 'LM', x: 0.62, y: 0.22, team: 'home' },
     { num: 9, role: 'ST', x: 0.74, y: 0.50, team: 'home' }
   ], 'high-press'),
 
@@ -15334,7 +15338,7 @@ const FORMATIONS = {
     { num: 26, role: 'CB', x: 0.19, y: 0.60, team: 'home' },
     { num: 6, role: 'CB', x: 0.19, y: 0.40, team: 'home' },
     { num: 13, role: 'LB', x: 0.22, y: 0.20, team: 'home' },
-    { num: 4, role: 'MAKELELE', x: 0.34, y: 0.50, team: 'home' },
+    { num: 4, role: 'CDM', x: 0.34, y: 0.50, team: 'home' },
     { num: 8, role: 'BOX-BOX', x: 0.50, y: 0.68, team: 'home' },
     { num: 5, role: 'LCM', x: 0.48, y: 0.32, team: 'home' },
     { num: 10, role: 'RW', x: 0.72, y: 0.84, team: 'home' },
@@ -15365,7 +15369,7 @@ const FORMATIONS = {
     { num: 6, role: 'CDM', x: 0.36, y: 0.50, team: 'home' },
     { num: 8, role: 'RCM', x: 0.48, y: 0.72, team: 'home' },
     { num: 7, role: 'LCM', x: 0.48, y: 0.28, team: 'home' },
-    { num: 10, role: 'DECO-10', x: 0.62, y: 0.50, team: 'home' },
+    { num: 10, role: 'CAM', x: 0.62, y: 0.50, team: 'home' },
     { num: 9, role: 'RST', x: 0.78, y: 0.62, team: 'home' },
     { num: 11, role: 'LST', x: 0.78, y: 0.38, team: 'home' }
   ], 'mid-block'),
@@ -15377,12 +15381,12 @@ const FORMATIONS = {
     { num: 13, role: 'CB', x: 0.20, y: 0.62, team: 'home' },
     { num: 3, role: 'CB', x: 0.20, y: 0.38, team: 'home' },
     { num: 18, role: 'LB', x: 0.24, y: 0.16, team: 'home' },
-    { num: 8, role: 'GATTUSO', x: 0.38, y: 0.72, team: 'home' },
-    { num: 21, role: 'PIRLO-REG', x: 0.34, y: 0.50, team: 'home' },
-    { num: 10, role: 'SEEDORF', x: 0.38, y: 0.28, team: 'home' },
-    { num: 22, role: 'KAKA-AM', x: 0.62, y: 0.60, team: 'home' },
+    { num: 8, role: 'CDM', x: 0.38, y: 0.72, team: 'home' },
+    { num: 21, role: 'CDM', x: 0.34, y: 0.50, team: 'home' },
+    { num: 10, role: 'CMF', x: 0.38, y: 0.28, team: 'home' },
+    { num: 22, role: 'CAM', x: 0.62, y: 0.60, team: 'home' },
     { num: 7, role: 'AM', x: 0.62, y: 0.40, team: 'home' },
-    { num: 9, role: 'INZAGHI', x: 0.84, y: 0.50, team: 'home' }
+    { num: 9, role: 'ST', x: 0.84, y: 0.50, team: 'home' }
   ], 'mid-block'),
 
   'ancelotti_433_madrid': build22([
@@ -15391,12 +15395,12 @@ const FORMATIONS = {
     { num: 4, role: 'CB', x: 0.22, y: 0.62, team: 'home' },
     { num: 3, role: 'CB', x: 0.22, y: 0.38, team: 'home' },
     { num: 12, role: 'LB', x: 0.28, y: 0.18, team: 'home' },
-    { num: 19, role: 'MODRIC', x: 0.45, y: 0.70, team: 'home' },
-    { num: 14, role: 'ALONSO', x: 0.38, y: 0.50, team: 'home' },
-    { num: 22, role: 'DIMARIA', x: 0.48, y: 0.30, team: 'home' },
-    { num: 11, role: 'BALE', x: 0.78, y: 0.85, team: 'home' },
-    { num: 9, role: 'BENZEMA', x: 0.80, y: 0.50, team: 'home' },
-    { num: 7, role: 'CR7', x: 0.78, y: 0.15, team: 'home' }
+    { num: 19, role: 'CMF', x: 0.45, y: 0.70, team: 'home' },
+    { num: 14, role: 'CMF', x: 0.38, y: 0.50, team: 'home' },
+    { num: 22, role: 'RW', x: 0.48, y: 0.30, team: 'home' },
+    { num: 11, role: 'RW', x: 0.78, y: 0.85, team: 'home' },
+    { num: 9, role: 'ST', x: 0.80, y: 0.50, team: 'home' },
+    { num: 7, role: 'ST', x: 0.78, y: 0.15, team: 'home' }
   ], 'low-block'),
 
   'ancelotti_442_hybrid': build22([
@@ -15405,27 +15409,27 @@ const FORMATIONS = {
     { num: 22, role: 'RCB', x: 0.22, y: 0.62, team: 'home' },
     { num: 4, role: 'LCB', x: 0.22, y: 0.38, team: 'home' },
     { num: 23, role: 'LB', x: 0.25, y: 0.18, team: 'home' },
-    { num: 15, role: 'VALVERDE', x: 0.46, y: 0.78, team: 'home' },
-    { num: 18, role: 'TCHOUAMENI', x: 0.38, y: 0.50, team: 'home' },
-    { num: 8, role: 'KROOS', x: 0.44, y: 0.32, team: 'home' },
-    { num: 5, role: 'BELLINGHAM', x: 0.66, y: 0.50, team: 'home' },
-    { num: 11, role: 'RODRYGO', x: 0.80, y: 0.64, team: 'home' },
-    { num: 7, role: 'VINI-JR', x: 0.80, y: 0.28, team: 'home' }
+    { num: 15, role: 'CMF', x: 0.46, y: 0.78, team: 'home' },
+    { num: 18, role: 'CDM', x: 0.38, y: 0.50, team: 'home' },
+    { num: 8, role: 'CMF', x: 0.44, y: 0.32, team: 'home' },
+    { num: 5, role: 'CMF', x: 0.66, y: 0.50, team: 'home' },
+    { num: 11, role: 'RW', x: 0.80, y: 0.64, team: 'home' },
+    { num: 7, role: 'LW', x: 0.80, y: 0.28, team: 'home' }
   ], 'mid-block'),
 
   /* 5. JÜRGEN KLOPP HEAVY METAL GEGENPRESSING */
   'klopp_433_gegen': build22([
     { num: 1, role: 'GK', x: 0.08, y: 0.50, team: 'home' },
-    { num: 66, role: 'TAA', x: 0.34, y: 0.88, team: 'home' },
+    { num: 66, role: 'RB', x: 0.34, y: 0.88, team: 'home' },
     { num: 32, role: 'CB', x: 0.24, y: 0.64, team: 'home' },
-    { num: 4, role: 'VVD', x: 0.24, y: 0.36, team: 'home' },
-    { num: 26, role: 'ROBO', x: 0.34, y: 0.12, team: 'home' },
-    { num: 3, role: 'FABINHO', x: 0.42, y: 0.50, team: 'home' },
-    { num: 14, role: 'HENDO', x: 0.56, y: 0.72, team: 'home' },
-    { num: 5, role: 'GINI', x: 0.56, y: 0.28, team: 'home' },
-    { num: 11, role: 'SALAH', x: 0.82, y: 0.85, team: 'home' },
-    { num: 9, role: 'FIRMINO', x: 0.76, y: 0.50, team: 'home' },
-    { num: 10, role: 'MANE', x: 0.82, y: 0.15, team: 'home' }
+    { num: 4, role: 'CB', x: 0.24, y: 0.36, team: 'home' },
+    { num: 26, role: 'ST', x: 0.34, y: 0.12, team: 'home' },
+    { num: 3, role: 'CDM', x: 0.42, y: 0.50, team: 'home' },
+    { num: 14, role: 'CDM', x: 0.56, y: 0.72, team: 'home' },
+    { num: 5, role: 'CMF', x: 0.56, y: 0.28, team: 'home' },
+    { num: 11, role: 'RW', x: 0.82, y: 0.85, team: 'home' },
+    { num: 9, role: 'SS', x: 0.76, y: 0.50, team: 'home' },
+    { num: 10, role: 'LW', x: 0.82, y: 0.15, team: 'home' }
   ], 'high-press'),
 
   'klopp_4231_bvb': build22([
@@ -15434,12 +15438,12 @@ const FORMATIONS = {
     { num: 4, role: 'CB', x: 0.24, y: 0.62, team: 'home' },
     { num: 15, role: 'CB', x: 0.24, y: 0.38, team: 'home' },
     { num: 29, role: 'LB', x: 0.28, y: 0.18, team: 'home' },
-    { num: 6, role: 'BENDER', x: 0.42, y: 0.64, team: 'home' },
-    { num: 8, role: 'GUNDOGAN', x: 0.44, y: 0.36, team: 'home' },
-    { num: 16, role: 'KUBA', x: 0.68, y: 0.84, team: 'home' },
-    { num: 10, role: 'GOTZE', x: 0.66, y: 0.50, team: 'home' },
-    { num: 11, role: 'REUS', x: 0.72, y: 0.18, team: 'home' },
-    { num: 9, role: 'LEWY', x: 0.84, y: 0.50, team: 'home' }
+    { num: 6, role: 'CDM', x: 0.42, y: 0.64, team: 'home' },
+    { num: 8, role: 'CMF', x: 0.44, y: 0.36, team: 'home' },
+    { num: 16, role: 'RM', x: 0.68, y: 0.84, team: 'home' },
+    { num: 10, role: 'CAM', x: 0.66, y: 0.50, team: 'home' },
+    { num: 11, role: 'CAM', x: 0.72, y: 0.18, team: 'home' },
+    { num: 9, role: 'ST', x: 0.84, y: 0.50, team: 'home' }
   ], 'high-press'),
 
   'klopp_424_overload': build22([
@@ -15460,15 +15464,15 @@ const FORMATIONS = {
   'alonso_3421_leverkusen': build22([
     { num: 1, role: 'GK', x: 0.08, y: 0.50, team: 'home' },
     { num: 3, role: 'RCB', x: 0.24, y: 0.72, team: 'home' },
-    { num: 4, role: 'TAH-CB', x: 0.20, y: 0.50, team: 'home' },
+    { num: 4, role: 'CB', x: 0.20, y: 0.50, team: 'home' },
     { num: 12, role: 'LCB', x: 0.24, y: 0.28, team: 'home' },
-    { num: 30, role: 'FRIMPONG', x: 0.58, y: 0.90, team: 'home' },
-    { num: 34, role: 'XHAKA', x: 0.42, y: 0.60, team: 'home' },
-    { num: 25, role: 'PALACIOS', x: 0.42, y: 0.40, team: 'home' },
-    { num: 20, role: 'GRIMALDO', x: 0.54, y: 0.10, team: 'home' },
-    { num: 7, role: 'HOFMANN', x: 0.70, y: 0.66, team: 'home' },
-    { num: 10, role: 'WIRTZ', x: 0.70, y: 0.34, team: 'home' },
-    { num: 22, role: 'BONIFACE', x: 0.86, y: 0.50, team: 'home' }
+    { num: 30, role: 'RWB', x: 0.58, y: 0.90, team: 'home' },
+    { num: 34, role: 'CDM', x: 0.42, y: 0.60, team: 'home' },
+    { num: 25, role: 'CMF', x: 0.42, y: 0.40, team: 'home' },
+    { num: 20, role: 'LWB', x: 0.54, y: 0.10, team: 'home' },
+    { num: 7, role: 'RAM', x: 0.70, y: 0.66, team: 'home' },
+    { num: 10, role: 'CAM', x: 0.70, y: 0.34, team: 'home' },
+    { num: 22, role: 'ST', x: 0.86, y: 0.50, team: 'home' }
   ], 'mid-block'),
 
   'alonso_3412_press': build22([
@@ -15487,16 +15491,16 @@ const FORMATIONS = {
 
   'arteta_3241_box': build22([
     { num: 1, role: 'GK', x: 0.08, y: 0.50, team: 'home' },
-    { num: 4, role: 'WHITE', x: 0.24, y: 0.74, team: 'home' },
-    { num: 2, role: 'SALIBA', x: 0.20, y: 0.50, team: 'home' },
-    { num: 6, role: 'GABRIEL', x: 0.24, y: 0.26, team: 'home' },
-    { num: 5, role: 'PARTEY', x: 0.40, y: 0.60, team: 'home' },
-    { num: 35, role: 'ZINCHENKO', x: 0.42, y: 0.38, team: 'home' },
-    { num: 7, role: 'SAKA', x: 0.76, y: 0.88, team: 'home' },
-    { num: 8, role: 'ODEGAARD', x: 0.66, y: 0.64, team: 'home' },
-    { num: 29, role: 'HAVERTZ', x: 0.68, y: 0.36, team: 'home' },
-    { num: 11, role: 'MARTINELLI', x: 0.76, y: 0.12, team: 'home' },
-    { num: 9, role: 'JESUS', x: 0.86, y: 0.50, team: 'home' }
+    { num: 4, role: 'CB', x: 0.24, y: 0.74, team: 'home' },
+    { num: 2, role: 'CB', x: 0.20, y: 0.50, team: 'home' },
+    { num: 6, role: 'CB', x: 0.24, y: 0.26, team: 'home' },
+    { num: 5, role: 'CDM', x: 0.40, y: 0.60, team: 'home' },
+    { num: 35, role: 'LB', x: 0.42, y: 0.38, team: 'home' },
+    { num: 7, role: 'RW', x: 0.76, y: 0.88, team: 'home' },
+    { num: 8, role: 'CAM', x: 0.66, y: 0.64, team: 'home' },
+    { num: 29, role: 'CAM', x: 0.68, y: 0.36, team: 'home' },
+    { num: 11, role: 'LW', x: 0.76, y: 0.12, team: 'home' },
+    { num: 9, role: 'ST', x: 0.86, y: 0.50, team: 'home' }
   ], 'low-block'),
 
   'arteta_433_high': build22([
@@ -15505,10 +15509,10 @@ const FORMATIONS = {
     { num: 2, role: 'RCB', x: 0.24, y: 0.62, team: 'home' },
     { num: 6, role: 'LCB', x: 0.24, y: 0.38, team: 'home' },
     { num: 3, role: 'LB', x: 0.28, y: 0.16, team: 'home' },
-    { num: 41, role: 'RICE-DM', x: 0.42, y: 0.50, team: 'home' },
-    { num: 8, role: 'ODEGAARD', x: 0.60, y: 0.68, team: 'home' },
+    { num: 41, role: 'CDM', x: 0.42, y: 0.50, team: 'home' },
+    { num: 8, role: 'CAM', x: 0.60, y: 0.68, team: 'home' },
     { num: 29, role: 'LCM', x: 0.58, y: 0.32, team: 'home' },
-    { num: 7, role: 'SAKA', x: 0.80, y: 0.86, team: 'home' },
+    { num: 7, role: 'RW', x: 0.80, y: 0.86, team: 'home' },
     { num: 9, role: 'ST', x: 0.85, y: 0.50, team: 'home' },
     { num: 11, role: 'LW', x: 0.80, y: 0.14, team: 'home' }
   ], 'mid-block'),
@@ -15530,30 +15534,30 @@ const FORMATIONS = {
   /* 7. TOTAL FOOTBALL & ITALIAN ROOTS */
   'sacchi_442_press': build22([
     { num: 1, role: 'GK', x: 0.14, y: 0.50, team: 'home' },
-    { num: 2, role: 'TASSO', x: 0.36, y: 0.80, team: 'home' },
-    { num: 6, role: 'BARESI', x: 0.34, y: 0.58, team: 'home' },
-    { num: 5, role: 'COSTACURTA', x: 0.34, y: 0.42, team: 'home' },
-    { num: 3, role: 'MALDINI', x: 0.36, y: 0.20, team: 'home' },
-    { num: 7, role: 'DONADONI', x: 0.52, y: 0.82, team: 'home' },
-    { num: 8, role: 'RIJKAARD', x: 0.50, y: 0.58, team: 'home' },
-    { num: 4, role: 'ANCELOTTI', x: 0.50, y: 0.42, team: 'home' },
-    { num: 11, role: 'EVANI', x: 0.52, y: 0.18, team: 'home' },
-    { num: 9, role: 'VAN-BASTEN', x: 0.70, y: 0.58, team: 'home' },
-    { num: 10, role: 'GULLIT', x: 0.68, y: 0.42, team: 'home' }
+    { num: 2, role: 'CMF', x: 0.36, y: 0.80, team: 'home' },
+    { num: 6, role: 'CB', x: 0.34, y: 0.58, team: 'home' },
+    { num: 5, role: 'CB', x: 0.34, y: 0.42, team: 'home' },
+    { num: 3, role: 'CB', x: 0.36, y: 0.20, team: 'home' },
+    { num: 7, role: 'RM', x: 0.52, y: 0.82, team: 'home' },
+    { num: 8, role: 'CDM', x: 0.50, y: 0.58, team: 'home' },
+    { num: 4, role: 'CMF', x: 0.50, y: 0.42, team: 'home' },
+    { num: 11, role: 'CMF', x: 0.52, y: 0.18, team: 'home' },
+    { num: 9, role: 'ST', x: 0.70, y: 0.58, team: 'home' },
+    { num: 10, role: 'CAM', x: 0.68, y: 0.42, team: 'home' }
   ], 'low-block'),
 
   'cruyff_343_diamond': build22([
     { num: 1, role: 'GK', x: 0.08, y: 0.50, team: 'home' },
     { num: 2, role: 'RCB', x: 0.22, y: 0.74, team: 'home' },
-    { num: 4, role: 'KOEMAN-CB', x: 0.18, y: 0.50, team: 'home' },
+    { num: 4, role: 'CB', x: 0.18, y: 0.50, team: 'home' },
     { num: 3, role: 'LCB', x: 0.22, y: 0.26, team: 'home' },
-    { num: 6, role: 'GUARDIOLA', x: 0.36, y: 0.50, team: 'home' },
+    { num: 6, role: 'CB', x: 0.36, y: 0.50, team: 'home' },
     { num: 8, role: 'RM', x: 0.52, y: 0.80, team: 'home' },
     { num: 5, role: 'LM', x: 0.52, y: 0.20, team: 'home' },
-    { num: 10, role: 'BAQUERO-10', x: 0.62, y: 0.50, team: 'home' },
+    { num: 10, role: 'CAM', x: 0.62, y: 0.50, team: 'home' },
     { num: 7, role: 'RW', x: 0.80, y: 0.88, team: 'home' },
-    { num: 9, role: 'ST-ROMARIO', x: 0.85, y: 0.50, team: 'home' },
-    { num: 11, role: 'STOICHKOV', x: 0.80, y: 0.12, team: 'home' }
+    { num: 9, role: 'ST', x: 0.85, y: 0.50, team: 'home' },
+    { num: 11, role: 'LW', x: 0.80, y: 0.12, team: 'home' }
   ], 'mid-block'),
 
   'cruyff_433_total': build22([
@@ -15566,7 +15570,7 @@ const FORMATIONS = {
     { num: 8, role: 'RCM', x: 0.56, y: 0.70, team: 'home' },
     { num: 10, role: 'LCM', x: 0.56, y: 0.30, team: 'home' },
     { num: 7, role: 'RW', x: 0.82, y: 0.88, team: 'home' },
-    { num: 9, role: 'CRUYFF-ST', x: 0.80, y: 0.50, team: 'home' },
+    { num: 9, role: 'ST', x: 0.80, y: 0.50, team: 'home' },
     { num: 11, role: 'LW', x: 0.82, y: 0.12, team: 'home' }
   ], 'mid-block'),
 
@@ -15577,26 +15581,26 @@ const FORMATIONS = {
     { num: 2, role: 'CB', x: 0.28, y: 0.40, team: 'home' },
     { num: 12, role: 'LB', x: 0.32, y: 0.18, team: 'home' },
     { num: 6, role: 'DM', x: 0.46, y: 0.50, team: 'home' },
-    { num: 13, role: 'CM-NEESKENS', x: 0.60, y: 0.68, team: 'home' },
+    { num: 13, role: 'CMF', x: 0.60, y: 0.68, team: 'home' },
     { num: 3, role: 'CM', x: 0.58, y: 0.32, team: 'home' },
     { num: 16, role: 'RW', x: 0.82, y: 0.84, team: 'home' },
-    { num: 14, role: 'CRUYFF-14', x: 0.78, y: 0.50, team: 'home' },
+    { num: 14, role: 'CAM', x: 0.78, y: 0.50, team: 'home' },
     { num: 15, role: 'LW', x: 0.82, y: 0.16, team: 'home' }
   ], 'low-block'),
 
   /* 8. CHOLISMO & CONTEAN PRAGMATISM */
   'simeone_442_cholo': build22([
-    { num: 1, role: 'OBLAK', x: 0.07, y: 0.50, team: 'home' },
-    { num: 2, role: 'TRIPPIER', x: 0.18, y: 0.80, team: 'home' },
-    { num: 15, role: 'SAVIC', x: 0.16, y: 0.60, team: 'home' },
-    { num: 2, role: 'GODIN', x: 0.16, y: 0.40, team: 'home' },
-    { num: 3, role: 'FILIPE', x: 0.18, y: 0.20, team: 'home' },
-    { num: 6, role: 'KOKE', x: 0.30, y: 0.80, team: 'home' },
-    { num: 5, role: 'THOMAS', x: 0.28, y: 0.60, team: 'home' },
-    { num: 14, role: 'GABI', x: 0.28, y: 0.40, team: 'home' },
-    { num: 8, role: 'SAUL', x: 0.30, y: 0.20, team: 'home' },
-    { num: 7, role: 'GRIEZMANN', x: 0.48, y: 0.60, team: 'home' },
-    { num: 9, role: 'COSTA', x: 0.52, y: 0.40, team: 'home' }
+    { num: 1, role: 'GK', x: 0.07, y: 0.50, team: 'home' },
+    { num: 2, role: 'RB', x: 0.18, y: 0.80, team: 'home' },
+    { num: 15, role: 'CB', x: 0.16, y: 0.60, team: 'home' },
+    { num: 2, role: 'CB', x: 0.16, y: 0.40, team: 'home' },
+    { num: 3, role: 'LB', x: 0.18, y: 0.20, team: 'home' },
+    { num: 6, role: 'CMF', x: 0.30, y: 0.80, team: 'home' },
+    { num: 5, role: 'CDM', x: 0.28, y: 0.60, team: 'home' },
+    { num: 14, role: 'CDM', x: 0.28, y: 0.40, team: 'home' },
+    { num: 8, role: 'CMF', x: 0.30, y: 0.20, team: 'home' },
+    { num: 7, role: 'SS', x: 0.48, y: 0.60, team: 'home' },
+    { num: 9, role: 'ST', x: 0.52, y: 0.40, team: 'home' }
   ], 'high-press'),
 
   'simeone_532_cage': build22([
@@ -15614,89 +15618,89 @@ const FORMATIONS = {
   ], 'high-press'),
 
   'conte_352_scudetto': build22([
-    { num: 1, role: 'HANDANOVIC', x: 0.08, y: 0.50, team: 'home' },
-    { num: 37, role: 'SKRINIAR', x: 0.22, y: 0.74, team: 'home' },
-    { num: 6, role: 'DE-VRIJ', x: 0.18, y: 0.50, team: 'home' },
-    { num: 95, role: 'BASTONI', x: 0.22, y: 0.26, team: 'home' },
-    { num: 2, role: 'HAKIMI-RWB', x: 0.55, y: 0.90, team: 'home' },
-    { num: 23, role: 'BARELLA', x: 0.44, y: 0.64, team: 'home' },
-    { num: 77, role: 'BROZOVIC', x: 0.36, y: 0.50, team: 'home' },
-    { num: 24, role: 'ERIKSEN', x: 0.44, y: 0.36, team: 'home' },
-    { num: 14, role: 'PERISIC-LWB', x: 0.55, y: 0.10, team: 'home' },
-    { num: 9, role: 'LUKAKU', x: 0.80, y: 0.62, team: 'home' },
-    { num: 10, role: 'LAUTARO', x: 0.78, y: 0.38, team: 'home' }
+    { num: 1, role: 'GK', x: 0.08, y: 0.50, team: 'home' },
+    { num: 37, role: 'CB', x: 0.22, y: 0.74, team: 'home' },
+    { num: 6, role: 'CB', x: 0.18, y: 0.50, team: 'home' },
+    { num: 95, role: 'CB', x: 0.22, y: 0.26, team: 'home' },
+    { num: 2, role: 'RWB', x: 0.55, y: 0.90, team: 'home' },
+    { num: 23, role: 'CMF', x: 0.44, y: 0.64, team: 'home' },
+    { num: 77, role: 'CDM', x: 0.36, y: 0.50, team: 'home' },
+    { num: 24, role: 'CAM', x: 0.44, y: 0.36, team: 'home' },
+    { num: 14, role: 'LWB', x: 0.55, y: 0.10, team: 'home' },
+    { num: 9, role: 'ST', x: 0.80, y: 0.62, team: 'home' },
+    { num: 10, role: 'ST', x: 0.78, y: 0.38, team: 'home' }
   ], 'mid-block'),
 
   'conte_343_chelsea': build22([
-    { num: 1, role: 'COURTOIS', x: 0.08, y: 0.50, team: 'home' },
-    { num: 28, role: 'AZPI', x: 0.22, y: 0.72, team: 'home' },
-    { num: 30, role: 'LUIZ', x: 0.18, y: 0.50, team: 'home' },
-    { num: 24, role: 'CAHILL', x: 0.22, y: 0.28, team: 'home' },
-    { num: 15, role: 'MOSES', x: 0.52, y: 0.88, team: 'home' },
-    { num: 7, role: 'KANTE', x: 0.42, y: 0.60, team: 'home' },
-    { num: 21, role: 'MATIC', x: 0.42, y: 0.40, team: 'home' },
-    { num: 3, role: 'ALONSO-LWB', x: 0.52, y: 0.12, team: 'home' },
-    { num: 11, role: 'PEDRO', x: 0.76, y: 0.78, team: 'home' },
-    { num: 19, role: 'COSTA', x: 0.84, y: 0.50, team: 'home' },
-    { num: 10, role: 'HAZARD', x: 0.76, y: 0.22, team: 'home' }
+    { num: 1, role: 'GK', x: 0.08, y: 0.50, team: 'home' },
+    { num: 28, role: 'RB', x: 0.22, y: 0.72, team: 'home' },
+    { num: 30, role: 'CB', x: 0.18, y: 0.50, team: 'home' },
+    { num: 24, role: 'CB', x: 0.22, y: 0.28, team: 'home' },
+    { num: 15, role: 'RWB', x: 0.52, y: 0.88, team: 'home' },
+    { num: 7, role: 'CDM', x: 0.42, y: 0.60, team: 'home' },
+    { num: 21, role: 'CDM', x: 0.42, y: 0.40, team: 'home' },
+    { num: 3, role: 'LWB', x: 0.52, y: 0.12, team: 'home' },
+    { num: 11, role: 'RW', x: 0.76, y: 0.78, team: 'home' },
+    { num: 19, role: 'ST', x: 0.84, y: 0.50, team: 'home' },
+    { num: 10, role: 'LW', x: 0.76, y: 0.22, team: 'home' }
   ], 'mid-block'),
 
   /* 9. SIR ALEX FERGUSON & ARSÈNE WENGER */
   'ferguson_442_treble': build22([
-    { num: 1, role: 'SCHMEICHEL', x: 0.08, y: 0.50, team: 'home' },
-    { num: 2, role: 'G.NEVILLE', x: 0.26, y: 0.84, team: 'home' },
-    { num: 6, role: 'STAM', x: 0.22, y: 0.62, team: 'home' },
-    { num: 5, role: 'JOHNSON', x: 0.22, y: 0.38, team: 'home' },
-    { num: 3, role: 'IRWIN', x: 0.26, y: 0.16, team: 'home' },
-    { num: 7, role: 'BECKHAM-CROSS', x: 0.54, y: 0.88, team: 'home' },
-    { num: 16, role: 'KEANE', x: 0.45, y: 0.62, team: 'home' },
-    { num: 18, role: 'SCHOLES', x: 0.48, y: 0.38, team: 'home' },
-    { num: 11, role: 'GIGGS', x: 0.58, y: 0.12, team: 'home' },
-    { num: 19, role: 'YORKE', x: 0.82, y: 0.60, team: 'home' },
-    { num: 9, role: 'COLE', x: 0.82, y: 0.40, team: 'home' }
+    { num: 1, role: 'GK', x: 0.08, y: 0.50, team: 'home' },
+    { num: 2, role: 'RB', x: 0.26, y: 0.84, team: 'home' },
+    { num: 6, role: 'CB', x: 0.22, y: 0.62, team: 'home' },
+    { num: 5, role: 'RW', x: 0.22, y: 0.38, team: 'home' },
+    { num: 3, role: 'LB', x: 0.26, y: 0.16, team: 'home' },
+    { num: 7, role: 'RM', x: 0.54, y: 0.88, team: 'home' },
+    { num: 16, role: 'CMF', x: 0.45, y: 0.62, team: 'home' },
+    { num: 18, role: 'CMF', x: 0.48, y: 0.38, team: 'home' },
+    { num: 11, role: 'LM', x: 0.58, y: 0.12, team: 'home' },
+    { num: 19, role: 'ST', x: 0.82, y: 0.60, team: 'home' },
+    { num: 9, role: 'LB', x: 0.82, y: 0.40, team: 'home' }
   ], 'high-press'),
 
   'ferguson_433_rooney': build22([
-    { num: 1, role: 'VDS', x: 0.08, y: 0.50, team: 'home' },
-    { num: 6, role: 'BROWN', x: 0.26, y: 0.82, team: 'home' },
-    { num: 5, role: 'FERDINAND', x: 0.22, y: 0.62, team: 'home' },
-    { num: 15, role: 'VIDIC', x: 0.22, y: 0.38, team: 'home' },
-    { num: 3, role: 'EVRA', x: 0.28, y: 0.16, team: 'home' },
-    { num: 4, role: 'HARGREAVES', x: 0.40, y: 0.66, team: 'home' },
-    { num: 16, role: 'CARRICK', x: 0.38, y: 0.50, team: 'home' },
-    { num: 18, role: 'SCHOLES', x: 0.46, y: 0.34, team: 'home' },
-    { num: 7, role: 'CR7', x: 0.78, y: 0.85, team: 'home' },
-    { num: 10, role: 'ROONEY', x: 0.78, y: 0.50, team: 'home' },
-    { num: 32, role: 'TEVEZ', x: 0.78, y: 0.15, team: 'home' }
+    { num: 1, role: 'GK', x: 0.08, y: 0.50, team: 'home' },
+    { num: 6, role: 'CB', x: 0.26, y: 0.82, team: 'home' },
+    { num: 5, role: 'CB', x: 0.22, y: 0.62, team: 'home' },
+    { num: 15, role: 'CB', x: 0.22, y: 0.38, team: 'home' },
+    { num: 3, role: 'LB', x: 0.28, y: 0.16, team: 'home' },
+    { num: 4, role: 'CMF', x: 0.40, y: 0.66, team: 'home' },
+    { num: 16, role: 'CDM', x: 0.38, y: 0.50, team: 'home' },
+    { num: 18, role: 'CMF', x: 0.46, y: 0.34, team: 'home' },
+    { num: 7, role: 'ST', x: 0.78, y: 0.85, team: 'home' },
+    { num: 10, role: 'ST', x: 0.78, y: 0.50, team: 'home' },
+    { num: 32, role: 'ST', x: 0.78, y: 0.15, team: 'home' }
   ], 'mid-block'),
 
   'wenger_442_invincibles': build22([
-    { num: 1, role: 'LEHMANN', x: 0.08, y: 0.50, team: 'home' },
-    { num: 12, role: 'LAUREN', x: 0.26, y: 0.82, team: 'home' },
-    { num: 28, role: 'TOURE', x: 0.22, y: 0.62, team: 'home' },
-    { num: 23, role: 'CAMPBELL', x: 0.22, y: 0.38, team: 'home' },
-    { num: 3, role: 'A.COLE', x: 0.30, y: 0.16, team: 'home' },
-    { num: 8, role: 'LJUNGBERG', x: 0.58, y: 0.82, team: 'home' },
-    { num: 4, role: 'VIEIRA', x: 0.44, y: 0.62, team: 'home' },
-    { num: 19, role: 'GILBERTO', x: 0.40, y: 0.38, team: 'home' },
-    { num: 7, role: 'PIRES', x: 0.60, y: 0.18, team: 'home' },
-    { num: 10, role: 'BERGKAMP', x: 0.72, y: 0.60, team: 'home' },
-    { num: 14, role: 'HENRY', x: 0.84, y: 0.38, team: 'home' }
+    { num: 1, role: 'GK', x: 0.08, y: 0.50, team: 'home' },
+    { num: 12, role: 'RB', x: 0.26, y: 0.82, team: 'home' },
+    { num: 28, role: 'CDM', x: 0.22, y: 0.62, team: 'home' },
+    { num: 23, role: 'CB', x: 0.22, y: 0.38, team: 'home' },
+    { num: 3, role: 'LB', x: 0.30, y: 0.16, team: 'home' },
+    { num: 8, role: 'LM', x: 0.58, y: 0.82, team: 'home' },
+    { num: 4, role: 'CDM', x: 0.44, y: 0.62, team: 'home' },
+    { num: 19, role: 'CDM', x: 0.40, y: 0.38, team: 'home' },
+    { num: 7, role: 'LM', x: 0.60, y: 0.18, team: 'home' },
+    { num: 10, role: 'SS', x: 0.72, y: 0.60, team: 'home' },
+    { num: 14, role: 'LW', x: 0.84, y: 0.38, team: 'home' }
   ], 'low-block'),
 
   /* 10. CHAMPIONS LEAGUE STRATEGISTS */
   'zidane_4312_diamond': build22([
-    { num: 1, role: 'NAVAS', x: 0.08, y: 0.50, team: 'home' },
-    { num: 2, role: 'CARVAJAL', x: 0.28, y: 0.84, team: 'home' },
-    { num: 5, role: 'VARANE', x: 0.22, y: 0.62, team: 'home' },
-    { num: 4, role: 'RAMOS', x: 0.22, y: 0.38, team: 'home' },
-    { num: 12, role: 'MARCELO', x: 0.32, y: 0.16, team: 'home' },
-    { num: 14, role: 'CASEMIRO', x: 0.38, y: 0.50, team: 'home' },
-    { num: 19, role: 'MODRIC', x: 0.52, y: 0.70, team: 'home' },
-    { num: 8, role: 'KROOS', x: 0.50, y: 0.30, team: 'home' },
-    { num: 22, role: 'ISCO-FREE', x: 0.66, y: 0.50, team: 'home' },
-    { num: 9, role: 'BENZEMA', x: 0.82, y: 0.62, team: 'home' },
-    { num: 7, role: 'CR7', x: 0.84, y: 0.38, team: 'home' }
+    { num: 1, role: 'RB', x: 0.08, y: 0.50, team: 'home' },
+    { num: 2, role: 'RB', x: 0.28, y: 0.84, team: 'home' },
+    { num: 5, role: 'CB', x: 0.22, y: 0.62, team: 'home' },
+    { num: 4, role: 'CB', x: 0.22, y: 0.38, team: 'home' },
+    { num: 12, role: 'LB', x: 0.32, y: 0.16, team: 'home' },
+    { num: 14, role: 'CDM', x: 0.38, y: 0.50, team: 'home' },
+    { num: 19, role: 'CMF', x: 0.52, y: 0.70, team: 'home' },
+    { num: 8, role: 'CMF', x: 0.50, y: 0.30, team: 'home' },
+    { num: 22, role: 'CAM', x: 0.66, y: 0.50, team: 'home' },
+    { num: 9, role: 'ST', x: 0.82, y: 0.62, team: 'home' },
+    { num: 7, role: 'ST', x: 0.84, y: 0.38, team: 'home' }
   ], 'mid-block'),
 
   'zidane_433_cross': build22([
@@ -15708,51 +15712,51 @@ const FORMATIONS = {
     { num: 6, role: 'CDM', x: 0.38, y: 0.50, team: 'home' },
     { num: 8, role: 'RCM', x: 0.54, y: 0.68, team: 'home' },
     { num: 10, role: 'LCM', x: 0.54, y: 0.32, team: 'home' },
-    { num: 11, role: 'BALE-RW', x: 0.80, y: 0.86, team: 'home' },
+    { num: 11, role: 'RW', x: 0.80, y: 0.86, team: 'home' },
     { num: 9, role: 'ST', x: 0.84, y: 0.50, team: 'home' },
-    { num: 7, role: 'CR7-LW', x: 0.80, y: 0.14, team: 'home' }
+    { num: 7, role: 'LW', x: 0.80, y: 0.14, team: 'home' }
   ], 'low-block'),
 
   'tuchel_3421_champions': build22([
-    { num: 16, role: 'MENDY', x: 0.08, y: 0.50, team: 'home' },
-    { num: 28, role: 'AZPI', x: 0.24, y: 0.74, team: 'home' },
-    { num: 6, role: 'THIAGO-SILVA', x: 0.18, y: 0.50, team: 'home' },
-    { num: 2, role: 'RUDIGER', x: 0.24, y: 0.26, team: 'home' },
-    { num: 24, role: 'JAMES-RWB', x: 0.52, y: 0.88, team: 'home' },
-    { num: 7, role: 'KANTE', x: 0.44, y: 0.62, team: 'home' },
-    { num: 5, role: 'JORGINHO', x: 0.40, y: 0.38, team: 'home' },
-    { num: 21, role: 'CHILWELL', x: 0.52, y: 0.12, team: 'home' },
-    { num: 19, role: 'MOUNT', x: 0.70, y: 0.68, team: 'home' },
-    { num: 29, role: 'HAVERTZ', x: 0.76, y: 0.50, team: 'home' },
-    { num: 11, role: 'WERNER', x: 0.82, y: 0.32, team: 'home' }
+    { num: 16, role: 'LB', x: 0.08, y: 0.50, team: 'home' },
+    { num: 28, role: 'RB', x: 0.24, y: 0.74, team: 'home' },
+    { num: 6, role: 'CB', x: 0.18, y: 0.50, team: 'home' },
+    { num: 2, role: 'CB', x: 0.24, y: 0.26, team: 'home' },
+    { num: 24, role: 'RWB', x: 0.52, y: 0.88, team: 'home' },
+    { num: 7, role: 'CDM', x: 0.44, y: 0.62, team: 'home' },
+    { num: 5, role: 'CDM', x: 0.40, y: 0.38, team: 'home' },
+    { num: 21, role: 'LB', x: 0.52, y: 0.12, team: 'home' },
+    { num: 19, role: 'CAM', x: 0.70, y: 0.68, team: 'home' },
+    { num: 29, role: 'CAM', x: 0.76, y: 0.50, team: 'home' },
+    { num: 11, role: 'ST', x: 0.82, y: 0.32, team: 'home' }
   ], 'low-block'),
 
   'flick_4231_sextuple': build22([
-    { num: 1, role: 'NEUER-SWEEPER', x: 0.14, y: 0.50, team: 'home' },
-    { num: 5, role: 'PAVARD', x: 0.36, y: 0.84, team: 'home' },
-    { num: 17, role: 'BOATENG', x: 0.32, y: 0.62, team: 'home' },
-    { num: 27, role: 'ALABA', x: 0.32, y: 0.38, team: 'home' },
-    { num: 19, role: 'DAVIES', x: 0.40, y: 0.12, team: 'home' },
-    { num: 6, role: 'KIMMICH', x: 0.50, y: 0.62, team: 'home' },
-    { num: 18, role: 'GORETZKA', x: 0.50, y: 0.38, team: 'home' },
-    { num: 22, role: 'GNABRY', x: 0.78, y: 0.85, team: 'home' },
-    { num: 25, role: 'MULLER-RAUM', x: 0.72, y: 0.50, team: 'home' },
-    { num: 29, role: 'COMAN', x: 0.78, y: 0.15, team: 'home' },
-    { num: 9, role: 'LEWY', x: 0.86, y: 0.50, team: 'home' }
+    { num: 1, role: 'GK', x: 0.14, y: 0.50, team: 'home' },
+    { num: 5, role: 'RB', x: 0.36, y: 0.84, team: 'home' },
+    { num: 17, role: 'CB', x: 0.32, y: 0.62, team: 'home' },
+    { num: 27, role: 'LB', x: 0.32, y: 0.38, team: 'home' },
+    { num: 19, role: 'LB', x: 0.40, y: 0.12, team: 'home' },
+    { num: 6, role: 'CDM', x: 0.50, y: 0.62, team: 'home' },
+    { num: 18, role: 'CMF', x: 0.50, y: 0.38, team: 'home' },
+    { num: 22, role: 'RW', x: 0.78, y: 0.85, team: 'home' },
+    { num: 25, role: 'SS', x: 0.72, y: 0.50, team: 'home' },
+    { num: 29, role: 'LW', x: 0.78, y: 0.15, team: 'home' },
+    { num: 9, role: 'ST', x: 0.86, y: 0.50, team: 'home' }
   ], 'low-block'),
 
   'flick_4231_barca': build22([
     { num: 1, role: 'GK', x: 0.14, y: 0.50, team: 'home' },
-    { num: 23, role: 'KOUNDE', x: 0.36, y: 0.84, team: 'home' },
-    { num: 2, role: 'CUBARSI', x: 0.32, y: 0.62, team: 'home' },
-    { num: 5, role: 'INIGO', x: 0.32, y: 0.38, team: 'home' },
-    { num: 3, role: 'BALDE', x: 0.40, y: 0.14, team: 'home' },
-    { num: 17, role: 'CASADO', x: 0.50, y: 0.62, team: 'home' },
-    { num: 8, role: 'PEDRI', x: 0.52, y: 0.38, team: 'home' },
-    { num: 19, role: 'LAMINE-YAMAL', x: 0.80, y: 0.88, team: 'home' },
-    { num: 20, role: 'OLMO', x: 0.72, y: 0.50, team: 'home' },
-    { num: 11, role: 'RAPHINHA', x: 0.78, y: 0.18, team: 'home' },
-    { num: 9, role: 'LEWANDOWSKI', x: 0.86, y: 0.50, team: 'home' }
+    { num: 23, role: 'CB', x: 0.36, y: 0.84, team: 'home' },
+    { num: 2, role: 'CB', x: 0.32, y: 0.62, team: 'home' },
+    { num: 5, role: 'CB', x: 0.32, y: 0.38, team: 'home' },
+    { num: 3, role: 'LB', x: 0.40, y: 0.14, team: 'home' },
+    { num: 17, role: 'CMF', x: 0.50, y: 0.62, team: 'home' },
+    { num: 8, role: 'CMF', x: 0.52, y: 0.38, team: 'home' },
+    { num: 19, role: 'RW', x: 0.80, y: 0.88, team: 'home' },
+    { num: 20, role: 'CAM', x: 0.72, y: 0.50, team: 'home' },
+    { num: 11, role: 'RW', x: 0.78, y: 0.18, team: 'home' },
+    { num: 9, role: 'ST', x: 0.86, y: 0.50, team: 'home' }
   ], 'low-block'),
 
   /* 11. INNOVATORS & VERTICALITY */
@@ -15813,17 +15817,17 @@ const FORMATIONS = {
   ], 'high-press'),
 
   'vangaal_343_ajax': build22([
-    { num: 1, role: 'VAN-DER-SAR', x: 0.08, y: 0.50, team: 'home' },
-    { num: 2, role: 'REIZIGER', x: 0.24, y: 0.74, team: 'home' },
-    { num: 3, role: 'BLIND', x: 0.20, y: 0.50, team: 'home' },
-    { num: 5, role: 'F.DE-BOER', x: 0.24, y: 0.26, team: 'home' },
-    { num: 4, role: 'RIJKAARD-6', x: 0.36, y: 0.50, team: 'home' },
-    { num: 6, role: 'SEEDORF', x: 0.50, y: 0.72, team: 'home' },
-    { num: 8, role: 'DAVIDS', x: 0.50, y: 0.28, team: 'home' },
-    { num: 10, role: 'LITMANEN', x: 0.66, y: 0.50, team: 'home' },
-    { num: 7, role: 'FINIDI', x: 0.80, y: 0.88, team: 'home' },
-    { num: 9, role: 'KLUIVERT', x: 0.85, y: 0.50, team: 'home' },
-    { num: 11, role: 'OVERMARS', x: 0.80, y: 0.12, team: 'home' }
+    { num: 1, role: 'GK', x: 0.08, y: 0.50, team: 'home' },
+    { num: 2, role: 'RB', x: 0.24, y: 0.74, team: 'home' },
+    { num: 3, role: 'CB', x: 0.20, y: 0.50, team: 'home' },
+    { num: 5, role: 'CB', x: 0.24, y: 0.26, team: 'home' },
+    { num: 4, role: 'CDM', x: 0.36, y: 0.50, team: 'home' },
+    { num: 6, role: 'CMF', x: 0.50, y: 0.72, team: 'home' },
+    { num: 8, role: 'CMF', x: 0.50, y: 0.28, team: 'home' },
+    { num: 10, role: 'CAM', x: 0.66, y: 0.50, team: 'home' },
+    { num: 7, role: 'RW', x: 0.80, y: 0.88, team: 'home' },
+    { num: 9, role: 'ST', x: 0.85, y: 0.50, team: 'home' },
+    { num: 11, role: 'LW', x: 0.80, y: 0.12, team: 'home' }
   ], 'mid-block'),
 
   'vangaal_532_counter': build22([
@@ -15835,94 +15839,94 @@ const FORMATIONS = {
     { num: 5, role: 'LWB', x: 0.22, y: 0.12, team: 'home' },
     { num: 6, role: 'RCM', x: 0.38, y: 0.64, team: 'home' },
     { num: 8, role: 'CDM', x: 0.34, y: 0.50, team: 'home' },
-    { num: 10, role: 'SNEIJDER', x: 0.54, y: 0.40, team: 'home' },
-    { num: 11, role: 'ROBBEN', x: 0.72, y: 0.68, team: 'home' },
-    { num: 9, role: 'RVP', x: 0.74, y: 0.44, team: 'home' }
+    { num: 10, role: 'CAM', x: 0.54, y: 0.40, team: 'home' },
+    { num: 11, role: 'RW', x: 0.72, y: 0.68, team: 'home' },
+    { num: 9, role: 'ST', x: 0.74, y: 0.44, team: 'home' }
   ], 'high-press'),
 
   /* 12. TACTICAL GENERALS */
   'emery_442_compact': build22([
-    { num: 1, role: 'MARTINEZ', x: 0.08, y: 0.50, team: 'home' },
+    { num: 1, role: 'ST', x: 0.08, y: 0.50, team: 'home' },
     { num: 2, role: 'RB', x: 0.28, y: 0.80, team: 'home' },
-    { num: 4, role: 'RCB-LINE', x: 0.32, y: 0.58, team: 'home' },
-    { num: 14, role: 'LCB-LINE', x: 0.32, y: 0.42, team: 'home' },
+    { num: 4, role: 'RCB', x: 0.32, y: 0.58, team: 'home' },
+    { num: 14, role: 'LCB', x: 0.32, y: 0.42, team: 'home' },
     { num: 12, role: 'LB', x: 0.28, y: 0.20, team: 'home' },
     { num: 7, role: 'RM', x: 0.48, y: 0.80, team: 'home' },
     { num: 6, role: 'CM', x: 0.48, y: 0.58, team: 'home' },
     { num: 8, role: 'CM', x: 0.48, y: 0.42, team: 'home' },
     { num: 10, role: 'LM', x: 0.48, y: 0.20, team: 'home' },
-    { num: 11, role: 'WATKINS', x: 0.76, y: 0.58, team: 'home' },
+    { num: 11, role: 'ST', x: 0.76, y: 0.58, team: 'home' },
     { num: 9, role: 'CF', x: 0.72, y: 0.42, team: 'home' }
   ], 'mid-block'),
 
   'gasperini_3412_man': build22([
     { num: 1, role: 'GK', x: 0.08, y: 0.50, team: 'home' },
-    { num: 2, role: 'RCB-OVERLAP', x: 0.38, y: 0.72, team: 'home' },
+    { num: 2, role: 'RCB', x: 0.38, y: 0.72, team: 'home' },
     { num: 4, role: 'CB', x: 0.28, y: 0.50, team: 'home' },
-    { num: 5, role: 'LCB-OVERLAP', x: 0.38, y: 0.28, team: 'home' },
+    { num: 5, role: 'LCB', x: 0.38, y: 0.28, team: 'home' },
     { num: 7, role: 'RWB', x: 0.62, y: 0.90, team: 'home' },
-    { num: 15, role: 'DE-ROON', x: 0.48, y: 0.60, team: 'home' },
-    { num: 11, role: 'FREULER', x: 0.48, y: 0.40, team: 'home' },
-    { num: 8, role: 'GOSENS', x: 0.62, y: 0.10, team: 'home' },
-    { num: 10, role: 'PAPU-GOMEZ', x: 0.70, y: 0.50, team: 'home' },
-    { num: 72, role: 'ILICIC', x: 0.82, y: 0.64, team: 'home' },
-    { num: 91, role: 'ZAPATA', x: 0.85, y: 0.40, team: 'home' }
+    { num: 15, role: 'CDM', x: 0.48, y: 0.60, team: 'home' },
+    { num: 11, role: 'CMF', x: 0.48, y: 0.40, team: 'home' },
+    { num: 8, role: 'LWB', x: 0.62, y: 0.10, team: 'home' },
+    { num: 10, role: 'CAM', x: 0.70, y: 0.50, team: 'home' },
+    { num: 72, role: 'CAM', x: 0.82, y: 0.64, team: 'home' },
+    { num: 91, role: 'ST', x: 0.85, y: 0.40, team: 'home' }
   ], 'high-press'),
 
   'amorim_3421_sporting': build22([
     { num: 1, role: 'GK', x: 0.08, y: 0.50, team: 'home' },
-    { num: 72, role: 'QUERESMA', x: 0.24, y: 0.72, team: 'home' },
-    { num: 4, role: 'COATES', x: 0.20, y: 0.50, team: 'home' },
-    { num: 25, role: 'INACIO', x: 0.24, y: 0.28, team: 'home' },
-    { num: 21, role: 'CATA-RWB', x: 0.52, y: 0.88, team: 'home' },
-    { num: 42, role: 'HJULMAND', x: 0.42, y: 0.60, team: 'home' },
-    { num: 23, role: 'BRAGANCA', x: 0.42, y: 0.40, team: 'home' },
-    { num: 20, role: 'SANTOS-LWB', x: 0.52, y: 0.12, team: 'home' },
-    { num: 17, role: 'TRINCAO', x: 0.72, y: 0.68, team: 'home' },
-    { num: 8, role: 'POTE', x: 0.72, y: 0.32, team: 'home' },
-    { num: 9, role: 'GYOKERES', x: 0.86, y: 0.50, team: 'home' }
+    { num: 72, role: 'RW', x: 0.24, y: 0.72, team: 'home' },
+    { num: 4, role: 'CB', x: 0.20, y: 0.50, team: 'home' },
+    { num: 25, role: 'CB', x: 0.24, y: 0.28, team: 'home' },
+    { num: 21, role: 'RWB', x: 0.52, y: 0.88, team: 'home' },
+    { num: 42, role: 'CDM', x: 0.42, y: 0.60, team: 'home' },
+    { num: 23, role: 'CMF', x: 0.42, y: 0.40, team: 'home' },
+    { num: 20, role: 'LWB', x: 0.52, y: 0.12, team: 'home' },
+    { num: 17, role: 'RW', x: 0.72, y: 0.68, team: 'home' },
+    { num: 8, role: 'LW', x: 0.72, y: 0.32, team: 'home' },
+    { num: 9, role: 'ST', x: 0.86, y: 0.50, team: 'home' }
   ], 'mid-block'),
 
   'spalletti_433_napoli': build22([
-    { num: 1, role: 'MERET', x: 0.08, y: 0.50, team: 'home' },
-    { num: 22, role: 'DI-LORENZO', x: 0.32, y: 0.84, team: 'home' },
-    { num: 13, role: 'RRHAMANI', x: 0.24, y: 0.62, team: 'home' },
-    { num: 3, role: 'KIM-MIN-JAE', x: 0.24, y: 0.38, team: 'home' },
-    { num: 6, role: 'MARIO-RUI', x: 0.30, y: 0.16, team: 'home' },
-    { num: 68, role: 'LOBOTKA-REG', x: 0.40, y: 0.50, team: 'home' },
-    { num: 99, role: 'ANGUISSA', x: 0.56, y: 0.70, team: 'home' },
-    { num: 20, role: 'ZIELINSKI', x: 0.56, y: 0.30, team: 'home' },
-    { num: 21, role: 'POLITANO', x: 0.80, y: 0.86, team: 'home' },
-    { num: 9, role: 'OSIMHEN', x: 0.86, y: 0.50, team: 'home' },
-    { num: 77, role: 'KVARADONA', x: 0.80, y: 0.14, team: 'home' }
+    { num: 1, role: 'GK', x: 0.08, y: 0.50, team: 'home' },
+    { num: 22, role: 'RB', x: 0.32, y: 0.84, team: 'home' },
+    { num: 13, role: 'CB', x: 0.24, y: 0.62, team: 'home' },
+    { num: 3, role: 'CB', x: 0.24, y: 0.38, team: 'home' },
+    { num: 6, role: 'LB', x: 0.30, y: 0.16, team: 'home' },
+    { num: 68, role: 'CDM', x: 0.40, y: 0.50, team: 'home' },
+    { num: 99, role: 'CMF', x: 0.56, y: 0.70, team: 'home' },
+    { num: 20, role: 'CAM', x: 0.56, y: 0.30, team: 'home' },
+    { num: 21, role: 'RW', x: 0.80, y: 0.86, team: 'home' },
+    { num: 9, role: 'ST', x: 0.86, y: 0.50, team: 'home' },
+    { num: 77, role: 'LW', x: 0.80, y: 0.14, team: 'home' }
   ], 'mid-block'),
 
   'capello_442_milan': build22([
-    { num: 1, role: 'ROSSI', x: 0.08, y: 0.50, team: 'home' },
-    { num: 2, role: 'TASSO', x: 0.24, y: 0.80, team: 'home' },
-    { num: 6, role: 'BARESI', x: 0.20, y: 0.60, team: 'home' },
-    { num: 5, role: 'COSTACURTA', x: 0.20, y: 0.40, team: 'home' },
-    { num: 3, role: 'MALDINI', x: 0.24, y: 0.20, team: 'home' },
-    { num: 7, role: 'BOBAN', x: 0.48, y: 0.80, team: 'home' },
-    { num: 4, role: 'ALBERTINI', x: 0.42, y: 0.60, team: 'home' },
-    { num: 8, role: 'DESAILLY', x: 0.42, y: 0.40, team: 'home' },
-    { num: 10, role: 'SAVICEVIC', x: 0.58, y: 0.20, team: 'home' },
-    { num: 9, role: 'MASSARO', x: 0.78, y: 0.58, team: 'home' },
-    { num: 11, role: 'SIMONE', x: 0.78, y: 0.42, team: 'home' }
+    { num: 1, role: 'ST', x: 0.08, y: 0.50, team: 'home' },
+    { num: 2, role: 'CMF', x: 0.24, y: 0.80, team: 'home' },
+    { num: 6, role: 'CB', x: 0.20, y: 0.60, team: 'home' },
+    { num: 5, role: 'CB', x: 0.20, y: 0.40, team: 'home' },
+    { num: 3, role: 'CB', x: 0.24, y: 0.20, team: 'home' },
+    { num: 7, role: 'CMF', x: 0.48, y: 0.80, team: 'home' },
+    { num: 4, role: 'CMF', x: 0.42, y: 0.60, team: 'home' },
+    { num: 8, role: 'CB', x: 0.42, y: 0.40, team: 'home' },
+    { num: 10, role: 'CAM', x: 0.58, y: 0.20, team: 'home' },
+    { num: 9, role: 'ST', x: 0.78, y: 0.58, team: 'home' },
+    { num: 11, role: 'ST', x: 0.78, y: 0.42, team: 'home' }
   ], 'mid-block'),
 
   'delbosque_4231_spain': build22([
-    { num: 1, role: 'CASILLAS', x: 0.08, y: 0.50, team: 'home' },
-    { num: 15, role: 'RAMOS-RB', x: 0.32, y: 0.86, team: 'home' },
-    { num: 3, role: 'PIQUE', x: 0.24, y: 0.62, team: 'home' },
-    { num: 5, role: 'PUYOL', x: 0.24, y: 0.38, team: 'home' },
-    { num: 11, role: 'CAPDEVILA', x: 0.28, y: 0.16, team: 'home' },
-    { num: 16, role: 'BUSQUETS', x: 0.38, y: 0.58, team: 'home' },
-    { num: 14, role: 'ALONSO', x: 0.38, y: 0.42, team: 'home' },
-    { num: 8, role: 'XAVI', x: 0.56, y: 0.50, team: 'home' },
-    { num: 18, role: 'PEDRO', x: 0.76, y: 0.82, team: 'home' },
-    { num: 6, role: 'INIESTA', x: 0.74, y: 0.24, team: 'home' },
-    { num: 7, role: 'VILLA', x: 0.84, y: 0.50, team: 'home' }
+    { num: 1, role: 'GK', x: 0.08, y: 0.50, team: 'home' },
+    { num: 15, role: 'RB', x: 0.32, y: 0.86, team: 'home' },
+    { num: 3, role: 'CB', x: 0.24, y: 0.62, team: 'home' },
+    { num: 5, role: 'CB', x: 0.24, y: 0.38, team: 'home' },
+    { num: 11, role: 'LB', x: 0.28, y: 0.16, team: 'home' },
+    { num: 16, role: 'CDM', x: 0.38, y: 0.58, team: 'home' },
+    { num: 14, role: 'CMF', x: 0.38, y: 0.42, team: 'home' },
+    { num: 8, role: 'CMF', x: 0.56, y: 0.50, team: 'home' },
+    { num: 18, role: 'RW', x: 0.76, y: 0.82, team: 'home' },
+    { num: 6, role: 'CMF', x: 0.74, y: 0.24, team: 'home' },
+    { num: 7, role: 'ST', x: 0.84, y: 0.50, team: 'home' }
   ], 'low-block')
 };
 
@@ -15933,6 +15937,15 @@ function initTacticsCanvasEngine() {
   const canvas = document.getElementById('tacticsCanvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
+
+  // Remove-before-add window listeners — re-entry must not stack or keep stale canvas closures
+  if (window.__tacticsPointerUp) {
+    window.removeEventListener('mouseup', window.__tacticsPointerUp);
+    window.removeEventListener('touchend', window.__tacticsPointerUp);
+  }
+  if (window.__tacticsKeydown) {
+    window.removeEventListener('keydown', window.__tacticsKeydown);
+  }
 
   let simBallTrail = [];
   let simImpactRings = [];
@@ -16161,23 +16174,35 @@ function initTacticsCanvasEngine() {
       });
       if (typeof toast === 'function') toast('1-2 Wall Pass Route Created', 'zap');
     } else if (presetType === 'overlap') {
+      const overlapFb = rb;
+      const bylineX = Math.min(0.90, Math.max(0.78, (overlapFb?.x || 0.25) + 0.55));
+      const bylineY = Math.min(0.92, Math.max(0.78, overlapFb?.y || 0.82));
+      tacticsVectors.push({
+        type: 'run',
+        color: '#00e5ff',
+        seqIdx: 0,
+        x1: overlapFb.x * w, y1: overlapFb.y * h,
+        x2: bylineX * w, y2: bylineY * h,
+        points: [{ x: overlapFb.x * w, y: overlapFb.y * h }, { x: bylineX * w, y: bylineY * h }],
+        fromToken: overlapFb, toToken: null
+      });
       tacticsVectors.push({
         type: 'pass',
         color: '#c8ff2e',
         seqIdx: 1,
         x1: am.x * w, y1: am.y * h,
-        x2: 0.84 * w, y2: 0.86 * h,
-        points: [{ x: am.x * w, y: am.y * h }, { x: 0.84 * w, y: 0.86 * h }],
-        fromToken: am, toToken: null
+        x2: bylineX * w, y2: bylineY * h,
+        points: [{ x: am.x * w, y: am.y * h }, { x: bylineX * w, y: bylineY * h }],
+        fromToken: am, toToken: overlapFb
       });
       tacticsVectors.push({
         type: 'pass',
         color: '#c8ff2e',
         seqIdx: 2,
-        x1: 0.84 * w, y1: 0.86 * h,
+        x1: bylineX * w, y1: bylineY * h,
         x2: striker.x * w, y2: striker.y * h,
-        points: [{ x: 0.84 * w, y: 0.86 * h }, { x: striker.x * w, y: striker.y * h }],
-        fromToken: null, toToken: striker
+        points: [{ x: bylineX * w, y: bylineY * h }, { x: striker.x * w, y: striker.y * h }],
+        fromToken: overlapFb, toToken: striker
       });
       if (typeof toast === 'function') toast('Overlap & Byline Cross Route Created', 'corner-up-right');
     } else if (presetType === 'switch') {
@@ -16198,8 +16223,8 @@ function initTacticsCanvasEngine() {
         color: '#c8ff2e',
         seqIdx: 1,
         x1: pivot.x * w, y1: pivot.y * h,
-        x2: 0.82 * w, y2: 0.50 * h,
-        points: [{ x: pivot.x * w, y: pivot.y * h }, { x: 0.82 * w, y: 0.50 * h }],
+        x2: striker.x * w, y2: striker.y * h,
+        points: [{ x: pivot.x * w, y: pivot.y * h }, { x: striker.x * w, y: striker.y * h }],
         fromToken: pivot, toToken: striker
       });
       if (typeof toast === 'function') toast('Direct Counter-Attack Route Created', 'arrow-up-right');
@@ -16989,15 +17014,15 @@ function initTacticsCanvasEngine() {
       // Preset Mode
       currentTurnoverFixes.push({
         id: 'pep_box',
-        label: '★ Pep 3-2-4-1 Box Midfield',
-        title: 'Switch to Pep 3-2-4-1 Inverted Box Midfield Overload',
+        label: '★ 3-2-4-1 Box Midfield',
+        title: 'Switch to 3-2-4-1 Inverted Box Midfield Overload',
         desc: 'Inverts fullback into dual pivot to create a 4v2 central numerical superiority, completely unlocking the low block.',
         successRate: '+95% GOAL PROBABILITY (xG 0.88)',
         apply: () => {
           loadFormation('pep_3241');
           const sel = document.getElementById('selFormation');
           if (sel) sel.value = 'pep_3241';
-          if (typeof toast === 'function') toast('⚡ Switched to Pep 3-2-4-1 Box Midfield Overload!', 'check-circle');
+          if (typeof toast === 'function') toast('⚡ Switched to 3-2-4-1 Box Midfield Overload!', 'check-circle');
         }
       });
 
@@ -17085,7 +17110,7 @@ function initTacticsCanvasEngine() {
             const sel = document.getElementById('selFormation');
             if (sel) sel.value = 'pep_3241';
           }
-          if (typeof toast === 'function') toast('⚡ Formation shifted to Pep 3-2-4-1 Box Midfield!', 'check-circle');
+          if (typeof toast === 'function') toast('⚡ Formation shifted to 3-2-4-1 Box Midfield!', 'check-circle');
         }
       }
 
@@ -17326,6 +17351,7 @@ function initTacticsCanvasEngine() {
 
   canvas.addEventListener('mousedown', handlePointerDown);
   canvas.addEventListener('mousemove', handlePointerMove);
+  window.__tacticsPointerUp = handlePointerUp;
   window.addEventListener('mouseup', handlePointerUp);
   canvas.addEventListener('dblclick', e => {
     const coords = getCanvasCoords(e);
@@ -17345,8 +17371,8 @@ function initTacticsCanvasEngine() {
   canvas.addEventListener('touchmove', e => { e.preventDefault(); handlePointerMove(e); }, { passive: false });
   window.addEventListener('touchend', handlePointerUp);
 
-  // Global Keyboard Shortcuts
-  window.addEventListener('keydown', e => {
+  // Global Keyboard Shortcuts (bound once)
+  function handleTacticsKeydown(e) {
     if (window.location.hash !== '#/tactics') return;
     if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT')) return;
 
@@ -17386,8 +17412,12 @@ function initTacticsCanvasEngine() {
       document.querySelector('.tb-tool-btn[data-tool="run"]')?.click();
     } else if (e.code === 'KeyD') {
       document.querySelector('.tb-tool-btn[data-tool="dribble"]')?.click();
+    } else if (e.code === 'KeyZ' && !e.ctrlKey && !e.metaKey) {
+      document.querySelector('.tb-tool-btn[data-tool="zone"]')?.click();
     }
-  });
+  }
+  window.__tacticsKeydown = handleTacticsKeydown;
+  window.addEventListener('keydown', handleTacticsKeydown);
 
   /* ================================================================
      TACTICAL WHITEBOARD RENDERER (PITCH, PLAYERS, OVERLAYS, PASS BADGES)
@@ -17481,7 +17511,8 @@ function initTacticsCanvasEngine() {
 
     /* 4. Vision Cones Overlay */
     if (showVisionCones) {
-      tacticsTokens.filter(t => t.team === 'home' && (t.role.includes('M') || t.role.includes('10'))).forEach(t => {
+      const midfieldCodes = new Set(['CM','CMF','CDM','RDM','LDM','RCM','LCM','CAM','RAM','LAM','AM','AMF','DM','DMF','RM','LM','PIVOT','INV-DM','BOX-BOX','ENGANCHE','SINGLE-6','POCKET-10','INSIDE-10']);
+      tacticsTokens.filter(t => t.team === 'home' && midfieldCodes.has(String(t.role || '').toUpperCase())).forEach(t => {
         const tx = t.x * w;
         const ty = t.y * h;
         const coneDist = 140;

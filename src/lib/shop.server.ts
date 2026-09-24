@@ -121,12 +121,8 @@ let seeded = false;
 export async function ensureCatalogSeeded() {
   if (seeded) return;
   const sql = await getSql();
-  const count = await sql<{ n: number }>`select count(*)::int as n from products`;
-  if ((count[0]?.n ?? 0) > 0) {
-    seeded = true;
-    return;
-  }
-  for (const p of PRODUCTS) {
+  /* Upsert active seed heroes even when DB already has older sample rows (Wave A jersey etc.). */
+  for (const p of PRODUCTS.filter((row) => row.active !== false)) {
     await sql`
       insert into products (
         id, slug, name, sku, category, category_label, price, compare_at,
@@ -135,7 +131,7 @@ export async function ensureCatalogSeeded() {
       ) values (
         ${p.id}, ${p.slug}, ${p.name}, ${p.sku}, ${p.category}, ${p.categoryLabel},
         ${p.price}, ${p.compareAtPrice}, ${p.rating}, ${p.reviewsCount},
-        ${p.badge ?? null}, ${p.inStock}, ${40}, ${p.isNew}, ${p.isBestSeller},
+        ${p.badge ?? null}, ${p.inStock}, ${0}, ${p.isNew}, ${p.isBestSeller},
         ${p.colorwayIdx}, ${p.finishIdx}, ${p.shortDesc}, ${p.fullDesc},
         ${JSON.stringify(p.features)}::jsonb
       )

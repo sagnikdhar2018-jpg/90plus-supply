@@ -1,7 +1,7 @@
 import { genericOAuthClient } from "better-auth/client/plugins";
 import { createAuthClient } from "better-auth/react";
 import { runPreSignInSignOut, runSignOut } from "../../../scripts/sign-out-plan.mjs";
-import { GROK_PROVIDERS } from "./providers";
+import { GROK_PROVIDERS as ALL_GROK_PROVIDERS } from "./providers";
 
 /**
  * Better Auth client for this React SPA (browser-side).
@@ -37,8 +37,19 @@ export const authClient = createAuthClient({
  */
 export const authEnabled = import.meta.env.VITE_AUTH_ENABLED !== "false";
 
-/** The upstream providers to render sign-in buttons for. */
-export { GROK_PROVIDERS };
+/**
+ * Social OAuth (Google / X via the broker) is opt-in. Leave unset/false until
+ * real per-app `GROK_AUTH_CLIENT_*` exist — the baked `grok_preview` client is
+ * not valid on deployed hosts and must not be a live door. Flip
+ * `VITE_GROK_OAUTH_ENABLED=true` only together with those credentials.
+ */
+export const grokOAuthEnabled = import.meta.env.VITE_GROK_OAUTH_ENABLED === "true";
+
+/**
+ * Providers offered on sign-in buttons. Empty when social OAuth is off so
+ * `grok-google` / `grok-x` do not ship as a live door in the login UI bundle.
+ */
+export const GROK_PROVIDERS = grokOAuthEnabled ? ALL_GROK_PROVIDERS : [];
 
 // ── Live-preview bearer token ────────────────────────────────────────────────
 // The embedded preview iframe has partitioned cookies, so we keep the session's

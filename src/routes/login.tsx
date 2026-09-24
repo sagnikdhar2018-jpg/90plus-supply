@@ -1,6 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { GROK_PROVIDERS, authClient, authEnabled, setBearerToken, signIn } from "@/lib/auth/client";
+import {
+  GROK_PROVIDERS,
+  authClient,
+  authEnabled,
+  grokOAuthEnabled,
+  setBearerToken,
+  signIn,
+} from "@/lib/auth/client";
 import { UserButton } from "@/lib/auth/gates";
 import { useCurrentUserState } from "@/lib/auth/use-current-user";
 
@@ -66,25 +73,31 @@ function Login() {
 
         {!isPending && !user && authEnabled ? (
           <div className="mt-8 space-y-3">
-            {GROK_PROVIDERS.map((p) => (
-              <button
-                key={p.providerId}
-                type="button"
-                onClick={() => {
-                  try {
-                    sessionStorage.setItem("90p_oauth_next", "locker-room");
-                  } catch {
-                    /* ignore */
-                  }
-                  void signIn(p.providerId, { callbackURL: oauthCallbackURL, errorCallbackURL: "/login" });
-                }}
-                className="w-full rounded-md border border-line px-4 py-2.5 text-sm font-medium uppercase tracking-[0.12em] hover:border-volt/50 hover:bg-white/5"
-              >
-                Continue with {p.label}
-              </button>
-            ))}
+            {grokOAuthEnabled
+              ? GROK_PROVIDERS.map((p) => (
+                  <button
+                    key={p.providerId}
+                    type="button"
+                    onClick={() => {
+                      try {
+                        sessionStorage.setItem("90p_oauth_next", "locker-room");
+                      } catch {
+                        /* ignore */
+                      }
+                      void signIn(p.providerId, { callbackURL: oauthCallbackURL, errorCallbackURL: "/login" });
+                    }}
+                    className="w-full rounded-md border border-line px-4 py-2.5 text-sm font-medium uppercase tracking-[0.12em] hover:border-volt/50 hover:bg-white/5"
+                  >
+                    Continue with {p.label}
+                  </button>
+                ))
+              : null}
 
-            <p className="py-2 text-center font-mono text-[10px] uppercase tracking-[0.16em] text-subtle">or player credentials</p>
+            {grokOAuthEnabled ? (
+              <p className="py-2 text-center font-mono text-[10px] uppercase tracking-[0.16em] text-subtle">
+                or player credentials
+              </p>
+            ) : null}
 
             <div className="flex gap-2 text-xs uppercase tracking-[0.12em]">
               <button type="button" className={mode === "in" ? "text-volt" : "text-subtle"} onClick={() => setMode("in")}>

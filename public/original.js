@@ -7738,20 +7738,71 @@ function parseHash() {
 
 /* ================================================================
    DYNAMIC CHUNK LOADER & CODE SPLITTING ENGINE
-   Keeps initial parsing budget under 200 KB and lazily loads heavy
-   feature modules on demand:
-   - chunk-cfd-studio.js (Free-Kick 3D Trajectory & Penalty Shootout)
-   - chunk-tactics.js (2D Tactical Pitch & Formation Board)
-   - chunk-admin.js (Admin Mission Control & Telemetry)
-   - chunk-match-lab.js (3D Match Ball Lab PBR Configurator)
+   Honest on-demand loader for optional feature modules.
+   Free-Kick / Tactics / Admin currently ship INLINED in original.js
+   (no silent stub). External chunks are fetched only when not inlined;
+   missing files return ok:false — never pretend success.
+   - chunk-cfd-studio  → inlined (Free-Kick 3D Trajectory & Penalty)
+   - chunk-tactics     → inlined (2D Tactical Pitch)
+   - chunk-admin       → inlined (Admin Mission Control)
+   - chunk-match-lab   → external when present
    ================================================================ */
 const LOADED_CHUNKS = new Set();
+const INLINED_MODULE_CHUNKS = new Set([
+  'chunk-cfd-studio',
+  'chunk-tactics',
+  'chunk-admin'
+]);
+const CHUNK_LOAD_ERRORS = Object.create(null);
+
 async function loadModuleChunk(chunkName) {
-  if (LOADED_CHUNKS.has(chunkName)) return true;
-  LOADED_CHUNKS.add(chunkName);
-  return true;
+  if (!chunkName || typeof chunkName !== 'string') {
+    return { ok: false, reason: 'invalid-name' };
+  }
+  if (LOADED_CHUNKS.has(chunkName)) {
+    return { ok: true, cached: true, inlined: INLINED_MODULE_CHUNKS.has(chunkName) };
+  }
+
+  /* Inlined studios already live in this bundle — no phantom network fetch. */
+  if (INLINED_MODULE_CHUNKS.has(chunkName)) {
+    LOADED_CHUNKS.add(chunkName);
+    delete CHUNK_LOAD_ERRORS[chunkName];
+    return { ok: true, inlined: true };
+  }
+
+  const src = `/${chunkName}.js`;
+  try {
+    await new Promise((resolve, reject) => {
+      const existing = document.querySelector(`script[data-module-chunk="${chunkName}"]`);
+      if (existing) {
+        if (existing.dataset.loaded === '1') return resolve();
+        existing.addEventListener('load', () => resolve(), { once: true });
+        existing.addEventListener('error', () => reject(new Error(`Chunk ${chunkName} failed to load`)), { once: true });
+        return;
+      }
+      const script = document.createElement('script');
+      script.src = src;
+      script.async = true;
+      script.dataset.moduleChunk = chunkName;
+      script.onload = () => {
+        script.dataset.loaded = '1';
+        resolve();
+      };
+      script.onerror = () => reject(new Error(`Chunk ${chunkName} 404 or blocked at ${src}`));
+      document.head.appendChild(script);
+    });
+    LOADED_CHUNKS.add(chunkName);
+    delete CHUNK_LOAD_ERRORS[chunkName];
+    return { ok: true, inlined: false, src };
+  } catch (err) {
+    const message = (err && err.message) ? err.message : String(err);
+    CHUNK_LOAD_ERRORS[chunkName] = message;
+    console.warn(`[90+ SUPPLY] Module chunk unavailable: ${chunkName} — ${message}`);
+    return { ok: false, reason: 'fetch-failed', error: message, src };
+  }
 }
 window.loadModuleChunk = loadModuleChunk;
+window.CHUNK_LOAD_ERRORS = CHUNK_LOAD_ERRORS;
 
 /* ================================================================
    DPDP ACT 2023 STATUTORY CONSENT & TRACKER GATING ENGINE
@@ -7963,7 +8014,10 @@ async function handleRoute() {
     } else if (path === 'about-contact') {
       renderAboutAndContactRoute();
     } else if (path === 'trajectory') {
-      if (typeof window.loadModuleChunk === 'function') window.loadModuleChunk('chunk-cfd-studio');
+      /* CFD studio is inlined; loader reports honestly (no silent stub). */
+      if (typeof window.loadModuleChunk === 'function') {
+        await window.loadModuleChunk('chunk-cfd-studio');
+      }
       renderTrajectoryRoute();
     } else if (path === 'tactics') {
       if (typeof window.loadModuleChunk === 'function') window.loadModuleChunk('chunk-tactics');
@@ -12859,6 +12913,21 @@ function renderTrajectoryRoute() {
             <div class="traject-canvas-wrap">
               <canvas id="trajectCanvas" role="img" aria-label="25-Meter Free-Kick 3D Aerodynamic Flight Trajectory Simulation"></canvas>
 
+              <!-- Honest studio gate — shown only when WebGL / THREE cannot run -->
+              <div class="traject-studio-gate" id="trajectStudioGate" hidden>
+                <span class="hud-tag"><i data-lucide="wind"></i> CFD STUDIO</span>
+                <h2>Studio warming up</h2>
+                <p id="trajectGateCopy">Trajectory preview unavailable — pitch engine not ready on this device.</p>
+                <div class="traject-gate-actions">
+                  <button type="button" class="btn btn-volt" id="btnRetryTrajectStudio">
+                    <i data-lucide="refresh-cw"></i> RETRY STUDIO
+                  </button>
+                  <a class="btn btn-ghost" href="#/shop">
+                    <i data-lucide="shopping-bag"></i> BACK TO SHOP
+                  </a>
+                </div>
+              </div>
+
               <!-- HUD Overlays -->
               <div class="traject-hud-overlay">
                 <span class="hud-badge"><i data-lucide="activity"></i> <span id="trajectModeBadge">25M FREE-KICK</span></span>
@@ -13037,7 +13106,11 @@ function renderTrajectoryRoute() {
   `;
 
   if (window.lucide) lucide.createIcons();
-  initTrajectory3DScene();
+  wireTrajectoryStudioGateControls();
+  const studioReady = initTrajectory3DScene();
+  if (!studioReady) {
+    showTrajectoryStudioGate('warming');
+  }
 }
 
 /* 3D TRAJECTORY & PENALTY ENGINE STATE & CONSTANTS */
@@ -14519,9 +14592,86 @@ async function loadFootballModel(scene) {
 }
 
 /* 3D SCENE INITIALIZATION & RENDERING */
-function initTrajectory3DScene() {
+function canRunTrajectoryStudio() {
+  if (typeof THREE === 'undefined' || !THREE || !THREE.WebGLRenderer) {
+    return { ok: false, reason: 'engine' };
+  }
+  try {
+    const probe = document.createElement('canvas');
+    const gl = probe.getContext('webgl') || probe.getContext('experimental-webgl');
+    if (!gl) return { ok: false, reason: 'webgl' };
+    return { ok: true };
+  } catch (err) {
+    return { ok: false, reason: 'webgl', error: String(err && err.message || err) };
+  }
+}
+
+function showTrajectoryStudioGate(kind = 'warming') {
+  const gate = document.getElementById('trajectStudioGate');
+  const copy = document.getElementById('trajectGateCopy');
   const canvas = document.getElementById('trajectCanvas');
-  if (!canvas || !THREE) return;
+  if (!gate) return;
+  const messages = {
+    warming: 'Studio warming up — trajectory preview unavailable. Retry once the pitch engine finishes loading.',
+    engine: 'Trajectory preview unavailable — Three.js pitch engine did not load. Retry or return to Shop.',
+    webgl: 'Trajectory preview unavailable — this device blocked WebGL. Retry after enabling hardware acceleration, or head back to Shop.',
+    init: 'Trajectory preview unavailable — CFD scene failed to boot. Retry studio or browse match balls in Shop.'
+  };
+  if (copy) copy.textContent = messages[kind] || messages.warming;
+  gate.hidden = false;
+  gate.setAttribute('aria-hidden', 'false');
+  if (canvas) canvas.style.visibility = 'hidden';
+  if (window.lucide) lucide.createIcons();
+}
+
+function hideTrajectoryStudioGate() {
+  const gate = document.getElementById('trajectStudioGate');
+  const canvas = document.getElementById('trajectCanvas');
+  if (gate) {
+    gate.hidden = true;
+    gate.setAttribute('aria-hidden', 'true');
+  }
+  if (canvas) canvas.style.visibility = '';
+}
+
+function wireTrajectoryStudioGateControls() {
+  const btn = document.getElementById('btnRetryTrajectStudio');
+  if (!btn || btn.dataset.wired === '1') return;
+  btn.dataset.wired = '1';
+  btn.addEventListener('click', () => {
+    /* Full remount avoids stacking duplicate slider/GK listeners. */
+    try { if (trajectRenderer) trajectRenderer.dispose(); } catch (_) {}
+    trajectRenderer = null;
+    trajectScene = null;
+    renderTrajectoryRoute();
+  });
+}
+
+function initTrajectory3DScene(opts = {}) {
+  const canvas = document.getElementById('trajectCanvas');
+  if (!canvas) {
+    console.warn('[90+ SUPPLY] Free-Kick canvas missing — studio gate engaged');
+    return false;
+  }
+
+  const probe = canRunTrajectoryStudio();
+  if (!probe.ok) {
+    console.warn('[90+ SUPPLY] Free-Kick studio cannot run:', probe.reason || 'unknown');
+    return false;
+  }
+
+  /* Avoid double-init of an already live WebGL scene unless retry forced. */
+  if (trajectRenderer && trajectScene && !opts.force) {
+    hideTrajectoryStudioGate();
+    return true;
+  }
+
+  try {
+    if (trajectRenderer && opts.force) {
+      try { trajectRenderer.dispose(); } catch (_) {}
+      trajectRenderer = null;
+      trajectScene = null;
+    }
 
   const rect = canvas.parentElement.getBoundingClientRect();
   const width = rect.width || 700;
@@ -15058,6 +15208,15 @@ function initTrajectory3DScene() {
     }
   }
   requestAnimationFrame(renderLoop);
+  hideTrajectoryStudioGate();
+  return true;
+  } catch (err) {
+    console.warn('[90+ SUPPLY] Free-Kick CFD scene boot failed:', err);
+    try { if (trajectRenderer) trajectRenderer.dispose(); } catch (_) {}
+    trajectRenderer = null;
+    trajectScene = null;
+    return false;
+  }
 }
 
 /* MODE SWITCHER (25M FREE-KICK vs 11M PENALTY) */

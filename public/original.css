@@ -8901,6 +8901,56 @@ select.team-input:focus, input.team-input:focus {
   height: 100%;
   display: block;
 }
+/* Honest Free-Kick studio gate — only when WebGL / THREE cannot run */
+.traject-studio-gate {
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 28px 24px;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at 50% 20%, rgba(200, 255, 46, 0.12), transparent 55%),
+    linear-gradient(180deg, rgba(8, 9, 11, 0.92), rgba(8, 9, 11, 0.98));
+  border: 1px solid var(--volt-line, rgba(200, 255, 46, 0.45));
+}
+.traject-studio-gate[hidden] {
+  display: none !important;
+}
+.traject-studio-gate .hud-tag {
+  margin-bottom: 4px;
+}
+.traject-studio-gate h2 {
+  margin: 0;
+  font-family: var(--fh, 'Oswald', sans-serif);
+  font-size: clamp(1.35rem, 3vw, 1.85rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--volt, #c8ff2e);
+}
+.traject-studio-gate p {
+  margin: 0;
+  max-width: 36ch;
+  font-family: var(--fd, 'Oswald', sans-serif);
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: rgba(243, 244, 241, 0.78);
+}
+.traject-gate-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 8px;
+}
+.traject-gate-actions .btn {
+  clip-path: var(--notch, polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%));
+}
 .traject-hud-overlay {
   position: absolute;
   top: 16px;

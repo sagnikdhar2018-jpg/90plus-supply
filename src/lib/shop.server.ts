@@ -135,7 +135,21 @@ export async function ensureCatalogSeeded() {
         ${p.colorwayIdx}, ${p.finishIdx}, ${p.shortDesc}, ${p.fullDesc},
         ${JSON.stringify(p.features)}::jsonb
       )
-      on conflict (id) do nothing
+      on conflict (id) do update set
+        slug = excluded.slug,
+        name = excluded.name,
+        sku = excluded.sku,
+        category = excluded.category,
+        category_label = excluded.category_label,
+        price = excluded.price,
+        compare_at = excluded.compare_at,
+        badge = excluded.badge,
+        in_stock = excluded.in_stock,
+        is_new = excluded.is_new,
+        is_best_seller = excluded.is_best_seller,
+        short_desc = excluded.short_desc,
+        full_desc = excluded.full_desc,
+        features = excluded.features
     `;
   }
   seeded = true;

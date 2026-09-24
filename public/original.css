@@ -655,7 +655,7 @@ h2.sec {
 .nav-right {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
 }
 
 /* Burger (mobile) */
@@ -908,8 +908,9 @@ h2.sec {
 }
 .hero-cta {
   display: flex;
-  gap: 14px;
+  gap: 12px;
   flex-wrap: wrap;
+  max-width: 520px;
 }
 .hero-meta {
   margin-top: 50px;
@@ -11435,10 +11436,20 @@ html { overflow-x: hidden; scroll-behavior: auto; }
 .bot-api code { color:var(--volt); }
 
 
-/* FE-QA: mobile nav overflow + guest-checkout brand lock
-   Bug Hunter: body.scrollWidth 437 @ 375px — culprit #nav → .bar → .nav-right
-   (fixed 36px desktop icons). Keep volt #c8ff2e / notch / Oswald. */
-@media (max-width: 420px) {
+/* FE-QA: mobile/tablet nav overflow — keep volt #c8ff2e / notch / Oswald.
+   At ≤980px #mobNav carries Cart/Saved; hide desktop duplicates.
+   At ≤640px also park theme/audio/search to stop bar overflow. */
+@media (max-width: 980px) {
+  #navWish,
+  #navCart {
+    display: none !important;
+  }
+  .nav-right {
+    gap: 4px;
+    flex-shrink: 0;
+  }
+}
+@media (max-width: 640px) {
   #nav {
     overflow-x: hidden !important;
     max-width: 100% !important;
@@ -11459,18 +11470,10 @@ html { overflow-x: hidden; scroll-behavior: auto; }
   .nav-links {
     display: none !important;
   }
-  /* Cart / wish live in #mobNav — drop duplicates that blow past 375px */
   #navThemeToggle,
   #navAudio,
-  #navSearch,
-  #navWish,
-  #navCart {
+  #navSearch {
     display: none !important;
-  }
-  .nav-right {
-    gap: 4px !important;
-    flex-shrink: 0 !important;
-    max-width: none !important;
   }
   .nav-right .icon-btn,
   #navAuth.icon-btn {
@@ -11492,4 +11495,14 @@ html { overflow-x: hidden; scroll-behavior: auto; }
     padding: 2px 6px 1px !important;
     font-size: 0.9rem !important;
   }
+}
+
+/* Light empty-grid placeholders until JS fills catalogs */
+#catGrid:empty,
+#bestGrid:empty {
+  min-height: 168px;
+  border: 1px dashed rgba(200, 255, 46, 0.18);
+  border-radius: 14px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(200,255,46,0.06), rgba(255,255,255,0.03));
+  background-size: 200% 100%;
 }

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 <title>90+ Supply — Football Accessories Built Different</title>
-<meta name="description" content="Football accessories built for players who refuse to play ordinary. Match-grade gear, 3D custom ball configurator, 48H dispatch across India.">
+<meta name="description" content="Match-grade football gear for the 90th minute. Custom balls, grip kit, 48H dispatch across India.">
 <meta name="theme-color" content="#0a0b0c">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta name="color-scheme" content="dark">
@@ -26,7 +26,7 @@
 
 <body>
   <!-- Accessible Skip to Main Content Link -->
-  <a href="#mainContent" class="skip-to-content" id="skipToContent">Skip to main content</a>
+  <a href="#home" class="skip-to-content" id="skipToContent">Skip to main content</a>
   <!-- Viewport Scroll Progress Bar -->
   <div id="scrollProgressBar" class="scroll-progress-bar"></div>
   <!-- Route Transition Loading Bar -->
@@ -49,19 +49,17 @@
     </div>
     <div class="nav-links" id="navLinks">
       <a href="#/" data-route="">Home</a>
-      <a href="#lab" data-route="lab">Lab</a>
       <a href="#/shop" data-route="shop">Shop</a>
       <a href="#/trajectory" data-route="trajectory">Free-Kick</a>
-      <a href="#/academy" data-route="academy">Academy</a>
-      <a href="#/tactics" data-route="tactics">Tactics</a>
-      <a href="#/teams" data-route="teams">Teams</a>
-      <a href="#/locker-room" data-route="locker-room">Locker</a>
     </div>
     <div class="nav-more" id="navMore">
       <button type="button" class="nav-more-btn" id="navMoreBtn" aria-expanded="false" aria-haspopup="true">More</button>
       <div class="nav-more-menu" id="navMoreMenu" role="menu">
-        <a href="#/inventory" role="menuitem">Live stock</a>
-        <a href="#/bots" role="menuitem">Bot access</a>
+        <a href="#/lab" role="menuitem">Match Ball Lab</a>
+        <a href="#/academy" role="menuitem">Academy</a>
+        <a href="#/tactics" role="menuitem">Tactics</a>
+        <a href="#/teams" role="menuitem">Teams</a>
+        <a href="#/locker-room" role="menuitem">Locker</a>
         <a href="#/track" role="menuitem">Track order</a>
         <a href="#/faq" role="menuitem">FAQ</a>
         <a href="#/contact" role="menuitem">Contact</a>
@@ -89,7 +87,7 @@
 <div id="mobNav">
   <a href="#/" class="active"><i data-lucide="home"></i>Home</a>
   <a href="#/shop"><i data-lucide="layout-grid"></i>Shop</a>
-  <a href="#lab"><i data-lucide="box"></i>Lab</a>
+  <a href="#/trajectory"><i data-lucide="wind"></i>Free-Kick</a>
   <button id="mobWishBtn"><i data-lucide="heart"></i>Saved</button>
   <button id="mobCartBtn"><i data-lucide="shopping-cart"></i>Cart</button>
 </div>
@@ -98,15 +96,16 @@
 <div id="mmenu">
   <button class="icon-btn" id="mmenuClose" aria-label="Close menu"><i data-lucide="x"></i></button>
   <a class="big" style="--d:.04s" href="#/">Home <i data-lucide="arrow-up-right"></i></a>
-  <a class="big" style="--d:.06s" href="#lab">3D Match Ball Lab <i data-lucide="arrow-up-right"></i></a>
-  <a class="big" style="--d:.08s" href="#/shop">Shop All Gear (64 SKUs) <i data-lucide="arrow-up-right"></i></a>
-  <a class="big" style="--d:.12s" href="#/trajectory">Free-Kick 3D Studio <i data-lucide="arrow-up-right"></i></a>
-  <a class="big" style="--d:.16s" href="#/academy">18-Drill Pitch Academy <i data-lucide="arrow-up-right"></i></a>
-  <a class="big" style="--d:.20s" href="#/tactics">Interactive Tactical Whiteboard <i data-lucide="arrow-up-right"></i></a>
-  <a class="big" style="--d:.24s" href="#/teams">B2B Team &amp; Academy Sales <i data-lucide="arrow-up-right"></i></a>
-  <a class="big" style="--d:.28s" href="#/locker-room">Community Locker Room <i data-lucide="arrow-up-right"></i></a>
-  <a class="big" style="--d:.32s" href="#/track">Track Order Telemetry <i data-lucide="arrow-up-right"></i></a>
-  <a class="big" style="--d:.36s" href="#/admin">Admin Mission Control <i data-lucide="arrow-up-right"></i></a>
+  <a class="big" style="--d:.06s" href="#/shop">Shop <i data-lucide="arrow-up-right"></i></a>
+  <a class="big" style="--d:.08s" href="#/trajectory">Free-Kick Studio <i data-lucide="arrow-up-right"></i></a>
+  <div class="mmenu-secondary" style="display:flex;flex-direction:column;gap:10px;padding:8px 0 4px;">
+    <a href="#/lab" style="font-family:var(--fm);font-size:0.85rem;color:var(--mut);text-decoration:none;">Match Ball Lab</a>
+    <a href="#/academy" style="font-family:var(--fm);font-size:0.85rem;color:var(--mut);text-decoration:none;">Academy</a>
+    <a href="#/tactics" style="font-family:var(--fm);font-size:0.85rem;color:var(--mut);text-decoration:none;">Tactics</a>
+    <a href="#/teams" style="font-family:var(--fm);font-size:0.85rem;color:var(--mut);text-decoration:none;">Teams</a>
+    <a href="#/locker-room" style="font-family:var(--fm);font-size:0.85rem;color:var(--mut);text-decoration:none;">Locker</a>
+    <a href="#/track" style="font-family:var(--fm);font-size:0.85rem;color:var(--mut);text-decoration:none;">Track order</a>
+  </div>
   <div class="mmenu-policy-links" style="display:flex;gap:12px;flex-wrap:wrap;padding:16px 0;border-top:1px solid rgba(255,255,255,0.08);margin-top:10px;">
     <a href="#/return-policy" style="font-family:var(--fm);font-size:0.75rem;color:var(--mut);text-decoration:none;">Return Policy</a>
     <a href="#/refund-policy" style="font-family:var(--fm);font-size:0.75rem;color:var(--mut);text-decoration:none;">Refund Policy</a>
@@ -118,7 +117,7 @@
 </div>
 
 <!-- HOME VIEW -->
-<div id="home" id="mainContent" tabindex="-1">
+<div id="home" tabindex="-1">
 
   <!-- HERO -->
   <section class="hero">
@@ -129,12 +128,11 @@
       <div class="hero-grain" style="position:absolute;inset:0;filter:url(#grain);opacity:.5;mix-blend-mode:overlay;pointer-events:none"></div>
     </div>
     <div class="hero-inner container">
-      <p class="eyebrow rv">Premium Football Performance Lab</p>
+      <p class="eyebrow rv">Match-grade kit · India</p>
       <h1 class="rv" style="--d:.08s"><span>90+ SUPPLY<span class="slash">.</span></span><span class="outline">BUILT FOR THE 90TH MINUTE<span class="slash">.</span></span></h1>
-      <p class="sub rv" style="--d:.16s">Premium football accessories built for serious players who refuse to play ordinary. Match-grade gear engineered for high-intensity competition.</p>
+      <p class="sub rv" style="--d:.16s">Match balls, grip socks, and training kit for the last ten minutes. Wet pitches, tight games, 48H dispatch.</p>
       <div class="hero-cta rv" style="--d:.24s">
-        <a class="btn btn-primary magnet" href="#/shop">SHOP FOOTBALL GEAR <i data-lucide="arrow-right"></i></a>
-        <a class="btn btn-ghost magnet" href="#lab"><i data-lucide="sparkles"></i> BUILD YOUR BALL</a>
+        <a class="btn btn-primary magnet" href="#/shop">SHOP GEAR <i data-lucide="arrow-right"></i></a>
         <a class="btn btn-ghost magnet" href="#/trajectory"><i data-lucide="wind"></i> FREE-KICK STUDIO</a>
       </div>
       <div class="hero-meta rv" style="--d:.32s">
@@ -153,8 +151,8 @@
   <section class="block container" id="categories">
     <div class="sec-head">
       <div>
-        <p class="eyebrow rv">Gear for every position</p>
-        <h2 class="sec rv" style="--d:.06s">Gear for every<br>position on the pitch<span style="color:var(--volt)">.</span></h2>
+        <p class="eyebrow rv">By position</p>
+        <h2 class="sec rv" style="--d:.06s">Kit for every<br>role on the pitch<span style="color:var(--volt)">.</span></h2>
       </div>
       <a class="link-arrow rv" style="--d:.12s" href="#/shop">View full catalog <i data-lucide="arrow-right"></i></a>
     </div>
@@ -165,8 +163,8 @@
   <section class="block container" id="bestsellers" style="padding-top:0">
     <div class="sec-head">
       <div>
-        <p class="eyebrow rv">Player approved</p>
-        <h2 class="sec rv" style="--d:.06s">What the squad<br>is playing in<span style="color:var(--volt)">.</span></h2>
+        <p class="eyebrow rv">In the bag</p>
+        <h2 class="sec rv" style="--d:.06s">What captains<br>are ordering<span style="color:var(--volt)">.</span></h2>
       </div>
       <a class="link-arrow rv" style="--d:.12s" href="#/shop">Shop all gear <i data-lucide="arrow-right"></i></a>
     </div>
@@ -180,7 +178,7 @@
         <div>
           <p class="eyebrow rv">Match Ball Lab — Configurator</p>
           <h2 class="sec rv" style="--d:.06s">Built for the<br>90 minutes<span style="color:var(--volt)">.</span></h2>
-          <p class="sec-sub rv" style="--d:.1s">Stamp your squad name and number, swap PBR materials, test match physics, and check your build under live floodlights.</p>
+          <p class="sec-sub rv" style="--d:.1s">Name it, number it, swap the finish, bounce-test it under floodlights.</p>
         </div>
       </div>
       <div class="lab-grid">
@@ -288,14 +286,14 @@
     <div class="sec-head">
       <div>
         <p class="eyebrow rv">Why 90+ Supply</p>
-        <h2 class="sec rv" style="--d:.06s">Serious gear,<br>zero ego<span style="color:var(--volt)">.</span></h2>
+        <h2 class="sec rv" style="--d:.06s">No hype kits.<br>Just gear that lasts<span style="color:var(--volt)">.</span></h2>
       </div>
     </div>
     <div class="why-grid glass">
-      <div class="why rv"><i data-lucide="users"></i><div class="num"><span data-count="12000">0</span><sub>+</sub></div><h3>Built for Players</h3><p>Active grassroots players, academy athletes, and weekend warriors across India.</p></div>
-      <div class="why rv" style="--d:.08s"><i data-lucide="medal"></i><div class="num"><span data-count="4.9" data-dec="1">0</span><sub>/5</sub></div><h3>Premium Quality</h3><p>Average verified rating across 4,000+ customer reviews.</p></div>
-      <div class="why rv" style="--d:.16s"><i data-lucide="truck"></i><div class="num"><span data-count="48">0</span><sub>H</sub></div><h3>Fast Shipping</h3><p>Packed at our Bengaluru warehouse and dispatched within 48 hours.</p></div>
-      <div class="why rv" style="--d:.24s"><i data-lucide="crosshair"></i><div class="num"><span data-count="300">0</span><sub>+</sub></div><h3>Player Tested</h3><p>Stress-tested on monsoon turf, gravel pitches, and hybrid academy grounds.</p></div>
+      <div class="why rv"><i data-lucide="users"></i><div class="num"><span data-count="12000">12,000</span><sub>+</sub></div><h3>Built for Players</h3><p>Active grassroots players, academy athletes, and weekend warriors across India.</p></div>
+      <div class="why rv" style="--d:.08s"><i data-lucide="medal"></i><div class="num"><span data-count="4.9" data-dec="1">4.9</span><sub>/5</sub></div><h3>Premium Quality</h3><p>Average verified rating across 4,000+ customer reviews.</p></div>
+      <div class="why rv" style="--d:.16s"><i data-lucide="truck"></i><div class="num"><span data-count="48">48</span><sub>H</sub></div><h3>Fast Shipping</h3><p>Packed at our Bengaluru warehouse and dispatched within 48 hours.</p></div>
+      <div class="why rv" style="--d:.24s"><i data-lucide="crosshair"></i><div class="num"><span data-count="300">300</span><sub>+</sub></div><h3>Player Tested</h3><p>Stress-tested on monsoon turf, gravel pitches, and hybrid academy grounds.</p></div>
     </div>
   </section>
 
@@ -303,9 +301,9 @@
   <section class="promo">
     <div class="promo-mark" id="promoMark">90+</div>
     <div class="container">
-      <p class="eyebrow rv" style="justify-content:center">The Season Upgrade</p>
-      <h2 class="rv" style="--d:.06s">Your game<em>.</em> Your gear<em>.</em></h2>
-      <p class="rv" style="--d:.12s">Upgrade your football setup without upgrading your budget.</p>
+      <p class="eyebrow rv" style="justify-content:center">New season kit</p>
+      <h2 class="rv" style="--d:.06s">Same pitch<em>.</em> Better bag<em>.</em></h2>
+      <p class="rv" style="--d:.12s">Match-grade kit without the club-shop markup.</p>
       <a href="#/shop" class="btn btn-primary magnet rv" style="--d:.18s">Shop Now <i data-lucide="arrow-right"></i></a>
     </div>
   </section>
@@ -315,7 +313,7 @@
     <div class="sec-head">
       <div>
         <p class="eyebrow rv">Locker room testimonials</p>
-        <h2 class="sec rv" style="--d:.06s">Players talk,<br>gear answers<span style="color:var(--volt)">.</span></h2>
+        <h2 class="sec rv" style="--d:.06s">From the<br>locker room<span style="color:var(--volt)">.</span></h2>
       </div>
     </div>
     <div class="tst-grid" id="tstGrid"></div>
@@ -324,8 +322,8 @@
   <!-- NEWSLETTER -->
   <section class="block container" style="padding-bottom:120px">
     <div class="news rv">
-      <h2>Join the <em>90+ Club.</em></h2>
-      <p>Get new drops, football gear and exclusive offers.</p>
+      <h2>Get on the <em>team sheet.</em></h2>
+      <p>Drops, restocks, and match-week deals — no spam.</p>
       <div id="newsWrap">
         <form id="newsForm" novalidate>
           <input type="email" id="newsEmail" placeholder="player@email.com" aria-label="Email address">

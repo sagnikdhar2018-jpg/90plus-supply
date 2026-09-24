@@ -1098,7 +1098,7 @@ class PaymentEngine {
     // Footer
     ctx.fillStyle = '#6b7276';
     ctx.font = '11px "Space Grotesk", sans-serif';
-    ctx.fillText('Thank you for playing with 90+ SUPPLY gear. Refuse ordinary. Official matchday warranty valid for 180 days.', 50, 1030);
+    ctx.fillText('Thank you for playing with 90+ SUPPLY gear. See you in stoppage time. Official matchday warranty valid for 180 days.', 50, 1030);
 
     return canvas;
   }
@@ -1775,7 +1775,7 @@ const COLORWAYS = [
 ];
 
 const FINISHES = [
-  { name: 'Match PU',     roughness: 0.34, metalness: 0.02, clearcoat: 0.6, clearcoatRoughness: 0.18, dimple: 0.12, desc: 'Premium polyurethane — tournament approved' },
+  { name: 'Match PU',     roughness: 0.34, metalness: 0.02, clearcoat: 0.6, clearcoatRoughness: 0.18, dimple: 0.12, desc: 'Match-grade polyurethane — tournament approved' },
   { name: 'Street Rubber', roughness: 0.72, metalness: 0.0,  clearcoat: 0.0, clearcoatRoughness: 0.5,  dimple: 0.22, desc: 'High-abrasion rubber for concrete and cage' },
   { name: 'Chrome Foil',   roughness: 0.12, metalness: 0.85, clearcoat: 0.9, clearcoatRoughness: 0.06, dimple: 0.04, desc: 'Mirror-chrome metallic finish — collector edition' },
   { name: 'Velvet Suede',  roughness: 0.88, metalness: 0.0,  clearcoat: 0.0, clearcoatRoughness: 0.7,  dimple: 0.30, desc: 'Matte suede texture — training tactile feel' },
@@ -3049,7 +3049,7 @@ function initTicker() {
   if (!DOM.tickerTrack) return;
   const items = [
     'NEW SEASON DROP LIVE', 'FREE SHIPPING OVER ₹999', 'MATCH-GRADE FOOTBALLS',
-    '48 HOUR DISPATCH', 'LASER STAMPED CUSTOM BUILDS', 'PREMIUM GRIP SOCKS',
+    '48 HOUR DISPATCH', 'LASER STAMPED CUSTOM BUILDS', 'MATCH GRIP SOCKS',
     'TRAINING CONES &amp; AGILITY KITS', 'AR TRY-ON AVAILABLE',
     '7-DAY EASY RETURNS', 'BUILT FOR INDIAN PITCHES', 'MONSOON-PROOF GEAR',
     'UPI · CARDS · COD ACCEPTED',
@@ -3145,7 +3145,7 @@ function initLabUI() {
     toast('Customizer reset to factory default specs.', 'rotate-ccw');
   });
 
-  /* Lab Save to Cloud Locker Button */
+  /* Lab Save to Locker Button */
   $('#labSave')?.addEventListener('click', () => {
     if (window.PLAYER_AUTH) {
       const cw = COLORWAYS[STATE.labConfig.colorway] || COLORWAYS[0];
@@ -3162,7 +3162,7 @@ function initLabUI() {
       const res = window.PLAYER_AUTH.saveCustomBallBuild(buildConfig);
       if (res.success) {
         playSound('success');
-        toast(`Custom ball saved to Cloud Locker!`, 'bookmark');
+        toast(`Custom ball saved to locker!`, 'bookmark');
       } else {
         toast(`Failed to save ball build`, 'alert-circle');
       }
@@ -3654,7 +3654,7 @@ const PRODUCTS = [
     features: [
       'Metallic flake infused base coat with iridescent clearcoat',
       'Full tournament match certification specs',
-      'Numbered production run for collectors and elite tournament finals'
+      'Numbered production run for collectors and tournament finals'
     ],
     specs: { 'Size': 'Size 5', 'Weight': '428g', 'Pitch Type': 'All Surfaces' },
     variants: [{ id: 'v-sn-5', name: 'Size 5 Pro', inStock: true }],
@@ -4424,7 +4424,7 @@ const PRODUCTS = [
     colorwayIdx: 0,
     finishIdx: 2,
     shortDesc: 'Ultra-compact 10cm mini guards preferred by modern wingers and tricky playmakers.',
-    fullDesc: 'The choice of elite wingers who demand zero restriction on ankles and sprints. Minimalist 10cm footprint provides essential tibia bone protection while feeling virtually weightless inside socks.',
+    fullDesc: 'Built for wingers who need free ankles on the sprint. Minimalist 10cm footprint provides essential tibia bone protection while feeling virtually weightless inside socks.',
     features: [
       'Minimalist 10cm profile for maximum ankle mobility and sprint freedom',
       'Real carbon composite matrix with matte finish',
@@ -4453,7 +4453,7 @@ const PRODUCTS = [
     colorwayIdx: 0,
     finishIdx: 0,
     shortDesc: 'Flexible non-Newtonian polymer honeycomb guard that hardens instantly on violent stud impact.',
-    fullDesc: 'Soft and flexible while running, rock-hard on impact. Revolutionary non-Newtonian molecular matrix flexes with your calf muscles during sprints but instantly locks molecules to disperse aggressive tackle forces.',
+    fullDesc: 'Soft and flexible while running, rock-hard on impact. Non-Newtonian pad stays soft on the run, then stiffens on impact to spread tackle force across the shin.',
     features: [
       'Smart non-Newtonian polymer flexes with muscle movement and hardens on collision',
       'Hexagonal ventilated cutouts provide 400% better airflow than solid plastic shells',
@@ -4847,7 +4847,7 @@ const PRODUCTS = [
     colorwayIdx: 1,
     finishIdx: 1,
     shortDesc: 'Dual-angle heavy-duty HDPE passing wall with fold-flat weighted support legs.',
-    fullDesc: 'The ultimate solo passing coach. High-density polyethylene slab returns ground passes with 90% velocity for sharp first-touch and volley drills.',
+    fullDesc: 'Solo passing wall. High-density polyethylene slab returns ground passes with 90% velocity for sharp first-touch and volley drills.',
     features: [
       'Dual-angle setup: 90° for driven ground passes, 60° for air loop returns',
       'Weighted steel folding legs prevent sliding on turf or grass',
@@ -4928,7 +4928,7 @@ const PRODUCTS = [
     colorwayIdx: 1,
     finishIdx: 0,
     shortDesc: '35L ballistic nylon pack with ventilated bottom cleat garage and external ball mesh.',
-    fullDesc: 'The ultimate matchday gear hauler. Features an isolated waterproof bottom compartment for muddy boots with dual brass eyelet vents, an expanding external mesh cradle for your size 5 match ball, a padded 16" laptop sleeve for coaching tablets, and dual 1-liter insulated water bottle pockets.',
+    fullDesc: 'Matchday kit bag. Isolated waterproof bottom for muddy boots with dual brass eyelet vents, expanding external mesh cradle for a size 5 match ball, padded 16" laptop sleeve for coaching tablets, and dual 1-liter insulated water bottle pockets.',
     features: [
       '900D waterproof ballistic nylon outer with reinforced tarpaulin base',
       'Isolated ventilated bottom cleat garage fits boots up to UK size 13',
@@ -5759,7 +5759,7 @@ function renderInventoryRoute() {
     <div class="shop-page-wrapper">
       <div class="shop-hero-banner">
         <div class="shop-hero-content">
-          <span class="hud-tag"><i data-lucide="activity"></i> LIVE LOCKER TELEMETRY</span>
+          <span class="hud-tag"><i data-lucide="activity"></i> LIVE LOCKER STATUS</span>
           <h1>REAL-TIME INVENTORY</h1>
           <p>Stock counts drop the moment an order confirms. Watch the feed — no refresh needed.</p>
           <div class="live-inv-status" id="liveInvStatus"><span class="live-dot"></span> Connecting WebSocket…</div>
@@ -7011,18 +7011,18 @@ const INFO_CONTENT = {
     `
   },
   'about': {
-    eyebrow: 'BRAND MANIFESTO',
+    eyebrow: 'ABOUT 90+ SUPPLY',
     title: 'Built for the 90th Minute',
     body: `
       <div class="policy-modal-wrap">
-        <p>Matches are decided when legs are heavy, the pitch is soaked with rain, and the clock ticks past 90:00 into stoppage time. 90+ SUPPLY engineers football equipment for Indian grassroots and elite academies with zero compromise.</p>
-        <div style="margin-top:16px"><a href="#/about" class="btn btn-volt btn-sm btn-full" onclick="closeInfoModal()"><i data-lucide="shield"></i><span>EXPLORE BRAND MANIFESTO</span></a></div>
+        <p>Matches are decided when legs are heavy, the pitch is soaked with rain, and the clock ticks past 90:00 into stoppage time. 90+ SUPPLY builds football kit for Indian grassroots sides and academies — monsoon pitches, hard grounds, late games.</p>
+        <div style="margin-top:16px"><a href="#/about" class="btn btn-volt btn-sm btn-full" onclick="closeInfoModal()"><i data-lucide="shield"></i><span>READ ABOUT 90+ SUPPLY</span></a></div>
       </div>
     `
   },
   'contact': {
     eyebrow: 'ATHLETE SUPPORT DESK',
-    title: 'Bengaluru Innovation Lab & Support',
+    title: 'Bengaluru HQ & Support',
     body: `
       <div class="policy-modal-wrap">
         <p>Connect directly with our equipment engineers and logistics dispatch coordinators.</p>
@@ -8080,7 +8080,7 @@ function renderLoginRoute() {
                 <span>CLOUD REALTIME ONLINE &bull; 90+ SECURE</span>
               </div>
               <h1 class="auth-brand-headline">ENTER THE<br><span>LOCKER ROOM</span></h1>
-              <p class="auth-brand-sub">Access your customized match balls, aerodynamic CFD telemetry, pro tactics boards, and squad orders.</p>
+              <p class="auth-brand-sub">Access your custom match balls, free-kick studio, tactics boards, and squad orders.</p>
               
               <div class="auth-perks-list">
                 <div class="auth-perk-item">
@@ -8127,9 +8127,9 @@ function renderLoginRoute() {
             </div>
 
             <div style="margin-bottom:20px">
-              <span class="hud-tag" style="margin-bottom:8px"><i data-lucide="shield-check"></i> PLAYER TELEMETRY</span>
+              <span class="hud-tag" style="margin-bottom:8px"><i data-lucide="shield-check"></i> PLAYER LOCKER</span>
               <h2 style="font-family:var(--fd);font-size:1.8rem;letter-spacing:0.04em;text-transform:uppercase;margin:6px 0 4px;color:var(--txt)">SIGN IN</h2>
-              <p class="mut" style="font-size:0.82rem">Enter your credentials to synchronize cloud telemetry.</p>
+              <p class="mut" style="font-size:0.82rem">Enter your credentials to sync your locker.</p>
             </div>
 
             <!-- Google OAuth Button -->
@@ -8669,7 +8669,7 @@ function renderShopRoute(catParam = '') {
     <div class="shop-page-wrapper">
       <div class="shop-hero-banner">
         <div class="shop-hero-content">
-          <span class="hud-tag"><i data-lucide="layers"></i> FULL GEAR TELEMETRY</span>
+          <span class="hud-tag"><i data-lucide="layers"></i> FULL GEAR SPECS</span>
           <h1>90+ SUPPLY CATALOG</h1>
           <p>Match-grade footballs, zero-slip grip socks, aerospace carbon guards, and pro pitch accessories.</p>
           <div class="inventory-alert-bar" id="inventoryAlertBar"></div>
@@ -9260,7 +9260,7 @@ function renderPdpRoute(slugOrId) {
       <section class="pdp-reviews-section" id="pdpReviewsSec">
         <div class="reviews-header-block">
           <div class="rev-summary-left">
-            <h2>ATHLETE TELEMETRY & REVIEWS</h2>
+            <h2>PLAYER REVIEWS</h2>
             <div class="rev-big-rating">
               <span class="big-num">${product.rating}</span>
               <div class="big-stars-col">
@@ -9604,7 +9604,7 @@ function openWriteReviewModal(productId, productName) {
 
     wrap.remove();
     playSound('success');
-    toast('Review submitted! Thank you for the telemetry.', 'check-circle');
+    toast('Review submitted. Thanks for the feedback.', 'check-circle');
 
     /* Re-render reviews on page */
     const list = document.getElementById('pdpReviewsList');
@@ -10099,7 +10099,7 @@ function executeOrderPlacement() {
   updateCartBadge();
 
   playSound('coin');
-  toast('ORDER CONFIRMED! Telemetry dispatched.', 'check-circle-2');
+  toast('ORDER CONFIRMED! Dispatch started.', 'check-circle-2');
 
   /* Redirect to Tracking View */
   window.location.hash = `#/track/${orderId}`;
@@ -10812,7 +10812,7 @@ Shipping:       ${order.totals.shipping === 0 ? 'FREE' : fmt(order.totals.shippi
 Taxes (GST 5%): ${fmt(order.totals.tax)}
 TOTAL AMOUNT:   ${fmt(order.totals.total)}
 ============================================================
-Thank you for playing with 90+ Supply gear. Refuse ordinary.
+Thank you for playing with 90+ Supply gear. See you in stoppage time.
 For support: support@90plus.supply | www.90plus.supply
 ============================================================
   `;
@@ -11249,7 +11249,7 @@ function getPolicyNavHTML(activeId) {
     { id: 'disclaimer',    hash: '#/disclaimer',    label: 'Disclaimer & Safety', icon: 'alert-triangle' },
     { id: 'sizing',        hash: '#/sizing',        label: 'Size Blueprint', icon: 'ruler' },
     { id: 'pitch-matrix',  hash: '#/pitch-matrix',  label: 'Pitch Matrix', icon: 'layers' },
-    { id: 'faq',           hash: '#/faq',           label: 'Knowledge Base', icon: 'help-circle' }
+    { id: 'faq',           hash: '#/faq',           label: 'FAQ', icon: 'help-circle' }
   ];
 
   return `
@@ -11272,16 +11272,16 @@ function getPolicyNavHTML(activeId) {
   `;
 }
 
-/* 7.1  ABOUT US & BRAND MANIFESTO PAGE */
+/* 7.1  ABOUT US & ORIGIN PAGE */
 function renderAboutRoute() {
   if (!DOM.page) return;
 
   DOM.page.innerHTML = `
     <div class="content-page-wrapper">
       <div class="content-hero">
-        <span class="hud-tag"><i data-lucide="shield"></i> BRAND MANIFESTO & ORIGIN</span>
+        <span class="hud-tag"><i data-lucide="shield"></i> ORIGIN · INDIA</span>
         <h1>BUILT FOR EXTRA TIME</h1>
-        <p>We build tournament-grade football equipment for the players and academies who refuse to play ordinary.</p>
+        <p>We build match-grade football kit for players and academies who still want the ball at 90:00.</p>
       </div>
 
       <div class="content-body">
@@ -11291,7 +11291,7 @@ function renderAboutRoute() {
           <div class="policy-content-card">
             <div class="policy-badge-row">
               <span class="policy-badge volt"><i data-lucide="calendar"></i> EST. 2024</span>
-              <span class="policy-badge"><i data-lucide="map-pin"></i> BENGALURU INNOVATION LAB</span>
+              <span class="policy-badge"><i data-lucide="map-pin"></i> BENGALURU HQ</span>
               <span class="policy-badge"><i data-lucide="award"></i> FIFA QUALITY PRO BENCHMARKS</span>
               <span class="policy-badge volt"><i data-lucide="activity"></i> 148,000+ MATCH MINUTES</span>
             </div>
@@ -11299,7 +11299,7 @@ function renderAboutRoute() {
             <div class="policy-section">
               <h2><i data-lucide="zap" style="color: #c8ff2e;"></i> The 90+ Philosophy</h2>
               <p>Championships are never won in the opening 10 minutes. Titles are decided when legs are heavy, lungs burn, the pitch is slick with monsoon rain, and the stadium clock ticks past 90:00 into stoppage time.</p>
-              <p>Every piece of 90+ Supply gear is engineered with zero compromise. We test under extreme tropical humidity, abrasive rubber-crumb 3G artificial turf, and high-impact match stress to ensure our equipment never lets you down when the game is on the line.</p>
+              <p>Every piece of 90+ Supply gear is tested for tropical humidity, abrasive rubber-crumb 3G turf, and high-impact match stress — so it still holds when the game is on the line.</p>
             </div>
 
             
@@ -11347,7 +11347,7 @@ function renderAboutRoute() {
             </div>
 
             <div class="policy-callout">
-              <strong>ENGINEERED FOR THE REALITIES OF INDIAN FOOTBALL</strong>
+              <strong>BUILT FOR INDIAN PITCHES</strong>
               <p>Standard European match balls and delicate socks degrade rapidly under hard compacted soil, high-friction turf, and harsh monsoon downpours. Our gear utilizes high-density composite micro-textures and thermal bonding specifically calibrated for Indian grassroots and professional pitches.</p>
             </div>
 
@@ -11465,7 +11465,7 @@ function renderTermsRoute() {
                   <li><strong>Grievance Officer:</strong> Aditya Varma</li>
                   <li><strong>Designation:</strong> Head of Legal Compliance & Customer Trust</li>
                   <li><strong>Entity:</strong> 90Plus Sports Performance Technologies Private Limited</li>
-                  <li><strong>Physical Address:</strong> 90+ Supply Innovation Lab, Indiranagar 100ft Road, Bengaluru, Karnataka 560038, India</li>
+                  <li><strong>Physical Address:</strong> 90+ Supply HQ, Indiranagar 100ft Road, Bengaluru, Karnataka 560038, India</li>
                   <li><strong>Email:</strong> <a href="mailto:grievance@90plus.supply" style="color: #c8ff2e; text-decoration: underline;">grievance@90plus.supply</a></li>
                   <li><strong>Helpline:</strong> +91 (800) 90-SUPPLY (Extension 4)</li>
                   <li><strong>Operating Hours:</strong> Monday – Friday, 10:00 AM – 6:00 PM IST</li>
@@ -11733,7 +11733,7 @@ function renderFaqRoute() {
   DOM.page.innerHTML = `
     <div class="content-page-wrapper">
       <div class="content-hero">
-        <span class="hud-tag"><i data-lucide="help-circle"></i> MATCHDAY '26 KNOWLEDGE BASE</span>
+        <span class="hud-tag"><i data-lucide="help-circle"></i> MATCHDAY '26 FAQ</span>
         <h1>FREQUENTLY ASKED QUESTIONS</h1>
         <p>Official answers on FIFA Quality Pro certifications, custom laser stamps, 3D trajectory simulations, orders, and statutory returns.</p>
         <div class="last-updated-badge"><i data-lucide="clock"></i> LAST UPDATED: SEPTEMBER 8, 2026</div>
@@ -12163,7 +12163,7 @@ function renderPrivacyPolicyRoute() {
                       <td>Mandatory statutory retention under Section 128 of the Companies Act 2013 and Section 36 of the Central Goods and Services Tax (CGST) Act 2017.</td>
                     </tr>
                     <tr>
-                      <td><strong>Player Profile & Cloud Locker</strong></td>
+                      <td><strong>Player Profile & Locker</strong></td>
                       <td>Duration of Membership or 3 Years Inactivity</td>
                       <td>Retained while account is active; subject to permanent erasure upon verified Data Principal request or 3 years of consecutive inactivity.</td>
                     </tr>
@@ -12216,7 +12216,7 @@ function renderPrivacyPolicyRoute() {
                   <li><strong>Officer Name:</strong> Aditya Varma</li>
                   <li><strong>Designation:</strong> Data Protection & Grievance Redressal Officer</li>
                   <li><strong>Entity:</strong> 90Plus Sports Performance Technologies Private Limited</li>
-                  <li><strong>Corporate Address:</strong> 90+ Supply Innovation Lab, Indiranagar 100ft Road, Bengaluru, Karnataka 560038, India</li>
+                  <li><strong>Corporate Address:</strong> 90+ Supply HQ, Indiranagar 100ft Road, Bengaluru, Karnataka 560038, India</li>
                   <li><strong>Email:</strong> <a href="mailto:grievance@90plus.supply" style="color: #c8ff2e; text-decoration: underline;">grievance@90plus.supply</a> / <a href="mailto:privacy@90plus.supply" style="color: #c8ff2e; text-decoration: underline;">privacy@90plus.supply</a></li>
                   <li><strong>Direct Helpline:</strong> +91 (800) 90-SUPPLY (Ext. 4) / +91 80 4960 9090</li>
                   <li><strong>Response SLA:</strong> Acknowledgment within <strong>24 business hours</strong>; statutory resolution within <strong>7 business days</strong>.</li>
@@ -12528,7 +12528,7 @@ function renderContactRoute() {
             <div class="policy-badge-row">
               <span class="policy-badge volt"><i data-lucide="clock"></i> <4H RESPONSE SLA</span>
               <span class="policy-badge"><i data-lucide="map-pin"></i> BENGALURU TESTING LAB</span>
-              <span class="policy-badge volt"><i data-lucide="phone"></i> TOLL-FREE ATHLETE HELPLINE</span>
+              <span class="policy-badge volt"><i data-lucide="phone"></i> TOLL-FREE SUPPORT LINE</span>
               <span class="policy-badge"><i data-lucide="truck"></i> 28,000+ PIN CODES SERVICED</span>
             </div>
 
@@ -12539,7 +12539,7 @@ function renderContactRoute() {
                 <div style="display: flex; gap: 14px; margin-bottom: 20px;">
                   <div style="width: 38px; height: 38px; border-radius: 10px; background: rgba(200,255,46,0.1); display: grid; place-items: center; color: #c8ff2e; flex-shrink: 0;"><i data-lucide="map-pin"></i></div>
                   <div>
-                    <strong style="font-family: var(--fh); font-size: 0.9rem; color: #f3f4f1; display: block;">90+ Supply Innovation Lab</strong>
+                    <strong style="font-family: var(--fh); font-size: 0.9rem; color: #f3f4f1; display: block;">90+ Supply HQ</strong>
                     <p style="margin: 4px 0 0; font-size: 0.82rem; color: #a4adb2; line-height: 1.5;">90Plus Sports Performance Technologies Pvt. Ltd.<br/>Indiranagar 100ft Road, Bengaluru, Karnataka 560038, India<br/>CIN: U32909KA2024PTC189042</p>
                   </div>
                 </div>
@@ -12560,7 +12560,7 @@ function renderContactRoute() {
                 <div style="display: flex; gap: 14px;">
                   <div style="width: 38px; height: 38px; border-radius: 10px; background: rgba(200,255,46,0.1); display: grid; place-items: center; color: #c8ff2e; flex-shrink: 0;"><i data-lucide="phone"></i></div>
                   <div>
-                    <strong style="font-family: var(--fh); font-size: 0.9rem; color: #f3f4f1; display: block;">Direct Athlete Helpline</strong>
+                    <strong style="font-family: var(--fh); font-size: 0.9rem; color: #f3f4f1; display: block;">Support Helpline</strong>
                     <p style="margin: 4px 0 0; font-size: 0.82rem; color: #a4adb2; line-height: 1.5;">+91 (800) 90-SUPPLY<br/><span style="color: #788085; font-size: 0.74rem;">Monday – Saturday, 9:00 AM – 8:00 PM IST</span></p>
                   </div>
                 </div>
@@ -12663,7 +12663,7 @@ function renderAboutAndContactRoute() {
           <div class="policy-content-card">
             <!-- Tab Switcher -->
             <div class="about-contact-tabs">
-              <button class="ac-tab-btn active" id="btnTabAbout"><i data-lucide="shield"></i> 01. BRAND MANIFESTO & LAB</button>
+              <button class="ac-tab-btn active" id="btnTabAbout"><i data-lucide="shield"></i> 01. ABOUT & HQ</button>
               <button class="ac-tab-btn" id="btnTabContact"><i data-lucide="mail"></i> 02. CONTACT & SUPPORT DESK</button>
             </div>
 
@@ -12671,18 +12671,18 @@ function renderAboutAndContactRoute() {
             <div id="tabContentAbout" style="display: block;">
               <div class="policy-badge-row">
                 <span class="policy-badge volt"><i data-lucide="calendar"></i> EST. 2024</span>
-                <span class="policy-badge"><i data-lucide="map-pin"></i> BENGALURU INNOVATION LAB</span>
+                <span class="policy-badge"><i data-lucide="map-pin"></i> BENGALURU HQ</span>
                 <span class="policy-badge"><i data-lucide="award"></i> FIFA QUALITY PRO BENCHMARKS</span>
                 <span class="policy-badge volt"><i data-lucide="activity"></i> 148,000+ MATCH MINUTES</span>
               </div>
 
               <div class="policy-section">
                 <h2><i data-lucide="zap" style="color: #c8ff2e;"></i> The 90+ Philosophy</h2>
-                <p>Championships are decided when legs are heavy, lungs burn, the pitch is slick with monsoon rain, and the clock ticks past 90:00 into stoppage time. Every piece of 90+ Supply gear is engineered with zero compromise for players who refuse to settle for ordinary.</p>
+                <p>Championships are decided when legs are heavy, lungs burn, the pitch is slick with monsoon rain, and the clock ticks past 90:00 into stoppage time. Every piece of 90+ Supply gear is built for that stretch — not the warm-up.</p>
               </div>
 
               <div class="policy-callout">
-                <strong>ENGINEERED FOR THE REALITIES OF INDIAN FOOTBALL</strong>
+                <strong>BUILT FOR INDIAN PITCHES</strong>
                 <p>Standard European equipment fails on hard, compacted soil, uneven grass, and high-abrasion rubber-crumb 3G turf. Our gear uses high-durability composites specifically formulated to withstand the harsh realities of Indian grassroots pitches.</p>
               </div>
 
@@ -12717,14 +12717,14 @@ function renderAboutAndContactRoute() {
               <div class="policy-badge-row">
                 <span class="policy-badge volt"><i data-lucide="clock"></i> <4H RESPONSE SLA</span>
                 <span class="policy-badge"><i data-lucide="map-pin"></i> BENGALURU TESTING LAB</span>
-                <span class="policy-badge volt"><i data-lucide="phone"></i> DIRECT ATHLETE HELPLINE</span>
+                <span class="policy-badge volt"><i data-lucide="phone"></i> SUPPORT HELPLINE</span>
               </div>
 
               <div class="contact-grid" style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 28px; margin-top: 24px;">
                 <div class="contact-card info-pane" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 24px;">
                   <h3 style="font-family: var(--fd); font-size: 1.1rem; color: #f3f4f1; margin-bottom: 20px;">HEADQUARTERS & LAB</h3>
                   <p style="font-size: 0.84rem; color: #a4adb2; line-height: 1.6; margin-bottom: 16px;">
-                    <strong style="color: #f3f4f1;">90+ Supply Innovation Lab</strong><br/>
+                    <strong style="color: #f3f4f1;">90+ Supply HQ</strong><br/>
                     90Plus Sports Performance Technologies Pvt. Ltd.<br/>
                     Indiranagar 100ft Road, Bengaluru, Karnataka 560038, India
                   </p>
@@ -20217,7 +20217,7 @@ function initTacticsCanvasEngine() {
               if (!triggeredKicks.has('custom_goal_banner')) {
                 triggeredKicks.add('custom_goal_banner');
                 $('#tacticsGoalBanner h2').textContent = `GOAL! ⚽ CUSTOM ROUTE MASTERCLASS`;
-                $('#tacticsGoalBanner p').textContent = `Bespoke ${M}-pass tactical sequence executed with 100% precision into the goal.`;
+                $('#tacticsGoalBanner p').textContent = `${M}-pass tactical sequence finished — ball in the net.`;
                 $('#tacticsGoalBanner')?.classList.add('active');
               }
             }
@@ -20771,7 +20771,7 @@ function initTacticsCanvasEngine() {
 }
 
 
-/* MODULE 10.2: 18-DRILL PERFORMANCE ACADEMY & REALTIME INTERVAL ENGINE
+/* MODULE 10.2: 18-DRILL ACADEMY & REALTIME INTERVAL ENGINE
    18 high-performance matchday routines across Footwork, Ball Mastery, Possession,
    Shooting, Goalkeeping, and Set Pieces, powered by the AcademyTimerEngine state machine. */
 
@@ -21814,9 +21814,9 @@ function renderAcademyRoute() {
   DOM.page.innerHTML = `
     <div class="content-page-wrapper">
       <div class="content-hero">
-        <span class="hud-tag"><i data-lucide="flame"></i> ELITE TRAINING BLUEPRINT · 18 PRO PROTOCOLS</span>
-        <h1 style="font-family: var(--fh, 'Space Grotesk', sans-serif); font-weight: 800; letter-spacing: -0.02em;">18-DRILL PERFORMANCE ACADEMY</h1>
-        <p>Pro-level matchday routines with step-by-step coaching protocols, interactive interval timers, live calorie tracking, and cloud locker synchronization.</p>
+        <span class="hud-tag"><i data-lucide="flame"></i> TRAINING BLUEPRINT · 18 DRILLS</span>
+        <h1 style="font-family: var(--fh, 'Space Grotesk', sans-serif); font-weight: 800; letter-spacing: -0.02em;">18-DRILL ACADEMY</h1>
+        <p>Matchday routines with step-by-step coaching notes, interval timers, calorie tracking, and locker sync for saved sessions.</p>
 
         <!-- Tactical Ribbon Metrics -->
         <div class="academy-hero-metrics">
@@ -21834,7 +21834,7 @@ function renderAcademyRoute() {
           </div>
           <div class="academy-metric-chip">
             <i data-lucide="cloud"></i>
-            <span>LOCKER: <strong>CLOUD SYNC READY</strong></span>
+            <span>LOCKER: <strong>LOCKER SYNC READY</strong></span>
           </div>
         </div>
       </div>
@@ -22012,7 +22012,7 @@ function renderAcademyRoute() {
               <h3 style="font-family:var(--fh,'Space Grotesk',sans-serif);font-size:1.25rem;color:#f3f4f1;margin:4px 0 0 0;">RECENT TRAINING SESSIONS</h3>
             </div>
             <button class="btn-timer-secondary" id="btnSyncCloudLocker" style="padding:8px 14px;font-size:0.72rem;">
-              <i data-lucide="cloud"></i><span>SYNC TO CLOUD LOCKER</span>
+              <i data-lucide="cloud"></i><span>SYNC TO LOCKER</span>
             </button>
           </div>
           <div class="history-cards-grid" id="academyHistoryList"></div>
@@ -22323,13 +22323,13 @@ function renderAcademyRoute() {
   $('#btnSumClose')?.addEventListener('click', () => timer.closeSummaryModal());
   $('#btnSumCloudSync')?.addEventListener('click', () => {
     if (typeof playSound === 'function') playSound('coin');
-    if (typeof toast === 'function') toast('Workout saved to Cloud Locker profile!', 'flame');
+    if (typeof toast === 'function') toast('Workout saved to locker!', 'flame');
     timer.closeSummaryModal();
   });
 
   $('#btnSyncCloudLocker')?.addEventListener('click', () => {
     if (typeof playSound === 'function') playSound('success');
-    if (typeof toast === 'function') toast('Academy session history synchronized with Cloud Locker!', 'flame');
+    if (typeof toast === 'function') toast('Academy session history saved to locker!', 'flame');
   });
 }
 
@@ -22530,7 +22530,7 @@ Net Total (Inc. GST): ${$('#qGrandTotal')?.textContent}
 Shipping: FREE AIR DISPATCH (48H Logistics SLA)
 =====================================================
 Payment Terms: 100% Advance via NEFT / RTGS / Corporate UPI
-90+ Supply Innovation Lab, Indiranagar, Bengaluru`;
+90+ Supply HQ, Indiranagar, Bengaluru`;
 
     const blob = new Blob([txt], { type: 'text/plain' });
     const link = document.createElement('a');
@@ -22605,9 +22605,9 @@ function renderLockerRoomRoute() {
       <div class="content-hero">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px">
           <div>
-            <span class="hud-tag"><i data-lucide="shield"></i> CLOUD LOCKER ROOM TELEMETRY</span>
-            <h1>PLAYER CLOUD LOCKER</h1>
-            <p>Your centralized matchday hub: 3D ball builds, wishlist telemetry, order dispatches, and squad loadouts.</p>
+            <span class="hud-tag"><i data-lucide="shield"></i> PLAYER LOCKER</span>
+            <h1>PLAYER LOCKER</h1>
+            <p>Your matchday hub: saved 3D ball builds, wishlist, order dispatches, and squad loadouts.</p>
           </div>
           <div>
             ${profile.isLoggedIn ? `
@@ -22735,7 +22735,7 @@ function renderLockerRoomRoute() {
         <!-- 4. ORDER HISTORY & INVOICE DOWNLOADS -->
         <div class="locker-section" style="margin-bottom:40px">
           <div style="margin-bottom:16px">
-            <h3><i data-lucide="package" style="color:var(--info)"></i> ORDER TELEMETRY & DIGITAL TAX INVOICES</h3>
+            <h3><i data-lucide="package" style="color:var(--info)"></i> ORDERS & DIGITAL TAX INVOICES</h3>
             <p class="mut" style="font-size:0.85rem">Chronological order records with courier tracking and high-res digital invoices.</p>
           </div>
 
@@ -24515,7 +24515,7 @@ function initFullSiteSearch() {
   });
 
   const PLATFORM_PAGES = [
-    { title: 'Home Pitch Showcase', hash: '#/', category: 'Platform Tools', desc: 'Flagship match ball visualizer and brand manifesto' },
+    { title: 'Home Pitch Showcase', hash: '#/', category: 'Platform Tools', desc: 'Flagship match ball visualizer and brand story' },
     { title: '3D Match Ball Lab', hash: '#lab', category: 'Platform Tools', desc: 'Custom PBR panel textures, laser engravings, and finishes' },
     { title: 'Shop Gear Catalog', hash: '#/shop', category: 'Platform Tools', desc: 'Complete 64-SKU match gear catalog with telemetry filters' },
     { title: 'Free-Kick 3D CFD Studio', hash: '#/trajectory', category: 'Platform Tools', desc: 'Aerodynamic Magnus-effect projectile flight simulator' },

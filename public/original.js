@@ -6330,11 +6330,10 @@ async function handleRoute() {
     } else if (path === 'about-contact') {
       renderAboutAndContactRoute();
     } else if (path === 'trajectory') {
-      /* CFD studio is inlined; loader reports honestly (no silent stub). */
-      if (typeof window.loadModuleChunk === 'function') {
-        await window.loadModuleChunk('chunk-cfd-studio');
-      }
-      renderTrajectoryRoute();
+      /* STORE PIVOT: Free-Kick/CFD removed from primary shop path — redirect to shop. */
+      window.location.hash = '#/shop';
+      handleRoute();
+      return;
     } else if (path === 'tactics') {
       if (typeof window.loadModuleChunk === 'function') window.loadModuleChunk('chunk-tactics');
       renderTacticsRoute();
@@ -6450,7 +6449,7 @@ function renderLoginRoute() {
                 <span>CLOUD REALTIME ONLINE &bull; 90+ SECURE</span>
               </div>
               <h1 class="auth-brand-headline">ENTER THE<br><span>LOCKER ROOM</span></h1>
-              <p class="auth-brand-sub">Access your custom match balls, free-kick studio, tactics boards, and squad orders.</p>
+              <p class="auth-brand-sub">Access your custom match balls, tactics boards, and squad orders.</p>
               
               <div class="auth-perks-list">
                 <div class="auth-perk-item">
@@ -6458,13 +6457,6 @@ function renderLoginRoute() {
                   <div class="auth-perk-text">
                     <strong>3D Match Ball Lab Sync</strong>
                     <span>Save and retrieve custom panel textures, laser engravings, and bladders across all your devices.</span>
-                  </div>
-                </div>
-                <div class="auth-perk-item">
-                  <div class="auth-perk-icon"><i data-lucide="wind"></i></div>
-                  <div class="auth-perk-text">
-                    <strong>CFD Trajectory Studio</strong>
-                    <span>Run Magnus-effect aerodynamic drag calculations and replay 25M free kicks with goalkeeper AI.</span>
                   </div>
                 </div>
                 <div class="auth-perk-item">
@@ -22993,7 +22985,6 @@ function initFullSiteSearch() {
     { title: 'Home Pitch Showcase', hash: '#/', category: 'Platform Tools', desc: 'Flagship match ball visualizer and brand story' },
     { title: '3D Match Ball Lab', hash: '#lab', category: 'Platform Tools', desc: 'Custom PBR panel textures, laser engravings, and finishes' },
     { title: 'Shop Gear Catalog', hash: '#/shop', category: 'Platform Tools', desc: 'Complete 64-SKU match gear catalog with telemetry filters' },
-    { title: 'Free-Kick 3D CFD Studio', hash: '#/trajectory', category: 'Platform Tools', desc: 'Aerodynamic Magnus-effect projectile flight simulator' },
     { title: '18-Drill Pitch Academy', hash: '#/academy', category: 'Platform Tools', desc: 'Pro set-piece drills, trajectory calibration, and training' },
     { title: 'Interactive Tactics Board', hash: '#/tactics', category: 'Platform Tools', desc: 'Dynamic squad formations, passing lanes, and pitch board' },
     { title: 'B2B Squad & Academy Sales', hash: '#/teams', category: 'Platform Tools', desc: 'Bulk club customizations, volume pricing, and invoices' },

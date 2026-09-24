@@ -73,6 +73,12 @@ function Shop() {
     }
 
     function connect() {
+      // ponytail: WS only on Vite-dev (/ws/inventory plugin). Prod polls live API.
+      const h = window.location.hostname;
+      if (h !== "localhost" && h !== "127.0.0.1" && !h.endsWith(".local")) {
+        startPoll();
+        return;
+      }
       const proto = window.location.protocol === "https:" ? "wss:" : "ws:";
       try {
         ws = new WebSocket(`${proto}//${window.location.host}/ws/inventory`);

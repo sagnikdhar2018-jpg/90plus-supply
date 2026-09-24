@@ -14,7 +14,10 @@ function Login() {
   const [name, setName] = useState("");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
-  const next = "/original.html#/locker-room";
+  // Better Auth rejects hash fragments in callbackURL (403 INVALID_CALLBACK_URL).
+  // OAuth returns to /original.html; client then navigates to #/locker-room after /api/session.
+  const oauthCallbackURL = "/original.html";
+  const afterAuthHref = "/original.html#/locker-room";
 
   async function onEmail(e: React.FormEvent) {
     e.preventDefault();
@@ -32,7 +35,7 @@ function Login() {
         const token = (res.data as { token?: string | null } | null)?.token;
         if (token) setBearerToken(token);
       }
-      window.location.href = next;
+      window.location.href = afterAuthHref;
     } catch (err) {
       setError(err instanceof Error ? err.message : "Sign-in failed");
     } finally {
@@ -55,7 +58,7 @@ function Login() {
             <Link to="/" className="block text-sm text-volt underline-offset-4 hover:underline">
               Back to 90+ Supply
             </Link>
-            <a href={next} className="block text-sm text-muted hover:text-fg">
+            <a href={afterAuthHref} className="block text-sm text-muted hover:text-fg">
               Open locker
             </a>
           </div>
@@ -67,7 +70,14 @@ function Login() {
               <button
                 key={p.providerId}
                 type="button"
-                onClick={() => void signIn(p.providerId, { callbackURL: next, errorCallbackURL: "/login" })}
+                onClick={() => {
+                  try {
+                    sessionStorage.setItem("90p_oauth_next", "locker-room");
+                  } catch {
+                    /* ignore */
+                  }
+                  void signIn(p.providerId, { callbackURL: oauthCallbackURL, errorCallbackURL: "/login" });
+                }}
                 className="w-full rounded-md border border-line px-4 py-2.5 text-sm font-medium uppercase tracking-[0.12em] hover:border-volt/50 hover:bg-white/5"
               >
                 Continue with {p.label}

@@ -131,7 +131,7 @@
           });
         return;
       }
-      const btn = e.target && e.target.closest && e.target.closest("#pageGoogleLogin, #pageGoogleReg");
+      const btn = e.target && e.target.closest && e.target.closest("#pageGoogleLogin, #pageGoogleRegister");
       if (!btn) return;
       e.preventDefault();
       e.stopPropagation();
@@ -287,8 +287,12 @@
     startPoll();
   }
 
+  // Kick off BA session hydrate ASAP (before DOMContentLoaded / first route gate).
+  window.__loadBaSession = loadSession;
+  window.__baSessionReady = loadSession();
+
   const ready = function () {
-    loadSession();
+    if (!window.__baSessionReady) window.__baSessionReady = loadSession();
     startLiveInventory();
     if (typeof executeOrderPlacement === "function") {
       const prev = executeOrderPlacement;
@@ -296,7 +300,7 @@
         const sessionUser = window.PLAYER_AUTH && window.PLAYER_AUTH.getCurrentUser && window.PLAYER_AUTH.getCurrentUser();
         if (!sessionUser) {
           if (typeof toast === "function") toast("Sign in to your locker before placing an order", "lock");
-          window.location.hash = "#/login";
+          window.location.href = "/login";
           if (typeof handleRoute === "function") handleRoute();
           return;
         }

@@ -98,81 +98,41 @@ function saveLocalRegisteredUser(userRecord) {
 
 // Self-contained simulation instance matching Supabase Auth API
 const simulatedAuth = {
-  async signUp({ email, password, options = {} }) {
-    const cleanEmail = String(email || '').toLowerCase().trim();
-    if (!cleanEmail || !cleanEmail.includes('@')) {
-      return { data: null, error: { message: 'Please provide a valid email address' } };
-    }
-    if (!password || password.length < 6) {
-      return { data: null, error: { message: 'Password should be at least 6 characters' } };
-    }
-    const users = getLocalRegisteredUsers();
-    const existing = users.find(u => u.email === cleanEmail);
-    const user = {
-      id: existing?.id || ('usr_' + Math.random().toString(36).substring(2, 10)),
-      email: cleanEmail,
-      user_metadata: {
-        callsign: options.data?.callsign || existing?.user_metadata?.callsign || cleanEmail.split('@')[0],
-        position: options.data?.position || 'Midfielder',
-        bootSize: options.data?.bootSize || 'UK 9',
-        preferredFoot: options.data?.preferredFoot || 'Right',
-        ...options.data
-      },
-      app_metadata: { provider: 'email' },
-      created_at: existing?.created_at || new Date().toISOString()
-    };
-    saveLocalRegisteredUser({ ...user, passwordHash: btoa(password) });
-
-    const session = { access_token: 'tok_' + Date.now(), refresh_token: 'ref_' + Date.now(), expires_in: 3600, user };
-    setLocalStoredSession(session);
-    return { data: { user, session }, error: null };
+  async signUp() {
+    // Email signup is Better Auth on /login — no on-device fake profiles.
+    if (typeof window !== 'undefined') window.location.href = '/login';
+    return { data: null, error: { message: 'Use /login (Better Auth)' } };
   },
 
-  async signInWithPassword({ email, password }) {
-    const cleanEmail = String(email || '').toLowerCase().trim();
-    if (!cleanEmail || !cleanEmail.includes('@')) {
-      return { data: null, error: { message: 'Invalid login credentials' } };
-    }
-    if (!password || password === 'wrongpass' || password.length < 4) {
-      return { data: null, error: { message: 'Invalid login credentials' } };
-    }
-    const users = getLocalRegisteredUsers();
-    const found = users.find(u => u.email === cleanEmail);
-    if (found && found.passwordHash && found.passwordHash !== btoa(password)) {
-      return { data: null, error: { message: 'Invalid login credentials' } };
-    }
-    const user = found || {
-      id: 'usr_' + Math.random().toString(36).substring(2, 10),
-      email: cleanEmail,
-      user_metadata: { callsign: cleanEmail.split('@')[0], position: 'Midfielder', bootSize: 'UK 9' }
-    };
-    const session = { access_token: 'tok_' + Date.now(), refresh_token: 'ref_' + Date.now(), expires_in: 3600, user };
-    setLocalStoredSession(session);
-    return { data: { user, session }, error: null };
+  async signInWithPassword() {
+    // Email sign-in is Better Auth on /login — no on-device fake sessions.
+    if (typeof window !== 'undefined') window.location.href = '/login';
+    return { data: null, error: { message: 'Use /login (Better Auth)' } };
   },
 
   async signInWithOAuth({ provider, options = {} }) {
-    if (provider === 'google') {
-      const user = {
-        id: 'usr_goog_' + Math.random().toString(36).substring(2, 10),
-        email: 'player.pro@gmail.com',
-        user_metadata: { callsign: 'Apex Striker', full_name: 'Pro Athlete' }
-      };
-      const session = { access_token: 'tok_goog_' + Date.now(), refresh_token: 'ref_goog_' + Date.now(), expires_in: 3600, user };
-      setLocalStoredSession(session);
-      return { data: { user, session, provider: 'google' }, error: null };
+    // Real Google/X OAuth is Better Auth (grok-google / grok-x) on /login.
+    // Never mint on-device fake sessions like player.pro@gmail.com.
+    if (typeof window !== 'undefined') {
+      window.location.href = '/login';
+      return { data: { url: '/login', provider: provider || 'google' }, error: null };
     }
-    return { data: null, error: { message: 'Unsupported OAuth provider' } };
+    return { data: null, error: { message: 'OAuth requires /login (Better Auth)' } };
   },
 
   async getSession() {
+    // Never surface on-device tok_* fakes; real session comes from /api/session → PLAYER_AUTH.
     const session = getLocalStoredSession();
+    if (session && session.access_token && String(session.access_token).startsWith('tok_')) {
+      setLocalStoredSession(null);
+      return { data: { session: null }, error: null };
+    }
     return { data: { session }, error: null };
   },
 
   async getUser() {
-    const session = getLocalStoredSession();
-    return { data: { user: session?.user || null }, error: null };
+    const { data } = await this.getSession();
+    return { data: { user: data?.session?.user || null }, error: null };
   },
 
   async signOut() {
@@ -195,12 +155,13 @@ const simulatedClient = {
     update: () => Promise.resolve({ data: [], error: null }),
     delete: () => Promise.resolve({ data: [], error: null })
   }),
-  isSimulated: true
+  isSimulated: true,
+  // Auth is disabled here — locker uses Better Auth (/login, /api/session).
 };
 
 function getSupabaseClient() {
-  // Live Supabase keys in this demo are invalid in preview and throw on login.
-  // Always use the on-device locker so Sign in / Register / Google never 500.
+  // Legacy Supabase-shaped stub. Locker auth is Better Auth (/api/auth/*, /api/session).
+  // OAuth always redirects to /login (grok-google / grok-x) — never on-device fake Google.
   if (typeof window !== 'undefined') {
     window.supabaseClient = simulatedClient;
     window.supabaseAuth = simulatedClient.auth;
@@ -555,6 +516,46 @@ window.SUPABASE = new SyncManager();
 window.SUPABASE.init();
 
 // =============================================================================
+// Hydrate PLAYER_AUTH from Better Auth cookie/Bearer (/api/session) before locker gates.
+async function ensureBetterAuthSession() {
+  try {
+    if (window.__baSessionReady && typeof window.__baSessionReady.then === 'function') {
+      const u = await window.__baSessionReady;
+      if (u) return u;
+    }
+  } catch (e) {}
+  try {
+    const h = { 'Content-Type': 'application/json' };
+    try {
+      const token = sessionStorage.getItem('grok-auth.bearer-token');
+      if (token) h.Authorization = 'Bearer ' + token;
+    } catch (e) {}
+    const res = await fetch('/api/session', { credentials: 'include', headers: h });
+    const data = await res.json();
+    if (data && data.user && window.PLAYER_AUTH) {
+      const mapped = {
+        id: data.user.id,
+        email: data.user.email,
+        user_metadata: { callsign: (data.user.email || 'player').split('@')[0] },
+      };
+      window.PLAYER_AUTH.user = mapped;
+      window.PLAYER_AUTH.session = { user: mapped, access_token: 'ba' };
+      try { localStorage.setItem('90p_auth_session', JSON.stringify(window.PLAYER_AUTH.session)); } catch (e) {}
+      if (typeof updateAuthNavUI === 'function') updateAuthNavUI();
+      return mapped;
+    }
+    return (data && data.user) || null;
+  } catch (e) {
+    return null;
+  }
+}
+
+function isSimulatedLocalSession(session) {
+  const tok = session && session.access_token;
+  if (!tok || tok === 'ba') return false;
+  return String(tok).startsWith('tok_');
+}
+
 // 2. PLAYER AUTHENTICATION STATE MACHINE (window.PLAYER_AUTH)
 // =============================================================================
 class PlayerAuthManager {
@@ -5593,12 +5594,9 @@ function executeSearch(query) {
   if (window.lucide) lucide.createIcons();
 }
 
-function openAuthModal(defaultTab = 'password') {
-  if (defaultTab === 'register') {
-    window.location.hash = '#/register';
-  } else {
-    window.location.hash = '#/login';
-  }
+function openAuthModal(_defaultTab = 'password') {
+  // Prefer React /login door (email + grok-google / grok-x OAuth).
+  window.location.href = '/login';
 }
 
 function closeAuthModal() {
@@ -5627,7 +5625,7 @@ function initAuthModalEvents() {
     if (window.PLAYER_AUTH?.getCurrentUser()) {
       window.location.hash = '#/locker-room';
     } else {
-      window.location.hash = '#/login';
+      window.location.href = '/login';
     }
   });
 
@@ -5637,38 +5635,10 @@ function initAuthModalEvents() {
     b.addEventListener('click', () => switchAuthTab(b.dataset.tab));
   });
 
-  // Google OAuth in Modal
-  const onGoogleAuthClick = async () => {
-    const client = getSupabaseClient();
-    const redirectUrl = typeof getOAuthRedirectUrl === 'function' ? getOAuthRedirectUrl() : window.location.origin + window.location.pathname;
-    const res = await client.auth.signInWithOAuth({
-      provider: 'google',
-      options: { redirectTo: redirectUrl }
-    });
-    if (res?.error) {
-      const statusMsg = $('#authStatusMsg');
-      if (statusMsg) {
-        statusMsg.textContent = res.error.message || 'Google authentication failed';
-        statusMsg.style.color = 'var(--err)';
-      }
-    } else if (res?.data?.session) {
-      if (window.PLAYER_AUTH) {
-        window.PLAYER_AUTH.user = res.data.user || res.data.session.user;
-        window.PLAYER_AUTH.session = res.data.session;
-        try { localStorage.setItem('90p_auth_session', JSON.stringify(res.data.session)); } catch (e) {}
-        if (typeof updateAuthNavUI === 'function') updateAuthNavUI();
-      }
-      window.location.hash = '#/locker-room';
-      if (typeof handleRoute === 'function') handleRoute();
-    } else if (res?.data?.session) {
-      if (window.PLAYER_AUTH) {
-        window.PLAYER_AUTH.user = res.data.user;
-        window.PLAYER_AUTH.session = res.data.session;
-        updateAuthNavUI();
-      }
-      closeAuthModal();
-      window.location.hash = '#/locker-room';
-    }
+  // Google OAuth in Modal → Better Auth /login (grok-google / grok-x via signIn.oauth2)
+  const onGoogleAuthClick = (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    window.location.href = '/login';
   };
   $('#btnGoogleSignIn')?.addEventListener('click', onGoogleAuthClick);
   $('#btnGoogleSignUp')?.addEventListener('click', onGoogleAuthClick);
@@ -6341,33 +6311,24 @@ async function handleRoute() {
       renderAcademyRoute();
     } else if (path === 'teams') {
       renderTeamSalesRoute();
-    } else if (path === 'login' || path === 'signin') {
+    } else if (path === 'login' || path === 'signin' || path === 'register' || path === 'signup') {
+      // Prefer React /login for email + OAuth (grok-google / grok-x).
       if (window.PLAYER_AUTH?.getCurrentUser()) {
         window.location.hash = '#/locker-room';
-        handleRoute();
+        void handleRoute();
         return;
       }
-      renderLoginRoute();
-    } else if (path === 'register' || path === 'signup') {
-      if (window.PLAYER_AUTH?.getCurrentUser()) {
-        window.location.hash = '#/locker-room';
-        handleRoute();
-        return;
-      }
-      renderRegisterRoute();
+      window.location.href = '/login';
+      return;
     } else if (path === 'bots' || path === 'bot-access' || path === 'api') {
       renderBotsRoute();
     } else if (path === 'inventory' || path === 'stock' || path === 'live-stock') {
       renderInventoryRoute();
     } else if (path === 'locker-room') {
-      // PROMPT 3: Protect private pages with supabase.auth.getSession(); if no session, redirect to /login
-      const client = getSupabaseClient();
+      // Await Better Auth /api/session before gate — cookie users must not race to #/login.
+      await ensureBetterAuthSession();
       let session = null;
-      try {
-        const sessRes = await client.auth.getSession();
-        session = sessRes?.data?.session;
-      } catch (e) {}
-      if (!session && window.PLAYER_AUTH) {
+      if (window.PLAYER_AUTH) {
         session = window.PLAYER_AUTH.session || (window.PLAYER_AUTH.getCurrentUser() ? { user: window.PLAYER_AUTH.getCurrentUser() } : null);
       }
       if (!session) {
@@ -6376,8 +6337,17 @@ async function handleRoute() {
           if (stored) session = JSON.parse(stored);
         } catch (e) {}
       }
+      // Reject on-device simulated tokens (tok_*) — locker requires BA cookie/Bearer.
+      if (session && isSimulatedLocalSession(session)) {
+        session = null;
+        if (window.PLAYER_AUTH) {
+          window.PLAYER_AUTH.user = null;
+          window.PLAYER_AUTH.session = null;
+        }
+        try { localStorage.removeItem('90p_auth_session'); } catch (e) {}
+      }
       if (!session) {
-        window.location.hash = '#/login';
+        window.location.href = '/login';
         return;
       }
       renderLockerRoomRoute();
@@ -6561,29 +6531,10 @@ function renderLoginRoute() {
 
 
 
-  // Google OAuth Handler
-  $('#pageGoogleLogin')?.addEventListener('click', async () => {
-    const errorEl = $('#pageLoginError');
-    if (errorEl) errorEl.textContent = '';
-    const client = getSupabaseClient();
-    const redirectUrl = typeof getOAuthRedirectUrl === 'function' ? getOAuthRedirectUrl() : window.location.origin + window.location.pathname;
-    const res = await client.auth.signInWithOAuth({
-      provider: 'google',
-      options: { redirectTo: redirectUrl }
-    });
-    if (res?.error) {
-      if (errorEl) errorEl.textContent = res.error.message || 'Google sign in failed';
-    } else if (res?.data?.session) {
-      if (window.PLAYER_AUTH) {
-        window.PLAYER_AUTH.user = res.data.user;
-        window.PLAYER_AUTH.session = res.data.session;
-        updateAuthNavUI();
-      }
-      playSound('success');
-      toast('Signed in via Google!', 'shield-check');
-      window.location.hash = '#/locker-room';
-      handleRoute();
-    }
+  // Google OAuth → Better Auth /login (grok-google). No on-device simulated session.
+  $('#pageGoogleLogin')?.addEventListener('click', (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    window.location.href = '/login';
   });
 
   // Email & Password Submit
@@ -6822,40 +6773,10 @@ function renderRegisterRoute() {
 
 
 
-  // Google OAuth Handler
-  $('#pageGoogleRegister')?.addEventListener('click', async () => {
-    const statusEl = $('#pageRegStatus');
-    if (statusEl) statusEl.textContent = '';
-    const client = getSupabaseClient();
-    const redirectUrl = typeof getOAuthRedirectUrl === 'function' ? getOAuthRedirectUrl() : window.location.origin + window.location.pathname;
-    const res = await client.auth.signInWithOAuth({
-      provider: 'google',
-      options: { redirectTo: redirectUrl }
-    });
-    if (res?.error) {
-      if (statusEl) {
-        statusEl.textContent = res.error.message || 'Google registration failed';
-        statusEl.style.color = 'var(--err)';
-      }
-    } else if (res?.data?.session) {
-      if (window.PLAYER_AUTH) {
-        window.PLAYER_AUTH.user = res.data.user || res.data.session.user;
-        window.PLAYER_AUTH.session = res.data.session;
-        try { localStorage.setItem('90p_auth_session', JSON.stringify(res.data.session)); } catch (e) {}
-        if (typeof updateAuthNavUI === 'function') updateAuthNavUI();
-      }
-      window.location.hash = '#/locker-room';
-      if (typeof handleRoute === 'function') handleRoute();
-    } else if (res?.data?.session) {
-      if (window.PLAYER_AUTH) {
-        window.PLAYER_AUTH.user = res.data.user;
-        window.PLAYER_AUTH.session = res.data.session;
-        updateAuthNavUI();
-      }
-      playSound('success');
-      toast('Account created via Google!', 'shield-check');
-      window.location.hash = '#/locker-room';
-    }
+  // Google OAuth → Better Auth /login (grok-google). No on-device simulated session.
+  $('#pageGoogleRegister')?.addEventListener('click', (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    window.location.href = '/login';
   });
 
   // Email & Password Registration Submit
@@ -8008,7 +7929,7 @@ function renderCheckoutRoute() {
         <h2>LOCKER REQUIRED</h2>
         <p>Sign in to your locker before AUTHORIZE &amp; PLACE ORDER. Guest checkout is closed — your order must be tied to a player session.</p>
         <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:18px">
-          <a href="#/login" class="btn btn-volt mt-4"><i data-lucide="log-in"></i><span>SIGN IN TO LOCKER</span></a>
+          <a href="/login" class="btn btn-volt mt-4"><i data-lucide="log-in"></i><span>SIGN IN TO LOCKER</span></a>
           <a href="#/shop" class="btn btn-outline mt-4"><i data-lucide="arrow-left"></i><span>BACK TO SHOP</span></a>
         </div>
       </div>
@@ -8349,7 +8270,7 @@ function executeOrderPlacement() {
   if (!sessionUser) {
     if (typeof toast === 'function') toast('Sign in to your locker before placing an order', 'lock');
     if (typeof playSound === 'function') playSound('error');
-    window.location.hash = '#/login';
+    window.location.href = '/login';
     if (typeof handleRoute === 'function') handleRoute();
     return;
   }
@@ -8468,9 +8389,23 @@ function executeOrderPlacement() {
 }
 
 /* 5.5  BOOT SEQUENCE — Initialize Part 5 Systems */
-function bootPart5() {
-  window.addEventListener('hashchange', handleRoute);
-  handleRoute();
+async function bootPart5() {
+  window.addEventListener('hashchange', () => { void handleRoute(); });
+  try {
+    if (window.__baSessionReady) await window.__baSessionReady;
+    else await ensureBetterAuthSession();
+  } catch (e) {}
+  // After Better Auth OAuth lands on hash-free /original.html, open locker once.
+  try {
+    const oauthNext = sessionStorage.getItem('90p_oauth_next');
+    if (oauthNext && window.PLAYER_AUTH && window.PLAYER_AUTH.getCurrentUser()) {
+      sessionStorage.removeItem('90p_oauth_next');
+      if (!window.location.hash || window.location.hash === '#' || window.location.hash === '#/') {
+        window.location.hash = '#/' + String(oauthNext).replace(/^#\/?/, '');
+      }
+    }
+  } catch (e) {}
+  void handleRoute();
 }
 
 /* PART 6 / 8 — ORDER TRACKING LIVE TELEMETRY, PIN-GATED ADMIN DASHBOARD, CANVAS 2D CHARTS & INVENTORY */

@@ -2636,8 +2636,9 @@ function initHero() {
     heroStage = new Stage(DOM.heroCanvas, { fov: 42, dpr: Math.min(window.devicePixelRatio || 1, 1.5) });
     const { scene, camera } = heroStage;
 
-    camera.position.set(2.4, 1.2, 4.8);
-    camera.lookAt(0, 0, 0);
+    /* ThreadLab breakout: closer + left-biased so ball reads oversized vs tablet frame */
+    camera.position.set(0.85, 0.45, 3.35);
+    camera.lookAt(-0.35, 0.05, 0);
 
     const env = buildEnvMap(heroStage.renderer);
     if (env) scene.environment = env;
@@ -2661,14 +2662,15 @@ function initHero() {
     });
     scene.add(new THREE.Points(particleGeo, particleMat));
 
-    heroBall = buildBallMesh(HERO_BALL_RADIUS, 0, 0, '90+ SUPPLY', '10');
+    heroBall = buildBallMesh(HERO_BALL_RADIUS * 1.12, 0, 0, '90+ SUPPLY', '10');
+    heroBall.position.set(-0.55, 0.05, 0);
     scene.add(heroBall);
 
     heroStage.onAnim((dt, elapsed) => {
       if (heroBall) {
         heroBall.rotation.y += 0.35 * dt;
         heroBall.rotation.x = Math.sin(elapsed * 0.5) * 0.12;
-        heroBall.position.y = Math.sin(elapsed * 0.8) * 0.18;
+        heroBall.position.y = 0.05 + Math.sin(elapsed * 0.8) * 0.14;
       }
       const pos = particleGeo.attributes.position;
       for (let i = 0; i < particleCount; i++) {

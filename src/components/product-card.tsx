@@ -6,12 +6,21 @@ import { useShop } from "@/lib/store";
 import { cn, inr } from "@/lib/utils";
 import { toast } from "sonner";
 
+function isStagingSku(product: Product) {
+  return product.badge === "STAGING" || Number(product.price) <= 0;
+}
+/** Customer-facing Ready / Pre-order / Back soon — never raw STAGING spam. */
+function faceBadge(product: Product) {
+  if (product.active === false) return { label: "Back soon", cls: "border-[#ffcc66]/40 bg-[rgba(255,170,30,0.12)] text-[#ffcc66]" };
+  if (isStagingSku(product)) return { label: "Pre-order", cls: "border-volt/45 bg-volt/15 text-volt" };
+  if (product.inStock === false) return { label: "Back soon", cls: "border-[#ffcc66]/40 bg-[rgba(255,170,30,0.12)] text-[#ffcc66]" };
+  return { label: "Ready", cls: "border-[#2eff71]/40 bg-[rgba(46,255,113,0.12)] text-[#2eff71]" };
+}
 function stockCopy(product: Product) {
-  const n = product.stockCount;
-  if (product.inStock === false || n === 0) return { label: "Sold out", cls: "text-[#ff7a7a]" };
-  if (typeof n === "number" && n <= 3) return { label: `Only ${n} left`, cls: "text-[#ffb199]" };
-  if (typeof n === "number" && n <= 8) return { label: `Low stock · ${n}`, cls: "text-[#ffcc66]" };
-  return null;
+  /* Dropship honesty: no warehouse unit theatre on customer cards. */
+  if (isStagingSku(product)) return { label: "Pre-order · Ships after PO", cls: "text-volt" };
+  if (product.inStock === false) return { label: "Back soon", cls: "text-[#ff7a7a]" };
+  return { label: "Ready · Partner supplier", cls: "text-[#2eff71]" };
 }
 
 export function ProductCard({ product }: { product: Product }) {
@@ -31,11 +40,14 @@ export function ProductCard({ product }: { product: Product }) {
             className="transition-transform duration-500 group-hover:-translate-y-1 group-hover:rotate-[-6deg] group-hover:scale-105"
           />
         </Link>
-        {product.badge ? (
-          <span className="absolute left-3 top-3 z-10 rounded-md bg-volt px-2 py-1 font-mono text-[10px] font-extrabold uppercase tracking-[0.16em] text-volt-ink shadow-[0_4px_12px_rgba(200,255,46,0.35)]">
-            {product.badge}
-          </span>
-        ) : null}
+        {(() => {
+          const f = faceBadge(product);
+          return (
+            <span className={cn("absolute left-3 top-3 z-10 rounded-md border px-2 py-1 font-mono text-[10px] font-extrabold uppercase tracking-[0.16em]", f.cls)}>
+              {f.label}
+            </span>
+          );
+        })()}
         {stock ? (
           <span className={cn("absolute bottom-14 left-3 z-10 rounded-md border border-white/10 bg-black/55 px-2 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.14em]", stock.cls)}>
             {stock.label}
@@ -56,7 +68,7 @@ export function ProductCard({ product }: { product: Product }) {
           type="button"
           className="notch absolute inset-x-3 bottom-3 z-10 flex h-11 items-center justify-center gap-2 bg-bg/90 font-sans text-[11px] font-bold uppercase tracking-[0.12em] opacity-100 transition-colors hover:bg-volt hover:text-volt-ink md:translate-y-[120%] md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100"
           onClick={() => {
-            if (stock?.label === "Sold out") {
+            if (stock?.label === "Back soon" && product.inStock === false) {
               toast.error("Sold out — watch this SKU for restock");
               return;
             }
@@ -64,7 +76,7 @@ export function ProductCard({ product }: { product: Product }) {
             toast.success(`${product.name} added`);
           }}
         >
-          <ShoppingBag className="size-3.5" /> {stock?.label === "Sold out" ? "Notify me" : "Add to bag"}
+          <ShoppingBag className="size-3.5" /> {isStagingSku(product) ? "Notify me" : stock?.label === "Back soon" ? "Notify me" : "Add to bag"}
         </button>
       </div>
       <div className="flex flex-1 flex-col gap-2 px-[18px] pb-5 pt-4">
@@ -72,15 +84,21 @@ export function ProductCard({ product }: { product: Product }) {
           {product.name}
         </Link>
         <div className="flex items-center gap-1.5 font-mono text-[10px] text-subtle">
-          {Array.from({ length: 5 }).map((_, i) => (
-            <Star key={i} className={cn("size-3", i < Math.round(product.rating) ? "fill-volt text-volt" : "text-line-strong")} />
-          ))}
-          {product.rating} · {product.reviewsCount}
+          {isStagingSku(product) ? (
+            <span className="uppercase tracking-[0.14em]">New</span>
+          ) : (
+            <>
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Star key={i} className={cn("size-3", i < Math.round(product.rating) ? "fill-volt text-volt" : "text-line-strong")} />
+              ))}
+              {product.rating} · {product.reviewsCount}
+            </>
+          )}
         </div>
         <div className="mt-auto flex items-center justify-between pt-2 font-mono">
           <span className="text-lg font-bold">
-            {inr(product.price)}
-            {product.compareAtPrice > product.price ? (
+            {Number(product.price) > 0 ? inr(product.price) : "Price on PO"}
+            {Number(product.price) > 0 && product.compareAtPrice > product.price ? (
               <s className="ml-2 text-xs font-normal text-subtle">{inr(product.compareAtPrice)}</s>
             ) : null}
           </span>

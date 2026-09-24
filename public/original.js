@@ -3909,15 +3909,47 @@ function validateCoupon(rawCode, subtotal, cartItems = []) {
 /* 3.5  CART ENGINE & TOTALS CALCULATION */
 const LOW_STOCK_AT = 8;
 const CRITICAL_STOCK_AT = 3;
+/* Customer-facing availability badges — never surface raw STAGING spam. */
+function isStagingSku(p) {
+  return !!(p && (p.badge === 'STAGING' || Number(p.price) <= 0));
+}
+function customerFaceBadge(p) {
+  if (!p || p.active === false) return { label: 'Back soon', cls: 'face-backsoon' };
+  if (isStagingSku(p)) return { label: 'Pre-order', cls: 'face-preorder' };
+  if (p.inStock === false) return { label: 'Back soon', cls: 'face-backsoon' };
+  /* Ready only when catalog truth allows — no invented warehouse stock. */
+  return { label: 'Ready', cls: 'face-ready' };
+}
+function faceBadgeHtml(p) {
+  const f = customerFaceBadge(p);
+  return `<span class="pcard-badge ${f.cls}">${f.label}</span>`;
+}
 function stockAlert(p) {
   /* Dropship: no warehouse unit counts. Availability only. */
-  const staging = p && (p.badge === 'STAGING' || Number(p.price) <= 0);
+  const staging = isStagingSku(p);
   const available = p && p.active !== false && p.inStock !== false && !staging;
   if (!available) {
-    if (staging) return { level: 'low', n: 0, label: 'STAGING · Ships after PO' };
-    return { level: 'out', n: 0, label: 'UNAVAILABLE' };
+    if (staging) return { level: 'low', n: 0, label: 'Pre-order · Ships after PO' };
+    return { level: 'out', n: 0, label: 'Back soon' };
   }
-  return { level: 'ok', n: 0, label: 'Available · Ships from partner supplier' };
+  return { level: 'ok', n: 0, label: 'Ready · Ships from partner supplier' };
+}
+function hasCustomerReviews(p) {
+  /* Seed rating/reviewsCount are engineering trial figures — hide from customer UI. */
+  if (!p) return false;
+  if (isStagingSku(p)) return false;
+  const custom = (typeof STATE !== 'undefined' && STATE.reviews && STATE.reviews[p.id]) || [];
+  return custom.length > 0;
+}
+function pcardStarsHtml(p) {
+  if (!hasCustomerReviews(p)) {
+    return `<div class="pcard-stars pcard-stars-muted" title="Customer reviews open after first deliveries"><span class="cnt">New</span></div>`;
+  }
+  return `<div class="pcard-stars">
+            <i data-lucide="star" class="fill-star"></i>
+            <span>${p.rating}</span>
+            <span class="cnt">(${p.reviewsCount})</span>
+          </div>`;
 }
 function stockPillHtml(p) {
   const a = stockAlert(p);
@@ -4131,8 +4163,8 @@ function addToCart(productId, options = {}) {
     playSound('error');
     return;
   }
-  if (product.badge === 'STAGING' && Number(product.price) <= 0) {
-    toast('STAGING — awaiting PO / Finance price', 'alert-circle');
+  if (isStagingSku(product) && Number(product.price) <= 0) {
+    toast('Pre-order — price lands after PO / Finance floor', 'alert-circle');
     playSound('error');
     return;
   }
@@ -4531,12 +4563,13 @@ function renderBestsellersGrid() {
     <div class="pcard rv" style="--i: ${i}" data-pid="${p.id}">
       <div class="pcard-media">
         <div class="pcard-badge-row">
-          <span class="pcard-badge ${p.badge === 'BESTSELLER' ? 'gold' : ''}">${p.badge}</span>
-          ${p.compareAtPrice ? `<span class="pcard-disc">SAVE ${Math.round((1 - p.price / p.compareAtPrice) * 100)}%</span>` : ''}
+          ${faceBadgeHtml(p)}
+          ${Number(p.price) > 0 && p.compareAtPrice > p.price ? `<span class="pcard-disc">SAVE ${Math.round((1 - p.price / p.compareAtPrice) * 100)}%</span>` : ''}
         </div>
         <button class="pcard-wish ${isInWishlist(p.id) ? 'active' : ''}" data-wish-id="${p.id}" title="Save to locker" aria-label="Save ${escapeHtml(p.name)} to locker wishlist">
           <i data-lucide="heart"></i>
         </button>
+        <!-- MERCH FLAG: no ghost-mannequin jersey / product photo assets yet — keep icon/3D snap; do not invent placeholder faces -->
         <div class="pcard-3d-snap" id="snap_${p.id}">
           <div class="snap-fallback-icon">
             <i data-lucide="${CATEGORIES.find(c => c.slug === p.category)?.icon || 'circle-dot'}"></i>
@@ -4554,18 +4587,14 @@ function renderBestsellersGrid() {
       <div class="pcard-body">
         <div class="pcard-meta">
           <span class="pcard-cat">${p.categoryLabel}</span>
-          <div class="pcard-stars">
-            <i data-lucide="star" class="fill-star"></i>
-            <span>${p.rating}</span>
-            <span class="cnt">(${p.reviewsCount})</span>
-          </div>
+          ${pcardStarsHtml(p)}
         </div>
         <h4 class="pcard-title"><a href="#/product/${p.slug}">${p.name}</a></h4>
         <p class="pcard-desc">${p.shortDesc}</p>
         <div class="pcard-foot">
           <div class="pcard-price">
             <span class="price-curr">${fmt(p.price)}</span>
-            ${p.compareAtPrice ? `<span class="price-old">${fmt(p.compareAtPrice)}</span>` : ''}
+            ${Number(p.price) > 0 && p.compareAtPrice > p.price ? `<span class="price-old">${fmt(p.compareAtPrice)}</span>` : ''}
           </div>
           ${stockPillHtml(p)}
         </div>
@@ -4581,6 +4610,11 @@ function renderBestsellersGrid() {
 
 function renderTestimonialsGrid() {
   if (!DOM.tstGrid) return;
+  /* Customer-only: do not paint engineering trial / sample athlete quotes on home. */
+  if (DOM.tstGrid.getAttribute('data-customer-only') === '1') {
+    DOM.tstGrid.innerHTML = `<div class="tst-empty glass"><p>Customer reviews will appear here after first Wave A deliveries. Engineering trial ratings are held separately.</p></div>`;
+    return;
+  }
   const testimonials = [
     {
       name: 'Rohan Deshmukh',
@@ -4828,7 +4862,7 @@ function openQuickView(productId) {
             <div class="qv-large-icon">
               <i data-lucide="${CATEGORIES.find(c => c.slug === product.category)?.icon || 'box'}"></i>
             </div>
-            <div class="qv-badge-pill">${product.badge}</div>
+            <div class="qv-badge-pill ${customerFaceBadge(product).cls}">${customerFaceBadge(product).label}</div>
           </div>
         `}
       </div>
@@ -7240,12 +7274,13 @@ function updateShopGrid() {
     <div class="pcard" style="--i: ${i}" data-pid="${p.id}">
       <div class="pcard-media">
         <div class="pcard-badge-row">
-          <span class="pcard-badge ${p.badge === 'BESTSELLER' ? 'gold' : ''}">${p.badge}</span>
-          ${p.compareAtPrice ? `<span class="pcard-disc">SAVE ${Math.round((1 - p.price / p.compareAtPrice) * 100)}%</span>` : ''}
+          ${faceBadgeHtml(p)}
+          ${Number(p.price) > 0 && p.compareAtPrice > p.price ? `<span class="pcard-disc">SAVE ${Math.round((1 - p.price / p.compareAtPrice) * 100)}%</span>` : ''}
         </div>
         <button class="pcard-wish ${isInWishlist(p.id) ? 'active' : ''}" data-wish-id="${p.id}" title="Save to locker" aria-label="Save ${escapeHtml(p.name)} to locker wishlist">
           <i data-lucide="heart"></i>
         </button>
+        <!-- MERCH FLAG: product photography pending — ball 3D snaps OK; no invented jersey faces -->
         <div class="pcard-3d-snap" id="shop_snap_${p.id}">
           <div class="snap-fallback-icon">
             <i data-lucide="${CATEGORIES.find(c => c.slug === p.category)?.icon || 'circle-dot'}"></i>
@@ -7263,18 +7298,14 @@ function updateShopGrid() {
       <div class="pcard-body">
         <div class="pcard-meta">
           <span class="pcard-cat">${p.categoryLabel}</span>
-          <div class="pcard-stars">
-            <i data-lucide="star" class="fill-star"></i>
-            <span>${p.rating}</span>
-            <span class="cnt">(${p.reviewsCount})</span>
-          </div>
+          ${pcardStarsHtml(p)}
         </div>
         <h4 class="pcard-title"><a href="#/product/${p.slug}">${p.name}</a></h4>
         <p class="pcard-desc">${p.shortDesc}</p>
         <div class="pcard-foot">
           <div class="pcard-price">
             <span class="price-curr">${fmt(p.price)}</span>
-            ${p.compareAtPrice ? `<span class="price-old">${fmt(p.compareAtPrice)}</span>` : ''}
+            ${Number(p.price) > 0 && p.compareAtPrice > p.price ? `<span class="price-old">${fmt(p.compareAtPrice)}</span>` : ''}
           </div>
           ${stockPillHtml(p)}
         </div>
@@ -7390,21 +7421,25 @@ function renderPdpRoute(slugOrId) {
           <div class="pdp-tag-row">
             <span class="pdp-cat-pill">${product.categoryLabel}</span>
             <span class="pdp-sku-code">SKU: ${product.sku}</span>
-            <span class="pdp-stock-tag"><i class="stock-dot"></i> ${Number(product.price) > 0 && product.inStock !== false ? 'Available · Ships from partner supplier' : (product.badge === 'STAGING' ? 'STAGING · Price on PO' : 'Unavailable')}</span>
+            ${faceBadgeHtml(product)}
+            <span class="pdp-stock-tag"><i class="stock-dot"></i> ${stockAlert(product).label}</span>
           </div>
 
           <h1 class="pdp-title">${product.name}</h1>
 
-          <!-- Reviews Breakdown Row -->
+          <!-- Customer reviews only — seed engineering scores stay out of this row -->
           <div class="pdp-rating-row">
+            ${hasCustomerReviews(product) ? `
             <div class="pdp-stars">
               ${Array(Math.floor(product.rating)).fill('<i data-lucide="star" class="fill-star"></i>').join('')}
               ${product.rating % 1 !== 0 ? '<i data-lucide="star-half" class="fill-star"></i>' : ''}
               <span class="rating-num">${product.rating}</span>
             </div>
             <a href="#pdpReviewsSec" class="pdp-rev-count" data-scroll="pdpReviewsSec">
-              ${product.reviewsCount} Verified Customer Reviews
-            </a>
+              ${(STATE.reviews[product.id] || []).length} Customer Reviews
+            </a>` : `
+            <span class="pdp-rev-count pdp-rev-pending">Customer reviews open after first deliveries</span>
+            <a href="#pdpReviewsSec" class="pdp-rev-count" data-scroll="pdpReviewsSec">Read notes</a>`}
           </div>
 
           <!-- Price & Discounts -->
@@ -7445,8 +7480,16 @@ function renderPdpRoute(slugOrId) {
             <div id="pdpPinResult" class="pin-result-msg"></div>
           </div>
 
+          ${(product.id || '').includes('jersey') || (product.tags || []).includes('jersey') || product.categoryLabel === 'Match Kits' ? `
+          <div class="pdp-size-chart-hook">
+            <button type="button" class="btn btn-ghost btn-sm" id="pdpSizeChartBtn" data-size-chart="${product.id}">
+              <i data-lucide="ruler"></i><span>Size chart</span>
+            </button>
+            <span class="pdp-size-note">Unisex blank — chart lands with Merch fit samples</span>
+          </div>` : ''}
+
           <!-- Purchase CTAs -->
-          <div class="pdp-cta-block">
+          <div class="pdp-cta-block" id="pdpCtaBlock">
             <div class="pdp-qty-row">
               <label class="pdp-qty-lbl">QUANTITY:</label>
               <div class="qty-stepper pdp-stepper">
@@ -7458,20 +7501,35 @@ function renderPdpRoute(slugOrId) {
 
             <div class="pdp-btn-group">
               <button class="btn btn-volt btn-lg btn-block" id="pdpAddCart">
-                <i data-lucide="shopping-bag"></i><span>ADD TO BAG · ${fmt(product.price)}</span>
+                <i data-lucide="shopping-bag"></i><span>${isStagingSku(product) ? 'NOTIFY · PRE-ORDER' : 'ADD TO BAG'} · ${fmt(product.price)}</span>
               </button>
               <button class="btn btn-glass btn-lg btn-block" id="pdpBuyNow">
-                <i data-lucide="zap"></i><span>BUY NOW (INSTANT CHECKOUT)</span>
+                <i data-lucide="zap"></i><span>${isStagingSku(product) ? 'JOIN WAITLIST' : 'BUY NOW'}</span>
               </button>
             </div>
           </div>
 
           <div class="pdp-trust-banner">
-            <div class="trust-item"><i data-lucide="shield"></i> 100% Authentic Gear</div>
-            <div class="trust-item"><i data-lucide="truck"></i> Free Shipping ≥ ₹999</div>
-            <div class="trust-item"><i data-lucide="credit-card"></i> UPI / Cards / COD</div>
+            <div class="trust-pay-icons" aria-label="Payment methods">
+              <span class="pay-chip">UPI</span>
+              <span class="pay-chip">Card</span>
+              <span class="pay-chip">COD</span>
+            </div>
+            <div class="trust-item"><i data-lucide="truck"></i> Dropship · supplier dispatch (no Whitefield warehouse)</div>
+            <div class="trust-item"><i data-lucide="rotate-ccw"></i> Returns via supplier path</div>
           </div>
         </div>
+      </div>
+
+      <!-- Sticky Add to bag (minimal polish) -->
+      <div class="pdp-sticky-atc" id="pdpStickyAtc" hidden>
+        <div class="pdp-sticky-info">
+          <strong>${product.name}</strong>
+          <span>${fmt(product.price)} · ${customerFaceBadge(product).label}</span>
+        </div>
+        <button class="btn btn-volt btn-sm" id="pdpStickyAdd" type="button">
+          <i data-lucide="shopping-bag"></i><span>${isStagingSku(product) ? 'Notify' : 'Add to bag'}</span>
+        </button>
       </div>
 
       <!-- Tech Tabs & Specifications Section -->
@@ -7539,11 +7597,12 @@ function renderPdpRoute(slugOrId) {
         </div>
       </section>
 
-      <!-- Customer Reviews Section -->
+      <!-- Customer Reviews Section — engineering trial scores stay out of customer UI -->
       <section class="pdp-reviews-section" id="pdpReviewsSec">
         <div class="reviews-header-block">
           <div class="rev-summary-left">
-            <h2>PLAYER REVIEWS</h2>
+            <h2>CUSTOMER REVIEWS</h2>
+            ${hasCustomerReviews(product) ? `
             <div class="rev-big-rating">
               <span class="big-num">${product.rating}</span>
               <div class="big-stars-col">
@@ -7551,19 +7610,19 @@ function renderPdpRoute(slugOrId) {
                   ${Array(Math.floor(product.rating)).fill('<i data-lucide="star" class="fill-star"></i>').join('')}
                   ${product.rating % 1 !== 0 ? '<i data-lucide="star-half" class="fill-star"></i>' : ''}
                 </div>
-                <span>Based on ${product.reviewsCount} verified player ratings</span>
+                <span>Based on ${(STATE.reviews[product.id] || []).length} customer reviews</span>
               </div>
-            </div>
+            </div>` : `
+            <p class="rev-pending-copy">No customer reviews yet. Engineering trial scores are held back from this page until verified purchases land.</p>`}
           </div>
 
           <div class="rev-summary-right">
             <button class="btn btn-volt" id="btnOpenWriteReview">
-              <i data-lucide="pen-tool"></i><span>WRITE ATHLETE REVIEW</span>
+              <i data-lucide="pen-tool"></i><span>WRITE A REVIEW</span>
             </button>
           </div>
         </div>
 
-        <!-- Reviews List -->
         <div class="pdp-reviews-list" id="pdpReviewsList">
           ${renderProductReviewsList(product.id)}
         </div>
@@ -7582,16 +7641,24 @@ function renderPdpRoute(slugOrId) {
   let currentQty = 1;
   let selectedVarId = product.variants?.[0]?.id || 'std';
   let selectedVarName = product.variants?.[0]?.name || 'Standard';
+  const atcLabel = () => isStagingSku(product) ? 'NOTIFY · PRE-ORDER' : 'ADD TO BAG';
 
   const qtyVal = $('#pdpQtyVal');
   const addCartBtn = $('#pdpAddCart');
+  const stickyBar = $('#pdpStickyAtc');
+  const stickyAdd = $('#pdpStickyAdd');
+  const ctaBlock = $('#pdpCtaBlock');
+
+  const syncAtcLabel = () => {
+    if (addCartBtn) addCartBtn.innerHTML = `<i data-lucide="shopping-bag"></i><span>${atcLabel()} · ${fmt(product.price * currentQty)}</span>`;
+    if (window.lucide) lucide.createIcons();
+  };
 
   $('#pdpInc')?.addEventListener('click', () => {
     if (currentQty < MAX_QTY) {
       currentQty++;
       if (qtyVal) qtyVal.textContent = currentQty;
-      if (addCartBtn) addCartBtn.innerHTML = `<i data-lucide="shopping-bag"></i><span>ADD TO BAG · ${fmt(product.price * currentQty)}</span>`;
-      if (window.lucide) lucide.createIcons();
+      syncAtcLabel();
       playSound('click');
     }
   });
@@ -7600,11 +7667,21 @@ function renderPdpRoute(slugOrId) {
     if (currentQty > 1) {
       currentQty--;
       if (qtyVal) qtyVal.textContent = currentQty;
-      if (addCartBtn) addCartBtn.innerHTML = `<i data-lucide="shopping-bag"></i><span>ADD TO BAG · ${fmt(product.price * currentQty)}</span>`;
-      if (window.lucide) lucide.createIcons();
+      syncAtcLabel();
       playSound('click');
     }
   });
+
+  stickyAdd?.addEventListener('click', () => addCartBtn?.click());
+  $('#pdpSizeChartBtn')?.addEventListener('click', () => {
+    toast('Size chart lands with Merch fit samples — blank unisex cut for now', 'ruler');
+  });
+  if (stickyBar && ctaBlock && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => { stickyBar.hidden = en.isIntersecting; });
+    }, { threshold: 0.15 });
+    io.observe(ctaBlock);
+  }
 
   $$('#pdpVariants button').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -7737,41 +7814,20 @@ function initPDPStage(product) {
 }
 
 function renderProductReviewsList(productId) {
-  const benchmarkNoticeHtml = `
-    <div class="rev-benchmark-notice" role="note" aria-label="Review transparency notice" style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;border-radius:12px;background:rgba(200,255,46,0.06);border:1px solid rgba(200,255,46,0.25);margin-bottom:20px;font-family:var(--fm);font-size:0.75rem;color:#c2cbd0;line-height:1.5;">
-      <i data-lucide="info" style="color:#c8ff2e;flex-shrink:0;margin-top:2px;"></i>
-      <span><strong>TRANSPARENCY &amp; BENCHMARK NOTICE:</strong> Initial baseline ratings reflect aerodynamic CFD engineering trial benchmarks and professional athlete pre-launch testing. Independent user ratings below are submitted by verified purchasers.</span>
-    </div>
-  `;
-
-  const defaultReviews = [
-    {
-      author: 'Sameer Sen',
-      role: 'Semi-Pro Striker, Kolkata CFL',
-      rating: 5,
-      date: '3 days ago',
-      title: 'Remarkable first touch and zero ballooning on strikes',
-      comment: 'The thermal bonded seams make an immediate difference on wet turf. Knuckleball free kicks dip sharply without random turbulence.'
-    },
-    {
-      author: 'Karan Mehra',
-      role: 'Academy Captain, Delhi U-19',
-      rating: 5,
-      date: '1 week ago',
-      title: 'Build quality matches match balls costing ₹5,000+',
-      comment: 'We have put 40+ match hours on this sphere on rough artificial turf. Zero panel lifting and holds exact pressure for weeks.'
-    }
-  ];
-
-  const customReviews = STATE.reviews[productId] || [];
-  const allReviews = [...customReviews, ...defaultReviews];
-
-  return benchmarkNoticeHtml + allReviews.map(r => `
+  const customReviews = (STATE.reviews && STATE.reviews[productId]) || [];
+  if (!customReviews.length) {
+    return `
+    <div class="rev-benchmark-notice" role="note" aria-label="Reviews pending">
+      <i data-lucide="info"></i>
+      <span><strong>Customer reviews:</strong> none yet. Engineering trial / CFD benchmark scores stay off this customer surface until verified purchases arrive.</span>
+    </div>`;
+  }
+  return customReviews.map(r => `
     <div class="rev-item-card">
       <div class="rev-item-head">
         <div class="rev-author-info">
-          <strong>${escapeHtml(r.author || 'Anonymous Athlete')}</strong>
-          <span>${escapeHtml(r.role || 'Verified Athlete')}</span>
+          <strong>${escapeHtml(r.author || 'Customer')}</strong>
+          <span>${escapeHtml(r.role || 'Verified purchase')}</span>
         </div>
         <div class="rev-stars-date">
           <div class="stars">

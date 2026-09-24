@@ -127,14 +127,29 @@
     <div class="hero-inner container">
       <p class="eyebrow rv">Match-grade kit · India</p>
       <h1 class="rv" style="--d:.08s"><span>90+ SUPPLY<span class="slash">.</span></span><span class="outline">BUILT FOR THE 90TH MINUTE<span class="slash">.</span></span></h1>
-      <p class="sub rv" style="--d:.16s">Match balls, grip socks, and training kit for the last ten minutes. Wet pitches, tight games, 48H dispatch.</p>
-      <div class="hero-cta rv" style="--d:.24s">
-        <a class="btn btn-primary magnet" href="#/shop">SHOP GEAR <i data-lucide="arrow-right"></i></a>
+      <p class="sub rv" style="--d:.16s">Private-label match kits, Volt balls, and grip socks for the last ten minutes. Wet pitches, tight games — dropship from partner suppliers.</p>
+      <!-- Hero kit strip: named jersey + price cue + primary SHOP CTA (3D ball stays brand signature, not sole CTA) -->
+      <article class="hero-kit rv" style="--d:.2s" id="heroKitFeature">
+        <div class="hero-kit-mark" aria-hidden="true">
+          <span class="hero-kit-initial">JR</span>
+        </div>
+        <div class="hero-kit-copy">
+          <span class="hero-kit-eyebrow">Featured · Match Kits</span>
+          <h2 class="hero-kit-name"><a href="#/product/90plus-jersey-blank-home">90plus Jersey Blank — Home</a></h2>
+          <p class="hero-kit-price"><span class="hero-kit-badge face-preorder">Pre-order</span> <span class="hero-kit-amt">Price on PO</span></p>
+        </div>
+        <div class="hero-kit-actions">
+          <a class="btn btn-primary magnet" href="#/shop">SHOP KIT <i data-lucide="arrow-right"></i></a>
+          <a class="btn btn-ghost magnet" href="#/product/90plus-jersey-blank-home">View jersey</a>
+        </div>
+      </article>
+      <div class="hero-cta rv" style="--d:.28s">
+        <a class="btn btn-primary magnet hero-cta-primary" href="#/shop">SHOP GEAR <i data-lucide="arrow-right"></i></a>
       </div>
       <div class="hero-meta rv" style="--d:.32s">
-        <span><b>MATCH-GRADE</b> TESTED</span>
-        <span><b>48H</b> RAPID DISPATCH</span>
-        <span><b>FREE</b> SHIPPING OVER ₹999</span>
+        <span><b>UPI · CARD · COD</b></span>
+        <span><b>DROPSHIP</b> · SUPPLIER DISPATCH</span>
+        <span><b>RETURNS</b> VIA SUPPLIER PATH</span>
       </div>
     </div>
     <div class="scroll-cue"><div class="sc-line"></div><span>Scroll</span></div>
@@ -287,7 +302,7 @@
     </div>
     <div class="why-grid glass">
       <div class="why rv"><i data-lucide="users"></i><div class="num"><span data-count="12000">12,000</span><sub>+</sub></div><h3>Built for Players</h3><p>Active grassroots players, academy athletes, and weekend warriors across India.</p></div>
-      <div class="why rv" style="--d:.08s"><i data-lucide="medal"></i><div class="num"><span data-count="4.9" data-dec="1">4.9</span><sub>/5</sub></div><h3>Verified Rating</h3><p>Average verified rating across 4,000+ customer reviews.</p></div>
+      <div class="why rv" style="--d:.08s"><i data-lucide="credit-card"></i><div class="num" style="font-size:1.35rem;letter-spacing:.08em">UPI</div><h3>Pay your way</h3><p>UPI, cards, and COD. Dropship dispatch from partner suppliers — no Whitefield warehouse theatre.</p></div>
       <div class="why rv" style="--d:.16s"><i data-lucide="truck"></i><div class="num"><span data-count="48">48</span><sub>H</sub></div><h3>Fast Shipping</h3><p>Ships from our partner supplier and dispatched within 48 hours.</p></div>
       <div class="why rv" style="--d:.24s"><i data-lucide="crosshair"></i><div class="num"><span data-count="300">300</span><sub>+</sub></div><h3>Player Tested</h3><p>Stress-tested on monsoon turf, gravel pitches, and hybrid academy grounds.</p></div>
     </div>
@@ -304,15 +319,16 @@
     </div>
   </section>
 
-  <!-- TESTIMONIALS -->
-  <section class="block container">
+  <!-- TESTIMONIALS — customer quotes only; engineering trial scores hidden -->
+  <section class="block container" id="testimonials">
     <div class="sec-head">
       <div>
-        <p class="eyebrow rv">Locker room testimonials</p>
-        <h2 class="sec rv" style="--d:.06s">From the<br>locker room<span style="color:var(--volt)">.</span></h2>
+        <p class="eyebrow rv">After first deliveries</p>
+        <h2 class="sec rv" style="--d:.06s">Customer reviews<br>open with Wave A<span style="color:var(--volt)">.</span></h2>
+        <p class="sec-sub rv" style="--d:.1s">Engineering trial scores stay off this page. Real locker-room notes land here after verified purchases.</p>
       </div>
     </div>
-    <div class="tst-grid" id="tstGrid"></div>
+    <div class="tst-grid" id="tstGrid" data-customer-only="1"></div>
   </section>
 
   <!-- NEWSLETTER -->
@@ -695,7 +711,7 @@
         <label class="ai-section-label">03 // TACTICAL EMPHASIS</label>
         <div class="ai-chips-grid" id="aiStyleGrid">
           <button class="ai-chip active" data-style="SPEED">⚡ Explosive Cutbacks & Speed</button>
-          <button class="ai-chip" data-style="FK">🎯 Free-Kick Dip & Knuckleball</button>
+          <button class="ai-chip" data-style="FK">🎯 Dip & Knuckleball</button>
           <button class="ai-chip" data-style="PRESS">🛡️ High-Press & Heavy Tackles</button>
           <button class="ai-chip" data-style="DISTRIB">📐 Surgical 60m Tactical Passes</button>
         </div>
